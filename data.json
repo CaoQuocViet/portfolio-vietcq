@@ -1,0 +1,16 @@
+{
+	"description": "Passionate Full Stack Developer specializing in modern web technologies.",
+	"githubUsername": "caoquocviet",
+	"avatarUrl": "https://avatars.githubusercontent.com/u/caoquocviet?v=4",
+	"displayName": "Cao Quoc Viet",
+	"email": "caoquocviet@example.com",
+	"social": {
+		"linkedin": "https://linkedin.com/in/caoquocviet",
+		"twitter": "https://twitter.com/caoquocviet",
+		"github": "https://github.com/caoquocviet"
+	},
+	"projects": {
+		"blacklist": [],
+		"heroNames": []
+	}
+}
