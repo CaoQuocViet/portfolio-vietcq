@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useSearchParams, usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from "react";
 import LoadingIndicator from './loading-indicator';
-import { useTheme } from './theme-provider';
+import { useTheme } from 'next-themes';
 import data from '../../../data.json';
 
 export const Navigation = () => {

@@ -523,6 +523,35 @@
       transform: scale(1.05);
     }
   }
+
+  @keyframes orbitRotate {
+    from {
+      transform: translate(-50%, -50%) rotate(0deg) translateY(-140px) rotate(0deg);
+    }
+    to {
+      transform: translate(-50%, -50%) rotate(360deg) translateY(-140px) rotate(-360deg);
+    }
+  }
+
+  @keyframes ringRotate {
+    from {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+
+  @keyframes contactPulse {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    }
+    50% {
+      transform: scale(1.02);
+      box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+    }
+  }
 }
 
 /* Scrollbar styling */
