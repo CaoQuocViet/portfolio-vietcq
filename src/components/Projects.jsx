@@ -36,107 +36,114 @@ export default function Projects({ theme }) {
         <Link
             href={repo.html_url}
             target="_blank"
-            className="group block min-w-[320px] mx-4"
+            className="group block min-w-[280px] mx-3"
             style={{
                 animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`
             }}
         >
-            <div className={`h-full p-6 rounded-3xl transition-all duration-500 transform group-hover:-translate-y-3 group-hover:scale-105 ${
+            <div className={`h-full p-6 rounded-2xl transition-all duration-500 transform group-hover:-translate-y-2 group-hover:scale-105 relative overflow-hidden ${
                 theme === 'dark'
-                    ? 'bg-gradient-to-br from-gray-800/80 to-gray-900/80 hover:from-gray-700/90 hover:to-gray-800/90 border border-gray-700/50 hover:border-blue-500/50'
-                    : 'bg-gradient-to-br from-white to-gray-50/80 hover:from-gray-50 hover:to-white shadow-xl hover:shadow-2xl border border-gray-200/50 hover:border-blue-400/50'
-            } backdrop-blur-sm relative overflow-hidden`}>
+                    ? 'bg-zinc-900/90 hover:bg-zinc-800/95 border border-zinc-800/50 hover:border-zinc-700'
+                    : 'bg-white/90 hover:bg-gray-50 shadow-lg hover:shadow-xl border border-gray-200/50 hover:border-gray-300'
+            } backdrop-blur-sm`}>
                 
-                {/* Gradient Overlay */}
-                <div className={`absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
+                {/* Gradient Background */}
+                <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
                     theme === 'dark' 
-                        ? 'bg-gradient-to-br from-blue-600/10 via-purple-600/10 to-cyan-600/10' 
-                        : 'bg-gradient-to-br from-blue-400/5 via-purple-400/5 to-cyan-400/5'
+                        ? 'bg-gradient-to-br from-purple-600/10 via-blue-600/10 to-cyan-600/10' 
+                        : 'bg-gradient-to-br from-purple-400/5 via-blue-400/5 to-cyan-400/5'
                 }`} />
 
-                {/* Project Header */}
-                <div className="relative z-10 flex items-start justify-between mb-6">
-                    <div className={`p-4 rounded-2xl transition-all duration-300 group-hover:scale-110 ${
+                {/* Card Header */}
+                <div className="relative z-10 flex justify-between items-start mb-4">
+                    <span className={`text-xs duration-300 ${
                         theme === 'dark' 
-                            ? 'bg-gradient-to-br from-blue-600/20 to-purple-600/20' 
-                            : 'bg-gradient-to-br from-blue-100 to-purple-100'
+                            ? 'text-zinc-500 group-hover:text-zinc-400' 
+                            : 'text-gray-500 group-hover:text-gray-400'
                     }`}>
-                        <FaCode className={`text-2xl ${
-                            theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
-                        }`} />
-                    </div>
+                        <time dateTime={new Date(repo.created_at).toISOString()} title="Created">
+                            {new Date(repo.created_at).toISOString().substring(0, 10)}
+                        </time>
+                    </span>
                     
-                    <HiOutlineExternalLink className={`text-xl transition-all duration-300 group-hover:scale-125 group-hover:rotate-12 ${
-                        theme === 'dark' ? 'text-gray-400 group-hover:text-blue-400' : 'text-gray-500 group-hover:text-blue-600'
+                    <div className={`flex items-center gap-2 text-xs ${
+                        theme === 'dark' ? 'text-zinc-500' : 'text-gray-500'
+                    }`}>
+                        <span className="flex items-center gap-1" title="Total stars">
+                            <FaStar className="w-3 h-3" />
+                            {Intl.NumberFormat("en-US", { notation: "compact" }).format(repo.stargazers_count)}
+                        </span>
+                        {repo.watchers_count > 0 && (
+                            <span className="flex items-center gap-1" title="Watchers">
+                                <FaEye className="w-3 h-3" />
+                                {Intl.NumberFormat("en-US", { notation: "compact" }).format(repo.watchers_count)}
+                            </span>
+                        )}
+                    </div>
+                </div>
+
+                {/* Project Title */}
+                <h3 className={`relative z-10 text-lg font-medium duration-300 mb-3 cursor-pointer ${
+                    theme === 'dark' 
+                        ? 'text-zinc-200 group-hover:text-white' 
+                        : 'text-gray-900 group-hover:text-gray-700'
+                }`} title="Click to view the repo">
+                    <span className={`transition-all duration-300 ${
+                        theme === 'dark'
+                            ? 'bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 group-hover:from-pink-400 group-hover:via-purple-400 group-hover:to-blue-400'
+                            : 'bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 group-hover:from-pink-600 group-hover:via-purple-600 group-hover:to-blue-600'
+                    } text-transparent bg-clip-text`}>
+                        {repo.name.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
+                    </span>
+                </h3>
+
+                {/* Description */}
+                <p className={`relative z-10 text-sm duration-300 mb-4 line-clamp-2 ${
+                    theme === 'dark' 
+                        ? 'text-zinc-400 group-hover:text-zinc-300' 
+                        : 'text-gray-600 group-hover:text-gray-700'
+                }`}>
+                    {repo.description || 'A showcase project demonstrating modern web development techniques and best practices.'}
+                </p>
+
+                {/* Tech Stack */}
+                {repo.language && (
+                    <div className="relative z-10 mb-4">
+                        <span className={`text-xs px-3 py-1 rounded-full transition-all duration-300 ${
+                            theme === 'dark'
+                                ? 'bg-zinc-800/50 text-zinc-300 group-hover:bg-purple-600/20 group-hover:text-purple-400'
+                                : 'bg-gray-100 text-gray-700 group-hover:bg-purple-100 group-hover:text-purple-600'
+                        }`}>
+                            {repo.language}
+                        </span>
+                    </div>
+                )}
+
+                {/* Footer */}
+                <div className={`relative z-10 flex justify-between items-center pt-4 mt-auto border-t transition-colors duration-300 ${
+                    theme === 'dark' 
+                        ? 'border-zinc-800/50 group-hover:border-zinc-700/50' 
+                        : 'border-gray-200/50 group-hover:border-gray-300/50'
+                }`}>
+                    <span className={`text-xs flex items-center gap-1 transition-colors duration-300 ${
+                        theme === 'dark' 
+                            ? 'text-zinc-500 group-hover:text-zinc-400' 
+                            : 'text-gray-500 group-hover:text-gray-600'
+                    }`} title="GitHub repository">
+                        <FaGithub className="w-3 h-3" />
+                        <span className="hover:text-blue-500">View Code</span>
+                    </span>
+                    
+                    <HiOutlineExternalLink className={`w-4 h-4 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12 ${
+                        theme === 'dark' 
+                            ? 'text-zinc-500 group-hover:text-blue-400' 
+                            : 'text-gray-500 group-hover:text-blue-600'
                     }`} />
                 </div>
 
-                {/* Project Content */}
-                <div className="relative z-10 flex-1">
-                    <h3 className={`text-xl font-bold mb-3 transition-colors duration-300 ${
-                        theme === 'dark' ? 'text-white group-hover:text-blue-400' : 'text-gray-900 group-hover:text-blue-600'
-                    }`}>
-                        {repo.name.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
-                    </h3>
-                    
-                    <p className={`text-sm leading-relaxed mb-6 line-clamp-3 ${
-                        theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
-                    }`}>
-                        {repo.description || 'A showcase project demonstrating modern web development techniques and best practices with cutting-edge technologies.'}
-                    </p>
-
-                    {/* Project Stats */}
-                    <div className="flex items-center justify-between mb-4">
-                        <div className="flex items-center space-x-4">
-                            {repo.language && (
-                                <span className={`text-xs font-medium px-3 py-1.5 rounded-full transition-colors duration-300 ${
-                                    theme === 'dark'
-                                        ? 'bg-gray-700/50 text-gray-300 group-hover:bg-blue-600/20 group-hover:text-blue-400'
-                                        : 'bg-gray-100 text-gray-700 group-hover:bg-blue-100 group-hover:text-blue-600'
-                                }`}>
-                                    {repo.language}
-                                </span>
-                            )}
-                            
-                            <div className={`flex items-center space-x-3 text-sm ${
-                                theme === 'dark' ? 'text-gray-400' : 'text-gray-500'
-                            }`}>
-                                <div className="flex items-center space-x-1">
-                                    <FaStar size={12} />
-                                    <span>{repo.stargazers_count}</span>
-                                </div>
-                                {repo.watchers_count > 0 && (
-                                    <div className="flex items-center space-x-1">
-                                        <FaEye size={12} />
-                                        <span>{repo.watchers_count}</span>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                        
-                        <span className={`text-xs ${
-                            theme === 'dark' ? 'text-gray-500' : 'text-gray-400'
-                        }`}>
-                            {new Date(repo.updated_at).toLocaleDateString()}
-                        </span>
-                    </div>
-
-                    {/* GitHub Link */}
-                    <div className="flex items-center space-x-2 text-sm">
-                        <FaGithub className={`${
-                            theme === 'dark' ? 'text-gray-400' : 'text-gray-500'
-                        }`} />
-                        <span className={`${
-                            theme === 'dark' ? 'text-gray-400' : 'text-gray-500'
-                        }`}>
-                            View on GitHub
-                        </span>
-                    </div>
-                </div>
-
                 {/* Hover Glow Effect */}
-                <div className={`absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-30 transition-all duration-500 blur-xl ${
-                    theme === 'dark' ? 'bg-blue-500/20' : 'bg-blue-400/20'
+                <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-20 transition-all duration-500 blur-xl ${
+                    theme === 'dark' ? 'bg-purple-500/30' : 'bg-purple-400/20'
                 }`} />
             </div>
         </Link>
