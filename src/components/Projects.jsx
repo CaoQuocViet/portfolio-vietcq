@@ -37,14 +37,14 @@ const Projects = () => {
     const secondRowRepos = repos.slice(Math.ceil(repos.length / 2))
 
     const ProjectCard = ({ repo, index }) => (
-        <div className="flex-shrink-0 w-64 mx-3 group">
+        <div className="flex-shrink-0 w-72 mx-3 group">
             <Link 
                 href={repo.html_url || repo.url} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="block"
             >
-                <div className={`relative overflow-hidden rounded-xl h-44 transition-all duration-300 
+                <div className={`relative overflow-hidden rounded-xl h-48 transition-all duration-300 
                     group-hover:scale-105 group-hover:shadow-xl cursor-pointer 
                     ${
                         theme === 'dark' 
@@ -62,7 +62,7 @@ const Projects = () => {
                             {(repo.name || repo.title || 'Project').replace(/-/g, ' ').replace(/_/g, ' ')}
                         </h3>
                         
-                        <p className={`text-xs mb-3 line-clamp-2 transition-colors duration-300 ${
+                        <p className={`text-xs mb-3 line-clamp-3 transition-colors duration-300 ${
                             theme === 'dark' 
                                 ? 'text-slate-400 group-hover:text-slate-300' 
                                 : 'text-slate-600 group-hover:text-slate-700'
@@ -71,18 +71,20 @@ const Projects = () => {
                         </p>
 
                         {/* Stats */}
-                        {(repo.stargazers_count || repo.forks_count) && (
-                            <div className="flex items-center space-x-3 text-xs mb-2">
-                                {repo.stargazers_count && (
+                        {(repo.stargazers_count !== undefined || repo.forks_count !== undefined) && (
+                            <div className={`flex items-center space-x-3 text-xs mb-2 ${
+                                theme === 'dark' ? 'text-slate-400' : 'text-slate-500'
+                            }`}>
+                                {repo.stargazers_count !== undefined && (
                                     <span className="flex items-center space-x-1">
                                         <Star className="w-3 h-3" />
-                                        <span>{repo.stargazers_count}</span>
+                                        <span>{repo.stargazers_count || 0}</span>
                                     </span>
                                 )}
-                                {repo.forks_count && (
+                                {repo.forks_count !== undefined && (
                                     <span className="flex items-center space-x-1">
                                         <GitFork className="w-3 h-3" />
-                                        <span>{repo.forks_count}</span>
+                                        <span>{repo.forks_count || 0}</span>
                                     </span>
                                 )}
                             </div>
@@ -137,7 +139,7 @@ const Projects = () => {
     )
 
     return (
-        <section id="projects" className={`py-24 ${theme === 'dark' ? 'bg-gray-900/50' : 'bg-gray-50'} overflow-hidden`}>
+        <section id="projects" className={`py-24 ${theme === 'dark' ? 'bg-slate-900/50' : 'bg-slate-50'} overflow-hidden`}>
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 <div className="text-center mb-16">
                     <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${
@@ -167,17 +169,17 @@ const Projects = () => {
                         <div className="relative">
                             <div className="overflow-hidden relative">
                                 {/* Left Fade - match section background */}
-                                <div className={`absolute left-0 top-0 bottom-0 w-16 z-10 pointer-events-none ${
+                                <div className={`absolute left-0 top-0 bottom-0 w-20 z-10 pointer-events-none ${
                                     theme === 'dark' 
-                                        ? 'bg-gradient-to-r from-gray-900/50 to-transparent' 
-                                        : 'bg-gradient-to-r from-gray-50 to-transparent'
+                                        ? 'bg-gradient-to-r from-slate-900 to-transparent' 
+                                        : 'bg-gradient-to-r from-slate-50 to-transparent'
                                 }`} />
                                 
                                 {/* Right Fade - match section background */}
-                                <div className={`absolute right-0 top-0 bottom-0 w-16 z-10 pointer-events-none ${
+                                <div className={`absolute right-0 top-0 bottom-0 w-20 z-10 pointer-events-none ${
                                     theme === 'dark' 
-                                        ? 'bg-gradient-to-l from-gray-900/50 to-transparent' 
-                                        : 'bg-gradient-to-l from-gray-50 to-transparent'
+                                        ? 'bg-gradient-to-l from-slate-900 to-transparent' 
+                                        : 'bg-gradient-to-l from-slate-50 to-transparent'
                                 }`} />
                                 
                                 <div 
@@ -198,17 +200,17 @@ const Projects = () => {
                         <div className="relative">
                             <div className="overflow-hidden relative">
                                 {/* Left Fade - match section background */}
-                                <div className={`absolute left-0 top-0 bottom-0 w-16 z-10 pointer-events-none ${
+                                <div className={`absolute left-0 top-0 bottom-0 w-20 z-10 pointer-events-none ${
                                     theme === 'dark' 
-                                        ? 'bg-gradient-to-r from-gray-900/50 to-transparent' 
-                                        : 'bg-gradient-to-r from-gray-50 to-transparent'
+                                        ? 'bg-gradient-to-r from-slate-900 to-transparent' 
+                                        : 'bg-gradient-to-r from-slate-50 to-transparent'
                                 }`} />
                                 
                                 {/* Right Fade - match section background */}
-                                <div className={`absolute right-0 top-0 bottom-0 w-16 z-10 pointer-events-none ${
+                                <div className={`absolute right-0 top-0 bottom-0 w-20 z-10 pointer-events-none ${
                                     theme === 'dark' 
-                                        ? 'bg-gradient-to-l from-gray-900/50 to-transparent' 
-                                        : 'bg-gradient-to-l from-gray-50 to-transparent'
+                                        ? 'bg-gradient-to-l from-slate-900 to-transparent' 
+                                        : 'bg-gradient-to-l from-slate-50 to-transparent'
                                 }`} />
                                 
                                 <div 
