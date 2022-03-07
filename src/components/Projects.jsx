@@ -36,110 +36,122 @@ const Projects = () => {
     const firstRowRepos = repos.slice(0, Math.ceil(repos.length / 2))
     const secondRowRepos = repos.slice(Math.ceil(repos.length / 2))
 
-    const ProjectCard = ({ repo, index }) => (
-        <div className="flex-shrink-0 w-72 mx-3 group">
-            <Link 
-                href={repo.html_url || repo.url} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="block"
-            >
-                <div className={`relative overflow-hidden rounded-xl h-48 transition-all duration-300 
-                    group-hover:scale-105 group-hover:shadow-xl cursor-pointer 
-                    ${
-                        theme === 'dark' 
-                            ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border border-slate-700/50 shadow-lg shadow-slate-900/20' 
-                            : 'bg-gradient-to-br from-white via-slate-50 to-white border border-slate-200/60 shadow-lg shadow-slate-200/40'
-                    } backdrop-blur-sm`}>
-                    
-                    {/* Content */}
-                    <div className="p-4 h-full flex flex-col relative z-10">
-                        <h3 className={`font-semibold text-sm mb-2 line-clamp-1 transition-colors duration-300 ${
+    const ProjectCard = ({ repo, index }) => {
+        // Calculate popularity score for dynamic styling
+        const stars = repo.stargazers_count || 0
+        const forks = repo.forks_count || 0
+        const popularityScore = stars + (forks * 2) // Forks worth 2x stars
+        
+        // Dynamic title color based on popularity
+        const getTitleColor = () => {
+            if (popularityScore >= 50) return 'bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 text-transparent bg-clip-text group-hover:from-cyan-300 group-hover:via-blue-400 group-hover:to-purple-500'
+            if (popularityScore >= 20) return 'bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-600 text-transparent bg-clip-text group-hover:from-emerald-300 group-hover:via-teal-400 group-hover:to-cyan-500'
+            if (popularityScore >= 5) return 'bg-gradient-to-r from-amber-400 via-orange-500 to-red-500 text-transparent bg-clip-text group-hover:from-amber-300 group-hover:via-orange-400 group-hover:to-red-400'
+            return theme === 'dark' ? 'bg-gradient-to-r from-slate-200 to-slate-400 text-transparent bg-clip-text group-hover:from-slate-100 group-hover:to-slate-300' : 'bg-gradient-to-r from-slate-700 to-slate-900 text-transparent bg-clip-text group-hover:from-slate-600 group-hover:to-slate-800'
+        }
+
+        return (
+            <div className="flex-shrink-0 w-72 mx-3 group">
+                <Link 
+                    href={repo.html_url || repo.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="block"
+                >
+                    <div className={`relative overflow-hidden rounded-xl h-44 transition-all duration-300 
+                        group-hover:scale-105 group-hover:shadow-xl cursor-pointer 
+                        ${
                             theme === 'dark' 
-                                ? 'text-slate-100 group-hover:text-cyan-300' 
-                                : 'text-slate-900 group-hover:text-blue-700'
-                        }`}>
-                            {(repo.name || repo.title || 'Project').replace(/-/g, ' ').replace(/_/g, ' ')}
-                        </h3>
+                                ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border border-slate-700/50 shadow-lg shadow-slate-900/20' 
+                                : 'bg-gradient-to-br from-white via-slate-50 to-white border border-slate-200/60 shadow-lg shadow-slate-200/40'
+                        } backdrop-blur-sm`}>
                         
-                        <p className={`text-xs mb-3 line-clamp-3 transition-colors duration-300 ${
-                            theme === 'dark' 
-                                ? 'text-slate-400 group-hover:text-slate-300' 
-                                : 'text-slate-600 group-hover:text-slate-700'
-                        }`}>
-                            {repo.description || 'A modern web project'}
-                        </p>
-
-                        {/* Stats */}
-                        {(repo.stargazers_count !== undefined || repo.forks_count !== undefined) && (
-                            <div className={`flex items-center space-x-3 text-xs mb-2 ${
-                                theme === 'dark' ? 'text-slate-400' : 'text-slate-500'
-                            }`}>
-                                {repo.stargazers_count !== undefined && (
-                                    <span className="flex items-center space-x-1">
-                                        <Star className="w-3 h-3" />
-                                        <span>{repo.stargazers_count || 0}</span>
-                                    </span>
-                                )}
-                                {repo.forks_count !== undefined && (
-                                    <span className="flex items-center space-x-1">
-                                        <GitFork className="w-3 h-3" />
-                                        <span>{repo.forks_count || 0}</span>
-                                    </span>
-                                )}
-                            </div>
-                        )}
-
-                        {/* Language/Tech */}
-                        {(repo.language || repo.tech) && (
-                            <div className="mb-2">
-                                <span className={`text-xs px-2 py-1 rounded-full transition-all duration-300 ${
-                                    theme === 'dark'
-                                        ? 'bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-300 border border-cyan-500/30'
-                                        : 'bg-gradient-to-r from-blue-50 to-cyan-50 text-blue-700 border border-blue-200'
-                                }`}>
-                                    {repo.language || repo.tech}
-                                </span>
-                            </div>
-                        )}
-
-                        {/* Footer */}
-                        <div className={`flex justify-between items-center pt-2 mt-auto border-t transition-colors duration-300 ${
-                            theme === 'dark' 
-                                ? 'border-slate-700/50 group-hover:border-slate-600/50' 
-                                : 'border-slate-200/50 group-hover:border-slate-300/50'
-                        }`}>
-                            <span className={`text-xs flex items-center gap-1 transition-colors duration-300 ${
-                                theme === 'dark' 
-                                    ? 'text-slate-500 group-hover:text-slate-400' 
-                                    : 'text-slate-500 group-hover:text-slate-600'
-                            }`}>
-                                <Github className="w-3 h-3" />
-                                <span>View</span>
-                            </span>
+                        {/* Content */}
+                        <div className="p-3 h-full flex flex-col relative z-10">
+                            <h3 className={`font-semibold text-sm mb-2 line-clamp-1 transition-all duration-300 ${getTitleColor()}`}>
+                                {(repo.name || repo.title || 'Project').replace(/-/g, ' ').replace(/_/g, ' ')}
+                            </h3>
                             
-                            <ExternalLink className={`w-3 h-3 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12 ${
+                            <p className={`text-xs mb-4 line-clamp-3 transition-colors duration-300 ${
                                 theme === 'dark' 
-                                    ? 'text-slate-500 group-hover:text-cyan-400' 
-                                    : 'text-slate-500 group-hover:text-blue-600'
-                            }`} />
-                        </div>
-                    </div>
+                                    ? 'text-slate-400 group-hover:text-slate-300' 
+                                    : 'text-slate-600 group-hover:text-slate-700'
+                            }`}>
+                                {repo.description || 'A modern web project'}
+                            </p>
 
-                    {/* Gradient overlay */}
-                    <div className={`absolute inset-0 pointer-events-none transition-opacity duration-300 
-                        group-hover:opacity-20 ${
-                            theme === 'dark' 
-                                ? 'bg-gradient-to-t from-cyan-900/30 via-transparent to-transparent' 
-                                : 'bg-gradient-to-t from-blue-100/40 via-transparent to-transparent'
-                        }`} />
-                </div>
-            </Link>
-        </div>
-    )
+                            {/* Language/Tech & Stats in same row */}
+                            <div className="flex items-center justify-between mb-2">
+                                {/* Language/Tech */}
+                                {(repo.language || repo.tech) && (
+                                    <span className={`text-xs px-2 py-1 rounded-full transition-all duration-300 ${
+                                        theme === 'dark'
+                                            ? 'bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-300 border border-cyan-500/30'
+                                            : 'bg-gradient-to-r from-blue-50 to-cyan-50 text-blue-700 border border-blue-200'
+                                    }`}>
+                                        {repo.language || repo.tech}
+                                    </span>
+                                )}
+
+                                {/* Stats */}
+                                {(repo.stargazers_count !== undefined || repo.forks_count !== undefined) && (
+                                    <div className={`flex items-center space-x-2 text-xs ${
+                                        theme === 'dark' ? 'text-slate-400' : 'text-slate-500'
+                                    }`}>
+                                        {repo.stargazers_count !== undefined && (
+                                            <span className="flex items-center space-x-1">
+                                                <Star className="w-3 h-3" />
+                                                <span>{repo.stargazers_count || 0}</span>
+                                            </span>
+                                        )}
+                                        {repo.forks_count !== undefined && (
+                                            <span className="flex items-center space-x-1">
+                                                <GitFork className="w-3 h-3" />
+                                                <span>{repo.forks_count || 0}</span>
+                                            </span>
+                                        )}
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* Footer */}
+                            <div className={`flex justify-between items-center pt-1 mt-auto border-t transition-colors duration-300 ${
+                                theme === 'dark' 
+                                    ? 'border-slate-700/50 group-hover:border-slate-600/50' 
+                                    : 'border-slate-200/50 group-hover:border-slate-300/50'
+                            }`}>
+                                <span className={`text-xs flex items-center gap-1 transition-colors duration-300 ${
+                                    theme === 'dark' 
+                                        ? 'text-slate-500 group-hover:text-slate-400' 
+                                        : 'text-slate-500 group-hover:text-slate-600'
+                                }`}>
+                                    <Github className="w-3 h-3" />
+                                    <span>View</span>
+                                </span>
+                                
+                                <ExternalLink className={`w-3 h-3 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12 ${
+                                    theme === 'dark' 
+                                        ? 'text-slate-500 group-hover:text-cyan-400' 
+                                        : 'text-slate-500 group-hover:text-blue-600'
+                                }`} />
+                            </div>
+                        </div>
+
+                        {/* Gradient overlay */}
+                        <div className={`absolute inset-0 pointer-events-none transition-opacity duration-300 
+                            group-hover:opacity-20 ${
+                                theme === 'dark' 
+                                    ? 'bg-gradient-to-t from-cyan-900/30 via-transparent to-transparent' 
+                                    : 'bg-gradient-to-t from-blue-100/40 via-transparent to-transparent'
+                            }`} />
+                    </div>
+                </Link>
+            </div>
+        )
+    }
 
     return (
-        <section id="projects" className={`py-24 ${theme === 'dark' ? 'bg-slate-900/50' : 'bg-slate-50'} overflow-hidden`}>
+        <section id="projects" className={`py-24 ${theme === 'dark' ? 'bg-gray-900/50' : 'bg-gray-50'} overflow-hidden`}>
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 <div className="text-center mb-16">
                     <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${
@@ -169,17 +181,17 @@ const Projects = () => {
                         <div className="relative">
                             <div className="overflow-hidden relative">
                                 {/* Left Fade - match section background */}
-                                <div className={`absolute left-0 top-0 bottom-0 w-20 z-10 pointer-events-none ${
+                                <div className={`absolute left-0 top-0 bottom-0 w-32 z-10 pointer-events-none ${
                                     theme === 'dark' 
-                                        ? 'bg-gradient-to-r from-slate-900 to-transparent' 
-                                        : 'bg-gradient-to-r from-slate-50 to-transparent'
+                                        ? 'bg-gradient-to-r from-gray-900 via-gray-900 via-gray-900/90 to-transparent' 
+                                        : 'bg-gradient-to-r from-gray-50 via-gray-50 via-gray-50/90 to-transparent'
                                 }`} />
                                 
                                 {/* Right Fade - match section background */}
-                                <div className={`absolute right-0 top-0 bottom-0 w-20 z-10 pointer-events-none ${
+                                <div className={`absolute right-0 top-0 bottom-0 w-32 z-10 pointer-events-none ${
                                     theme === 'dark' 
-                                        ? 'bg-gradient-to-l from-slate-900 to-transparent' 
-                                        : 'bg-gradient-to-l from-slate-50 to-transparent'
+                                        ? 'bg-gradient-to-l from-gray-900 via-gray-900 via-gray-900/90 to-transparent' 
+                                        : 'bg-gradient-to-l from-gray-50 via-gray-50 via-gray-50/90 to-transparent'
                                 }`} />
                                 
                                 <div 
@@ -200,17 +212,17 @@ const Projects = () => {
                         <div className="relative">
                             <div className="overflow-hidden relative">
                                 {/* Left Fade - match section background */}
-                                <div className={`absolute left-0 top-0 bottom-0 w-20 z-10 pointer-events-none ${
+                                <div className={`absolute left-0 top-0 bottom-0 w-32 z-10 pointer-events-none ${
                                     theme === 'dark' 
-                                        ? 'bg-gradient-to-r from-slate-900 to-transparent' 
-                                        : 'bg-gradient-to-r from-slate-50 to-transparent'
+                                        ? 'bg-gradient-to-r from-gray-900 via-gray-900 via-gray-900/90 to-transparent' 
+                                        : 'bg-gradient-to-r from-gray-50 via-gray-50 via-gray-50/90 to-transparent'
                                 }`} />
                                 
                                 {/* Right Fade - match section background */}
-                                <div className={`absolute right-0 top-0 bottom-0 w-20 z-10 pointer-events-none ${
+                                <div className={`absolute right-0 top-0 bottom-0 w-32 z-10 pointer-events-none ${
                                     theme === 'dark' 
-                                        ? 'bg-gradient-to-l from-slate-900 to-transparent' 
-                                        : 'bg-gradient-to-l from-slate-50 to-transparent'
+                                        ? 'bg-gradient-to-l from-gray-900 via-gray-900 via-gray-900/90 to-transparent' 
+                                        : 'bg-gradient-to-l from-gray-50 via-gray-50 via-gray-50/90 to-transparent'
                                 }`} />
                                 
                                 <div 
