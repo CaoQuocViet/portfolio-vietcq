@@ -9,6 +9,7 @@ import Hero from "../components/Hero";
 import About from "../components/About";
 import Services from "../components/Services";
 import Projects from "../components/Projects";
+import ProjectShowcase from "../components/ProjectShowcase";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 
@@ -63,6 +64,7 @@ export default function HomePage() {
             <About theme={theme} />
             <Services theme={theme} />
             <Projects theme={theme} />
+            <ProjectShowcase theme={theme} />
             <Contact theme={theme} scrollToSection={scrollToSection} />
             <Footer theme={theme} />
 
