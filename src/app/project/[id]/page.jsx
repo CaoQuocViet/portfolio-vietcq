@@ -12,6 +12,11 @@ export default function ProjectDetailPage() {
     const [projectData, setProjectData] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
+    const [mounted, setMounted] = useState(false)
+
+    useEffect(() => {
+        setMounted(true)
+    }, [])
 
     useEffect(() => {
         const loadProjectData = async () => {
@@ -32,6 +37,14 @@ export default function ProjectDetailPage() {
             loadProjectData()
         }
     }, [params.id])
+
+    if (!mounted) {
+        return (
+            <div className="min-h-screen bg-white flex items-center justify-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600" />
+            </div>
+        )
+    }
 
     if (loading) {
         return (
