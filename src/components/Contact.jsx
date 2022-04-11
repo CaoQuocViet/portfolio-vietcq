@@ -1,4 +1,4 @@
-import { FaGithub, FaLinkedin } from "react-icons/fa6";
+import { FaGithub, FaLinkedin, FaYoutube, FaDiscord, FaFacebook } from "react-icons/fa6";
 import { GoMail } from "react-icons/go";
 import Link from "next/link";
 import data from "../../data.json";
@@ -23,7 +23,7 @@ export default function Contact({ theme, scrollToSection }) {
                 </p>
 
                 {/* Clean Circular Contact Animation */}
-                <div className="relative mx-auto mb-20 flex items-center justify-center" style={{ width: '560px', height: '560px' }}>
+                <div className="relative mx-auto mb-20 flex items-center justify-center" style={{ width: '700px', height: '700px' }}>
                     
                     {/* Subtle Background Circle */}
                     <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full rounded-full ${
@@ -48,31 +48,58 @@ export default function Contact({ theme, scrollToSection }) {
                     {/* Orbiting Contact Cards */}
                     {[
                         {
-                            icon: <GoMail size={24} />,
+                            icon: <GoMail size={20} />,
                             title: "Email",
-                            subtitle: "vietcao.dev@gmail.com",
+                            subtitle: "vietcao10@gmail.com",
                             href: `mailto:${data.email}`,
                             bg: theme === 'dark' ? '#ef4444' : '#f87171',
                             angle: 0,
                             delay: 0
                         },
                         {
-                            icon: <FaGithub size={24} />,
+                            icon: <FaGithub size={20} />,
                             title: "GitHub", 
                             subtitle: "Check out my code",
                             href: `https://github.com/${data.githubUsername}`,
                             bg: theme === 'dark' ? '#6b7280' : '#9ca3af',
-                            angle: 120,
-                            delay: 8
+                            angle: 60,
+                            delay: 5
                         },
                         {
-                            icon: <FaLinkedin size={24} />,
+                            icon: <FaYoutube size={20} />,
+                            title: "YouTube",
+                            subtitle: "Watch my videos",
+                            href: data.social?.youtube || "#",
+                            bg: theme === 'dark' ? '#ff0000' : '#ef4444',
+                            angle: 120,
+                            delay: 10
+                        },
+                        {
+                            icon: <FaDiscord size={20} />,
+                            title: "Discord",
+                            subtitle: "Join my server",
+                            href: data.social?.discord || "#",
+                            bg: theme === 'dark' ? '#5865f2' : '#6366f1',
+                            angle: 180,
+                            delay: 15
+                        },
+                        {
+                            icon: <FaFacebook size={20} />,
+                            title: "Facebook",
+                            subtitle: "Follow me",
+                            href: data.social?.facebook || "#",
+                            bg: theme === 'dark' ? '#1877f2' : '#3b82f6',
+                            angle: 240,
+                            delay: 20
+                        },
+                        {
+                            icon: <FaLinkedin size={20} />,
                             title: "LinkedIn",
                             subtitle: "Professional network", 
-                            href: data.social.linkedin,
+                            href: data.social?.linkedin || "#",
                             bg: theme === 'dark' ? '#3b82f6' : '#60a5fa',
-                            angle: 240,
-                            delay: 16
+                            angle: 300,
+                            delay: 25
                         }
                     ].map((contact, index) => (
                         <Link
@@ -83,11 +110,11 @@ export default function Contact({ theme, scrollToSection }) {
                             style={{
                                 top: '50%',
                                 left: '50%',
-                                transform: `translate(-50%, -50%) rotate(${contact.angle}deg) translateY(-200px) rotate(-${contact.angle}deg)`,
+                                transform: `translate(-50%, -50%) rotate(${contact.angle}deg) translateY(-280px) rotate(-${contact.angle}deg)`,
                                 animation: `orbitRotate 30s linear infinite ${contact.delay}s`
                             }}
                         >
-                            <div className={`relative w-32 h-32 rounded-2xl ${
+                            <div className={`relative w-36 h-36 rounded-2xl ${
                                 theme === 'dark' 
                                     ? 'bg-gray-800/90 border border-gray-700/50 hover:border-gray-600' 
                                     : 'bg-white border border-gray-200 hover:border-gray-300'
@@ -108,7 +135,7 @@ export default function Contact({ theme, scrollToSection }) {
                                     }`}>
                                         {contact.title}
                                     </h3>
-                                    <p className={`text-xs ${
+                                    <p className={`text-xs leading-tight ${
                                         theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
                                     }`}>
                                         {contact.subtitle}
@@ -150,6 +177,19 @@ export default function Contact({ theme, scrollToSection }) {
                     </button>
                 </div>
             </div>
+
+            {/* Animations */}
+            <style jsx>{`
+                @keyframes orbitRotate {
+                    from { transform: translate(-50%, -50%) rotate(0deg) translateY(-280px) rotate(0deg); }
+                    to { transform: translate(-50%, -50%) rotate(360deg) translateY(-280px) rotate(-360deg); }
+                }
+                
+                @keyframes pulse {
+                    0%, 100% { opacity: 0.3; }
+                    50% { opacity: 0.6; }
+                }
+            `}</style>
         </section>
     );
 }

@@ -196,7 +196,7 @@ const Projects = () => {
                                 
                                 <div 
                                     className="flex"
-                                    style={{
+                                style={{
                                         animation: 'slideLeft 30s linear infinite'
                                     }}
                                 >
@@ -204,10 +204,10 @@ const Projects = () => {
                                     {[...firstRowRepos, ...firstRowRepos].map((repo, index) => (
                                         <ProjectCard key={`first-${repo.id}-${index}`} repo={repo} index={index} />
                                     ))}
-                                </div>
-                            </div>
-                        </div>
-
+                                    </div>
+                                                </div>
+                                            </div>
+                                            
                         {/* Second Row - Sliding Right */}
                         <div className="relative">
                             <div className="overflow-hidden relative">
@@ -235,9 +235,9 @@ const Projects = () => {
                                     {[...secondRowRepos, ...secondRowRepos].map((repo, index) => (
                                         <ProjectCard key={`second-${repo.id}-${index}`} repo={repo} index={index} />
                                     ))}
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
                     </div>
                 )}
             </div>
