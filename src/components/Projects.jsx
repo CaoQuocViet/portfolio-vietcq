@@ -197,7 +197,7 @@ const Projects = () => {
                                 <div 
                                     className="flex"
                                 style={{
-                                        animation: 'slideLeft 30s linear infinite'
+                                        animation: 'slideLeft 10s linear infinite'
                                     }}
                                 >
                                     {/* Duplicate for seamless loop */}
@@ -228,7 +228,7 @@ const Projects = () => {
                                 <div 
                                     className="flex"
                                     style={{
-                                        animation: 'slideRight 30s linear infinite'
+                                        animation: 'slideRight 10s linear infinite'
                                     }}
                                 >
                                     {/* Duplicate for seamless loop */}
