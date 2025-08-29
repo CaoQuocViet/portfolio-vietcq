@@ -91,24 +91,6 @@ const ProjectGallery = ({ projectFilter = null }) => {
                     min-height: 30px;
                     letter-spacing: 0.5px;
                     text-transform: uppercase;
-                    position: relative;
-                }
-
-                .title-card::after {
-                    content: '→';
-                    position: absolute;
-                    right: 20px;
-                    top: 50%;
-                    transform: translateY(-50%);
-                    font-size: 24px;
-                    color: rgba(255, 255, 255, 0.8);
-                    animation: slideRight 1.5s infinite;
-                }
-
-                @keyframes slideRight {
-                    0% { transform: translateY(-50%) translateX(0); }
-                    50% { transform: translateY(-50%) translateX(10px); }
-                    100% { transform: translateY(-50%) translateX(0); }
                 }
 
                 .gallery-frame {
