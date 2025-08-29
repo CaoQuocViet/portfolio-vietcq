@@ -4,32 +4,27 @@ import { FaGithub, FaLinkedin, FaXTwitter, FaArrowDown } from "react-icons/fa6";
 import { GoMail } from "react-icons/go";
 import Link from "next/link";
 import data from "../../data.json";
+import WaveBackground from './WaveBackground';
+import WaveBackgroundReversed from "./WaveBackgroundReversed";
 
 export default function Hero({ theme, scrollToSection }) {
     return (
         <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-            {/* Background Elements */}
-            <div className="absolute inset-0 overflow-hidden">
-                <div className={`absolute top-1/4 left-1/4 w-96 h-96 rounded-full ${
-                    theme === 'dark' ? 'bg-blue-600/10' : 'bg-blue-200/30'
-                }`} style={{
-                    filter: 'blur(100px)',
-                    animation: 'float 6s ease-in-out infinite'
-                }} />
-                <div className={`absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full ${
-                    theme === 'dark' ? 'bg-purple-600/10' : 'bg-purple-200/30'
-                }`} style={{
-                    filter: 'blur(100px)',
-                    animation: 'float 8s ease-in-out infinite reverse'
-                }} />
-            </div>
 
-            <div className="max-w-7xl mx-auto px-6 lg:px-8 py-32 text-center relative z-10">
+
+            <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-32 pb-16 text-center relative z-10">
                 <div style={{ animation: 'fadeInUp 1s ease-out' }}>
                     <p className={`text-lg font-medium mb-6 ${
                         theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
                     }`} style={{ animation: 'fadeInUp 1s ease-out 0.2s both' }}>
-                        Hello, I'm Viet Cao
+                        Hello, I'm{' '}
+                        <span className={`bg-gradient-to-r ${
+                            theme === 'dark' 
+                                ? 'from-cyan-400 via-blue-500 to-purple-600' 
+                                : 'from-cyan-600 via-blue-700 to-purple-800'
+                        } bg-clip-text text-transparent font-bold`}>
+                            Cao Quốc Việt
+                        </span>
                     </p>
                     
                     <h1 className={`text-5xl md:text-7xl font-bold mb-8 leading-tight ${
@@ -121,6 +116,18 @@ export default function Hero({ theme, scrollToSection }) {
                             <FaArrowDown size={20} />
                         </button>
                     </div>
+                </div>
+            </div>
+            
+            {/* Wave Backgrounds at the bottom of Hero */}
+            <div className="absolute bottom-0 left-0 w-full">
+                {/* Bottom Wave - Sóng lồi lên */}
+                <div className="relative">
+                    <WaveBackground />
+                </div>
+                {/* Top Wave - Sóng lồi xuống */}
+                <div className="relative -mt-10">
+                    <WaveBackgroundReversed />
                 </div>
             </div>
         </section>
