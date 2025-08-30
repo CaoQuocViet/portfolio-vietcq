@@ -10,7 +10,7 @@ function Model() {
     <Float speed={1.5} rotationIntensity={0.5} floatIntensity={0.5}>
       <primitive 
         object={scene} 
-        scale={[7, 7, 7]} 
+        scale={[6, 6, 6]} 
         position={[0, -1, 0]}
         rotation={[0, Math.PI / 4, 0]}
       />
@@ -27,20 +27,6 @@ function LoadingSpinner() {
 }
 
 export default function PCModel() {
-  const [isMounted, setIsMounted] = useState(false)
-
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
-
-  if (!isMounted) {
-    return (
-      <div className="w-full h-full flex items-center justify-center">
-        <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-500"></div>
-      </div>
-    )
-  }
-
   return (
     <div className="w-full h-full">
       <Suspense fallback={<LoadingSpinner />}>
