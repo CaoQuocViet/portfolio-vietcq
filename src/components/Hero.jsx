@@ -101,15 +101,14 @@ export default function Hero({ theme, scrollToSection }) {
 
                     {/* Scroll Indicator */}
                     <div className="flex justify-center" style={{ animation: 'fadeInUp 1s ease-out 1.2s both' }}>
-                        <button
+                        <Button
                             onClick={() => scrollToSection('about')}
-                            className={`p-2 rounded-full transition-all duration-300 ${
-                                theme === 'dark' ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-gray-900'
-                            }`}
-                            style={{ animation: 'bounce 2s infinite' }}
+                            variant="ghost"
+                            size="sm"
+                            className="p-2 animate-bounce"
                         >
                             <FaArrowDown size={20} />
-                        </button>
+                        </Button>
                     </div>
                 </div>
             </div>

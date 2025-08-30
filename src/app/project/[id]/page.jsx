@@ -5,6 +5,7 @@ import { useTheme } from 'next-themes'
 import Link from 'next/link'
 import { ArrowLeft, Home, Github, ExternalLink } from 'lucide-react'
 import ProjectGallery from '../../../components/ProjectGallery'
+import Button from '../../../components/ui/Button'
 
 export default function ProjectDetailPage() {
     const { theme } = useTheme()
@@ -63,12 +64,13 @@ export default function ProjectDetailPage() {
                     <h1 className={`text-2xl font-bold mb-4 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
                         Project Not Found
                     </h1>
-                    <Link 
+                    <Button 
                         href="/gallery"
-                        className={`text-blue-600 hover:underline`}
+                        variant="primary"
+                        size="md"
                     >
                         Back to Gallery
-                    </Link>
+                    </Button>
                 </div>
             </div>
         )
@@ -85,17 +87,15 @@ export default function ProjectDetailPage() {
                 <div className="max-w-7xl mx-auto px-6 lg:px-8">
                     <div className="flex items-center justify-between h-16">
                         {/* Back to Gallery */}
-                        <Link 
+                        <Button 
                             href="/gallery"
-                            className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-200 ${
-                                theme === 'dark' 
-                                    ? 'text-gray-300 hover:text-white hover:bg-gray-800' 
-                                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
-                            }`}
+                            variant="ghost"
+                            size="sm"
+                            className="flex items-center gap-2"
                         >
                             <ArrowLeft className="w-4 h-4" />
                             <span className="text-sm font-medium">Back to Gallery</span>
-                        </Link>
+                        </Button>
 
                         {/* Project Name */}
                         <h1 className={`text-lg font-semibold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
@@ -103,16 +103,14 @@ export default function ProjectDetailPage() {
                         </h1>
 
                         {/* Home Icon */}
-                        <Link 
+                        <Button 
                             href="/"
-                            className={`p-2 rounded-lg transition-all duration-200 ${
-                                theme === 'dark' 
-                                    ? 'text-gray-400 hover:text-white hover:bg-gray-800' 
-                                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
-                            }`}
+                            variant="ghost"
+                            size="sm"
+                            className="p-2"
                         >
                             <Home className="w-5 h-5" />
-                        </Link>
+                        </Button>
                     </div>
                 </div>
             </nav>
@@ -143,30 +141,26 @@ export default function ProjectDetailPage() {
 
                             {/* Action Buttons */}
                             <div className="flex flex-wrap justify-center gap-4">
-                                <Link 
+                                <Button 
                                     href={projectData.demo}
                                     target="_blank"
-                                    className={`inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
-                                        theme === 'dark'
-                                            ? `bg-gradient-to-r from-${projectData.color.primary}-500 to-blue-600 text-white hover:from-${projectData.color.primary}-400 hover:to-blue-500 shadow-lg shadow-${projectData.color.primary}-500/25`
-                                            : `bg-gradient-to-r from-blue-500 to-${projectData.color.primary}-600 text-white hover:from-blue-400 hover:to-${projectData.color.primary}-500 shadow-lg shadow-blue-500/25`
-                                    }`}
+                                    variant="primary"
+                                    size="lg"
+                                    className="flex items-center gap-2"
                                 >
                                     <ExternalLink className="w-5 h-5" />
                                     Live Demo
-                                </Link>
-                                <Link 
+                                </Button>
+                                <Button 
                                     href={projectData.github}
                                     target="_blank"
-                                    className={`inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold transition-all duration-300 border ${
-                                        theme === 'dark'
-                                            ? 'border-gray-600 text-gray-300 hover:bg-gray-800 hover:border-gray-500'
-                                            : 'border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400'
-                                    }`}
+                                    variant="outline"
+                                    size="lg"
+                                    className="flex items-center gap-2"
                                 >
                                     <Github className="w-5 h-5" />
                                     View Source
-                                </Link>
+                                </Button>
                             </div>
                         </div>
 

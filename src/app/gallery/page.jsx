@@ -3,6 +3,7 @@ import { useTheme } from 'next-themes'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import ProjectGallery from '../../components/ProjectGallery'
+import Button from '../../components/ui/Button'
 
 export default function GalleryPage() {
     const { theme } = useTheme()
@@ -16,27 +17,15 @@ export default function GalleryPage() {
                 left: '20px',
                 zIndex: 1000
             }}>
-                <Link 
+                <Button
                     href="/"
-                    style={{
-                        background: 'rgba(255, 255, 255, 0.1)',
-                        backdropFilter: 'blur(10px)',
-                        border: '1px solid rgba(255, 255, 255, 0.2)',
-                        borderRadius: '12px',
-                        padding: '12px 20px',
-                        color: 'white',
-                        textDecoration: 'none',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '8px',
-                        fontWeight: '500',
-                        transition: 'all 0.3s ease',
-                        boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)'
-                    }}
+                    variant="secondary"
+                    size="md"
+                    className="flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20"
                 >
                     <ArrowLeft className="w-4 h-4" />
                     <span>Back to Portfolio</span>
-                </Link>
+                </Button>
             </div>
 
             {/* Main Content with tmp.html styling */}
