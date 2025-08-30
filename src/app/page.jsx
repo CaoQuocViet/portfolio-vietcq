@@ -6,7 +6,7 @@ import { useTheme } from "next-themes";
 // Import components
 import Navigation from "../components/Navigation";
 import Hero from "../components/Hero";
-import About from "../components/About";
+import About from "../components/about/About";
 import Services from "../components/Services";
 import Projects from "../components/Projects";
 import ProjectShowcase from "../components/ProjectShowcase";

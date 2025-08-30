@@ -1,10 +1,18 @@
+import PCModel from './PCModel';
+
 export default function About({ theme }) {
     return (
-        <section id="about" className={`py-24 ${theme === 'dark' ? 'bg-gray-900/50' : 'bg-gray-50'}`}>
-            <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <section id="about" className={`relative py-24 min-h-screen ${theme === 'dark' ? 'bg-gray-900/50' : 'bg-gray-50'}`}>
+            {/* 3D Model positioned to the right with higher z-index */}
+            <div className="absolute top-0 right-0 w-1/2 h-full z-20 pointer-events-auto">
+                <PCModel />
+            </div>
+            
+            {/* Content overlay */}
+            <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 h-full flex flex-col justify-center">
                 <div className="text-center mb-16">
                     <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${
-                        theme === 'dark' ? 'text-white' : 'text-gray-900'
+                        theme === 'dark' ? 'text-white drop-shadow-lg' : 'text-gray-900 drop-shadow-lg'
                     }`}>
                         About Me
                     </h2>
@@ -14,7 +22,9 @@ export default function About({ theme }) {
                 </div>
 
                 <div className="grid lg:grid-cols-2 gap-16 items-center">
-                    <div>
+                    <div className={`backdrop-blur-lg rounded-2xl p-8 max-w-lg ${
+                        theme === 'dark' ? 'bg-gray-900/80 border border-gray-700/50' : 'bg-white/90 border border-gray-300/50'
+                    } shadow-2xl`}>
                         <h3 className={`text-2xl md:text-3xl font-bold mb-6 ${
                             theme === 'dark' ? 'text-white' : 'text-gray-900'
                         }`}>
@@ -60,47 +70,8 @@ export default function About({ theme }) {
                         </div>
                     </div>
 
-                    <div className="relative">
-                        <div className={`rounded-2xl p-8 enhanced-card ${
-                            theme === 'dark' ? 'bg-gray-800/50' : 'bg-white'
-                        }`}>
-                            <h4 className={`text-xl font-bold mb-6 ${
-                                theme === 'dark' ? 'text-white' : 'text-gray-900'
-                            }`}>
-                                Tech Stack
-                            </h4>
-                            
-                            <div className="space-y-6">
-                                {[
-                                    { category: 'Frontend', skills: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS'] },
-                                    { category: 'Backend', skills: ['Node.js', 'Express', 'Python', 'PostgreSQL'] },
-                                    { category: 'Tools', skills: ['Git', 'Docker', 'AWS', 'Figma'] }
-                                ].map((group) => (
-                                    <div key={group.category}>
-                                        <h5 className={`font-semibold mb-3 ${
-                                            theme === 'dark' ? 'text-gray-200' : 'text-gray-800'
-                                        }`}>
-                                            {group.category}
-                                        </h5>
-                                        <div className="flex flex-wrap gap-2">
-                                            {group.skills.map((skill) => (
-                                                <span
-                                                    key={skill}
-                                                    className={`px-3 py-1 rounded-full text-sm font-medium ${
-                                                        theme === 'dark'
-                                                            ? 'bg-gray-700 text-gray-300'
-                                                            : 'bg-gray-100 text-gray-700'
-                                                    }`}
-                                                >
-                                                    {skill}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
+                    {/* Placeholder để giữ layout, model sẽ hiển thị ở background */}
+                    <div className="lg:block hidden"></div>
                 </div>
             </div>
         </section>
