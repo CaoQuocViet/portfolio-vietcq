@@ -14,7 +14,7 @@ const ProjectShowcase = () => {
                     <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${
                         theme === 'dark' ? 'text-white' : 'text-gray-900'
                     }`}>
-                        My Projects
+                        Show Cases
                     </h2>
                     <div className={`w-24 h-1 mx-auto rounded-full ${
                         theme === 'dark' ? 'bg-blue-400' : 'bg-blue-600'
