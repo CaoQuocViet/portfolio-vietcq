@@ -69,19 +69,15 @@ const ProjectGallery = ({ projectFilter = null }) => {
                     position: relative;
                     overflow: hidden;
                     padding: 30px;
-                    background: rgba(255, 255, 255, 0.1);
                     border-radius: 20px;
-                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
                     backdrop-filter: blur(10px);
                     border: 1px solid rgba(255, 255, 255, 0.1);
                 }
 
                 .title-card {
-                    background: linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
                     padding: 20px 30px;
                     border-radius: 12px;
                     margin-bottom: 25px;
-                    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
                     border: 1px solid rgba(255, 255, 255, 0.1);
                     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                     font-size: 20px;
@@ -213,8 +209,8 @@ const ProjectGallery = ({ projectFilter = null }) => {
                 }
             `}</style>
             
-            <div className="gallery-container">
-                <div className="title-card">
+            <div className="gallery-container enhanced-card">
+                <div className="title-card enhanced-card">
                     {hoveredTitle}
                 </div>
                 <div className="gallery-frame">

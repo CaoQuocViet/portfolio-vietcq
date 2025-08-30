@@ -61,9 +61,9 @@ export default function About({ theme }) {
                     </div>
 
                     <div className="relative">
-                        <div className={`rounded-2xl p-8 ${
+                        <div className={`rounded-2xl p-8 enhanced-card ${
                             theme === 'dark' ? 'bg-gray-800/50' : 'bg-white'
-                        } shadow-xl`}>
+                        }`}>
                             <h4 className={`text-xl font-bold mb-6 ${
                                 theme === 'dark' ? 'text-white' : 'text-gray-900'
                             }`}>

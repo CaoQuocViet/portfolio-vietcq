@@ -59,11 +59,11 @@ const Projects = () => {
                     className="block"
                 >
                     <div className={`relative overflow-hidden rounded-xl h-44 transition-all duration-300 
-                        group-hover:scale-105 group-hover:shadow-xl cursor-pointer 
+                        group-hover:scale-105 group-hover:shadow-xl cursor-pointer enhanced-card
                         ${
                             theme === 'dark' 
-                                ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border border-slate-700/50 shadow-lg shadow-slate-900/20' 
-                                : 'bg-gradient-to-br from-white via-slate-50 to-white border border-slate-200/60 shadow-lg shadow-slate-200/40'
+                                ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border-slate-700/50' 
+                                : 'bg-gradient-to-br from-white via-slate-50 to-white border-slate-200/60'
                         } backdrop-blur-sm`}>
                         
                         {/* Content */}

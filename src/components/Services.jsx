@@ -35,10 +35,10 @@ export default function Services({ theme }) {
                     ].map((service, index) => (
                         <div
                             key={service.title}
-                            className={`p-8 rounded-2xl transition-all duration-300 transform hover:-translate-y-2 ${
+                            className={`p-8 rounded-2xl enhanced-card transition-all duration-300 transform hover:-translate-y-2 ${
                                 theme === 'dark'
                                     ? 'bg-gray-900/50 hover:bg-gray-800/50'
-                                    : 'bg-gray-50 hover:bg-white shadow-lg hover:shadow-xl'
+                                    : 'bg-gray-50 hover:bg-white'
                             }`}
                             style={{
                                 animation: `fadeInUp 0.6s ease-out ${index * 0.2}s both`

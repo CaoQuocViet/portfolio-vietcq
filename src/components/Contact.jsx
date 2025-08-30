@@ -2,6 +2,7 @@ import { FaGithub, FaLinkedin, FaYoutube, FaDiscord, FaFacebook } from "react-ic
 import { GoMail } from "react-icons/go";
 import Link from "next/link";
 import data from "../../data.json";
+import Button from "./ui/Button";
 
 export default function Contact({ theme, scrollToSection }) {
     return (
@@ -114,11 +115,11 @@ export default function Contact({ theme, scrollToSection }) {
                                 animation: `orbitRotate 30s linear infinite ${contact.delay}s`
                             }}
                         >
-                            <div className={`relative w-36 h-36 rounded-2xl ${
+                            <div className={`relative w-36 h-36 rounded-2xl enhanced-card ${
                                 theme === 'dark' 
-                                    ? 'bg-gray-800/90 border border-gray-700/50 hover:border-gray-600' 
-                                    : 'bg-white border border-gray-200 hover:border-gray-300'
-                            } backdrop-blur-sm transition-all duration-300 transform group-hover:scale-110 group-hover:-translate-y-2 shadow-lg group-hover:shadow-xl`}>
+                                    ? 'bg-gray-800/90 border-gray-700/50 hover:border-gray-600' 
+                                    : 'bg-white border-gray-200 hover:border-gray-300'
+                            } backdrop-blur-sm transition-all duration-300 transform group-hover:scale-110 group-hover:-translate-y-2`}>
                                 
                                 {/* Icon Circle */}
                                 <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full flex items-center justify-center text-white transition-transform duration-300 group-hover:scale-110" style={{
@@ -152,29 +153,25 @@ export default function Contact({ theme, scrollToSection }) {
                     ))}
                 </div>
 
-                {/* Clean Call to Action */}
+                {/* Enhanced Call to Action */}
                 <div className="flex flex-col sm:flex-row gap-6 justify-center max-w-md mx-auto">
-                    <Link
+                    <Button
                         href={`mailto:${data.email}`}
-                        className={`flex-1 px-8 py-4 rounded-xl text-base font-semibold transition-all duration-300 transform hover:scale-105 ${
-                            theme === 'dark'
-                                ? 'bg-blue-600 hover:bg-blue-700 text-white'
-                                : 'bg-blue-600 hover:bg-blue-700 text-white'
-                        } shadow-lg hover:shadow-xl`}
+                        variant="primary"
+                        size="lg"
+                        className="flex-1"
                     >
                         Get In Touch
-                    </Link>
+                    </Button>
                     
-                    <button
+                    <Button
                         onClick={() => scrollToSection('hero')}
-                        className={`flex-1 px-8 py-4 rounded-xl text-base font-semibold transition-all duration-300 border-2 hover:scale-105 ${
-                            theme === 'dark'
-                                ? 'border-gray-700 text-gray-300 hover:border-blue-400 hover:text-blue-400'
-                                : 'border-gray-300 text-gray-700 hover:border-blue-600 hover:text-blue-600'
-                        }`}
+                        variant="outline"
+                        size="lg"
+                        className="flex-1"
                     >
                         Back to Top
-                    </button>
+                    </Button>
                 </div>
             </div>
 

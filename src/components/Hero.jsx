@@ -6,6 +6,7 @@ import Link from "next/link";
 import data from "../../data.json";
 import WaveBackground from './WaveBackground';
 import WaveBackgroundReversed from "./WaveBackgroundReversed";
+import Button from "./ui/Button";
 
 export default function Hero({ theme, scrollToSection }) {
     return (
@@ -56,27 +57,21 @@ export default function Hero({ theme, scrollToSection }) {
 
                     <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16" 
                          style={{ animation: 'fadeInUp 1s ease-out 0.8s both' }}>
-                        <button
+                        <Button
                             onClick={() => scrollToSection('projects')}
-                            className={`px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 ${
-                                theme === 'dark'
-                                    ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-600/25'
-                                    : 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-600/25'
-                            }`}
+                            variant="primary"
+                            size="lg"
                         >
                             View My Work
-                        </button>
+                        </Button>
                         
-                        <button
+                        <Button
                             onClick={() => scrollToSection('contact')}
-                            className={`px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 border-2 hover:scale-105 ${
-                                theme === 'dark'
-                                    ? 'border-gray-700 text-gray-300 hover:border-blue-400 hover:text-blue-400'
-                                    : 'border-gray-300 text-gray-700 hover:border-blue-600 hover:text-blue-600'
-                            }`}
+                            variant="outline"
+                            size="lg"
                         >
                             Get In Touch
-                        </button>
+                        </Button>
                     </div>
 
                     {/* Social Links */}
