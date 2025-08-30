@@ -2,6 +2,7 @@ import "../../global.css";
 import LocalFont from "next/font/local";
 import data from "../../data.json";
 import { ThemeProvider } from "next-themes";
+import { SmoothCursor } from "../components/ui/smooth-cursor";
 
 const username = process.env.GITHUB_USERNAME || data.githubUsername;
 const displayName = data.displayName || username;
@@ -44,8 +45,9 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en" className={calSans.variable} suppressHydrationWarning>
-			<body className={`${process.env.NODE_ENV === "development" ? "debug-screens" : ''}`}>
+			<body className={`cursor-none ${process.env.NODE_ENV === "development" ? "debug-screens" : ''}`} style={{cursor: 'none !important'}}>
 				<ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+					<SmoothCursor />
 					{children}
 				</ThemeProvider>
 			</body>
