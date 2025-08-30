@@ -58,13 +58,13 @@ const Projects = () => {
                     rel="noopener noreferrer"
                     className="block"
                 >
-                    <div className={`relative overflow-hidden rounded-xl h-44 transition-all duration-300 
-                        group-hover:scale-105 group-hover:shadow-xl cursor-pointer enhanced-card
-                        ${
-                            theme === 'dark' 
-                                ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border-slate-700/50' 
-                                : 'bg-gradient-to-br from-white via-slate-50 to-white border-slate-200/60'
-                        } backdrop-blur-sm`}>
+                                         <div className={`relative overflow-hidden rounded-xl h-44 transition-all duration-500 
+                         group-hover:scale-110 group-hover:shadow-2xl cursor-pointer enhanced-card border-2
+                         ${
+                             theme === 'dark' 
+                                 ? 'bg-gradient-to-br from-slate-950/95 via-blue-950/98 to-slate-950/95 border-slate-600/40 group-hover:border-blue-500/70 group-hover:from-slate-900/98 group-hover:via-blue-900 group-hover:to-slate-900/98' 
+                                 : 'bg-gradient-to-br from-slate-50/95 via-blue-50/98 to-slate-50/95 border-slate-200/70 group-hover:border-blue-400/80 group-hover:from-slate-100/98 group-hover:via-blue-100 group-hover:to-slate-100/98'
+                         } backdrop-blur-md shadow-lg group-hover:shadow-blue-500/30`}>
                         
                         {/* Content */}
                         <div className="p-3 h-full flex flex-col relative z-10">
@@ -84,10 +84,10 @@ const Projects = () => {
                             <div className="flex items-center justify-between mb-2">
                                 {/* Language/Tech */}
                                 {(repo.language || repo.tech) && (
-                                    <span className={`text-xs px-2 py-1 rounded-full transition-all duration-300 ${
+                                    <span className={`text-xs px-3 py-1.5 rounded-full transition-all duration-500 font-medium ${
                                         theme === 'dark'
-                                            ? 'bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-300 border border-cyan-500/30'
-                                            : 'bg-gradient-to-r from-blue-50 to-cyan-50 text-blue-700 border border-blue-200'
+                                            ? 'bg-gradient-to-r from-blue-500/40 to-slate-500/40 text-blue-200 border border-blue-400/60 group-hover:from-blue-400/50 group-hover:to-slate-400/50 group-hover:border-blue-300/80 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-blue-500/40'
+                                            : 'bg-gradient-to-r from-blue-500/40 to-slate-500/40 text-blue-700 border border-blue-400/70 group-hover:from-blue-400/50 group-hover:to-slate-400/50 group-hover:border-blue-300/90 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-blue-500/40'
                                     }`}>
                                         {repo.language || repo.tech}
                                     </span>
@@ -115,35 +115,42 @@ const Projects = () => {
                             </div>
 
                             {/* Footer */}
-                            <div className={`flex justify-between items-center pt-1 mt-auto border-t transition-colors duration-300 ${
+                            <div className={`flex justify-between items-center pt-2 mt-auto border-t transition-all duration-500 ${
                                 theme === 'dark' 
-                                    ? 'border-slate-700/50 group-hover:border-slate-600/50' 
-                                    : 'border-slate-200/50 group-hover:border-slate-300/50'
+                                    ? 'border-slate-600/50 group-hover:border-blue-500/70 group-hover:border-opacity-80' 
+                                    : 'border-slate-200/70 group-hover:border-blue-400/80 group-hover:border-opacity-80'
                             }`}>
-                                <span className={`text-xs flex items-center gap-1 transition-colors duration-300 ${
+                                <span className={`text-xs flex items-center gap-1.5 transition-all duration-500 font-medium ${
                                     theme === 'dark' 
-                                        ? 'text-slate-500 group-hover:text-slate-400' 
-                                        : 'text-slate-500 group-hover:text-slate-600'
+                                        ? 'text-slate-400 group-hover:text-blue-300 group-hover:scale-105' 
+                                        : 'text-slate-600 group-hover:text-blue-700 group-hover:scale-105'
                                 }`}>
-                                    <Github className="w-3 h-3" />
+                                    <Github className="w-3 h-3 group-hover:text-blue-400 transition-colors duration-500" />
                                     <span>View</span>
                                 </span>
                                 
-                                <ExternalLink className={`w-3 h-3 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12 ${
+                                <ExternalLink className={`w-3 h-3 transition-all duration-500 group-hover:scale-125 group-hover:rotate-12 ${
                                     theme === 'dark' 
-                                        ? 'text-slate-500 group-hover:text-cyan-400' 
-                                        : 'text-slate-500 group-hover:text-blue-600'
+                                        ? 'text-slate-400 group-hover:text-blue-300 group-hover:drop-shadow-lg group-hover:drop-shadow-blue-400/50' 
+                                        : 'text-slate-500 group-hover:text-blue-600 group-hover:drop-shadow-lg group-hover:drop-shadow-blue-500/50'
                                 }`} />
                             </div>
                         </div>
 
-                        {/* Gradient overlay */}
-                        <div className={`absolute inset-0 pointer-events-none transition-opacity duration-300 
-                            group-hover:opacity-20 ${
+                        {/* Animated gradient overlay */}
+                        <div className={`absolute inset-0 pointer-events-none transition-all duration-700 
+                            group-hover:opacity-100 ${
                                 theme === 'dark' 
-                                    ? 'bg-gradient-to-t from-cyan-900/30 via-transparent to-transparent' 
-                                    : 'bg-gradient-to-t from-blue-100/40 via-transparent to-transparent'
+                                    ? 'bg-gradient-to-t from-blue-500/15 via-transparent to-transparent opacity-0 group-hover:from-blue-400/25 group-hover:via-blue-500/15 group-hover:to-transparent' 
+                                    : 'bg-gradient-to-t from-blue-400/25 via-transparent to-transparent opacity-0 group-hover:from-blue-300/35 group-hover:via-blue-400/25 group-hover:to-transparent'
                             }`} />
+                        
+                        {/* Floating particles effect */}
+                        <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                            <div className="absolute top-2 right-2 w-2 h-2 bg-blue-400 rounded-full animate-ping"></div>
+                            <div className="absolute bottom-3 left-3 w-1.5 h-1.5 bg-slate-400 rounded-full animate-ping" style={{animationDelay: '0.5s'}}></div>
+                            <div className="absolute top-1/2 right-4 w-1 h-1 bg-blue-300 rounded-full animate-ping" style={{animationDelay: '1s'}}></div>
+                        </div>
                     </div>
                 </Link>
             </div>
@@ -242,7 +249,7 @@ const Projects = () => {
                 )}
             </div>
 
-            {/* Animations */}
+            {/* Enhanced Animations */}
             <style jsx>{`
                 @keyframes slideLeft {
                     from { transform: translateX(0); }
@@ -252,6 +259,20 @@ const Projects = () => {
                 @keyframes slideRight {
                     from { transform: translateX(-50%); }
                     to { transform: translateX(0); }
+                }
+                
+                @keyframes float {
+                    0%, 100% { transform: translateY(0px); }
+                    50% { transform: translateY(-8px); }
+                }
+                
+                @keyframes glow {
+                    0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.2); }
+                    50% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.4), 0 0 40px rgba(59, 130, 246, 0.2); }
+                }
+                
+                .enhanced-card {
+                    animation: float 2s ease-in-out infinite, glow 2s ease-in-out infinite;
                 }
             `}</style>
         </section>
