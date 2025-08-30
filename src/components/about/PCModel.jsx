@@ -12,7 +12,7 @@ function Model() {
         object={scene} 
         scale={[6, 6, 6]} 
         position={[0, -1, 0]}
-        rotation={[0, Math.PI / 4, 0]}
+        rotation={[0, -Math.PI / 4, 0]}
       />
     </Float>
   )
