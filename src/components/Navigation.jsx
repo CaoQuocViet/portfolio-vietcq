@@ -76,9 +76,13 @@ export default function Navigation({ theme, setTheme, activeSection, scrollToSec
                     <div className="flex items-center space-x-4">
                         <button
                             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                            className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center flex-shrink-0 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+                            className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center flex-shrink-0 rounded-lg transition-colors"
                         >
-                            {theme === 'dark' ? <FaSun size={18} /> : <FaMoon size={18} />}
+                            {theme === 'dark' ? (
+                                <FaSun size={18} className="text-yellow-600" />
+                            ) : (
+                                <FaMoon size={18} className="text-blue-800" />
+                            )}
                         </button>
 
                         {/* Mobile menu button */}
