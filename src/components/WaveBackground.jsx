@@ -15,7 +15,7 @@ const WaveBackground = () => {
                     <path 
                         d="M0,60 L0,60 Q100,20 200,60 Q300,100 400,60 Q500,20 600,60 Q700,100 800,60 Q900,20 1000,60 Q1100,100 1200,60 L1200,60 L1200,80 L0,80 Z" 
                         opacity="1" 
-                        fill="#8b5cf6"
+                        fill="#1e40af"
                     />
                 </svg>
                 {/* Duplicate Lane 1 for seamless loop */}
@@ -28,7 +28,7 @@ const WaveBackground = () => {
                     <path 
                         d="M0,60 L0,60 Q100,20 200,60 Q300,100 400,60 Q500,20 600,60 Q700,100 800,60 Q900,20 1000,60 Q1100,100 1200,60 L1200,60 L1200,80 L0,80 Z" 
                         opacity="1" 
-                        fill="#8b5cf6"
+                        fill="#1e40af"
                     />
                 </svg>
 
@@ -42,7 +42,7 @@ const WaveBackground = () => {
                     <path 
                         d="M0,60 L0,60 Q100,20 200,60 Q300,100 400,60 Q500,20 600,60 Q700,100 800,60 Q900,20 1000,60 Q1100,100 1200,60 L1200,60 L1200,80 L0,80 Z" 
                         opacity="0.85" 
-                        fill="#a78bfa"
+                        fill="#3b82f6"
                     />
                 </svg>
                 {/* Duplicate Lane 2 for seamless loop */}
@@ -55,7 +55,7 @@ const WaveBackground = () => {
                     <path 
                         d="M0,60 L0,60 Q100,20 200,60 Q300,100 400,60 Q500,20 600,60 Q700,100 800,60 Q900,20 1000,60 Q1100,100 1200,60 L1200,60 L1200,80 L0,80 Z" 
                         opacity="0.85" 
-                        fill="#a78bfa"
+                        fill="#3b82f6"
                     />
                 </svg>
 
@@ -69,7 +69,7 @@ const WaveBackground = () => {
                     <path 
                         d="M0,60 L0,60 Q100,20 200,60 Q300,100 400,60 Q500,20 600,60 Q700,100 800,60 Q900,20 1000,60 Q1100,100 1200,60 L1200,60 L1200,80 L0,80 Z" 
                         opacity="0.6" 
-                        fill="#c4b5fd"
+                        fill="#60a5fa"
                     />
                 </svg>
                 {/* Duplicate Lane 3 for seamless loop */}
@@ -82,7 +82,7 @@ const WaveBackground = () => {
                     <path 
                         d="M0,60 L0,60 Q100,20 200,60 Q300,100 400,60 Q500,20 600,60 Q700,100 800,60 Q900,20 1000,60 Q1100,100 1200,60 L1200,60 L1200,80 L0,80 Z" 
                         opacity="0.6" 
-                        fill="#c4b5fd"
+                        fill="#60a5fa"
                     />
                 </svg>
 
@@ -96,7 +96,7 @@ const WaveBackground = () => {
                     <path 
                         d="M0,60 L0,60 Q100,20 200,60 Q300,100 400,60 Q500,20 600,60 Q700,100 800,60 Q900,20 1000,60 Q1100,100 1200,60 L1200,60 L1200,80 L0,80 Z" 
                         opacity="0.3" 
-                        fill="#ddd6fe"
+                        fill="#93c5fd"
                     />
                 </svg>
                 {/* Duplicate Lane 4 for seamless loop */}
@@ -109,7 +109,7 @@ const WaveBackground = () => {
                     <path 
                         d="M0,60 L0,60 Q100,20 200,60 Q300,100 400,60 Q500,20 600,60 Q700,100 800,60 Q900,20 1000,60 Q1100,100 1200,60 L1200,60 L1200,80 L0,80 Z" 
                         opacity="0.3" 
-                        fill="#ddd6fe"
+                        fill="#93c5fd"
                     />
                 </svg>
             </div>
