@@ -226,8 +226,8 @@ const ProjectGallery = ({ projectFilter = null }) => {
                                 }}
                             >
                                 <Image
-                                    src={item.src}
-                                    alt={item.alt}
+                                    src={`/img/projects/${item.project}/${item.project}-${item.number}.${item.extension}`}
+                                    alt={`${item.project} ${item.number}`}
                                     fill
                                     style={{ objectFit: 'cover' }}
                                     className="transition-all duration-300"

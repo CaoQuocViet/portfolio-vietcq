@@ -4,7 +4,7 @@ import { Canvas } from '@react-three/fiber'
 import { OrbitControls, useGLTF, Float, Environment } from '@react-three/drei'
 
 function Model() {
-  const { scene } = useGLTF('/data/models/bm86_portable_pc.glb')
+  const { scene } = useGLTF('/models/bm86_portable_pc.glb')
   
   return (
     <Float speed={3} rotationIntensity={0.5} floatIntensity={0.5}>
@@ -59,4 +59,4 @@ export default function PCModel() {
 }
 
 // Preload the model
-useGLTF.preload('/data/models/bm86_portable_pc.glb')
+useGLTF.preload('/models/bm86_portable_pc.glb')
