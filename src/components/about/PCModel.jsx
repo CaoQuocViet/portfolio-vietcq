@@ -7,11 +7,11 @@ function Model() {
   const { scene } = useGLTF('/models/bm86_portable_pc.glb')
   
   return (
-    <Float speed={1.5} rotationIntensity={0.5} floatIntensity={0.5}>
+    <Float speed={3} rotationIntensity={0.5} floatIntensity={0.5}>
       <primitive 
         object={scene} 
-        scale={[6, 6, 6]} 
-        position={[0, -1, 0]}
+        scale={[8, 8, 8]} 
+        position={[0, -0.7, 0]}
         rotation={[0, -Math.PI / 4, 0]}
       />
     </Float>
