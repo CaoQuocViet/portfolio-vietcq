@@ -17,8 +17,8 @@ export default function Navigation({ theme, setTheme, activeSection, scrollToSec
     return (
         <nav className={`fixed top-4 left-4 right-4 z-50 transition-all duration-500 ${
             theme === 'dark' 
-                ? 'bg-gray-900/60 backdrop-blur-xl border-gray-700/30 shadow-2xl shadow-gray-900/20' 
-                : 'bg-white/70 backdrop-blur-xl border-gray-300/30 shadow-2xl shadow-gray-900/10'
+                ? 'bg-gray-900/40 backdrop-blur-md border-gray-700/20 shadow-xl shadow-gray-900/10' 
+                : 'bg-white/50 backdrop-blur-md border-gray-300/20 shadow-xl shadow-gray-900/5'
         } border rounded-2xl`}>
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
