@@ -7,6 +7,15 @@ import WaveBackground from './WaveBackground';
 import Button from "../../ui/Button";
 import { info } from "../../../utils/info";
 
+const handleGetMyCV = () => {
+    const link = document.createElement("a");
+    link.href = "/data/CaoQuocViet_FullStackDev.pdf";
+    link.download = "CaoQuocViet_FullStackDev.pdf"; // Tên file tải về
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
 export default function Hero({ theme, scrollToSection }) {
 
     return (
@@ -57,20 +66,21 @@ export default function Hero({ theme, scrollToSection }) {
 
                     <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16" 
                          style={{ animation: 'fadeInUp 1s ease-out 0.8s both' }}>
-                        <Button
-                            onClick={() => scrollToSection('projects')}
+
+                            <Button
+                            onClick={() => scrollToSection('contact')}
                             variant="primary"
                             size="lg"
                         >
-                            View My Work
+                            Get In Touch
                         </Button>
                         
                         <Button
-                            onClick={() => scrollToSection('contact')}
+                            onClick={handleGetMyCV}
                             variant="outline"
                             size="lg"
                         >
-                            Get In Touch
+                            Download my CV
                         </Button>
                     </div>
 
