@@ -27,33 +27,29 @@ const Showcase = () => {
                         ? 'bg-black/20 border-white/10 shadow-black/30' 
                         : 'bg-white/30 border-white/20 shadow-gray-500/20'
                 }`}>
-                    <div className="grid lg:grid-cols-2 gap-8 p-12">
+                    <div className="flex items-center gap-8 p-12">
                         {/* Left: Octocat */}
-                        <div className="flex justify-center items-center">
-                            <div className="relative group">
-                                <Image
-                                    src="/img/octocat.png"
-                                    alt="GitHub Octocat"
-                                    width={300}
-                                    height={300}
-                                    className="object-contain transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3"
-                                    priority
-                                />
-                                {/* Glow effect */}
-                                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500" />
-                            </div>
+                        <div className="flex-shrink-0">
+                            <Image
+                                src="/img/octocat.png"
+                                alt="GitHub Octocat"
+                                width={300}
+                                height={300}
+                                className="object-contain"
+                                priority
+                            />
                         </div>
 
                         {/* Right: Project Preview */}
-                        <div className="flex justify-center items-center">
-                            <div className="relative group">
+                        <div className="flex-1 flex justify-center">
+                            <div className="relative group w-full max-w-4xl">
                                 <div className="relative overflow-hidden rounded-2xl shadow-2xl">
                                     <Image
                                         src="/img/gif/showcase.gif"
                                         alt="Project Showcase"
-                                        width={600}
-                                        height={400}
-                                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                        width={1200}
+                                        height={600}
+                                        className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
                                         priority
                                     />
                                     
