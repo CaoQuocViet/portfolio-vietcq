@@ -2,64 +2,25 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 
-const ProjectGallery = ({ projectFilter = null }) => {
+const ProjectGallery = ({ projects = [], projectFilter = null }) => {
     const [hoveredTitle, setHoveredTitle] = useState('Hover over image to see details')
     const [galleryItems, setGalleryItems] = useState([])
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(null)
 
     useEffect(() => {
-        const loadProjectImages = async () => {
-            try {
-                const response = await fetch('/api/gallery')
-                if (!response.ok) throw new Error('Failed to load gallery data')
-                
-                const data = await response.json()
-                
-                // Filter by specific project if projectFilter is provided
-                let filteredProjects = data.projects
-                if (projectFilter) {
-                    filteredProjects = data.projects.filter(project => project.folder === projectFilter)
-                }
-                
-                // Flatten all images from filtered projects
-                const allImages = []
-                filteredProjects.forEach(project => {
-                    allImages.push(...project.images)
-                })
-                
-                setGalleryItems(allImages)
-            } catch (err) {
-                console.error('Error loading gallery:', err)
-                setError(err.message)
-            } finally {
-                setLoading(false)
-            }
+        // Filter by specific project if projectFilter is provided
+        let filteredProjects = projects
+        if (projectFilter) {
+            filteredProjects = projects.filter(project => project.folder === projectFilter)
         }
-
-        loadProjectImages()
-    }, [projectFilter])
-
-    if (loading) {
-        return (
-            <div className="gallery-container">
-                <div className="title-card">
-                    Loading gallery...
-                </div>
-            </div>
-        )
-    }
-
-    if (error) {
-        return (
-            <div className="gallery-container">
-                <div className="title-card">
-                    Error loading gallery: {error}
-                </div>
-            </div>
-        )
-    }
-
+        
+        // Flatten all images from filtered projects
+        const allImages = []
+        filteredProjects.forEach(project => {
+            allImages.push(...project.images)
+        })
+        
+        setGalleryItems(allImages)
+    }, [projects, projectFilter])
     return (
         <>
             <style jsx>{`

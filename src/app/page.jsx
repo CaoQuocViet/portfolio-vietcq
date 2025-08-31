@@ -9,7 +9,7 @@ import Hero from "../components/layout/Hero";
 import About from "../components/layout/about/About";
 import Services from "../components/layout/Services";
 import Projects from "../components/layout/Projects";
-import ProjectShowcase from "../components/layout/Showcase";
+import Showcase from "../components/layout/Showcase";
 import Contact from "../components/layout/Contact";
 import Footer from "../components/layout/Footer";
 
@@ -44,7 +44,7 @@ export default function HomePage() {
             <About theme={theme} />
             <Services theme={theme} />
             <Projects theme={theme} />
-            <ProjectShowcase theme={theme} />
+            <Showcase theme={theme} />
             <Contact theme={theme} scrollToSection={scrollToSection} />
             <Footer theme={theme} />
 
