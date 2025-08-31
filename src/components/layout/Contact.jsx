@@ -3,10 +3,19 @@
 import { FaGithub, FaLinkedin, FaYoutube, FaDiscord, FaFacebook } from "react-icons/fa6";
 import { GoMail } from "react-icons/go";
 import Link from "next/link";
+import { useState } from "react";
 import Button from "../ui/Button";
 import { info } from "../../utils/info";
 
 export default function Contact({ theme }) {
+    const [formData, setFormData] = useState({
+        name: '',
+        subject: '',
+        message: ''
+    });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitMessage, setSubmitMessage] = useState('');
+    
     const socialLinks = [
         { Icon: FaGithub, href: info.social.github, label: 'GitHub' },
         { Icon: FaLinkedin, href: info.social.linkedin, label: 'LinkedIn' },
@@ -87,7 +96,7 @@ export default function Contact({ theme }) {
                         <div className={`p-8 rounded-2xl ${
                             theme === 'dark' ? 'bg-gray-800' : 'bg-white shadow-xl'
                         }`}>
-                            <form className="space-y-6">
+                            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
                                 <div>
                                     <label className={`block text-sm font-medium mb-2 ${
                                         theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
@@ -96,6 +105,8 @@ export default function Contact({ theme }) {
                                     </label>
                                     <input
                                         type="text"
+                                        value={formData.name}
+                                        onChange={(e) => setFormData({...formData, name: e.target.value})}
                                         className={`w-full px-4 py-3 rounded-lg border transition-colors ${
                                             theme === 'dark'
                                                 ? 'bg-gray-700 border-gray-600 text-white focus:border-blue-400'
@@ -104,22 +115,26 @@ export default function Contact({ theme }) {
                                         placeholder="Your name"
                                     />
                                 </div>
+
                                 <div>
                                     <label className={`block text-sm font-medium mb-2 ${
                                         theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
                                     }`}>
-                                        Email
+                                        Subject
                                     </label>
                                     <input
-                                        type="email"
+                                        type="text"
+                                        value={formData.subject}
+                                        onChange={(e) => setFormData({...formData, subject: e.target.value})}
                                         className={`w-full px-4 py-3 rounded-lg border transition-colors ${
                                             theme === 'dark'
                                                 ? 'bg-gray-700 border-gray-600 text-white focus:border-blue-400'
                                                 : 'bg-white border-gray-300 text-gray-900 focus:border-blue-500'
                                         } focus:outline-none focus:ring-2 focus:ring-blue-500/20`}
-                                        placeholder="your@email.com"
+                                        placeholder="Email subject"
                                     />
                                 </div>
+
                                 <div>
                                     <label className={`block text-sm font-medium mb-2 ${
                                         theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
@@ -128,23 +143,52 @@ export default function Contact({ theme }) {
                                     </label>
                                     <textarea
                                         rows={4}
+                                        value={formData.message}
+                                        onChange={(e) => setFormData({...formData, message: e.target.value})}
                                         className={`w-full px-4 py-3 rounded-lg border transition-colors ${
                                             theme === 'dark'
                                                 ? 'bg-gray-700 border-gray-600 text-white focus:border-blue-400'
                                                 : 'bg-white border-gray-300 text-gray-900 focus:border-blue-500'
                                         } focus:outline-none focus:ring-2 focus:ring-blue-500/20`}
-                                        placeholder="Tell me about your project..."
+                                        placeholder="Write your message here..."
                                     />
                                 </div>
-                                <Button
-                                    href={`mailto:${email}`}
-                                    variant="primary"
-                                    size="lg"
-                                    className="w-full"
-                                    disabled={!email}
+                                <button
+                                    type="submit"
+                                    className={`w-full px-6 py-3 rounded-lg font-semibold text-white transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500/20 ${
+                                        formData.name && formData.subject && formData.message && !isSubmitting
+                                            ? 'bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 shadow-lg'
+                                            : 'bg-gray-400 cursor-not-allowed'
+                                    }`}
+                                    disabled={!formData.name || !formData.subject || !formData.message || isSubmitting}
+                                    onClick={() => {
+                                        if (formData.name && formData.subject && formData.message) {
+                                            setIsSubmitting(true);
+                                            setSubmitMessage('');
+                                            
+                                            const formattedMessage = `Dear Quốc Việt,\n\n${formData.message}\n\nBest regards,\n${formData.name}`;
+                                            const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(formattedMessage)}`;
+                                            window.open(mailtoLink);
+                                            
+                                            setTimeout(() => {
+                                                setIsSubmitting(false);
+                                                setSubmitMessage('✅ Email client opened! Please send your message.');
+                                                // Clear form after successful submission
+                                                setFormData({ name: '', subject: '', message: '' });
+                                            }, 1000);
+                                        }
+                                    }}
                                 >
-                                    Send Message
-                                </Button>
+                                    {isSubmitting ? 'Opening Email...' : 'Send Message'}
+                                </button>
+                                
+                                {submitMessage && (
+                                    <div className={`text-center p-3 rounded-lg ${
+                                        theme === 'dark' ? 'bg-green-900/20 text-green-400' : 'bg-green-100 text-green-700'
+                                    }`}>
+                                        {submitMessage}
+                                    </div>
+                                )}
                             </form>
                         </div>
                     </div>

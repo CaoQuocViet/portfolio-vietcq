@@ -29,7 +29,7 @@ const FooterSocialLinks = ({ theme, socialLinks }) => (
 );
 
 const FooterCopyright = ({ theme }) => (
-    <div className={`text-left text-lg ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+    <div className={`text-center text-lg mb-8 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
         }`}>
         © 2025 vietcq. All rights reserved.
     </div>
