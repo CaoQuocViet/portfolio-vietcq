@@ -2,7 +2,7 @@
 import { useTheme } from 'next-themes'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
-import Gallery from '../../components/grallery/Gallery'
+import Gallery from '../../components/gallery/Gallery'
 import Button from '../../components/ui/Button'
 
 export default function GalleryPageClient({ projects }) {
