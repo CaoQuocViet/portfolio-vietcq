@@ -62,7 +62,7 @@ export default function Contact({ theme }) {
                                 <h4 className={`text-lg font-semibold mb-4 ${
                                     theme === 'dark' ? 'text-white' : 'text-gray-900'
                                 }`}>
-                                    Follow Me
+                                    Contact Me
                                 </h4>
                                 <div className="flex gap-4">
                                     {socialLinks.map(({ Icon, href, label }) => (
