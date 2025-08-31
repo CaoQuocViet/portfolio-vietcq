@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { useTheme } from "next-themes";
 
 // Import components
@@ -17,15 +17,59 @@ export default function HomePage() {
     const { theme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
     const [activeSection, setActiveSection] = useState('hero');
+    const ticking = useRef(false);
+
+    // Throttled scroll handler để optimize performance
+    const handleScroll = useCallback(() => {
+        if (!ticking.current) {
+            requestAnimationFrame(() => {
+                const sections = ['hero', 'about', 'services', 'projects', 'project-showcase', 'contact'];
+                const scrollPosition = window.scrollY + 100;
+                
+                for (let i = sections.length - 1; i >= 0; i--) {
+                    const element = document.getElementById(sections[i]);
+                    if (element && element.offsetTop <= scrollPosition) {
+                        // Map project-showcase về projects trong dock
+                        const activeSection = sections[i] === 'project-showcase' ? 'projects' : sections[i];
+                        setActiveSection(prev => {
+                            if (prev !== activeSection) {
+                                // Update URL hash
+                                window.history.replaceState(null, '', `#${activeSection}`);
+                                return activeSection;
+                            }
+                            return prev;
+                        });
+                        break;
+                    }
+                }
+                ticking.current = false;
+            });
+            ticking.current = true;
+        }
+    }, []);
 
     useEffect(() => {
         setMounted(true);
-    }, []);
+        
+        // Check URL hash on load
+        const hash = window.location.hash.replace('#', '');
+        if (hash && ['hero', 'about', 'services', 'projects', 'contact'].includes(hash)) {
+            setActiveSection(hash);
+        }
+        
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        handleScroll(); // Check initial position
+        
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [handleScroll]);
 
     const scrollToSection = (sectionId) => {
         const element = document.getElementById(sectionId);
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
+            // Update URL hash và state
+            window.history.replaceState(null, '', `#${sectionId}`);
+            setActiveSection(sectionId);
         }
     };
 
