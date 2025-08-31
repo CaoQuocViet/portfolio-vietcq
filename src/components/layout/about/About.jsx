@@ -147,113 +147,87 @@ function ContentBlock({ theme }) {
   return (
     <>
       <div className="px-8 py-4 text-left relative z-10">
-        <h1 className={`text-2xl font-bold mb-4 ${
+        <h1 className={`text-2xl font-bold mb-4 text-center ${
           theme === 'dark' ? 'text-white' : 'text-gray-900'
         }`}>
-          Passionate about creating digital solutions
+          Hi 👋, I'm Viet
         </h1>
+        <h3 className={`text-lg font-semibold mb-4 text-center ${
+          theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
+        }`}>
+          Fullstack developer from Vietnam
+        </h3>
+        
         <div className={`space-y-3 text-sm mb-6 ${
           theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
         }`}>
           <p>
-            I'm a dedicated full-stack developer with a passion for
-            creating innovative web applications. With expertise in
-            modern technologies and a keen eye for design, I
-            transform ideas into reality.
+            🔭 I'm currently working on <strong className="text-blue-500">giveback</strong>, <strong className="text-blue-500">ByteBridge</strong>, <strong className="text-blue-500">abap-rap-flight-booking</strong> and <strong className="text-blue-500">StormPC</strong>
           </p>
           <p>
-            My journey in tech started with curiosity and has evolved
-            into a career focused on building scalable, user-friendly
-            applications that make a difference.
+            🚀 I'm passionate about entrepreneurship in IT applications, commerce, and open to collaborating on innovative startup projects
+          </p>
+          <p>
+            📫 How to reach me: <strong className="text-blue-500">vietcao10@gmail.com</strong>
+          </p>
+          <p>
+            ⚡ Fun fact: <strong className="text-blue-500">I think i am funny. I am the kind of person who embraces learning and tackling anything new with passion and determination. As long as it sparks my interest, I am fearless and unstoppable.</strong>
           </p>
         </div>
       </div>
 
-      {/* Stats */}
-      <div className="px-8 py-4 grid grid-cols-2 gap-6">
-        <div>
-          <div className="text-2xl font-bold text-blue-500">3+ Years</div>
-          <div className={`text-sm ${
-            theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
-          }`}>Experience</div>
-        </div>
-        <div>
-          <div className="text-2xl font-bold text-blue-500">50+</div>
-          <div className={`text-sm ${
-            theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
-          }`}>Projects</div>
-        </div>
-        <div>
-          <div className="text-2xl font-bold text-blue-500">15+</div>
-          <div className={`text-sm ${
-            theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
-          }`}>Technologies</div>
-        </div>
-        <div>
-          <div className="text-2xl font-bold text-blue-500">25+</div>
-          <div className={`text-sm ${
-            theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
-          }`}>Happy Clients</div>
-        </div>
-      </div>
-
-      {/* Skills */}
+      {/* Connect with me */}
       <div className="px-8 py-4">
         <h3 className={`text-lg font-semibold mb-3 ${
           theme === 'dark' ? 'text-white' : 'text-gray-900'
         }`}>
-          Technical Skills
+          Connect with me:
         </h3>
-        <p className={`text-sm ${
-          theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
-        }`}>
-          <strong className="text-blue-500">Frontend:</strong> HTML5,
-          CSS3, JavaScript ES6+
-        </p>
-        <p className={`text-sm ${
-          theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
-        }`}>
-          <strong className="text-blue-500">Frameworks:</strong> React, Vue.js, Angular
-        </p>
-        <p className={`text-sm ${
-          theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
-        }`}>
-          <strong className="text-blue-500">Styling:</strong> Tailwind, Bootstrap, SASS
-        </p>
-        <p className={`text-sm ${
-          theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
-        }`}>
-          <strong className="text-blue-500">State Management:</strong> Redux, Zustand, Context API
-        </p>
+        <div className="flex gap-4 mb-4">
+          <a href="https://fb.com/cao.quocviet.23.01" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-400 transition-colors">
+            Facebook
+          </a>
+          <a href="https://www.youtube.com/@caoquocviet1731" target="_blank" rel="noopener noreferrer" className="text-red-500 hover:text-red-400 transition-colors">
+            YouTube
+          </a>
+        </div>
       </div>
 
-      {/* Projects */}
+      {/* Languages and Tools */}
       <div className="px-8 py-4">
         <h3 className={`text-lg font-semibold mb-3 ${
           theme === 'dark' ? 'text-white' : 'text-gray-900'
         }`}>
-          Recent Projects
+          Languages and Tools:
         </h3>
-        <p className={`text-sm ${
+        <div className={`text-sm space-y-2 ${
           theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
         }`}>
-          <strong className="text-blue-500">E-commerce Platform:</strong> React + Node.js + MongoDB
-        </p>
-        <p className={`text-sm ${
+          <p><strong className="text-blue-500">Programming:</strong> C++, Python, JavaScript, ABAP</p>
+          <p><strong className="text-blue-500">Web Development:</strong> React, Node.js, HTML/CSS</p>
+          <p><strong className="text-blue-500">Database:</strong> PostgreSQL, MongoDB</p>
+          <p><strong className="text-blue-500">DevOps:</strong> Docker, Git, Linux, Nginx</p>
+          <p><strong className="text-blue-500">Game Development:</strong> Unity</p>
+        </div>
+      </div>
+
+      {/* GitHub Stats */}
+      <div className="px-8 py-4">
+        <h3 className={`text-lg font-semibold mb-3 ${
+          theme === 'dark' ? 'text-white' : 'text-gray-900'
+        }`}>
+          GitHub Activity
+        </h3>
+        <div className={`text-sm ${
           theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
         }`}>
-          <strong className="text-blue-500">Task Management App:</strong> Next.js + Prisma + PostgreSQL
-        </p>
-        <p className={`text-sm ${
-          theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
-        }`}>
-          <strong className="text-blue-500">Portfolio Website:</strong> React + Three.js + Framer Motion
-        </p>
-        <p className={`text-sm ${
-          theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
-        }`}>
-          <strong className="text-blue-500">API Service:</strong> Python + FastAPI + Redis
-        </p>
+          <p>Check out my GitHub profile for detailed stats and activity graphs!</p>
+          <p className="mt-2">
+            <a href="https://github.com/CaoQuocViet" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-400 transition-colors">
+              @CaoQuocViet
+            </a>
+          </p>
+        </div>
       </div>
     </>
   );
