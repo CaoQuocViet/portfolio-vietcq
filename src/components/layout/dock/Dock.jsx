@@ -1,7 +1,7 @@
 "use client";
 
 import { FaSun, FaMoon } from "react-icons/fa6";
-import { DEFAULT_NAVIGATION_ITEMS } from "../../config/navigation";
+import { DEFAULT_NAVIGATION_ITEMS } from "../../../config/navigation";
 import React, { useState, useRef, useEffect } from "react";
 import Modal from "./Modal";
 
@@ -110,11 +110,8 @@ const Dock = ({ theme, setTheme, activeSection, scrollToSection, navigationItems
   const handleItemLeave = () => setHoveredItem(null);
   const handleLogoClick = () => setIsModalOpen((prev) => !prev);
 
-  // đồng nhất màu với modal: opacity-90
-  const dockBgClass =
-    theme === "dark"
-      ? "bg-blue-950/90 border-blue-900/70"
-      : "bg-white/70 border-gray-300/70";
+  // Sử dụng class từ global.css
+  const dockBgClass = "glass-effect";
 
   // cập nhật dockRect để modal tính vị trí
   useEffect(() => {
@@ -158,7 +155,7 @@ const Dock = ({ theme, setTheme, activeSection, scrollToSection, navigationItems
     <>
       <nav
         ref={dockRef}
-        className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 border rounded-2xl px-5 py-3 ${dockBgClass} shadow-xl`}
+        className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 rounded-2xl px-5 py-3 ${dockBgClass} shadow-2xl`}
       >
         <div className="flex items-center justify-center">
           {navigationItems.map((item, index) => (

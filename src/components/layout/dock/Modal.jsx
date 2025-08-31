@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import SocialList from "./SocialList";
+import SocialList from "../../SocialList";
+import RepositoriesList from "../../RepositoriesList";
 
 // Props: isOpen, onClose, theme, dockRect (DOMRect), logoRect (DOMRect)
 const Modal = ({ isOpen, onClose, theme, dockRect, logoRect }) => {
@@ -55,16 +56,15 @@ const Modal = ({ isOpen, onClose, theme, dockRect, logoRect }) => {
 
   if (!isOpen) return null;
 
-  // đồng nhất màu với dock: opacity-70
-  const modalBgClass =
-    theme === "dark"
-      ? "bg-blue-950/90 text-white border-blue-900/70"
-      : "bg-white/70 text-black border-gray-300/70";
+  // Background phù hợp cho modal - không quá trong suốt
+  const modalBgClass = theme === "dark" 
+    ? "bg-gray-900/95 border border-gray-700/50" 
+    : "bg-white/95 border border-gray-200/50";
 
   return (
     <>
-      {/* Backdrop: đen mờ 50%, KHÔNG blur */}
-      <div className="fixed inset-0 z-40 bg-black/50" onClick={onClose} aria-label="Close modal backdrop" />
+      {/* Backdrop: đen mờ 60%, KHÔNG blur */}
+      <div className="fixed inset-0 z-40 bg-black/60" onClick={onClose} aria-label="Close modal backdrop" />
 
       {/* Modal */}
       <div
@@ -78,8 +78,8 @@ const Modal = ({ isOpen, onClose, theme, dockRect, logoRect }) => {
           top: pos.top,        // luôn = dockTop - 32 - 500
           boxShadow:
             theme === "dark"
-              ? "0 8px 32px rgba(0,0,0,0.7)"
-              : "0 8px 32px rgba(0,0,0,0.15)",
+              ? "0 20px 60px rgba(0,0,0,0.8), 0 8px 32px rgba(0,0,0,0.6)"
+              : "0 20px 60px rgba(0,0,0,0.15), 0 8px 32px rgba(0,0,0,0.1)",
           transformOrigin: `${pos.originX}% ${pos.originY}%`,
           overflow: "hidden",
         }}
@@ -96,9 +96,16 @@ const Modal = ({ isOpen, onClose, theme, dockRect, logoRect }) => {
         </div>
 
         {/* Content (giữ SocialList) */}
-        <div className={`flex flex-col p-6 h-full overflow-y-auto ${theme === "dark" ? "text-white" : "text-black"}`}>
-          <div className="mb-4 text-2xl font-semibold">Connect</div>
-          <SocialList theme={theme} />
+        <div className="flex flex-col p-6 h-full overflow-y-auto">
+          {/* Connect Section */}
+          <div className="mb-6">
+            <div className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">Connect</div>
+            <SocialList theme={theme} />
+          </div>
+          
+          {/* Repositories Section */}
+          <div className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">Repositories</div>
+          <RepositoriesList theme={theme} />
         </div>
       </div>
 

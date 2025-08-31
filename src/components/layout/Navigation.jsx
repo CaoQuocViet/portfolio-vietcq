@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Dock from "../ui/Dock";
+import Dock from "./dock/Dock";
 import { HOME_NAVIGATION_ITEMS } from "../../config/navigation";
 
 const MobileMenuToggle = ({ isMenuOpen, setIsMenuOpen, theme }) => (
