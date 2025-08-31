@@ -85,7 +85,7 @@ export default function Services({ theme }) {
 
                 {/* Tech Stack Grid */}
                 <div className="grid lg:grid-cols-2 gap-16">
-                    {/* Frontend Technologies */}
+                    {/* Programming & Development */}
                     <div className="space-y-8 opacity-0 animate-[fadeInUp_1s_ease-out_0.6s_forwards]">
                         <div className={`backdrop-blur-md rounded-2xl p-8 border transition-all duration-700 hover:scale-105 hover:shadow-2xl ${
                             theme === 'dark' 
@@ -94,10 +94,10 @@ export default function Services({ theme }) {
                         }`}>
                             <h3 className={`text-2xl font-bold mb-4 ${
                                 theme === 'dark' ? 'text-blue-300' : 'text-blue-700'
-                            }`}>Frontend Development</h3>
+                            }`}>Programming Languages</h3>
                             <div className="space-y-3">
                                 <div className="flex items-center justify-between">
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>React.js</span>
+                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>C++</span>
                                     <div className={`w-24 h-2 rounded-full ${
                                         theme === 'dark' ? 'bg-gray-700' : 'bg-gray-300'
                                     }`}>
@@ -105,7 +105,7 @@ export default function Services({ theme }) {
                                     </div>
                                 </div>
                                 <div className="flex items-center justify-between">
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>Next.js</span>
+                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>Python</span>
                                     <div className={`w-24 h-2 rounded-full ${
                                         theme === 'dark' ? 'bg-gray-700' : 'bg-gray-300'
                                     }`}>
@@ -113,19 +113,19 @@ export default function Services({ theme }) {
                                     </div>
                                 </div>
                                 <div className="flex items-center justify-between">
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>TypeScript</span>
+                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>JavaScript</span>
+                                    <div className={`w-24 h-2 rounded-full ${
+                                        theme === 'dark' ? 'bg-gray-700' : 'bg-gray-300'
+                                    }`}>
+                                        <div className="w-21 h-2 bg-blue-500 rounded-full"></div>
+                                    </div>
+                                </div>
+                                <div className="flex items-center justify-between">
+                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>ABAP</span>
                                     <div className={`w-24 h-2 rounded-full ${
                                         theme === 'dark' ? 'bg-gray-700' : 'bg-gray-300'
                                     }`}>
                                         <div className="w-18 h-2 bg-blue-500 rounded-full"></div>
-                                    </div>
-                                </div>
-                                <div className="flex items-center justify-between">
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>Tailwind CSS</span>
-                                    <div className={`w-24 h-2 rounded-full ${
-                                        theme === 'dark' ? 'bg-gray-700' : 'bg-gray-300'
-                                    }`}>
-                                        <div className="w-20 h-2 bg-blue-500 rounded-full"></div>
                                     </div>
                                 </div>
                             </div>
@@ -138,47 +138,39 @@ export default function Services({ theme }) {
                         }`}>
                             <h3 className={`text-2xl font-bold mb-4 ${
                                 theme === 'dark' ? 'text-blue-300' : 'text-blue-700'
-                            }`}>UI/UX Design</h3>
+                            }`}>Web Development</h3>
                             <div className="space-y-3">
                                 <div className="flex items-center justify-between">
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>Figma</span>
+                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>React</span>
                                     <div className={`w-24 h-2 rounded-full ${
                                         theme === 'dark' ? 'bg-gray-700' : 'bg-gray-300'
                                     }`}>
-                                        <div className="w-19 h-2 bg-blue-500 rounded-full"></div>
+                                        <div className="w-21 h-2 bg-blue-500 rounded-full"></div>
                                     </div>
                                 </div>
                                 <div className="flex items-center justify-between">
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>Adobe XD</span>
+                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>Node.js</span>
                                     <div className={`w-24 h-2 rounded-full ${
                                         theme === 'dark' ? 'bg-gray-700' : 'bg-gray-300'
                                     }`}>
-                                        <div className="w-16 h-2 bg-blue-500 rounded-full"></div>
+                                        <div className="w-20 h-2 bg-blue-500 rounded-full"></div>
                                     </div>
                                 </div>
                                 <div className="flex items-center justify-between">
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>Sketch</span>
+                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>HTML/CSS</span>
                                     <div className={`w-24 h-2 rounded-full ${
                                         theme === 'dark' ? 'bg-gray-700' : 'bg-gray-300'
                                     }`}>
-                                        <div className="w-14 h-2 bg-blue-500 rounded-full"></div>
+                                        <div className="w-23 h-2 bg-blue-500 rounded-full"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
-                        <div className={`rounded-2xl p-6 text-center hover:scale-105 transition-all duration-700 hover:shadow-2xl ${
-                            theme === 'dark' 
-                                ? 'bg-gradient-to-r from-blue-600 to-blue-500 hover:shadow-blue-500/40' 
-                                : 'bg-gradient-to-r from-blue-500 to-blue-600 hover:shadow-blue-600/40'
-                        }`}>
-                            <p className="text-2xl font-bold text-white">
-                                Modern Web Standards
-                            </p>
-                        </div>
+
                     </div>
 
-                    {/* Backend & Tools */}
+                    {/* Database & DevOps */}
                     <div className="space-y-8 opacity-0 animate-[fadeInUp_1s_ease-out_0.9s_forwards]">
                         <div className={`backdrop-blur-md rounded-2xl p-8 border transition-all duration-700 hover:scale-105 hover:shadow-2xl ${
                             theme === 'dark' 
@@ -187,10 +179,18 @@ export default function Services({ theme }) {
                         }`}>
                             <h3 className={`text-2xl font-bold mb-4 ${
                                 theme === 'dark' ? 'text-blue-300' : 'text-blue-700'
-                            }`}>Backend & Database</h3>
+                            }`}>Database & Backend</h3>
                             <div className="space-y-3">
                                 <div className="flex items-center justify-between">
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>Node.js</span>
+                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>PostgreSQL</span>
+                                    <div className={`w-24 h-2 rounded-full ${
+                                        theme === 'dark' ? 'bg-gray-700' : 'bg-gray-300'
+                                    }`}>
+                                        <div className="w-19 h-2 bg-blue-500 rounded-full"></div>
+                                    </div>
+                                </div>
+                                <div className="flex items-center justify-between">
+                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>MongoDB</span>
                                     <div className={`w-24 h-2 rounded-full ${
                                         theme === 'dark' ? 'bg-gray-700' : 'bg-gray-300'
                                     }`}>
@@ -203,22 +203,6 @@ export default function Services({ theme }) {
                                         theme === 'dark' ? 'bg-gray-700' : 'bg-gray-300'
                                     }`}>
                                         <div className="w-17 h-2 bg-blue-500 rounded-full"></div>
-                                    </div>
-                                </div>
-                                <div className="flex items-center justify-between">
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>MongoDB</span>
-                                    <div className={`w-24 h-2 rounded-full ${
-                                        theme === 'dark' ? 'bg-gray-700' : 'bg-gray-300'
-                                    }`}>
-                                        <div className="w-15 h-2 bg-blue-500 rounded-full"></div>
-                                    </div>
-                                </div>
-                                <div className="flex items-center justify-between">
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>PostgreSQL</span>
-                                    <div className={`w-24 h-2 rounded-full ${
-                                        theme === 'dark' ? 'bg-gray-700' : 'bg-gray-300'
-                                    }`}>
-                                        <div className="w-13 h-2 bg-blue-500 rounded-full"></div>
                                     </div>
                                 </div>
                             </div>
@@ -238,7 +222,7 @@ export default function Services({ theme }) {
                                     <div className={`w-24 h-2 rounded-full ${
                                         theme === 'dark' ? 'bg-gray-700' : 'bg-gray-300'
                                     }`}>
-                                        <div className="w-21 h-2 bg-blue-500 rounded-full"></div>
+                                        <div className="w-22 h-2 bg-blue-500 rounded-full"></div>
                                     </div>
                                 </div>
                                 <div className="flex items-center justify-between">
@@ -246,37 +230,29 @@ export default function Services({ theme }) {
                                     <div className={`w-24 h-2 rounded-full ${
                                         theme === 'dark' ? 'bg-gray-700' : 'bg-gray-300'
                                     }`}>
-                                        <div className="w-14 h-2 bg-blue-500 rounded-full"></div>
+                                        <div className="w-19 h-2 bg-blue-500 rounded-full"></div>
                                     </div>
                                 </div>
                                 <div className="flex items-center justify-between">
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>AWS</span>
-                                    <div className={`w-24 h-2 rounded-full ${
-                                        theme === 'dark' ? 'bg-gray-700' : 'bg-gray-300'
-                                    }`}>
-                                        <div className="w-16 h-2 bg-blue-500 rounded-full"></div>
-                                    </div>
-                                </div>
-                                <div className="flex items-center justify-between">
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>Vercel</span>
+                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>Linux</span>
                                     <div className={`w-24 h-2 rounded-full ${
                                         theme === 'dark' ? 'bg-gray-700' : 'bg-gray-300'
                                     }`}>
                                         <div className="w-20 h-2 bg-blue-500 rounded-full"></div>
                                     </div>
                                 </div>
+                                <div className="flex items-center justify-between">
+                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>Nginx</span>
+                                    <div className={`w-24 h-2 rounded-full ${
+                                        theme === 'dark' ? 'bg-gray-700' : 'bg-gray-300'
+                                    }`}>
+                                        <div className="w-17 h-2 bg-blue-500 rounded-full"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         
-                        <div className={`rounded-2xl p-6 text-center hover:scale-105 transition-all duration-700 hover:shadow-2xl ${
-                            theme === 'dark' 
-                                ? 'bg-gradient-to-r from-blue-600 to-blue-500 hover:shadow-blue-500/40' 
-                                : 'bg-gradient-to-r from-blue-500 to-blue-600 hover:shadow-blue-600/40'
-                        }`}>
-                            <p className="text-2xl font-bold text-white">
-                                Continuous Learning
-                            </p>
-                        </div>
+
                     </div>
                 </div>
 
