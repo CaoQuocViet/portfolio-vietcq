@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Dock from "../ui/Dock";
+import { HOME_NAVIGATION_ITEMS } from "../../config/navigation";
 
 const MobileMenuToggle = ({ isMenuOpen, setIsMenuOpen, theme }) => (
     <button
@@ -33,12 +34,13 @@ export default function Navigation({ theme, setTheme, activeSection, scrollToSec
 
     return (
         <>
-            {/* Dock Component - Reusable */}
+            {/* Dock Component - Reusable với navigation items riêng */}
             <Dock 
                 theme={theme}
                 setTheme={setTheme}
                 activeSection={activeSection}
                 scrollToSection={scrollToSection}
+                navigationItems={HOME_NAVIGATION_ITEMS}
             />
 
             {/* Mobile Menu Toggle (only visible on mobile) */}
