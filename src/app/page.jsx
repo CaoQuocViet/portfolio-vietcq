@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
 
 // Import components
@@ -16,23 +16,48 @@ import Footer from "../components/layout/Footer";
 export default function HomePage() {
     const { theme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
-    const [activeSection, setActiveSection] = useState('hero');
+    const activeSection = useRef('hero');
+    const [dotPosition, setDotPosition] = useState('hero'); // Chỉ cho Navigation dot
 
     useEffect(() => {
         setMounted(true);
         
-        // Restore từ URL hash
-        const hash = window.location.hash.replace('#', '');
-        if (hash && ['hero', 'about', 'services', 'projects', 'contact'].includes(hash)) {
-            setActiveSection(hash);
-            setTimeout(() => scrollToSection(hash), 100);
+        // Load từ hash khi reload
+        const hash = window.location.hash.slice(1);
+        if (hash) {
+            activeSection.current = hash;
+            setDotPosition(hash);
+            setTimeout(() => document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' }), 100);
         }
+        
+        // Scroll tracking - nonn re-render
+        const track = () => {
+            const sections = ['hero', 'about', 'services', 'projects', 'contact'];
+            const offset = window.innerHeight / 3;
+            const scrollY = window.scrollY + offset;
+            
+            for (let i = sections.length - 1; i >= 0; i--) {
+                const el = document.getElementById(sections[i]);
+                if (el && scrollY >= el.offsetTop) {
+                    if (activeSection.current !== sections[i]) {
+                        activeSection.current = sections[i];
+                        setDotPosition(sections[i]); 
+                        window.history.replaceState(null, null, `#${sections[i]}`);
+                    }
+                    break;
+                }
+            }
+        };
+        
+        window.addEventListener('scroll', track, { passive: true });
+        return () => window.removeEventListener('scroll', track);
     }, []);
 
     const scrollToSection = (sectionId) => {
-        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
-        setActiveSection(sectionId);
+        activeSection.current = sectionId;
+        setDotPosition(sectionId);
         window.location.hash = sectionId;
+        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
     };
 
     if (!mounted) return null;
@@ -42,7 +67,7 @@ export default function HomePage() {
             <Navigation 
                 theme={theme} 
                 setTheme={setTheme} 
-                activeSection={activeSection} 
+                activeSection={dotPosition} 
                 scrollToSection={scrollToSection} 
             />
             
