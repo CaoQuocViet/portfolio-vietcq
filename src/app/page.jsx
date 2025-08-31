@@ -20,26 +20,6 @@ export default function HomePage() {
 
     useEffect(() => {
         setMounted(true);
-
-        // Scroll spy for navigation
-        const handleScroll = () => {
-            const sections = ['hero', 'about', 'services', 'projects', 'contact'];
-            const scrollPosition = window.scrollY + 100;
-
-            for (const section of sections) {
-                const element = document.getElementById(section);
-                if (element) {
-                    const { offsetTop, offsetHeight } = element;
-                    if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-                        setActiveSection(section);
-                        break;
-                    }
-                }
-            }
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     const scrollToSection = (sectionId) => {
