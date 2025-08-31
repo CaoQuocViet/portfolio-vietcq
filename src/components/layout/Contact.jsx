@@ -1,8 +1,8 @@
 import { FaGithub, FaLinkedin, FaYoutube, FaDiscord, FaFacebook } from "react-icons/fa6";
 import { GoMail } from "react-icons/go";
 import Link from "next/link";
-import data from "../../data.json";
-import Button from "./ui/Button";
+import data from "../../../data.json";
+import Button from "../ui/Button";
 
 export default function Contact({ theme, scrollToSection }) {
     return (

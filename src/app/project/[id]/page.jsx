@@ -4,7 +4,7 @@ import { useParams } from 'next/navigation'
 import { useTheme } from 'next-themes'
 import Link from 'next/link'
 import { ArrowLeft, Home, Github, ExternalLink } from 'lucide-react'
-import ProjectGallery from '../../../components/ProjectGallery'
+import ProjectGallery from '../../../components/grallery/Gallery'
 import Button from '../../../components/ui/Button'
 
 export default function ProjectDetailPage() {

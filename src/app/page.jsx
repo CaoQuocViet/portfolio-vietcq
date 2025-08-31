@@ -4,14 +4,14 @@ import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 
 // Import components
-import Navigation from "../components/Navigation";
-import Hero from "../components/Hero";
-import About from "../components/about/About";
-import Services from "../components/Services";
-import Projects from "../components/Projects";
-import ProjectShowcase from "../components/ProjectShowcase";
-import Contact from "../components/Contact";
-import Footer from "../components/Footer";
+import Navigation from "../components/layout/Navigation";
+import Hero from "../components/layout/Hero";
+import About from "../components/layout/about/About";
+import Services from "../components/layout/Services";
+import Projects from "../components/layout/Projects";
+import ProjectShowcase from "../components/layout/Showcase";
+import Contact from "../components/layout/Contact";
+import Footer from "../components/layout/Footer";
 
 export default function HomePage() {
     const { theme, setTheme } = useTheme();

@@ -3,10 +3,9 @@
 import { FaGithub, FaLinkedin, FaXTwitter, FaArrowDown } from "react-icons/fa6";
 import { GoMail } from "react-icons/go";
 import Link from "next/link";
-import data from "../../data.json";
+import data from "../../../data.json";
 import WaveBackground from './WaveBackground';
-import WaveBackgroundReversed from "./WaveBackgroundReversed";
-import Button from "./ui/Button";
+import Button from "../ui/Button";
 
 export default function Hero({ theme, scrollToSection }) {
     return (
@@ -121,7 +120,7 @@ export default function Hero({ theme, scrollToSection }) {
                 </div>
                 {/* Top Wave - Sóng lồi xuống */}
                 <div className="relative -mt-10">
-                    <WaveBackgroundReversed />
+                    <WaveBackground reversed />
                 </div>
             </div>
         </section>
