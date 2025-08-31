@@ -48,7 +48,7 @@ export default function PCModel() {
             maxPolarAngle={Math.PI / 1.5}
             minPolarAngle={Math.PI / 6}
             autoRotate={true}
-            autoRotateSpeed={0.3}
+            autoRotateSpeed={0.2}
             maxDistance={8}
             minDistance={2}
           />

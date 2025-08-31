@@ -1,12 +1,12 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useMemo } from 'react'
 import Image from 'next/image'
 
 const Gallery = ({ projects = [], projectFilter = null }) => {
     const [hoveredTitle, setHoveredTitle] = useState('Hover over image to see details')
-    const [galleryItems, setGalleryItems] = useState([])
-
-    useEffect(() => {
+    
+    // Use useMemo instead of useEffect + useState for better performance
+    const galleryItems = useMemo(() => {
         // Filter by specific project if projectFilter is provided
         let filteredProjects = projects
         if (projectFilter) {
@@ -19,7 +19,7 @@ const Gallery = ({ projects = [], projectFilter = null }) => {
             allImages.push(...project.images)
         })
         
-        setGalleryItems(allImages)
+        return allImages
     }, [projects, projectFilter])
     return (
         <>

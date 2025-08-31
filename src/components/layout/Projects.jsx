@@ -11,12 +11,29 @@ const Projects = () => {
 
     useEffect(() => {
         const fetchRepos = async () => {
+            // Check cache first
+            const cached = localStorage.getItem('github-repos');
+            const cacheTime = localStorage.getItem('github-repos-time');
+            const now = Date.now();
+            
+            // Use cache if less than 5 minutes old
+            if (cached && cacheTime && (now - parseInt(cacheTime)) < 5 * 60 * 1000) {
+                setRepos(JSON.parse(cached));
+                setLoading(false);
+                return;
+            }
+
             try {
                 // Fetch from GitHub API for live data
                 const githubResponse = await fetch('https://api.github.com/users/caoquocviet/repos?sort=updated&per_page=12')
                 if (githubResponse.ok) {
                     const githubData = await githubResponse.json()
-                    setRepos(githubData.slice(0, 12))
+                    const repoData = githubData.slice(0, 12);
+                    setRepos(repoData);
+                    
+                    // Cache the data
+                    localStorage.setItem('github-repos', JSON.stringify(repoData));
+                    localStorage.setItem('github-repos-time', now.toString());
                 } else {
                     console.error('GitHub API failed')
                     setRepos([])
