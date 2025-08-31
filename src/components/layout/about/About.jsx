@@ -1,4 +1,5 @@
 import PCModel from "./PCModel";
+import { info } from "../../../utils/info";
 
 export default function About({ theme }) {
   return (
@@ -184,10 +185,10 @@ function ContentBlock({ theme }) {
           Connect with me:
         </h3>
         <div className="flex gap-4 mb-4">
-          <a href="https://fb.com/cao.quocviet.23.01" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-400 transition-colors">
+          <a href={info.social.facebook} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-400 transition-colors">
             Facebook
           </a>
-          <a href="https://www.youtube.com/@caoquocviet1731" target="_blank" rel="noopener noreferrer" className="text-red-500 hover:text-red-400 transition-colors">
+          <a href={info.social.youtube} target="_blank" rel="noopener noreferrer" className="text-red-500 hover:text-red-400 transition-colors">
             YouTube
           </a>
         </div>
@@ -223,8 +224,8 @@ function ContentBlock({ theme }) {
         }`}>
           <p>Check out my GitHub profile for detailed stats and activity graphs!</p>
           <p className="mt-2">
-            <a href="https://github.com/CaoQuocViet" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-400 transition-colors">
-              @CaoQuocViet
+            <a href={info.social.github} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-400 transition-colors">
+              @{info.githubUsername}
             </a>
           </p>
         </div>

@@ -1,12 +1,8 @@
 import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 import Link from "next/link";
-import data from "../../../data.json";
+import { info } from "../../utils/info";
 
-const FOOTER_SOCIAL_LINKS = [
-    { Icon: FaGithub, href: `https://github.com/${data.githubUsername}`, label: 'GitHub' },
-    { Icon: FaLinkedin, href: data.social.linkedin, label: 'LinkedIn' },
-    { Icon: FaXTwitter, href: data.social.twitter, label: 'Twitter' }
-];
+// Social links loaded from info.js
 
 const FooterLogo = ({ theme }) => (
     <h3 className={`text-2xl font-bold mb-6 ${
@@ -16,9 +12,9 @@ const FooterLogo = ({ theme }) => (
     </h3>
 );
 
-const FooterSocialLinks = ({ theme }) => (
+const FooterSocialLinks = ({ theme, socialLinks }) => (
     <div className="flex justify-center space-x-8 mb-8">
-        {FOOTER_SOCIAL_LINKS.map(({ Icon, href, label }) => (
+        {socialLinks.map(({ Icon, href, label }) => (
             <Link
                 key={label}
                 href={href}
@@ -43,6 +39,12 @@ const FooterCopyright = ({ theme }) => (
 );
 
 export default function Footer({ theme }) {
+    const socialLinks = [
+        { Icon: FaGithub, href: info.social.github, label: 'GitHub' },
+        { Icon: FaLinkedin, href: info.social.linkedin, label: 'LinkedIn' },
+        { Icon: FaXTwitter, href: info.social.twitter, label: 'Twitter' }
+    ];
+
     return (
         <footer className={`py-16 border-t ${
             theme === 'dark' ? 'bg-gray-900/50 border-gray-800' : 'bg-gray-50 border-gray-200'
@@ -50,7 +52,7 @@ export default function Footer({ theme }) {
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 <div className="text-center mb-8">
                     <FooterLogo theme={theme} />
-                    <FooterSocialLinks theme={theme} />
+                    <FooterSocialLinks theme={theme} socialLinks={socialLinks} />
                 </div>
                 <FooterCopyright theme={theme} />
             </div>

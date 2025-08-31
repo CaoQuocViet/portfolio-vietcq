@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
+import { info } from "../utils/info";
 
 // Import components
 import Navigation from "../components/layout/Navigation";

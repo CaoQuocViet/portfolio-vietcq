@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
 import { Github, ExternalLink, Star, GitFork } from 'lucide-react'
+import { info } from '../../utils/info'
 
 const Projects = () => {
     const { theme } = useTheme()
@@ -25,7 +26,7 @@ const Projects = () => {
 
             try {
                 // Fetch from GitHub API for live data
-                const githubResponse = await fetch('https://api.github.com/users/caoquocviet/repos?sort=updated&per_page=12')
+                const githubResponse = await fetch(`https://api.github.com/users/${info.githubUsername}/repos?sort=updated&per_page=12`)
                 if (githubResponse.ok) {
                     const githubData = await githubResponse.json()
                     const repoData = githubData.slice(0, 12);

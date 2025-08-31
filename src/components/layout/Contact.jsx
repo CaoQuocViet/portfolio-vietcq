@@ -1,192 +1,155 @@
+"use client";
+
 import { FaGithub, FaLinkedin, FaYoutube, FaDiscord, FaFacebook } from "react-icons/fa6";
 import { GoMail } from "react-icons/go";
 import Link from "next/link";
-import data from "../../../data.json";
 import Button from "../ui/Button";
+import { info } from "../../utils/info";
 
-export default function Contact({ theme, scrollToSection }) {
+export default function Contact({ theme }) {
+    const socialLinks = [
+        { Icon: FaGithub, href: info.social.github, label: 'GitHub' },
+        { Icon: FaLinkedin, href: info.social.linkedin, label: 'LinkedIn' },
+        { Icon: FaYoutube, href: info.social.youtube, label: 'YouTube' },
+        { Icon: FaDiscord, href: info.social.discord, label: 'Discord' },
+        { Icon: FaFacebook, href: info.social.facebook, label: 'Facebook' }
+    ];
+    const email = info.email;
+
     return (
-        <section id="contact" className={`py-32 ${theme === 'dark' ? 'bg-gray-950' : 'bg-gray-50'} relative overflow-hidden`}>
-            <div className="max-w-6xl mx-auto px-6 lg:px-8 text-center">
-                <h2 className={`text-5xl md:text-6xl font-bold mb-8 ${
-                    theme === 'dark' ? 'text-white' : 'text-gray-900'
-                }`}>
-                    Let's Connect
-                </h2>
-                <div className={`w-24 h-1 mx-auto rounded-full mb-12 ${
-                    theme === 'dark' ? 'bg-blue-400' : 'bg-blue-600'
-                }`} />
-                
-                <p className={`text-xl leading-relaxed mb-20 max-w-2xl mx-auto ${
-                    theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
-                }`}>
-                    Ready to build something amazing together? Let's start the conversation.
-                </p>
-
-                {/* Clean Circular Contact Animation */}
-                <div className="relative mx-auto mb-20 flex items-center justify-center" style={{ width: '700px', height: '700px' }}>
-                    
-                    {/* Subtle Background Circle */}
-                    <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full rounded-full ${
-                        theme === 'dark' 
-                            ? 'bg-gradient-radial from-blue-500/5 via-transparent to-transparent' 
-                            : 'bg-gradient-radial from-blue-400/5 via-transparent to-transparent'
-                    }`} style={{
-                        animation: 'pulse 4s ease-in-out infinite'
-                    }} />
-
-                    {/* Center Logo */}
-                    <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full border-3 ${
-                        theme === 'dark' ? 'border-blue-400/80 bg-gray-900' : 'border-blue-600/80 bg-white'
-                    } flex items-center justify-center text-2xl font-black z-20 transition-all duration-300 hover:scale-110`} style={{
-                        boxShadow: theme === 'dark' 
-                            ? '0 8px 32px rgba(59, 130, 246, 0.3)' 
-                            : '0 8px 32px rgba(59, 130, 246, 0.2)'
-                    }}>
-                        <span className={`${theme === 'dark' ? 'text-blue-400' : 'text-blue-600'}`}>VC</span>
-                    </div>
-
-                    {/* Orbiting Contact Cards */}
-                    {[
-                        {
-                            icon: <GoMail size={20} />,
-                            title: "Email",
-                            subtitle: "vietcao10@gmail.com",
-                            href: `mailto:${data.email}`,
-                            bg: theme === 'dark' ? '#ef4444' : '#f87171',
-                            angle: 0,
-                            delay: 0
-                        },
-                        {
-                            icon: <FaGithub size={20} />,
-                            title: "GitHub", 
-                            subtitle: "Check out my code",
-                            href: `https://github.com/${data.githubUsername}`,
-                            bg: theme === 'dark' ? '#6b7280' : '#9ca3af',
-                            angle: 60,
-                            delay: 5
-                        },
-                        {
-                            icon: <FaYoutube size={20} />,
-                            title: "YouTube",
-                            subtitle: "Watch my videos",
-                            href: data.social?.youtube || "#",
-                            bg: theme === 'dark' ? '#ff0000' : '#ef4444',
-                            angle: 120,
-                            delay: 10
-                        },
-                        {
-                            icon: <FaDiscord size={20} />,
-                            title: "Discord",
-                            subtitle: "Join my server",
-                            href: data.social?.discord || "#",
-                            bg: theme === 'dark' ? '#5865f2' : '#6366f1',
-                            angle: 180,
-                            delay: 15
-                        },
-                        {
-                            icon: <FaFacebook size={20} />,
-                            title: "Facebook",
-                            subtitle: "Follow me",
-                            href: data.social?.facebook || "#",
-                            bg: theme === 'dark' ? '#1877f2' : '#3b82f6',
-                            angle: 240,
-                            delay: 20
-                        },
-                        {
-                            icon: <FaLinkedin size={20} />,
-                            title: "LinkedIn",
-                            subtitle: "Professional network", 
-                            href: data.social?.linkedin || "#",
-                            bg: theme === 'dark' ? '#3b82f6' : '#60a5fa',
-                            angle: 300,
-                            delay: 25
-                        }
-                    ].map((contact, index) => (
-                        <Link
-                            key={contact.title}
-                            href={contact.href}
-                            target="_blank"
-                            className="absolute group"
-                            style={{
-                                top: '50%',
-                                left: '50%',
-                                transform: `translate(-50%, -50%) rotate(${contact.angle}deg) translateY(-280px) rotate(-${contact.angle}deg)`,
-                                animation: `orbitRotate 30s linear infinite ${contact.delay}s`
-                            }}
-                        >
-                            <div className={`relative w-36 h-36 rounded-2xl enhanced-card ${
-                                theme === 'dark' 
-                                    ? 'bg-gray-800/90 border-gray-700/50 hover:border-gray-600' 
-                                    : 'bg-white border-gray-200 hover:border-gray-300'
-                            } backdrop-blur-sm transition-all duration-300 transform group-hover:scale-110 group-hover:-translate-y-2`}>
-                                
-                                {/* Icon Circle */}
-                                <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full flex items-center justify-center text-white transition-transform duration-300 group-hover:scale-110" style={{
-                                    backgroundColor: contact.bg,
-                                    boxShadow: `0 4px 16px ${contact.bg}40`
-                                }}>
-                                    {contact.icon}
-                                </div>
-                                
-                                {/* Text Content */}
-                                <div className="absolute bottom-4 left-0 right-0 px-3 text-center">
-                                    <h3 className={`text-sm font-bold mb-1 ${
-                                        theme === 'dark' ? 'text-white' : 'text-gray-900'
-                                    }`}>
-                                        {contact.title}
-                                    </h3>
-                                    <p className={`text-xs leading-tight ${
-                                        theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
-                                    }`}>
-                                        {contact.subtitle}
-                                    </p>
-                                </div>
-
-                                {/* Hover Glow */}
-                                <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300`} style={{
-                                    background: `radial-gradient(circle, ${contact.bg}40, transparent 70%)`,
-                                    filter: 'blur(8px)'
-                                }} />
-                            </div>
-                        </Link>
-                    ))}
+        <section id="contact" className={`py-24 ${theme === 'dark' ? 'bg-gray-900' : 'bg-gray-50'}`}>
+            <div className="max-w-7xl mx-auto px-6 lg:px-8">
+                <div className="text-center mb-16">
+                    <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${
+                        theme === 'dark' ? 'text-white' : 'text-gray-900'
+                    }`}>
+                        Let's Work Together
+                    </h2>
+                    <p className={`text-xl max-w-3xl mx-auto ${
+                        theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                    }`}>
+                        Have a project in mind? I'd love to hear about it. Let's discuss how we can bring your ideas to life.
+                    </p>
                 </div>
 
-                {/* Enhanced Call to Action */}
-                <div className="flex flex-col sm:flex-row gap-6 justify-center max-w-md mx-auto">
-                    <Button
-                        href={`mailto:${data.email}`}
-                        variant="primary"
-                        size="lg"
-                        className="flex-1"
-                    >
-                        Get In Touch
-                    </Button>
-                    
-                    <Button
-                        onClick={() => scrollToSection('hero')}
-                        variant="outline"
-                        size="lg"
-                        className="flex-1"
-                    >
-                        Back to Top
-                    </Button>
+                <div className="max-w-4xl mx-auto">
+                    <div className="grid md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <h3 className={`text-2xl font-bold mb-6 ${
+                                theme === 'dark' ? 'text-white' : 'text-gray-900'
+                            }`}>
+                                Get In Touch
+                            </h3>
+                            <div className="space-y-4">
+                                <div className="flex items-center gap-4">
+                                    <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
+                                        theme === 'dark' ? 'bg-blue-500/10 text-blue-400' : 'bg-blue-500/10 text-blue-600'
+                                    }`}>
+                                        <GoMail size={20} />
+                                    </div>
+                                    <div>
+                                        <p className={`font-medium ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
+                                            Email
+                                        </p>
+                                        <p className={`${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
+                                            {email || 'Loading...'}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="mt-8">
+                                <h4 className={`text-lg font-semibold mb-4 ${
+                                    theme === 'dark' ? 'text-white' : 'text-gray-900'
+                                }`}>
+                                    Follow Me
+                                </h4>
+                                <div className="flex gap-4">
+                                    {socialLinks.map(({ Icon, href, label }) => (
+                                        <Link
+                                            key={label}
+                                            href={href}
+                                            target="_blank"
+                                            className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 ${
+                                                theme === 'dark'
+                                                    ? 'bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white'
+                                                    : 'bg-white hover:bg-gray-100 text-gray-600 hover:text-gray-900 shadow-sm'
+                                            }`}
+                                            aria-label={label}
+                                        >
+                                            <Icon size={20} />
+                                        </Link>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className={`p-8 rounded-2xl ${
+                            theme === 'dark' ? 'bg-gray-800' : 'bg-white shadow-xl'
+                        }`}>
+                            <form className="space-y-6">
+                                <div>
+                                    <label className={`block text-sm font-medium mb-2 ${
+                                        theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                                    }`}>
+                                        Name
+                                    </label>
+                                    <input
+                                        type="text"
+                                        className={`w-full px-4 py-3 rounded-lg border transition-colors ${
+                                            theme === 'dark'
+                                                ? 'bg-gray-700 border-gray-600 text-white focus:border-blue-400'
+                                                : 'bg-white border-gray-300 text-gray-900 focus:border-blue-500'
+                                        } focus:outline-none focus:ring-2 focus:ring-blue-500/20`}
+                                        placeholder="Your name"
+                                    />
+                                </div>
+                                <div>
+                                    <label className={`block text-sm font-medium mb-2 ${
+                                        theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                                    }`}>
+                                        Email
+                                    </label>
+                                    <input
+                                        type="email"
+                                        className={`w-full px-4 py-3 rounded-lg border transition-colors ${
+                                            theme === 'dark'
+                                                ? 'bg-gray-700 border-gray-600 text-white focus:border-blue-400'
+                                                : 'bg-white border-gray-300 text-gray-900 focus:border-blue-500'
+                                        } focus:outline-none focus:ring-2 focus:ring-blue-500/20`}
+                                        placeholder="your@email.com"
+                                    />
+                                </div>
+                                <div>
+                                    <label className={`block text-sm font-medium mb-2 ${
+                                        theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                                    }`}>
+                                        Message
+                                    </label>
+                                    <textarea
+                                        rows={4}
+                                        className={`w-full px-4 py-3 rounded-lg border transition-colors ${
+                                            theme === 'dark'
+                                                ? 'bg-gray-700 border-gray-600 text-white focus:border-blue-400'
+                                                : 'bg-white border-gray-300 text-gray-900 focus:border-blue-500'
+                                        } focus:outline-none focus:ring-2 focus:ring-blue-500/20`}
+                                        placeholder="Tell me about your project..."
+                                    />
+                                </div>
+                                <Button
+                                    href={`mailto:${email}`}
+                                    variant="primary"
+                                    size="lg"
+                                    className="w-full"
+                                    disabled={!email}
+                                >
+                                    Send Message
+                                </Button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            {/* Animations */}
-            <style jsx>{`
-                @keyframes orbitRotate {
-                    from { transform: translate(-50%, -50%) rotate(0deg) translateY(-280px) rotate(0deg); }
-                    to { transform: translate(-50%, -50%) rotate(360deg) translateY(-280px) rotate(-360deg); }
-                }
-                
-                @keyframes pulse {
-                    0%, 100% { opacity: 0.3; }
-                    50% { opacity: 0.6; }
-                }
-            `}</style>
         </section>
     );
 }

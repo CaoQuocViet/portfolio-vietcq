@@ -3,11 +3,12 @@
 import { FaGithub, FaLinkedin, FaXTwitter, FaArrowDown } from "react-icons/fa6";
 import { GoMail } from "react-icons/go";
 import Link from "next/link";
-import data from "../../../../data.json";
 import WaveBackground from './WaveBackground';
 import Button from "../../ui/Button";
+import { info } from "../../../utils/info";
 
 export default function Hero({ theme, scrollToSection }) {
+
     return (
         <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">
 
@@ -23,7 +24,7 @@ export default function Hero({ theme, scrollToSection }) {
                                 ? 'from-cyan-400 via-blue-500 to-purple-600' 
                                 : 'from-cyan-600 via-blue-700 to-purple-800'
                         } bg-clip-text text-transparent font-bold`}>
-                            Cao Quốc Việt
+                            {info.displayName}
                         </span>
                     </p>
                     
@@ -77,10 +78,10 @@ export default function Hero({ theme, scrollToSection }) {
                     <div className="flex justify-center space-x-6 mb-16" 
                          style={{ animation: 'fadeInUp 1s ease-out 1s both' }}>
                         {[
-                            { Icon: FaGithub, href: `https://github.com/${data.githubUsername}`, label: 'GitHub' },
-                            { Icon: FaLinkedin, href: data.social.linkedin, label: 'LinkedIn' },
-                            { Icon: FaXTwitter, href: data.social.twitter, label: 'Twitter' },
-                            { Icon: GoMail, href: `mailto:${data.email}`, label: 'Email' }
+                            { Icon: FaGithub, href: info.social.github, label: 'GitHub' },
+                            { Icon: FaLinkedin, href: info.social.linkedin, label: 'LinkedIn' },
+                            { Icon: FaXTwitter, href: info.social.twitter, label: 'Twitter' },
+                            { Icon: GoMail, href: `mailto:${info.email}`, label: 'Email' }
                         ].map(({ Icon, href, label }) => (
                             <Link
                                 key={label}
