@@ -1,35 +1,39 @@
 'use client'
 import { useTheme } from 'next-themes'
-import Link from 'next/link'
-import { ArrowLeft } from 'lucide-react'
+import { useState, useEffect } from 'react'
 import Gallery from '../../components/gallery/Gallery'
-import Button from '../../components/ui/Button'
+import Dock from '../../components/ui/Dock'
+import { GALLERY_NAVIGATION_ITEMS } from '../../config/navigation'
 
 export default function GalleryPageClient({ projects }) {
-    const { theme } = useTheme()
+    const { theme, setTheme } = useTheme()
+    const [mounted, setMounted] = useState(false)
+
+    useEffect(() => {
+        setMounted(true)
+    }, [])
+
+    const scrollToSection = (sectionId) => {
+        if (sectionId === 'home') {
+            window.location.href = '/'
+        }
+    }
+
+    if (!mounted) return null
 
     return (
         <>
-            {/* Navigation Button */}
-            <div style={{
-                position: 'fixed',
-                top: '20px',
-                left: '20px',
-                zIndex: 1000
-            }}>
-                <Button
-                    href="/"
-                    variant="secondary"
-                    size="md"
-                    className="flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/20"
-                >
-                    <ArrowLeft className="w-6 h-6" />
-                    <span>Back to Portfolio</span>
-                </Button>
-            </div>
+            {/* Dock Navigation - chỉ logo + home + theme */}
+            <Dock 
+                theme={theme}
+                setTheme={setTheme}
+                activeSection={null} // Không track active section
+                scrollToSection={scrollToSection}
+                navigationItems={GALLERY_NAVIGATION_ITEMS}
+            />
 
-            {/* Main Content with tmp.html styling */}
-            <div style={{
+            {/* Main Content */}
+            <div id="gallery" style={{
                 margin: 0,
                 padding: '20px',
                 background: 'linear-gradient(135deg, #0026bd, #b9a700, #460096)',

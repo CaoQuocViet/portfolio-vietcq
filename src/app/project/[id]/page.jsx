@@ -2,13 +2,14 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'next/navigation'
 import { useTheme } from 'next-themes'
-import Link from 'next/link'
-import { ArrowLeft, Home, Github, ExternalLink } from 'lucide-react'
 import Gallery from '../../../components/gallery/Gallery'
 import Button from '../../../components/ui/Button'
+import Dock from '../../../components/ui/Dock'
+import { PROJECT_NAVIGATION_ITEMS } from '../../../config/navigation'
+import { Github, ExternalLink } from 'lucide-react'
 
 export default function ProjectDetailPage() {
-    const { theme } = useTheme()
+    const { theme, setTheme } = useTheme()
     const params = useParams()
     const [projectData, setProjectData] = useState(null)
     const [loading, setLoading] = useState(true)
@@ -18,6 +19,14 @@ export default function ProjectDetailPage() {
     useEffect(() => {
         setMounted(true)
     }, [])
+
+    const scrollToSection = (sectionId) => {
+        if (sectionId === 'home') {
+            window.location.href = '/'
+        } else if (sectionId === 'gallery') {
+            window.location.href = '/gallery'
+        }
+    }
 
     useEffect(() => {
         const loadProjectData = async () => {
@@ -78,47 +87,19 @@ export default function ProjectDetailPage() {
 
     return (
         <div className={`min-h-screen ${theme === 'dark' ? 'bg-gray-950' : 'bg-white'}`}>
-            {/* Navigation Bar */}
-            <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-                theme === 'dark' 
-                    ? 'bg-gray-950/80 backdrop-blur-md border-gray-800/50' 
-                    : 'bg-white/80 backdrop-blur-md border-gray-200/50'
-            } border-b`}>
-                <div className="max-w-7xl mx-auto px-6 lg:px-8">
-                    <div className="flex items-center justify-between h-16">
-                        {/* Back to Gallery */}
-                        <Button 
-                            href="/gallery"
-                            variant="ghost"
-                            size="sm"
-                            className="flex items-center gap-2"
-                        >
-                            <ArrowLeft className="w-4 h-4" />
-                            <span className="text-sm font-medium">Back to Gallery</span>
-                        </Button>
-
-                        {/* Project Name */}
-                        <h1 className={`text-lg font-semibold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
-                            {projectData.name}
-                        </h1>
-
-                        {/* Home Icon */}
-                        <Button 
-                            href="/"
-                            variant="ghost"
-                            size="sm"
-                            className="p-2"
-                        >
-                            <Home className="w-5 h-5" />
-                        </Button>
-                    </div>
-                </div>
-            </nav>
+            {/* Dock Navigation - chỉ logo + home + gallery + theme */}
+            <Dock 
+                theme={theme}
+                setTheme={setTheme}
+                activeSection={null} // Không track active section
+                scrollToSection={scrollToSection}
+                navigationItems={PROJECT_NAVIGATION_ITEMS}
+            />
 
             {/* Main Content */}
-            <main className="pt-16">
+            <main className="pb-20">{/* Add bottom padding for dock */}
                 {/* Hero Section */}
-                <section className={`py-24 ${theme === 'dark' ? 'bg-gradient-to-br from-slate-900 via-gray-900 to-slate-900' : `bg-gradient-to-br from-gray-50 via-${projectData.color.primary}-50 to-gray-100`}`}>
+                <section id="overview" className={`py-24 ${theme === 'dark' ? 'bg-gradient-to-br from-slate-900 via-gray-900 to-slate-900' : `bg-gradient-to-br from-gray-50 via-${projectData.color.primary}-50 to-gray-100`}`}>
                     <div className="max-w-7xl mx-auto px-6 lg:px-8">
                         <div className="text-center mb-16">
                             <h1 className={`text-5xl md:text-7xl font-bold mb-6 ${
@@ -266,8 +247,8 @@ export default function ProjectDetailPage() {
                     </div>
                 </section>
 
-                {/* Project Gallery - Filtered for this project with tmp.html styling */}
-                <section style={{
+                {/* Project Gallery */}
+                <section id="gallery" style={{
                     margin: 0,
                     padding: '40px 20px',
                     display: 'flex',
@@ -277,6 +258,41 @@ export default function ProjectDetailPage() {
                     fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
                 }}>
                     <Gallery projectFilter={projectData.id} />
+                </section>
+
+                {/* Demo Section */}
+                <section id="demo" className={`py-20 ${theme === 'dark' ? 'bg-gray-900' : 'bg-gray-50'}`}>
+                    <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+                        <h2 className={`text-4xl font-bold mb-8 ${
+                            theme === 'dark' ? 'text-white' : 'text-gray-900'
+                        }`}>
+                            Live Demo
+                        </h2>
+                        <div className="flex gap-6 justify-center">
+                            {projectData.links?.github && (
+                                <Button
+                                    href={projectData.links.github}
+                                    variant="outline"
+                                    size="lg"
+                                    className="flex items-center gap-3"
+                                >
+                                    <Github className="w-5 h-5" />
+                                    View Source
+                                </Button>
+                            )}
+                            {projectData.links?.live && (
+                                <Button
+                                    href={projectData.links.live}
+                                    variant="primary"
+                                    size="lg"
+                                    className="flex items-center gap-3"
+                                >
+                                    <ExternalLink className="w-5 h-5" />
+                                    Live Demo
+                                </Button>
+                            )}
+                        </div>
+                    </div>
                 </section>
             </main>
         </div>
