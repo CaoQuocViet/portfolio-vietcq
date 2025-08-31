@@ -21,9 +21,9 @@ export default function GalleryPageClient({ projects }) {
                     href="/"
                     variant="secondary"
                     size="md"
-                    className="flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20"
+                    className="flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/20"
                 >
-                    <ArrowLeft className="w-4 h-4" />
+                    <ArrowLeft className="w-6 h-6" />
                     <span>Back to Portfolio</span>
                 </Button>
             </div>
