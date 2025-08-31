@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Gallery from '../../components/gallery/Gallery'
 import Dock from '../../components/ui/Dock'
 import { GALLERY_NAVIGATION_ITEMS } from '../../config/navigation'
+import { createScrollFunction } from '../../utils/navigation'
 
 export default function GalleryPageClient({ projects }) {
     const { theme, setTheme } = useTheme()
@@ -13,11 +14,7 @@ export default function GalleryPageClient({ projects }) {
         setMounted(true)
     }, [])
 
-    const scrollToSection = (sectionId) => {
-        if (sectionId === 'home') {
-            window.location.href = '/'
-        }
-    }
+    const scrollToSection = createScrollFunction();
 
     if (!mounted) return null
 

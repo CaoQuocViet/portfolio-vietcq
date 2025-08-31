@@ -6,6 +6,7 @@ import Gallery from '../../../components/gallery/Gallery'
 import Button from '../../../components/ui/Button'
 import Dock from '../../../components/ui/Dock'
 import { PROJECT_NAVIGATION_ITEMS } from '../../../config/navigation'
+import { createScrollFunction } from '../../../utils/navigation'
 import { Github, ExternalLink } from 'lucide-react'
 
 export default function ProjectDetailPage() {
@@ -20,13 +21,7 @@ export default function ProjectDetailPage() {
         setMounted(true)
     }, [])
 
-    const scrollToSection = (sectionId) => {
-        if (sectionId === 'home') {
-            window.location.href = '/'
-        } else if (sectionId === 'gallery') {
-            window.location.href = '/gallery'
-        }
-    }
+    const scrollToSection = createScrollFunction();
 
     useEffect(() => {
         const loadProjectData = async () => {
