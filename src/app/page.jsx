@@ -5,7 +5,7 @@ import { useTheme } from "next-themes";
 
 // Import components
 import Navigation from "../components/layout/Navigation";
-import Hero from "../components/layout/Hero";
+import Hero from "../components/layout/hero/Hero";
 import About from "../components/layout/about/About";
 import Services from "../components/layout/Services";
 import Projects from "../components/layout/Projects";

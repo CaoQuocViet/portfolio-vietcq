@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 
-const ProjectGallery = ({ projects = [], projectFilter = null }) => {
+const Gallery = ({ projects = [], projectFilter = null }) => {
     const [hoveredTitle, setHoveredTitle] = useState('Hover over image to see details')
     const [galleryItems, setGalleryItems] = useState([])
 
@@ -205,5 +205,5 @@ const ProjectGallery = ({ projects = [], projectFilter = null }) => {
     )
 }
 
-export default ProjectGallery
+export default Gallery
 
