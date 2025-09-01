@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import SocialList from "../SocialList";
 import RepositoriesList from "../RepositoriesList";
+import ProjectsList from "../ProjectsList";
 
 // Props: isOpen, onClose, theme, dockRect (DOMRect), logoRect (DOMRect)
 const Modal = ({ isOpen, onClose, theme, dockRect, logoRect }) => {
@@ -14,7 +15,7 @@ const Modal = ({ isOpen, onClose, theme, dockRect, logoRect }) => {
 
     const updatePosition = () => {
       const width = 480;   // giữ 1.5x
-      const height = 500;  // HARD-CODE 500px
+      const height = 580;  // Tăng từ 500px lên 580px để chứa Projects section
       const dockTop =
         dockRect?.top ??
         (window.innerHeight - 56 /*fallback dockH*/ - 24 /*bottom-6*/);
@@ -73,9 +74,9 @@ const Modal = ({ isOpen, onClose, theme, dockRect, logoRect }) => {
         className={`fixed z-50 rounded-xl shadow-2xl transition-all duration-200 transform scale-100 animate-popover-in border ${modalBgClass}`}
         style={{
           width: 480,
-          height: 500,         // HARD-CODE
+          height: 580,         // Tăng từ 500px lên 580px
           left: pos.left,
-          top: pos.top,        // luôn = dockTop - 32 - 500
+          top: pos.top,        // luôn = dockTop - 32 - 580
           boxShadow:
             theme === "dark"
               ? "0 20px 60px rgba(0,0,0,0.8), 0 8px 32px rgba(0,0,0,0.6)"
@@ -107,6 +108,12 @@ const Modal = ({ isOpen, onClose, theme, dockRect, logoRect }) => {
           <div className="mb-6">
             <div className="mb-6 text-2xl font-bold text-gray-900 dark:text-white">Repositories</div>
             <RepositoriesList theme={theme} />
+          </div>
+
+          {/* Projects Section - Đặt cuối cùng */}
+          <div className="mb-6 mt-4">
+            <div className="mb-6 text-2xl font-bold text-gray-900 dark:text-white">Projects</div>
+            <ProjectsList theme={theme} />
           </div>
         </div>
       </div>
