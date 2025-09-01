@@ -182,7 +182,7 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
                     max-width: 1600px;
                     position: relative;
                     overflow: hidden;
-                    padding: 30px;
+                    padding: 20px;
                     border-radius: 20px;
                     backdrop-filter: blur(10px);
                     border: 1px solid ${theme === 'dark' ? 'rgba(255, 255, 255, 0.2)' : 'rgba(255, 255, 255, 0.1)'};
@@ -208,12 +208,13 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
                 .gallery-frame {
                     position: relative;
                     width: 100%;
-                    padding-top: 32%;
+                    padding-top: 36%;
                     border: 2px solid ${theme === 'dark' ? 'rgba(255, 255, 255, 0.2)' : 'rgba(255, 255, 255, 0.1)'};
                     border-radius: 16px;
                     overflow: hidden;
                     background: ${theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.05)'};
                     box-shadow: ${theme === 'dark' ? '0 8px 25px rgba(0, 0, 0, 0.6)' : '0 8px 25px rgba(0, 0, 0, 0.2)'};
+                    margin-bottom: 15px;
                 }
 
                 .gallery-images {
@@ -284,12 +285,13 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
 
                 .arrow-container {
                     text-align: center;
-                    margin-top: 30px;
+                    margin-top: 0px;
                     position: relative;
                 }
 
                 .arrow {
-                    font-size: 90px;
+                    font-size: 60px;
+                    line-height: 1;
                     color: transparent;
                     background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
                     background-size: 300% 100%;
@@ -334,7 +336,7 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
                     }
 
                     .arrow {
-                        font-size: 36px;
+                        font-size: 30px;
                     }
                 }
             `}</style>
