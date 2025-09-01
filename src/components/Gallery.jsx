@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 import { useTheme } from 'next-themes'
 import Image from 'next/image'
-import Dock from './layout/dock/Dock'
+import Dock from './dock/Dock'
 import { GALLERY_NAVIGATION_ITEMS } from '../config/navigation'
 import { createScrollFunction } from '../utils/navigation'
 import { useGallery } from '../hooks/useGallery'

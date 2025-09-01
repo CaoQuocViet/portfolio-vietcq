@@ -1,7 +1,7 @@
 "use client";
 
 import { FaSun, FaMoon } from "react-icons/fa6";
-import { DEFAULT_NAVIGATION_ITEMS } from "../../../config/navigation";
+import { DEFAULT_NAVIGATION_ITEMS } from "../../config/navigation";
 import { useState, useRef, useEffect } from "react";
 import Modal from "./Modal";
 

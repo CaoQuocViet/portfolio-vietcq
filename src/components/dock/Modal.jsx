@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import SocialList from "../../SocialList";
-import RepositoriesList from "../../RepositoriesList";
+import SocialList from "../SocialList";
+import RepositoriesList from "../RepositoriesList";
 
 // Props: isOpen, onClose, theme, dockRect (DOMRect), logoRect (DOMRect)
 const Modal = ({ isOpen, onClose, theme, dockRect, logoRect }) => {
