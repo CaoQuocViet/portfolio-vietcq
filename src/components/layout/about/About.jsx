@@ -26,7 +26,7 @@ const About = ({ theme }) => {
         }
 
         .scrolling-text {
-          animation: scrollTextInfinite 12s linear infinite;
+          animation: scrollTextInfinite 23.5s linear infinite;
         }
 
         .lined-background {

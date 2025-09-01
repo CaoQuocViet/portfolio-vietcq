@@ -20,7 +20,7 @@ const NavigationItem = ({
         onClick={onLogoClick}
         onMouseEnter={onHover}
         onMouseLeave={onLeave}
-        className={`relative group flex items-center justify-center h-12 px-4 rounded-2xl transition-all duration-300 ease-out transform ${
+        className={`relative group flex items-center justify-center h-12 px-4 rounded-2xl transition-all duration-500 ease-out transform cursor-pointer ${
           isHovered ? "scale-125" : "hover:scale-110"
         } ${
           activeSection === "hero"
@@ -30,7 +30,7 @@ const NavigationItem = ({
         title="Open Vietcq Modal"
       >
         <span
-          className={`text-lg font-bold transition-all duration-300 bg-gradient-to-r ${
+          className={`text-lg font-bold transition-all duration-500 bg-gradient-to-r ${
             theme === "dark"
               ? "from-blue-400 via-purple-400 to-blue-400"
               : "from-blue-600 via-purple-600 to-blue-600"
@@ -40,7 +40,7 @@ const NavigationItem = ({
           Vietcq
         </span>
         <span
-          className={`inline-block ml-1 text-base transition-all duration-300 ${
+          className={`inline-block ml-1 text-base transition-all duration-500 ${
             theme === "dark" ? "text-purple-400" : "text-purple-600"
           }`}
           style={{ animation: "float 3s ease-in-out infinite" }}
@@ -56,7 +56,7 @@ const NavigationItem = ({
       onClick={() => (item.link ? (window.location.href = item.link) : scrollToSection(item.id))}
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
-      className={`relative group flex flex-col items-center justify-center w-12 h-12 rounded-2xl transition-all duration-300 ease-out transform ${
+      className={`relative group flex flex-col items-center justify-center w-12 h-12 rounded-2xl transition-all duration-500 ease-out transform cursor-pointer ${
         isHovered
           ? "scale-125"
           : isActive
@@ -67,13 +67,13 @@ const NavigationItem = ({
     >
       <IconComponent 
         size={isHovered ? 24 : 20} 
-        className={`transition-all duration-300 ease-out ${
+        className={`transition-all duration-500 ease-out ${
           isHovered 
             ? (theme === 'dark' ? 'text-gray-200' : 'text-gray-800') 
             : item.color
         }`} 
       />
-      <div className={`absolute -bottom-1 w-1.5 h-1.5 rounded-full transition-all duration-300 ${isActive ? "bg-white scale-100" : "bg-transparent scale-0"}`} />
+      <div className={`absolute -bottom-1 w-1.5 h-1.5 rounded-full transition-all duration-500 ${isActive ? "bg-white scale-100" : "bg-transparent scale-0"}`} />
       <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap hidden md:block">
         {item.label}
         <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-2 border-r-2 border-t-2 border-transparent border-t-gray-900 dark:border-t-gray-100" />
@@ -87,15 +87,15 @@ const ThemeToggle = ({ theme, setTheme, isHovered, onHover, onLeave }) => (
     onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
     onMouseEnter={onHover}
     onMouseLeave={onLeave}
-    className={`relative group flex items-center justify-center w-12 h-12 rounded-2xl transition-all duration-300 ease-out transform ${
+    className={`relative group flex items-center justify-center w-12 h-12 rounded-2xl transition-all duration-500 ease-out transform cursor-pointer ${
       isHovered ? "scale-125" : "hover:scale-110"
     } hover:bg-gray-100/60 dark:hover:bg-gray-800/60 active:scale-95`}
     title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
   >
     {theme === "dark" ? (
-      <FaSun size={isHovered ? 22 : 18} className="text-yellow-600 group-hover:text-yellow-500 transition-all duration-300 ease-out" />
+      <FaSun size={isHovered ? 22 : 18} className="text-yellow-600 group-hover:text-yellow-500 transition-all duration-500 ease-out" />
     ) : (
-      <FaMoon size={isHovered ? 22 : 18} className="text-slate-600 group-hover:text-slate-500 transition-all duration-300 ease-out" />
+      <FaMoon size={isHovered ? 22 : 18} className="text-slate-600 group-hover:text-slate-500 transition-all duration-500 ease-out" />
     )}
     <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap hidden md:block">
       {theme === "dark" ? "Light mode" : "Dark mode"}
