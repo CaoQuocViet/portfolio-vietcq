@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import Dock from "./dock/Dock";
 import { HOME_NAVIGATION_ITEMS } from "../../config/navigation";
 

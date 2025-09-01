@@ -1,6 +1,6 @@
 'use client'
 import { useTheme } from 'next-themes'
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import Gallery from '../../components/gallery/Gallery'
 import Dock from '../../components/layout/dock/Dock'
 import { GALLERY_NAVIGATION_ITEMS } from '../../config/navigation'

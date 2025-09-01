@@ -1,7 +1,7 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 
-export default function Services({ theme }) {
+const Services = ({ theme }) => {
     const [mounted, setMounted] = useState(false)
 
     useEffect(() => {
@@ -445,3 +445,5 @@ export default function Services({ theme }) {
         </section>
     )
 }
+
+export default Services;

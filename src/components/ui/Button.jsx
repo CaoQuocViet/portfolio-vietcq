@@ -1,5 +1,5 @@
 'use client'
-import React, { forwardRef } from 'react'
+import { forwardRef } from 'react'
 import { useTheme } from 'next-themes'
 
 const Button = forwardRef(({ 

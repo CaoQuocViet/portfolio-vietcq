@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import SocialList from "../../SocialList";
 import RepositoriesList from "../../RepositoriesList";
 

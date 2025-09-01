@@ -1,5 +1,5 @@
 'use client'
-import React, { Suspense, useState, useEffect } from 'react'
+import { Suspense, useState, useEffect } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls, useGLTF, Float, Environment } from '@react-three/drei'
 

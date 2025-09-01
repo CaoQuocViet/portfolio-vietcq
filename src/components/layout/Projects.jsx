@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
 import { Github, ExternalLink, Star, GitFork } from 'lucide-react'
@@ -281,4 +281,4 @@ const Projects = () => {
     )
 }
 
-export default Projects
+export default Projects;

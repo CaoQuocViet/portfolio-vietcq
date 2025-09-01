@@ -7,7 +7,9 @@ const nextConfig = {
         staleTimes: {
             dynamic: 300,
             static: 300
-        }
+        },
+        // Optimize icon imports for better tree-shaking
+        optimizePackageImports: ['react-icons', 'lucide-react', '@heroicons/react'],
     },
     env: {
         /** GitHub username loaded in build time. */

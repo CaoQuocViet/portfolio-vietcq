@@ -1,7 +1,7 @@
 "use client";
 
 import { useTheme } from 'next-themes';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function SamplePage() {
   const { theme } = useTheme();

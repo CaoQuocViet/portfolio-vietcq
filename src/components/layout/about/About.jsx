@@ -1,8 +1,7 @@
-import React from "react";
 import PCModel from "./PCModel";
 import { info } from "../../../utils/info";
 
-export default function About({ theme }) {
+const About = ({ theme }) => {
   return (
     <>
       <style jsx>{`
@@ -233,4 +232,6 @@ function ContentBlock({ theme }) {
       </div>
     </>
   );
-}
+};
+
+export default About;
