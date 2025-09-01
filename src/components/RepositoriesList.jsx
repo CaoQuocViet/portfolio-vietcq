@@ -1,51 +1,10 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Star, GitFork } from "lucide-react";
-import { info } from "../utils/info";
+import { useGitHubRepos } from "../hooks/useGitHubRepos";
 
 const RepositoriesList = ({ theme = "dark" }) => {
-  const [repos, setRepos] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchRepos = async () => {
-      // Check cache first
-      const cached = localStorage.getItem('github-repos');
-      const cacheTime = localStorage.getItem('github-repos-time');
-      const now = Date.now();
-      
-      // Use cache if less than 5 minutes old
-      if (cached && cacheTime && (now - parseInt(cacheTime)) < 5 * 60 * 1000) {
-        setRepos(JSON.parse(cached));
-        setLoading(false);
-        return;
-      }
-
-      try {
-        // Fetch from GitHub API for live data
-        const githubResponse = await fetch(`https://api.github.com/users/${info.githubUsername}/repos?sort=updated&per_page=8`);
-        if (githubResponse.ok) {
-          const githubData = await githubResponse.json();
-          const repoData = githubData.slice(0, 8); // Chỉ lấy 8 repos để vừa modal
-          setRepos(repoData);
-          
-          // Cache the data
-          localStorage.setItem('github-repos', JSON.stringify(repoData));
-          localStorage.setItem('github-repos-time', now.toString());
-        } else {
-          console.error('GitHub API failed');
-          setRepos([]);
-        }
-      } catch (error) {
-        console.error('Error fetching repos:', error);
-        setRepos([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchRepos();
-  }, []);
+  const { repos, loading } = useGitHubRepos(8); // Chỉ lấy 8 repos cho modal
 
   if (loading) {
     return (

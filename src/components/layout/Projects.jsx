@@ -3,52 +3,11 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
 import { Github, ExternalLink, Star, GitFork } from 'lucide-react'
-import { info } from '../../utils/info'
+import { useGitHubRepos } from '../../hooks/useGitHubRepos'
 
 const Projects = () => {
     const { theme } = useTheme()
-    const [repos, setRepos] = useState([])
-    const [loading, setLoading] = useState(true)
-
-    useEffect(() => {
-        const fetchRepos = async () => {
-            // Check cache first
-            const cached = localStorage.getItem('github-repos');
-            const cacheTime = localStorage.getItem('github-repos-time');
-            const now = Date.now();
-            
-            // Use cache if less than 5 minutes old
-            if (cached && cacheTime && (now - parseInt(cacheTime)) < 5 * 60 * 1000) {
-                setRepos(JSON.parse(cached));
-                setLoading(false);
-                return;
-            }
-
-            try {
-                // Fetch from GitHub API for live data
-                const githubResponse = await fetch(`https://api.github.com/users/${info.githubUsername}/repos?sort=updated&per_page=12`)
-                if (githubResponse.ok) {
-                    const githubData = await githubResponse.json()
-                    const repoData = githubData.slice(0, 12);
-                    setRepos(repoData);
-                    
-                    // Cache the data
-                    localStorage.setItem('github-repos', JSON.stringify(repoData));
-                    localStorage.setItem('github-repos-time', now.toString());
-                } else {
-                    console.error('GitHub API failed')
-                    setRepos([])
-                }
-            } catch (error) {
-                console.error('Error fetching repos:', error)
-                setRepos([])
-            } finally {
-                setLoading(false)
-            }
-        }
-
-        fetchRepos()
-    }, [])
+    const { repos, loading } = useGitHubRepos(12) // Projects page lấy 12 repos
 
     // Split repos into two rows
     const firstRowRepos = repos.slice(0, Math.ceil(repos.length / 2))
