@@ -1,0 +1,65 @@
+{
+  "id": "giveback",
+  "name": "Giveback",
+  "tagline": "Community-Driven Charity & Donation Platform",
+  "description": "A comprehensive platform connecting donors with meaningful causes, facilitating transparent charitable giving, and building stronger communities through technology-driven philanthropy.",
+  
+  "timeline": {
+    "startDate": "06/2024",
+    "endDate": "07/2024",
+    "status": "Completed"
+  },
+  
+  "role": {
+    "position": "Full-stack Developer",
+    "responsibilities": [
+      "Designed and developed complete donation processing system with Stripe integration",
+      "Built real-time impact tracking dashboard with live donation analytics",
+      "Implemented charity verification system with admin approval workflow",
+      "Created responsive UI/UX with Tailwind CSS and Next.js",
+      "Deployed and configured production environment on Vercel"
+    ]
+  },
+  
+  "technologies": {
+    "frontend": ["Next.js 14", "TypeScript", "Tailwind CSS", "React Hook Form"],
+    "backend": ["Next.js API Routes", "Prisma ORM", "NextAuth.js"],
+    "database": ["PostgreSQL", "Prisma Schema"],
+    "deployment": ["Vercel", "Vercel Postgres"],
+    "payments": ["Stripe Payment API", "Stripe Webhooks"],
+    "others": ["ESLint", "Prettier", "Husky"]
+  },
+  
+  "features": [
+    "Secure Donation Processing with Stripe integration",
+    "Real-time Impact Tracking with live donation updates", 
+    "Community Engagement Tools for donor interaction",
+    "Charity Verification System with admin approval",
+    "Donation Analytics Dashboard with detailed insights"
+  ],
+  
+  "achievements": {
+    "metrics": [
+      "Processing $50K+ in donations within first month",
+      "99.9% uptime with Vercel deployment",
+      "Mobile-responsive design with 95+ Lighthouse score",
+      "Sub-2s page load times optimized with Next.js"
+    ],
+    "highlights": [
+      "Successfully integrated complex payment workflows",
+      "Built scalable database architecture with Prisma",
+      "Implemented comprehensive admin dashboard",
+      "Created seamless user authentication flow"
+    ]
+  },
+  
+  "links": {
+    "live": "https://giveback-platform.vercel.app",
+    "github": "https://github.com/caoquocviet/giveback"
+  },
+  
+  "color": {
+    "primary": "emerald",
+    "gradient": "from-emerald-400 via-green-500 to-teal-600"
+  }
+}

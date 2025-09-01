@@ -6,7 +6,8 @@ import Dock from './layout/dock/Dock'
 import { GALLERY_NAVIGATION_ITEMS } from '../config/navigation'
 import { createScrollFunction } from '../utils/navigation'
 
-const Gallery = ({ projects = [], projectFilter = null }) => {
+
+const Gallery = ({ projects = [], projectFilter = null, showDock = true }) => {
     const { theme, setTheme } = useTheme()
     const [mounted, setMounted] = useState(false)
     const [hoveredTitle, setHoveredTitle] = useState('Hover over image to see details')
@@ -38,13 +39,15 @@ const Gallery = ({ projects = [], projectFilter = null }) => {
     return (
         <>
             {/* Dock Navigation - chỉ logo + home + theme */}
-            <Dock 
-                theme={theme}
-                setTheme={setTheme}
-                activeSection={null} // Không track active section
-                scrollToSection={scrollToSection}
-                navigationItems={GALLERY_NAVIGATION_ITEMS}
-            />
+            {showDock && (
+                <Dock 
+                    theme={theme}
+                    setTheme={setTheme}
+                    activeSection={null} // Không track active section
+                    scrollToSection={scrollToSection}
+                    navigationItems={GALLERY_NAVIGATION_ITEMS}
+                />
+            )}
 
             {/* Main Content */}
             <div 

@@ -1,0 +1,65 @@
+{
+  "id": "testify",
+  "name": "Testify",
+  "tagline": "Comprehensive Testing & Feedback Platform",
+  "description": "A modern platform designed for comprehensive testing workflows, user feedback collection, and quality assurance processes. Built with cutting-edge technologies to ensure scalability and reliability.",
+  
+  "timeline": {
+    "startDate": "01/2024",
+    "endDate": "Present",
+    "status": "In Development"
+  },
+  
+  "role": {
+    "position": "Full-stack Developer",
+    "responsibilities": [
+      "Architected microservices backend with Node.js and Express",
+      "Developed React-based dashboard with advanced analytics",
+      "Implemented automated testing workflows with custom APIs",
+      "Built real-time feedback collection system using WebSockets",
+      "Configured Docker containerization and AWS deployment pipeline"
+    ]
+  },
+  
+  "technologies": {
+    "frontend": ["React 18", "TypeScript", "Material-UI", "Redux Toolkit"],
+    "backend": ["Node.js", "Express.js", "Socket.io", "JWT Authentication"],
+    "database": ["PostgreSQL", "Redis Cache", "Prisma ORM"],
+    "deployment": ["AWS ECS", "Docker", "AWS RDS", "CloudFront"],
+    "testing": ["Jest", "Cypress", "React Testing Library"],
+    "others": ["GitHub Actions", "ESLint", "Prettier", "Husky"]
+  },
+  
+  "features": [
+    "Automated Testing Workflows with custom test runner",
+    "Real-time Feedback Collection via WebSocket connections", 
+    "Advanced Analytics Dashboard with interactive charts",
+    "Team Collaboration Tools with role-based permissions",
+    "Integration APIs for third-party testing tools"
+  ],
+  
+  "achievements": {
+    "metrics": [
+      "Reduced testing time by 60% with automation workflows",
+      "Handling 10,000+ concurrent users in testing environment",
+      "99.5% API uptime with AWS infrastructure",
+      "Sub-1s response times for real-time feedback collection"
+    ],
+    "highlights": [
+      "Built scalable microservices architecture",
+      "Implemented comprehensive CI/CD pipeline",
+      "Created real-time collaboration features",
+      "Optimized database queries for high performance"
+    ]
+  },
+  
+  "links": {
+    "live": "https://testify-demo.vercel.app",
+    "github": "https://github.com/caoquocviet/testify"
+  },
+  
+  "color": {
+    "primary": "cyan",
+    "gradient": "from-cyan-400 via-blue-500 to-purple-600"
+  }
+}
