@@ -10,6 +10,6 @@ export const info = {
     github: "https://github.com/caoquocviet",
     youtube: "https://www.youtube.com/@CaoQu%E1%BB%91cVi%E1%BB%87t1173",
     discord: "https://discord.gg/caoquocviet",
-    facebook: "https://facebook.com/caoquocviet"
+    facebook: "https://facebook.com/cao.quocviet.23.01"
   }
 };
