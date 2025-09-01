@@ -1,4 +1,4 @@
-# Portfolio VietCQ
+# Portfolio Vietcq
 
 A modern, responsive portfolio website built with Next.js 15 and React 19, featuring a sleek design with dark/light theme support and macOS-style dock navigation.
 
@@ -110,8 +110,8 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ## 👤 Author
 
-**VietCQ**
-- Website: [https://portfolio-vietcq.vercel.app/](https://portfolio-vietcq.vercel.app/)
+**Vietcq**
+- Website: [https://portfolio-Vietcq.vercel.app/](https://portfolio-Vietcq.vercel.app/)
 - GitHub: [@CaoQuocViet](https://github.com/CaoQuocViet)
 - Email: vietcao10@gmail.com
 

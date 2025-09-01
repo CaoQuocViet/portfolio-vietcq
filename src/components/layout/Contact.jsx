@@ -28,7 +28,7 @@ export default function Contact({ theme }) {
     const email = info.email;
 
     return (
-        <section id="contact" className={`py-24 ${theme === 'dark' ? 'bg-gray-900' : 'bg-gray-100'}`}>
+        <section id="contact" className={`py-24 ${theme === 'dark' ? 'bg-gray-900/50' : 'bg-gray-200'}`}>
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 <div className="text-center mb-16">
                     <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${theme === 'dark' ? 'text-white' : 'text-gray-900'

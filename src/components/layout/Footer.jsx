@@ -7,7 +7,7 @@ import { info } from "../../utils/info";
 const FooterLogo = ({ theme }) => (
     <h3 className={`text-2xl font-bold mb-6 ${theme === 'dark' ? 'text-white' : 'text-gray-900'
         }`}>
-        vietcq
+        Vietcq
     </h3>
 );
 
@@ -31,7 +31,7 @@ const FooterSocialLinks = ({ theme, socialLinks }) => (
 const FooterCopyright = ({ theme }) => (
     <div className={`text-center text-lg mb-8 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
         }`}>
-        © 2025 vietcq. All rights reserved.
+        © 2025 Vietcq. All rights reserved.
     </div>
 );
 
@@ -43,7 +43,7 @@ export default function Footer({ theme }) {
     ];
 
     return (
-        <footer className={`py-16 border-t ${theme === 'dark' ? 'bg-gray-900/50 border-gray-800' : 'bg-white border-gray-200'
+        <footer className={`py-16 border-t ${theme === 'dark' ? 'bg-gray-950 border-gray-800' : 'bg-white border-gray-200'
             }`}>
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 <div className="text-center mb-8">

@@ -9,7 +9,7 @@ import {
 
 // Navigation config cho trang Home - full navigation
 export const HOME_NAVIGATION_ITEMS = [
-    { id: 'logo', label: 'vietcq', isLogo: true },
+    { id: 'logo', label: 'Vietcq', isLogo: true },
     { id: 'hero', label: 'Home', icon: HomeIcon, color: 'text-white', bg: 'bg-gradient-to-br from-blue-500 to-blue-600' },
     { id: 'about', label: 'About', icon: UserIcon, color: 'text-white', bg: 'bg-gradient-to-br from-green-500 to-green-600' },
     { id: 'services', label: 'Services', icon: CogIcon, color: 'text-white', bg: 'bg-gradient-to-br from-gray-500 to-gray-600' },
@@ -20,13 +20,13 @@ export const HOME_NAVIGATION_ITEMS = [
 
 // Navigation config cho trang Gallery - chỉ logo + home + theme
 export const GALLERY_NAVIGATION_ITEMS = [
-    { id: 'logo', label: 'vietcq', isLogo: true },
+    { id: 'logo', label: 'Vietcq', isLogo: true },
     { id: 'home', label: 'Home', icon: HomeIcon, color: 'text-white', bg: 'bg-gradient-to-br from-blue-500 to-blue-600', link: '/' }
 ];
 
 // Navigation config cho trang Project detail - logo + home + gallery + theme  
 export const PROJECT_NAVIGATION_ITEMS = [
-    { id: 'logo', label: 'vietcq', isLogo: true },
+    { id: 'logo', label: 'Vietcq', isLogo: true },
     { id: 'home', label: 'Home', icon: HomeIcon, color: 'text-white', bg: 'bg-gradient-to-br from-blue-500 to-blue-600', link: '/' },
     { id: 'gallery', label: 'Gallery', icon: PhotoIcon, color: 'text-white', bg: 'bg-gradient-to-br from-purple-500 to-purple-600', link: '/gallery' }
 ];

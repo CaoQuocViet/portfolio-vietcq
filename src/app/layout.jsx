@@ -4,8 +4,8 @@ import { ThemeProvider } from "next-themes";
 
 /** @type {import('next').Metadata} */
 export const metadata = {
-    title: "vietcq",
-    description: "Portfolio of VietCQ",
+    title: "Vietcq",
+    description: "Portfolio of Vietcq",
 };
 
 const calSans = LocalFont({

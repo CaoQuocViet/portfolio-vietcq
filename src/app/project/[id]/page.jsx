@@ -95,7 +95,7 @@ export default function ProjectDetailPage() {
             {/* Main Content */}
             <main className="pb-20">{/* Add bottom padding for dock */}
                 {/* Hero Section */}
-                <section id="overview" className={`py-24 ${theme === 'dark' ? 'bg-gradient-to-br from-slate-900 via-gray-900 to-slate-900' : 'bg-white'}`}>
+                <section id="overview" className={`py-24 ${theme === 'dark' ? 'bg-gray-950' : 'bg-white'}`}>
                     <div className="max-w-7xl mx-auto px-6 lg:px-8">
                         <div className="text-center mb-16">
                             <h1 className={`text-5xl md:text-7xl font-bold mb-6 ${
@@ -196,7 +196,7 @@ export default function ProjectDetailPage() {
                 </section>
 
                 {/* Project Details */}
-                <section className={`py-24 ${theme === 'dark' ? 'bg-gray-900/50' : 'bg-gray-100'}`}>
+                <section className={`py-24 ${theme === 'dark' ? 'bg-gray-900' : 'bg-gray-200'}`}>
                     <div className="max-w-7xl mx-auto px-6 lg:px-8">
                         <div className="grid lg:grid-cols-2 gap-12">
                             {/* Project Timeline & Role */}
@@ -440,7 +440,7 @@ export default function ProjectDetailPage() {
                 </section>
 
                 {/* Project Gallery */}
-                <section id="gallery" className={`py-20 ${theme === 'dark' ? 'bg-gray-900/50' : 'bg-gray-100'}`}>
+                <section id="gallery" className={`py-20 ${theme === 'dark' ? 'bg-gray-900' : 'bg-gray-200'}`}>
                     <Gallery projectFilter={projectData.id} showDock={false} />
                 </section>
             </main>

@@ -19,10 +19,10 @@ const Modal = ({ isOpen, onClose, theme, dockRect, logoRect }) => {
         dockRect?.top ??
         (window.innerHeight - 56 /*fallback dockH*/ - 24 /*bottom-6*/);
 
-      // Căn giữa theo logo vietcq thay vì toàn bộ dock
+      // Căn giữa theo logo Vietcq thay vì toàn bộ dock
       let left;
       if (logoRect) {
-        // Căn giữa theo logo vietcq
+        // Căn giữa theo logo Vietcq
         left = logoRect.left + (logoRect.width / 2) - (width / 2);
       } else {
         // Fallback: căn giữa màn hình

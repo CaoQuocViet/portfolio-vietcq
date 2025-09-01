@@ -27,7 +27,7 @@ const NavigationItem = ({
             ? "bg-gradient-to-r from-blue-600/20 to-blue-700/20 shadow-lg"
             : "hover:bg-gray-100/30 dark:hover:bg-gray-800/30"
         }`}
-        title="Open VietCQ Modal"
+        title="Open Vietcq Modal"
       >
         <span
           className={`text-lg font-bold transition-all duration-300 bg-gradient-to-r ${
@@ -37,7 +37,7 @@ const NavigationItem = ({
           } bg-clip-text text-transparent`}
           style={{ fontFamily: "Inter, -apple-system, BlinkMacSystemFont, sans-serif" }}
         >
-          vietcq
+          Vietcq
         </span>
         <span
           className={`inline-block ml-1 text-base transition-all duration-300 ${
