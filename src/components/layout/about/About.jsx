@@ -151,46 +151,116 @@ function ContentBlock({ theme }) {
         <h1 className={`text-2xl font-bold mb-4 text-center ${
           theme === 'dark' ? 'text-white' : 'text-gray-900'
         }`}>
-          Hi 👋, I'm Viet
+          Hi 👋, I'm <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Cao Quốc Việt</span>
         </h1>
-        <h3 className={`text-lg font-semibold mb-4 text-center ${
+        <h3 className={`text-lg font-semibold mb-6 text-center ${
           theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
         }`}>
-          Fullstack developer from Vietnam
+          Fullstack Developer from Ho Chi Minh City, Vietnam 🇻🇳
         </h3>
         
+        <div className={`space-y-4 text-sm mb-6 ${
+          theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+        }`}>
+          {/* Location & Work */}
+          <div className="bg-gradient-to-r from-blue-50/10 to-cyan-50/10 rounded-lg p-3 border border-blue-200/20">
+            <p className="mb-2">
+              📍 <strong className="text-blue-500">Location:</strong> Ho Chi Minh City, Vietnam
+            </p>
+            <p>
+              💼 <strong className="text-blue-500">Work Style:</strong> Online with English-speaking teams & offline with local Vietnamese companies
+            </p>
+          </div>
+
+          {/* Education */}
+          <div className="bg-gradient-to-r from-purple-50/10 to-blue-50/10 rounded-lg p-3 border border-purple-200/20">
+            <p className="mb-2">
+              🎓 <strong className="text-purple-500">Current Study:</strong> University of Science, Vietnam National University HCMC (HCMUS) - Since 2022
+            </p>
+            <p>
+              🚀 <strong className="text-purple-500">Coding Journey:</strong> Started coding in 2021 after studying at HCMUT (Bach Khoa University)
+            </p>
+          </div>
+
+          {/* Passion & Skills */}
+          <div className="bg-gradient-to-r from-green-50/10 to-blue-50/10 rounded-lg p-3 border border-green-200/20">
+            <p className="mb-2">
+              💻 <strong className="text-green-500">Tech Passion:</strong> Love all kinds of technology - both hardware & software
+            </p>
+            <p>
+              🔧 <strong className="text-green-500">Main Focus:</strong> Web development with full-stack capabilities from freelance & indie development experience
+            </p>
+          </div>
+
+          {/* Personality & Goals */}
+          <div className="bg-gradient-to-r from-orange-50/10 to-red-50/10 rounded-lg p-3 border border-orange-200/20">
+            <p className="mb-2">
+              🚀 <strong className="text-orange-500">Serious about:</strong> Building startups & working in professional environments
+            </p>
+            <p className="mb-2">
+              ✨ <strong className="text-orange-500">Personality:</strong> Creative, friendly, challenge-oriented & always eager to learn
+            </p>
+            <p>
+              💡 <strong className="text-orange-500">Always seeking:</strong> New ideas in business & technology
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Contact & Social */}
+      <div className="px-8 py-4">
+        <h3 className={`text-lg font-semibold mb-4 ${
+          theme === 'dark' ? 'text-white' : 'text-gray-900'
+        }`}>
+          📞 Contact Information:
+        </h3>
         <div className={`space-y-3 text-sm mb-6 ${
           theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
         }`}>
-          <p>
-            🔭 I'm currently working on <strong className="text-blue-500">giveback</strong>, <strong className="text-blue-500">ByteBridge</strong>, <strong className="text-blue-500">abap-rap-flight-booking</strong> and <strong className="text-blue-500">StormPC</strong>
-          </p>
-          <p>
-            🚀 I'm passionate about entrepreneurship in IT applications, commerce, and open to collaborating on innovative startup projects
-          </p>
-          <p>
-            📫 How to reach me: <strong className="text-blue-500">vietcao10@gmail.com</strong>
-          </p>
-          <p>
-            ⚡ Fun fact: <strong className="text-blue-500">I think i am funny. I am the kind of person who embraces learning and tackling anything new with passion and determination. As long as it sparks my interest, I am fearless and unstoppable.</strong>
+          <div className="flex items-center gap-2">
+            <span>📱</span>
+            <strong className="text-blue-500">Phone:</strong>
+            <a href="tel:+84367252854" className="text-blue-500 hover:text-blue-400 transition-colors">
+              +84 367 252 854
+            </a>
+          </div>
+          <div className="flex items-center gap-2">
+            <span>✉️</span>
+            <strong className="text-blue-500">Email:</strong>
+            <a href="mailto:vietcao10@gmail.com" className="text-blue-500 hover:text-blue-400 transition-colors">
+              vietcao10@gmail.com
+            </a>
+          </div>
+        </div>
+
+        <h3 className={`text-lg font-semibold mb-3 ${
+          theme === 'dark' ? 'text-white' : 'text-gray-900'
+        }`}>
+          🌐 Connect with me:
+        </h3>
+        {/* Social Links sẽ được render từ SocialList component */}
+        <div className="text-sm">
+          <p className={`${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>
+            Check out all my social platforms and links in the dock! 
+            <span className="text-blue-500"> → Click the dock icon at the bottom</span>
           </p>
         </div>
       </div>
 
-      {/* Connect with me */}
+      {/* Current Projects */}
       <div className="px-8 py-4">
         <h3 className={`text-lg font-semibold mb-3 ${
           theme === 'dark' ? 'text-white' : 'text-gray-900'
         }`}>
-          Connect with me:
+          🔭 Current Projects:
         </h3>
-        <div className="flex gap-4 mb-4">
-          <a href={info.social.facebook} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-400 transition-colors">
-            Facebook
-          </a>
-          <a href={info.social.youtube} target="_blank" rel="noopener noreferrer" className="text-red-500 hover:text-red-400 transition-colors">
-            YouTube
-          </a>
+        <div className={`text-sm space-y-2 ${
+          theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+        }`}>
+          <p><span className="text-blue-500 font-semibold">• Giveback:</span> Social impact platform</p>
+          <p><span className="text-purple-500 font-semibold">• ByteBridge:</span> Development tools</p>
+          <p><span className="text-green-500 font-semibold">• ABAP RAP Flight:</span> Enterprise booking system</p>
+          <p><span className="text-orange-500 font-semibold">• StormPC:</span> Hardware/software solution</p>
         </div>
       </div>
 
@@ -199,16 +269,16 @@ function ContentBlock({ theme }) {
         <h3 className={`text-lg font-semibold mb-3 ${
           theme === 'dark' ? 'text-white' : 'text-gray-900'
         }`}>
-          Languages and Tools:
+          🛠️ Languages and Tools:
         </h3>
         <div className={`text-sm space-y-2 ${
           theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
         }`}>
           <p><strong className="text-blue-500">Programming:</strong> C++, Python, JavaScript, ABAP</p>
-          <p><strong className="text-blue-500">Web Development:</strong> React, Node.js, HTML/CSS</p>
-          <p><strong className="text-blue-500">Database:</strong> PostgreSQL, MongoDB</p>
-          <p><strong className="text-blue-500">DevOps:</strong> Docker, Git, Linux, Nginx</p>
-          <p><strong className="text-blue-500">Game Development:</strong> Unity</p>
+          <p><strong className="text-cyan-500">Web Development:</strong> React, Node.js, HTML/CSS, Next.js</p>
+          <p><strong className="text-green-500">Database:</strong> PostgreSQL, MongoDB</p>
+          <p><strong className="text-purple-500">DevOps:</strong> Docker, Git, Linux, Nginx</p>
+          <p><strong className="text-orange-500">Game Development:</strong> Unity</p>
         </div>
       </div>
 
@@ -217,16 +287,32 @@ function ContentBlock({ theme }) {
         <h3 className={`text-lg font-semibold mb-3 ${
           theme === 'dark' ? 'text-white' : 'text-gray-900'
         }`}>
-          GitHub Activity
+          📊 GitHub Activity
         </h3>
         <div className={`text-sm ${
           theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
         }`}>
           <p>Check out my GitHub profile for detailed stats and activity graphs!</p>
           <p className="mt-2">
-            <a href={info.social.github} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-400 transition-colors">
-              @{info.githubUsername}
+            <a href={info.social.github} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-400 transition-colors font-semibold">
+              🔗 @{info.githubUsername}
             </a>
+          </p>
+        </div>
+      </div>
+
+      {/* Fun Fact */}
+      <div className="px-8 py-4">
+        <div className="bg-gradient-to-r from-yellow-50/10 to-orange-50/10 rounded-lg p-4 border border-yellow-200/20">
+          <h3 className={`text-lg font-semibold mb-2 ${
+            theme === 'dark' ? 'text-yellow-400' : 'text-yellow-600'
+          }`}>
+            ⚡ Fun Fact:
+          </h3>
+          <p className={`text-sm ${
+            theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+          }`}>
+            <strong className="text-yellow-500">I think I am funny!</strong> I'm the kind of person who embraces learning and tackling anything new with passion and determination. As long as it sparks my interest, I am fearless and unstoppable. 🚀
           </p>
         </div>
       </div>
