@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Dock from './layout/dock/Dock'
 import { GALLERY_NAVIGATION_ITEMS } from '../config/navigation'
 import { createScrollFunction } from '../utils/navigation'
-import { useProjectImages } from '../hooks/useProjectImages'
+import { useGallery } from '../hooks/useGallery'
 
 
 const Gallery = ({ projectFilter = null, showDock = true }) => {
@@ -14,7 +14,7 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
     const [hoveredTitle, setHoveredTitle] = useState('Hover over image to see details')
     
     // Use hook to fetch project images
-    const { images: galleryItems, loading, error } = useProjectImages(projectFilter)
+    const { images: galleryItems, loading, error } = useGallery(projectFilter)
     
     useEffect(() => {
         setMounted(true)
@@ -322,8 +322,8 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
                                 }}
                             >
                                 <Image
-                                    src={`/img/projects/${item.project}/${item.project}-${item.number}.${item.extension}`}
-                                    alt={`${item.project} ${item.number}`}
+                                    src={item.src}
+                                    alt={item.alt}
                                     fill
                                     style={{ objectFit: 'cover' }}
                                     className="transition-all duration-300"
