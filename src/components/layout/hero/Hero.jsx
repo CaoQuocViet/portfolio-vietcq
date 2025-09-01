@@ -3,7 +3,7 @@
 import { FaGithub, FaLinkedin, FaXTwitter, FaArrowDown } from "react-icons/fa6";
 import { GoMail } from "react-icons/go";
 import Link from "next/link";
-import WaveBackground from './WaveBackground';
+import WaveBackground from '../../ui/WaveBackground';
 import Button from "../../ui/Button";
 import { info } from "../../../utils/info";
 
