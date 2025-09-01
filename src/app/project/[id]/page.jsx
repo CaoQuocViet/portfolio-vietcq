@@ -8,7 +8,6 @@ import Dock from '../../../components/layout/dock/Dock'
 import Footer from '../../../components/layout/Footer'
 import { PROJECT_NAVIGATION_ITEMS } from '../../../config/navigation'
 import { createScrollFunction } from '../../../utils/navigation'
-import { generateProjectsData } from '../../../utils/projectImageGenerator'
 import { Github, ExternalLink } from 'lucide-react'
 
 export default function ProjectDetailPage() {
@@ -19,9 +18,6 @@ export default function ProjectDetailPage() {
     const [error, setError] = useState(null)
     const [mounted, setMounted] = useState(false)
 
-    // Get project images for gallery (client-side compatible)
-    const projects = generateProjectsData()
-
     useEffect(() => {
         setMounted(true)
     }, [])
@@ -31,7 +27,7 @@ export default function ProjectDetailPage() {
     useEffect(() => {
         const loadProjectData = async () => {
             try {
-                const response = await fetch(`/data/projects/${params.id}.json`)
+                const response = await fetch(`/data/project-detail/${params.id}.json`)
                 if (!response.ok) throw new Error('Project not found')
                 
                 const data = await response.json()
@@ -445,7 +441,7 @@ export default function ProjectDetailPage() {
 
                 {/* Project Gallery */}
                 <section id="gallery" className={`py-20 ${theme === 'dark' ? 'bg-gray-950' : 'bg-white'}`}>
-                    <Gallery projects={projects} projectFilter={projectData.id} showDock={false} />
+                    <Gallery projectFilter={projectData.id} showDock={false} />
                 </section>
             </main>
 

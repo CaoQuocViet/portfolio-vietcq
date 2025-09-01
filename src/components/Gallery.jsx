@@ -1,16 +1,20 @@
 'use client'
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useTheme } from 'next-themes'
 import Image from 'next/image'
 import Dock from './layout/dock/Dock'
 import { GALLERY_NAVIGATION_ITEMS } from '../config/navigation'
 import { createScrollFunction } from '../utils/navigation'
+import { useProjectImages } from '../hooks/useProjectImages'
 
 
-const Gallery = ({ projects = [], projectFilter = null, showDock = true }) => {
+const Gallery = ({ projectFilter = null, showDock = true }) => {
     const { theme, setTheme } = useTheme()
     const [mounted, setMounted] = useState(false)
     const [hoveredTitle, setHoveredTitle] = useState('Hover over image to see details')
+    
+    // Use hook to fetch project images
+    const { images: galleryItems, loading, error } = useProjectImages(projectFilter)
     
     useEffect(() => {
         setMounted(true)
@@ -18,24 +22,113 @@ const Gallery = ({ projects = [], projectFilter = null, showDock = true }) => {
 
     const scrollToSection = createScrollFunction();
 
-    // Use useMemo instead of useEffect + useState for better performance
-    const galleryItems = useMemo(() => {
-        // Filter by specific project if projectFilter is provided
-        let filteredProjects = projects
-        if (projectFilter) {
-            filteredProjects = projects.filter(project => project.folder === projectFilter)
-        }
-        
-        // Flatten all images from filtered projects
-        const allImages = []
-        filteredProjects.forEach(project => {
-            allImages.push(...project.images)
-        })
-        
-        return allImages
-    }, [projects, projectFilter])
-
     if (!mounted) return null
+
+    // Loading state
+    if (loading) {
+        return (
+            <>
+                {showDock && (
+                    <Dock 
+                        theme={theme}
+                        setTheme={setTheme}
+                        activeSection={null}
+                        scrollToSection={scrollToSection}
+                        navigationItems={GALLERY_NAVIGATION_ITEMS}
+                    />
+                )}
+                <div 
+                    className={`min-h-screen flex justify-center items-center p-5`}
+                    style={{
+                        margin: 0,
+                        background: theme === 'dark' 
+                            ? 'linear-gradient(135deg, #1f2937, #374151, #4b5563)' 
+                            : 'linear-gradient(135deg, #0026bd, #b9a700, #460096)',
+                    }}
+                >
+                    <div className="text-center">
+                        <div className={`animate-spin rounded-full h-12 w-12 border-b-2 mx-auto mb-4 ${
+                            theme === 'dark' ? 'border-cyan-400' : 'border-white'
+                        }`} />
+                        <p className="text-white text-lg">Loading Gallery...</p>
+                    </div>
+                </div>
+            </>
+        )
+    }
+
+    // Error state
+    if (error) {
+        return (
+            <>
+                {showDock && (
+                    <Dock 
+                        theme={theme}
+                        setTheme={setTheme}
+                        activeSection={null}
+                        scrollToSection={scrollToSection}
+                        navigationItems={GALLERY_NAVIGATION_ITEMS}
+                    />
+                )}
+                <div 
+                    className={`min-h-screen flex justify-center items-center p-5`}
+                    style={{
+                        margin: 0,
+                        background: theme === 'dark' 
+                            ? 'linear-gradient(135deg, #1f2937, #374151, #4b5563)' 
+                            : 'linear-gradient(135deg, #0026bd, #b9a700, #460096)',
+                    }}
+                >
+                    <div className="text-center">
+                        <div className="text-red-400 text-6xl mb-4">⚠️</div>
+                        <h2 className="text-white text-2xl font-bold mb-2">Error Loading Gallery</h2>
+                        <p className="text-gray-300 mb-4">{error}</p>
+                        <button 
+                            onClick={() => window.location.reload()}
+                            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                        >
+                            Retry
+                        </button>
+                    </div>
+                </div>
+            </>
+        )
+    }
+
+    // Empty state
+    if (!galleryItems || galleryItems.length === 0) {
+        return (
+            <>
+                {showDock && (
+                    <Dock 
+                        theme={theme}
+                        setTheme={setTheme}
+                        activeSection={null}
+                        scrollToSection={scrollToSection}
+                        navigationItems={GALLERY_NAVIGATION_ITEMS}
+                    />
+                )}
+                <div 
+                    className={`min-h-screen flex justify-center items-center p-5`}
+                    style={{
+                        margin: 0,
+                        background: theme === 'dark' 
+                            ? 'linear-gradient(135deg, #1f2937, #374151, #4b5563)' 
+                            : 'linear-gradient(135deg, #0026bd, #b9a700, #460096)',
+                    }}
+                >
+                    <div className="text-center">
+                        <div className="text-gray-400 text-6xl mb-4">📷</div>
+                        <h2 className="text-white text-2xl font-bold mb-2">No Images Found</h2>
+                        <p className="text-gray-300">
+                            {projectFilter ? `No images found for project "${projectFilter}"` : 'No project images available'}
+                        </p>
+                    </div>
+                </div>
+            </>
+        )
+    }
+
     return (
         <>
             {/* Dock Navigation - chỉ logo + home + theme */}
