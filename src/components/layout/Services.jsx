@@ -1,5 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
+import { FaCode, FaChartLine, FaNetworkWired, FaServer, FaFileAlt, FaTachometerAlt, FaCogs, FaReact, FaNodeJs, FaGitAlt, FaDocker, FaAws, FaPython, FaLinux, FaPalette, FaBug } from 'react-icons/fa'
+import { SiRedis, SiPostgresql, SiTailwindcss, SiNextdotjs, SiTypescript } from 'react-icons/si'
 
 const Services = ({ theme }) => {
     const [mounted, setMounted] = useState(false)
@@ -65,330 +67,302 @@ const Services = ({ theme }) => {
 
             {/* Content Container */}
             <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-16">
-                {/* Title Section */}
-                <div className="mb-16 opacity-0 animate-[fadeInUp_1s_ease-out_forwards]">
-                    <h1 className={`text-6xl md:text-7xl font-bold mb-4 opacity-0 animate-[slideInLeft_1s_ease-out_forwards] bg-gradient-to-r ${
+                {/* What I Do Section */}
+                <div className="mb-24 opacity-0 animate-[fadeInUp_1s_ease-out_forwards]">
+                    <h1 className={`text-6xl md:text-7xl font-bold mb-4 text-center opacity-0 animate-[slideInLeft_1s_ease-out_forwards] bg-gradient-to-r ${
                         theme === 'dark' 
                             ? 'from-white via-blue-100 to-blue-200' 
                             : 'from-gray-900 via-blue-900 to-blue-800'
                     } bg-clip-text text-transparent drop-shadow-2xl ${
                         theme === 'dark' ? 'drop-shadow-blue-500/50' : 'drop-shadow-blue-900/30'
                     }`}>
-                        Tech Stack
+                        What I Do
                     </h1>
-                    <p className={`text-2xl md:text-3xl font-light opacity-0 animate-[slideInLeft_1s_ease-out_0.3s_forwards] ${
+                    <p className={`text-2xl md:text-3xl font-light text-center opacity-0 animate-[slideInLeft_1s_ease-out_0.3s_forwards] ${
                         theme === 'dark' ? 'text-blue-200' : 'text-blue-800'
                     }`}>
-                        Technologies & Tools
+                        Services & Expertise
                     </p>
-                </div>
-
-                {/* Tech Stack Grid */}
-                <div className="grid lg:grid-cols-2 gap-16">
-                    {/* Programming & Development */}
-                    <div className="space-y-8 opacity-0 animate-[fadeInUp_1s_ease-out_0.6s_forwards]">
-                        <div className={`backdrop-blur-md rounded-2xl p-8 border transition-all duration-700 hover:scale-105 hover:shadow-2xl ${
+                    
+                    {/* Services Grid */}
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
+                        <div className={`backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 hover:scale-105 ${
                             theme === 'dark' 
-                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50 hover:shadow-blue-500/30' 
-                                : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70 hover:shadow-blue-500/20'
+                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50' 
+                                : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70'
                         }`}>
-                            <h3 className={`text-2xl font-bold mb-4 ${
-                                theme === 'dark' ? 'text-blue-300' : 'text-blue-700'
-                            }`}>Programming Languages</h3>
-                            <div className="space-y-3">
-                                <div className="flex items-center justify-between">
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>C++</span>
-                                    <div className={`w-24 h-2 rounded-full ${
-                                        theme === 'dark' ? 'bg-gray-700' : 'bg-gray-300'
-                                    }`}>
-                                        <div className="w-20 h-2 bg-blue-500 rounded-full"></div>
-                                    </div>
-                                </div>
-                                <div className="flex items-center justify-between">
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>Python</span>
-                                    <div className={`w-24 h-2 rounded-full ${
-                                        theme === 'dark' ? 'bg-gray-700' : 'bg-gray-300'
-                                    }`}>
-                                        <div className="w-22 h-2 bg-blue-500 rounded-full"></div>
-                                    </div>
-                                </div>
-                                <div className="flex items-center justify-between">
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>JavaScript</span>
-                                    <div className={`w-24 h-2 rounded-full ${
-                                        theme === 'dark' ? 'bg-gray-700' : 'bg-gray-300'
-                                    }`}>
-                                        <div className="w-21 h-2 bg-blue-500 rounded-full"></div>
-                                    </div>
-                                </div>
-                                <div className="flex items-center justify-between">
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>ABAP</span>
-                                    <div className={`w-24 h-2 rounded-full ${
-                                        theme === 'dark' ? 'bg-gray-700' : 'bg-gray-300'
-                                    }`}>
-                                        <div className="w-18 h-2 bg-blue-500 rounded-full"></div>
-                                    </div>
-                                </div>
+                            <div className="flex items-center mb-4">
+                                <FaCode className={`text-3xl mr-4 ${
+                                    theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
+                                }`} />
+                                <h3 className={`text-xl font-bold ${
+                                    theme === 'dark' ? 'text-blue-100' : 'text-blue-800'
+                                }`}>
+                                    AI-powered web system
+                                </h3>
                             </div>
                         </div>
-                        
-                        <div className={`backdrop-blur-md rounded-2xl p-8 border transition-all duration-700 hover:scale-105 hover:shadow-2xl ${
+
+                        <div className={`backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 hover:scale-105 ${
                             theme === 'dark' 
-                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50 hover:shadow-blue-500/30' 
-                                : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70 hover:shadow-blue-500/20'
+                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50' 
+                                : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70'
                         }`}>
-                            <h3 className={`text-2xl font-bold mb-4 ${
-                                theme === 'dark' ? 'text-blue-300' : 'text-blue-700'
-                            }`}>Web Development</h3>
-                            <div className="space-y-3">
-                                <div className="flex items-center justify-between">
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>React</span>
-                                    <div className={`w-24 h-2 rounded-full ${
-                                        theme === 'dark' ? 'bg-gray-700' : 'bg-gray-300'
-                                    }`}>
-                                        <div className="w-21 h-2 bg-blue-500 rounded-full"></div>
-                                    </div>
-                                </div>
-                                <div className="flex items-center justify-between">
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>Node.js</span>
-                                    <div className={`w-24 h-2 rounded-full ${
-                                        theme === 'dark' ? 'bg-gray-700' : 'bg-gray-300'
-                                    }`}>
-                                        <div className="w-20 h-2 bg-blue-500 rounded-full"></div>
-                                    </div>
-                                </div>
-                                <div className="flex items-center justify-between">
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>HTML/CSS</span>
-                                    <div className={`w-24 h-2 rounded-full ${
-                                        theme === 'dark' ? 'bg-gray-700' : 'bg-gray-300'
-                                    }`}>
-                                        <div className="w-23 h-2 bg-blue-500 rounded-full"></div>
-                                    </div>
-                                </div>
+                            <div className="flex items-center mb-4">
+                                <FaChartLine className={`text-3xl mr-4 ${
+                                    theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
+                                }`} />
+                                <h3 className={`text-xl font-bold ${
+                                    theme === 'dark' ? 'text-blue-100' : 'text-blue-800'
+                                }`}>
+                                    Business Analysis
+                                </h3>
                             </div>
                         </div>
-                        
 
-                    </div>
-
-                    {/* Database & DevOps */}
-                    <div className="space-y-8 opacity-0 animate-[fadeInUp_1s_ease-out_0.9s_forwards]">
-                        <div className={`backdrop-blur-md rounded-2xl p-8 border transition-all duration-700 hover:scale-105 hover:shadow-2xl ${
+                        <div className={`backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 hover:scale-105 ${
                             theme === 'dark' 
-                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50 hover:shadow-blue-500/30' 
-                                : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70 hover:shadow-blue-500/20'
+                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50' 
+                                : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70'
                         }`}>
-                            <h3 className={`text-2xl font-bold mb-4 ${
-                                theme === 'dark' ? 'text-blue-300' : 'text-blue-700'
-                            }`}>Database & Backend</h3>
-                            <div className="space-y-3">
-                                <div className="flex items-center justify-between">
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>PostgreSQL</span>
-                                    <div className={`w-24 h-2 rounded-full ${
-                                        theme === 'dark' ? 'bg-gray-700' : 'bg-gray-300'
-                                    }`}>
-                                        <div className="w-19 h-2 bg-blue-500 rounded-full"></div>
-                                    </div>
-                                </div>
-                                <div className="flex items-center justify-between">
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>MongoDB</span>
-                                    <div className={`w-24 h-2 rounded-full ${
-                                        theme === 'dark' ? 'bg-gray-700' : 'bg-gray-300'
-                                    }`}>
-                                        <div className="w-18 h-2 bg-blue-500 rounded-full"></div>
-                                    </div>
-                                </div>
-                                <div className="flex items-center justify-between">
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>Express.js</span>
-                                    <div className={`w-24 h-2 rounded-full ${
-                                        theme === 'dark' ? 'bg-gray-700' : 'bg-gray-300'
-                                    }`}>
-                                        <div className="w-17 h-2 bg-blue-500 rounded-full"></div>
-                                    </div>
-                                </div>
+                            <div className="flex items-center mb-4">
+                                <FaNetworkWired className={`text-3xl mr-4 ${
+                                    theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
+                                }`} />
+                                <h3 className={`text-xl font-bold ${
+                                    theme === 'dark' ? 'text-blue-100' : 'text-blue-800'
+                                }`}>
+                                    System Design
+                                </h3>
                             </div>
                         </div>
-                        
-                        <div className={`backdrop-blur-md rounded-2xl p-8 border transition-all duration-700 hover:scale-105 hover:shadow-2xl ${
+
+                        <div className={`backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 hover:scale-105 ${
                             theme === 'dark' 
-                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50 hover:shadow-blue-500/30' 
-                                : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70 hover:shadow-blue-500/20'
+                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50' 
+                                : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70'
                         }`}>
-                            <h3 className={`text-2xl font-bold mb-4 ${
-                                theme === 'dark' ? 'text-blue-300' : 'text-blue-700'
-                            }`}>DevOps & Tools</h3>
-                            <div className="space-y-3">
-                                <div className="flex items-center justify-between">
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>Git & GitHub</span>
-                                    <div className={`w-24 h-2 rounded-full ${
-                                        theme === 'dark' ? 'bg-gray-700' : 'bg-gray-300'
-                                    }`}>
-                                        <div className="w-22 h-2 bg-blue-500 rounded-full"></div>
-                                    </div>
-                                </div>
-                                <div className="flex items-center justify-between">
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>Docker</span>
-                                    <div className={`w-24 h-2 rounded-full ${
-                                        theme === 'dark' ? 'bg-gray-700' : 'bg-gray-300'
-                                    }`}>
-                                        <div className="w-19 h-2 bg-blue-500 rounded-full"></div>
-                                    </div>
-                                </div>
-                                <div className="flex items-center justify-between">
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>Linux</span>
-                                    <div className={`w-24 h-2 rounded-full ${
-                                        theme === 'dark' ? 'bg-gray-700' : 'bg-gray-300'
-                                    }`}>
-                                        <div className="w-20 h-2 bg-blue-500 rounded-full"></div>
-                                    </div>
-                                </div>
-                                <div className="flex items-center justify-between">
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>Nginx</span>
-                                    <div className={`w-24 h-2 rounded-full ${
-                                        theme === 'dark' ? 'bg-gray-700' : 'bg-gray-300'
-                                    }`}>
-                                        <div className="w-17 h-2 bg-blue-500 rounded-full"></div>
-                                    </div>
-                                </div>
+                            <div className="flex items-center mb-4">
+                                <FaServer className={`text-3xl mr-4 ${
+                                    theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
+                                }`} />
+                                <h3 className={`text-xl font-bold ${
+                                    theme === 'dark' ? 'text-blue-100' : 'text-blue-800'
+                                }`}>
+                                    API Design
+                                </h3>
                             </div>
                         </div>
-                        
 
+                        <div className={`backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 hover:scale-105 ${
+                            theme === 'dark' 
+                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50' 
+                                : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70'
+                        }`}>
+                            <div className="flex items-center mb-4">
+                                <FaFileAlt className={`text-3xl mr-4 ${
+                                    theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
+                                }`} />
+                                <h3 className={`text-xl font-bold ${
+                                    theme === 'dark' ? 'text-blue-100' : 'text-blue-800'
+                                }`}>
+                                    Documentation
+                                </h3>
+                            </div>
+                        </div>
+
+                        <div className={`backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 hover:scale-105 ${
+                            theme === 'dark' 
+                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50' 
+                                : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70'
+                        }`}>
+                            <div className="flex items-center mb-4">
+                                <FaTachometerAlt className={`text-3xl mr-4 ${
+                                    theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
+                                }`} />
+                                <h3 className={`text-xl font-bold ${
+                                    theme === 'dark' ? 'text-blue-100' : 'text-blue-800'
+                                }`}>
+                                    Performance & Caching
+                                </h3>
+                            </div>
+                        </div>
+
+                        <div className={`backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 hover:scale-105 ${
+                            theme === 'dark' 
+                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50' 
+                                : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70'
+                        }`}>
+                            <div className="flex items-center mb-4">
+                                <FaCogs className={`text-3xl mr-4 ${
+                                    theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
+                                }`} />
+                                <h3 className={`text-xl font-bold ${
+                                    theme === 'dark' ? 'text-blue-100' : 'text-blue-800'
+                                }`}>
+                                    DevOps
+                                </h3>
+                            </div>
+                        </div>
+
+                        <div className={`backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 hover:scale-105 ${
+                            theme === 'dark' 
+                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50' 
+                                : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70'
+                        }`}>
+                            <div className="flex items-center mb-4">
+                                <FaPalette className={`text-3xl mr-4 ${
+                                    theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
+                                }`} />
+                                <h3 className={`text-xl font-bold ${
+                                    theme === 'dark' ? 'text-blue-100' : 'text-blue-800'
+                                }`}>
+                                    UI/UX Design
+                                </h3>
+                            </div>
+                        </div>
+
+                        <div className={`backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 hover:scale-105 ${
+                            theme === 'dark' 
+                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50' 
+                                : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70'
+                        }`}>
+                            <div className="flex items-center mb-4">
+                                <FaBug className={`text-3xl mr-4 ${
+                                    theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
+                                }`} />
+                                <h3 className={`text-xl font-bold ${
+                                    theme === 'dark' ? 'text-blue-100' : 'text-blue-800'
+                                }`}>
+                                    Testing & QA
+                                </h3>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                {/* What I Do Section */}
-                <div className="mt-24 opacity-0 animate-[fadeInUp_1s_ease-out_1.2s_forwards]">
-                    <div className="text-center mb-16">
-                        <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${
-                            theme === 'dark' ? 'text-white' : 'text-gray-900'
-                        }`}>
-                            What I Do
-                        </h2>
-                        <div className={`w-24 h-1 mx-auto rounded-full ${
-                            theme === 'dark' ? 'bg-blue-400' : 'bg-blue-600'
-                        }`}></div>
-                    </div>
-
+                {/* Tech Stack Section */}
+                <div className="mt-24 opacity-0 animate-[fadeInUp_1s_ease-out_0.6s_forwards]">
+                    <h2 className={`text-4xl md:text-5xl font-bold text-center mb-16 ${
+                        theme === 'dark' ? 'text-white' : 'text-gray-900'
+                    }`}>Tech Stack</h2>
+                    
                     <div className="grid md:grid-cols-3 gap-8">
-                        {/* Web Development */}
-                        <div className={`backdrop-blur-md rounded-2xl p-8 border transition-all duration-700 hover:scale-105 hover:shadow-2xl group ${
+                        {/* Frontend */}
+                        <div className={`backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 hover:scale-105 ${
                             theme === 'dark' 
-                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50 hover:shadow-blue-500/30' 
-                                : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70 hover:shadow-blue-500/20'
+                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50' 
+                                : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70'
                         }`}>
-                            <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 ${
-                                theme === 'dark' ? 'bg-blue-600/20' : 'bg-blue-100'
-                            }`}>
-                                <div className={`w-8 h-8 rounded-lg ${
-                                    theme === 'dark' ? 'bg-blue-400' : 'bg-blue-600'
-                                }`}></div>
+                            <h4 className={`text-lg font-semibold mb-4 ${
+                                theme === 'dark' ? 'text-blue-300' : 'text-blue-700'
+                            }`}>Frontend</h4>
+                            <div className="space-y-3">
+                                <div className="flex items-center">
+                                    <FaReact className={`text-2xl mr-3 ${
+                                        theme === 'dark' ? 'text-cyan-400' : 'text-cyan-600'
+                                    }`} />
+                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>React.js</span>
+                                </div>
+                                <div className="flex items-center">
+                                    <SiNextdotjs className={`text-2xl mr-3 ${
+                                        theme === 'dark' ? 'text-white' : 'text-black'
+                                    }`} />
+                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>Next.js</span>
+                                </div>
+                                <div className="flex items-center">
+                                    <SiTailwindcss className={`text-2xl mr-3 ${
+                                        theme === 'dark' ? 'text-cyan-400' : 'text-cyan-600'
+                                    }`} />
+                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>Tailwind CSS</span>
+                                </div>
+                                <div className="flex items-center">
+                                    <SiTypescript className={`text-2xl mr-3 ${
+                                        theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
+                                    }`} />
+                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>TypeScript</span>
+                                </div>
                             </div>
-                            <h3 className={`text-xl font-bold mb-4 ${
-                                theme === 'dark' ? 'text-white' : 'text-gray-900'
-                            }`}>Web Development</h3>
-                            <p className={`leading-relaxed ${
-                                theme === 'dark' ? 'text-blue-100' : 'text-gray-600'
-                            }`}>
-                                Building responsive and scalable web applications using modern frameworks and best practices. Creating seamless user experiences with clean, maintainable code.
-                            </p>
                         </div>
 
-                        {/* Frontend Development */}
-                        <div className={`backdrop-blur-md rounded-2xl p-8 border transition-all duration-700 hover:scale-105 hover:shadow-2xl group ${
+                        {/* Backend */}
+                        <div className={`backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 hover:scale-105 ${
                             theme === 'dark' 
-                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50 hover:shadow-blue-500/30' 
-                                : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70 hover:shadow-blue-500/20'
+                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50' 
+                                : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70'
                         }`}>
-                            <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 ${
-                                theme === 'dark' ? 'bg-blue-600/20' : 'bg-blue-100'
-                            }`}>
-                                <div className={`w-8 h-8 rounded-lg ${
-                                    theme === 'dark' ? 'bg-blue-400' : 'bg-blue-600'
-                                }`}></div>
+                            <h4 className={`text-lg font-semibold mb-4 ${
+                                theme === 'dark' ? 'text-blue-300' : 'text-blue-700'
+                            }`}>Backend & Database</h4>
+                            <div className="space-y-3">
+                                <div className="flex items-center">
+                                    <FaNodeJs className={`text-2xl mr-3 ${
+                                        theme === 'dark' ? 'text-green-400' : 'text-green-600'
+                                    }`} />
+                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>Node.js</span>
+                                </div>
+                                <div className="flex items-center">
+                                    <FaPython className={`text-2xl mr-3 ${
+                                        theme === 'dark' ? 'text-yellow-400' : 'text-yellow-600'
+                                    }`} />
+                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>Python</span>
+                                </div>
+                                <div className="flex items-center">
+                                    <SiPostgresql className={`text-2xl mr-3 ${
+                                        theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
+                                    }`} />
+                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>PostgreSQL</span>
+                                </div>
+                                <div className="flex items-center">
+                                    <SiRedis className={`text-2xl mr-3 ${
+                                        theme === 'dark' ? 'text-red-400' : 'text-red-600'
+                                    }`} />
+                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>Redis</span>
+                                </div>
                             </div>
-                            <h3 className={`text-xl font-bold mb-4 ${
-                                theme === 'dark' ? 'text-white' : 'text-gray-900'
-                            }`}>Frontend Development</h3>
-                            <p className={`leading-relaxed ${
-                                theme === 'dark' ? 'text-blue-100' : 'text-gray-600'
-                            }`}>
-                                Creating beautiful and intuitive user interfaces with attention to detail and user experience. Focused on performance, accessibility, and modern design principles.
-                            </p>
                         </div>
 
-                        {/* Mobile-First Design */}
-                        <div className={`backdrop-blur-md rounded-2xl p-8 border transition-all duration-700 hover:scale-105 hover:shadow-2xl group ${
+                        {/* Tools */}
+                        <div className={`backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 hover:scale-105 ${
                             theme === 'dark' 
-                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50 hover:shadow-blue-500/30' 
-                                : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70 hover:shadow-blue-500/20'
+                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50' 
+                                : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70'
                         }`}>
-                            <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 ${
-                                theme === 'dark' ? 'bg-blue-600/20' : 'bg-blue-100'
-                            }`}>
-                                <div className={`w-8 h-8 rounded-lg ${
-                                    theme === 'dark' ? 'bg-blue-400' : 'bg-blue-600'
-                                }`}></div>
+                            <h4 className={`text-lg font-semibold mb-4 ${
+                                theme === 'dark' ? 'text-blue-300' : 'text-blue-700'
+                            }`}>Tools & DevOps</h4>
+                            <div className="space-y-3">
+                                <div className="flex items-center">
+                                    <FaGitAlt className={`text-2xl mr-3 ${
+                                        theme === 'dark' ? 'text-orange-400' : 'text-orange-600'
+                                    }`} />
+                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>Git & GitHub</span>
+                                </div>
+                                <div className="flex items-center">
+                                    <FaDocker className={`text-2xl mr-3 ${
+                                        theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
+                                    }`} />
+                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>Docker</span>
+                                </div>
+                                <div className="flex items-center">
+                                    <FaAws className={`text-2xl mr-3 ${
+                                        theme === 'dark' ? 'text-orange-400' : 'text-orange-600'
+                                    }`} />
+                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>AWS</span>
+                                </div>
+                                <div className="flex items-center">
+                                    <FaLinux className={`text-2xl mr-3 ${
+                                        theme === 'dark' ? 'text-white' : 'text-black'
+                                    }`} />
+                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>Linux</span>
+                                </div>
                             </div>
-                            <h3 className={`text-xl font-bold mb-4 ${
-                                theme === 'dark' ? 'text-white' : 'text-gray-900'
-                            }`}>Mobile-First Design</h3>
-                            <p className={`leading-relaxed ${
-                                theme === 'dark' ? 'text-blue-100' : 'text-gray-600'
-                            }`}>
-                                Designing and developing mobile-responsive applications that work seamlessly across all devices. Prioritizing mobile experience while maintaining desktop excellence.
-                            </p>
-                        </div>
-                    </div>
-
-                    {/* Additional Services */}
-                    <div className="mt-12 grid md:grid-cols-2 gap-8">
-                        {/* API Development */}
-                        <div className={`backdrop-blur-md rounded-2xl p-6 border transition-all duration-500 hover:scale-105 ${
-                            theme === 'dark' 
-                                ? 'bg-gradient-to-r from-blue-600/20 to-blue-500/20 border-blue-500/30 hover:border-blue-400/50' 
-                                : 'bg-gradient-to-r from-blue-100/50 to-blue-200/50 border-blue-300/30 hover:border-blue-500/50'
-                        }`}>
-                            <h4 className={`text-lg font-semibold mb-3 ${
-                                theme === 'dark' ? 'text-blue-200' : 'text-blue-700'
-                            }`}>API Development</h4>
-                            <p className={`text-sm ${
-                                theme === 'dark' ? 'text-blue-100' : 'text-blue-600'
-                            }`}>
-                                Building robust RESTful APIs and GraphQL endpoints with proper authentication, validation, and documentation.
-                            </p>
-                        </div>
-
-                        {/* Performance Optimization */}
-                        <div className={`backdrop-blur-md rounded-2xl p-6 border transition-all duration-500 hover:scale-105 ${
-                            theme === 'dark' 
-                                ? 'bg-gradient-to-r from-blue-600/20 to-blue-500/20 border-blue-500/30 hover:border-blue-400/50' 
-                                : 'bg-gradient-to-r from-blue-100/50 to-blue-200/50 border-blue-300/30 hover:border-blue-500/50'
-                        }`}>
-                            <h4 className={`text-lg font-semibold mb-3 ${
-                                theme === 'dark' ? 'text-blue-200' : 'text-blue-700'
-                            }`}>Performance Optimization</h4>
-                            <p className={`text-sm ${
-                                theme === 'dark' ? 'text-blue-100' : 'text-blue-600'
-                            }`}>
-                                Optimizing applications for speed, efficiency, and user experience. Implementing best practices for loading times and responsiveness.
-                            </p>
                         </div>
                     </div>
                 </div>
-
-                {/* Subtle floating elements */}
-                <div className={`absolute top-20 left-20 w-3 h-3 rounded-full animate-pulse ${
-                    theme === 'dark' ? 'bg-blue-400/60' : 'bg-blue-500/40'
-                }`}></div>
-                <div className={`absolute top-40 right-40 w-2 h-2 rounded-full animate-pulse ${
-                    theme === 'dark' ? 'bg-blue-300/60' : 'bg-blue-400/40'
-                }`} style={{ animationDelay: '1s' }}></div>
-                <div className={`absolute bottom-40 left-40 w-4 h-4 rounded-full animate-pulse ${
-                    theme === 'dark' ? 'bg-blue-500/60' : 'bg-blue-600/40'
-                }`} style={{ animationDelay: '2s' }}></div>
             </div>
 
-            {/* Global Animation Styles */}
+            {/* Keyframes */}
             <style jsx global>{`
                 @keyframes fadeInUp {
                     from {
@@ -411,34 +385,26 @@ const Services = ({ theme }) => {
                         transform: translateX(0);
                     }
                 }
-
+                
                 @keyframes ripple {
-                    0% { 
-                        transform: scale(0.3);
-                        opacity: 0.8;
+                    0% {
+                        transform: scale(0.8);
+                        opacity: 1;
                     }
-                    50% { 
+                    100% {
                         transform: scale(1.2);
-                        opacity: 0.3;
-                    }
-                    100% { 
-                        transform: scale(2.0);
                         opacity: 0;
                     }
                 }
-
+                
                 @keyframes rippleFloat {
-                    0% { 
-                        transform: scale(0.5) translateX(0) translateY(0);
+                    0%, 100% {
+                        transform: translateY(0px) scale(1);
+                        opacity: 0.7;
+                    }
+                    50% {
+                        transform: translateY(-20px) scale(1.1);
                         opacity: 0.4;
-                    }
-                    50% { 
-                        transform: scale(1.5) translateX(20px) translateY(-20px);
-                        opacity: 0.1;
-                    }
-                    100% { 
-                        transform: scale(2.5) translateX(40px) translateY(-40px);
-                        opacity: 0;
                     }
                 }
             `}</style>
@@ -446,4 +412,4 @@ const Services = ({ theme }) => {
     )
 }
 
-export default Services;
+export default Services
