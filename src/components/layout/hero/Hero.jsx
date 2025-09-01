@@ -4,6 +4,7 @@ import { FaGithub, FaLinkedin, FaXTwitter, FaArrowDown } from "react-icons/fa6";
 import { GoMail } from "react-icons/go";
 import Link from "next/link";
 import WaveBackground from '../../ui/WaveBackground';
+import GridBackground from '../../ui/GridBackground';
 import Button from "../../ui/Button";
 import { info } from "../../../utils/info";
 
@@ -20,7 +21,8 @@ export default function Hero({ theme, scrollToSection }) {
 
     return (
         <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-
+            {/* Animated Grid Background */}
+            <GridBackground theme={theme} />
 
             <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-32 pb-16 text-center relative z-10">
                 <div style={{ animation: 'fadeInUp 1s ease-out' }}>

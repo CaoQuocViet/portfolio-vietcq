@@ -1,10 +1,14 @@
 import Button from '../ui/Button'
 import WaveBackground from '../ui/WaveBackground'
+import GridBackground from '../ui/GridBackground'
 import { Github, ExternalLink } from 'lucide-react'
 
 export default function ProjectOverview({ theme, projectData }) {
     return (
         <section id="overview" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+            {/* Grid Background */}
+            <GridBackground theme={theme} />
+            
             <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-20 pb-38 text-center relative z-10">
                 <div style={{ animation: 'fadeInUp 1s ease-out' }}>
                     <h1 className={`text-5xl md:text-7xl font-bold mb-8 leading-tight ${
