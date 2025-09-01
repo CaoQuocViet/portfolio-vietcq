@@ -440,7 +440,7 @@ export default function ProjectDetailPage() {
                 </section>
 
                 {/* Project Gallery */}
-                <section id="gallery" className={`py-20 ${theme === 'dark' ? 'bg-gray-950' : 'bg-white'}`}>
+                <section id="gallery" className={`py-20 ${theme === 'dark' ? 'bg-gray-900/50' : 'bg-gray-100'}`}>
                     <Gallery projectFilter={projectData.id} showDock={false} />
                 </section>
             </main>

@@ -145,14 +145,7 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
             {/* Main Content */}
             <div 
                 id="gallery" 
-                className={`min-h-screen flex justify-center items-center p-5`}
-                style={{
-                    margin: 0,
-                    background: theme === 'dark' 
-                        ? 'linear-gradient(135deg, #1f2937, #374151, #4b5563)' 
-                        : 'linear-gradient(135deg, #0026bd, #b9a700, #460096)',
-                    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
-                }}
+                className="min-h-screen flex justify-center items-center p-5"
             >
                 {/* Gallery Content */}
                 <>
