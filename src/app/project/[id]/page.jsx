@@ -2,9 +2,10 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'next/navigation'
 import { useTheme } from 'next-themes'
-import Gallery from '../../../components/Gallery'
+import Gallery from '../../../components/gallery/Gallery'
 import Button from '../../../components/ui/Button'
 import Dock from '../../../components/layout/dock/Dock'
+import Footer from '../../../components/layout/Footer'
 import { PROJECT_NAVIGATION_ITEMS } from '../../../config/navigation'
 import { createScrollFunction } from '../../../utils/navigation'
 import { Github, ExternalLink } from 'lucide-react'
@@ -94,7 +95,7 @@ export default function ProjectDetailPage() {
             {/* Main Content */}
             <main className="pb-20">{/* Add bottom padding for dock */}
                 {/* Hero Section */}
-                <section id="overview" className={`py-24 ${theme === 'dark' ? 'bg-gradient-to-br from-slate-900 via-gray-900 to-slate-900' : `bg-gradient-to-br from-gray-50 via-${projectData.color.primary}-50 to-gray-100`}`}>
+                <section id="overview" className={`py-24 ${theme === 'dark' ? 'bg-gradient-to-br from-slate-900 via-gray-900 to-slate-900' : 'bg-white'}`}>
                     <div className="max-w-7xl mx-auto px-6 lg:px-8">
                         <div className="text-center mb-16">
                             <h1 className={`text-5xl md:text-7xl font-bold mb-6 ${
@@ -183,7 +184,7 @@ export default function ProjectDetailPage() {
                 </section>
 
                 {/* Features & Technologies */}
-                <section className={`py-24 ${theme === 'dark' ? 'bg-gray-900/50' : 'bg-gray-50'}`}>
+                <section className={`py-24 ${theme === 'dark' ? 'bg-gray-900/50' : 'bg-gray-100'}`}>
                     <div className="max-w-7xl mx-auto px-6 lg:px-8">
                         <div className="grid lg:grid-cols-2 gap-12">
                             {/* Features */}
@@ -243,20 +244,19 @@ export default function ProjectDetailPage() {
                 </section>
 
                 {/* Project Gallery */}
-                <section id="gallery" style={{
+                <section id="gallery" className={`py-20 ${theme === 'dark' ? 'bg-gray-950' : 'bg-white'}`} style={{
                     margin: 0,
-                    padding: '40px 20px',
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
                     minHeight: '80vh',
                     fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
                 }}>
-                    <Gallery projectFilter={projectData.id} />
+                    <Gallery projectFilter={projectData.id} showDock={false} />
                 </section>
 
                 {/* Demo Section */}
-                <section id="demo" className={`py-20 ${theme === 'dark' ? 'bg-gray-900' : 'bg-gray-50'}`}>
+                <section id="demo" className={`py-20 ${theme === 'dark' ? 'bg-gray-900/50' : 'bg-gray-100'}`}>
                     <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
                         <h2 className={`text-4xl font-bold mb-8 ${
                             theme === 'dark' ? 'text-white' : 'text-gray-900'
@@ -290,6 +290,9 @@ export default function ProjectDetailPage() {
                     </div>
                 </section>
             </main>
+
+            {/* Footer */}
+            <Footer theme={theme} />
         </div>
     )
 }
