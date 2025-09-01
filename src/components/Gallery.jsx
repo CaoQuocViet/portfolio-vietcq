@@ -1,10 +1,22 @@
 'use client'
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
+import { useTheme } from 'next-themes'
 import Image from 'next/image'
+import Dock from './layout/dock/Dock'
+import { GALLERY_NAVIGATION_ITEMS } from '../config/navigation'
+import { createScrollFunction } from '../utils/navigation'
 
 const Gallery = ({ projects = [], projectFilter = null }) => {
+    const { theme, setTheme } = useTheme()
+    const [mounted, setMounted] = useState(false)
     const [hoveredTitle, setHoveredTitle] = useState('Hover over image to see details')
     
+    useEffect(() => {
+        setMounted(true)
+    }, [])
+
+    const scrollToSection = createScrollFunction();
+
     // Use useMemo instead of useEffect + useState for better performance
     const galleryItems = useMemo(() => {
         // Filter by specific project if projectFilter is provided
@@ -21,9 +33,34 @@ const Gallery = ({ projects = [], projectFilter = null }) => {
         
         return allImages
     }, [projects, projectFilter])
+
+    if (!mounted) return null
     return (
         <>
-            <style jsx>{`
+            {/* Dock Navigation - chỉ logo + home + theme */}
+            <Dock 
+                theme={theme}
+                setTheme={setTheme}
+                activeSection={null} // Không track active section
+                scrollToSection={scrollToSection}
+                navigationItems={GALLERY_NAVIGATION_ITEMS}
+            />
+
+            {/* Main Content */}
+            <div 
+                id="gallery" 
+                className={`min-h-screen flex justify-center items-center p-5`}
+                style={{
+                    margin: 0,
+                    background: theme === 'dark' 
+                        ? 'linear-gradient(135deg, #1f2937, #374151, #4b5563)' 
+                        : 'linear-gradient(135deg, #0026bd, #b9a700, #460096)',
+                    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
+                }}
+            >
+                {/* Gallery Content */}
+                <>
+                    <style jsx>{`
                 .gallery-container {
                     width: 95%;
                     max-width: 1600px;
@@ -32,14 +69,15 @@ const Gallery = ({ projects = [], projectFilter = null }) => {
                     padding: 30px;
                     border-radius: 20px;
                     backdrop-filter: blur(10px);
-                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    border: 1px solid ${theme === 'dark' ? 'rgba(255, 255, 255, 0.2)' : 'rgba(255, 255, 255, 0.1)'};
+                    background: ${theme === 'dark' ? 'rgba(0, 0, 0, 0.4)' : 'rgba(0, 0, 0, 0.2)'};
                 }
 
                 .title-card {
                     padding: 20px 30px;
                     border-radius: 12px;
                     margin-bottom: 25px;
-                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    border: 1px solid ${theme === 'dark' ? 'rgba(255, 255, 255, 0.2)' : 'rgba(255, 255, 255, 0.1)'};
                     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                     font-size: 20px;
                     font-weight: 600;
@@ -48,17 +86,18 @@ const Gallery = ({ projects = [], projectFilter = null }) => {
                     min-height: 30px;
                     letter-spacing: 0.5px;
                     text-transform: uppercase;
+                    background: ${theme === 'dark' ? 'rgba(0, 0, 0, 0.3)' : 'rgba(0, 0, 0, 0.2)'};
                 }
 
                 .gallery-frame {
                     position: relative;
                     width: 100%;
                     padding-top: 32%;
-                    border: 2px solid rgba(255, 255, 255, 0.1);
+                    border: 2px solid ${theme === 'dark' ? 'rgba(255, 255, 255, 0.2)' : 'rgba(255, 255, 255, 0.1)'};
                     border-radius: 16px;
                     overflow: hidden;
-                    background: rgba(255, 255, 255, 0.05);
-                    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+                    background: ${theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.05)'};
+                    box-shadow: ${theme === 'dark' ? '0 8px 25px rgba(0, 0, 0, 0.6)' : '0 8px 25px rgba(0, 0, 0, 0.2)'};
                 }
 
                 .gallery-images {
@@ -81,8 +120,8 @@ const Gallery = ({ projects = [], projectFilter = null }) => {
                     overflow: hidden;
                     min-width: 0;
                     border-radius: 8px;
-                    border: 2px solid rgba(255, 255, 255, 0.1);
-                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+                    border: 2px solid ${theme === 'dark' ? 'rgba(255, 255, 255, 0.2)' : 'rgba(255, 255, 255, 0.1)'};
+                    box-shadow: ${theme === 'dark' ? '0 2px 4px rgba(0, 0, 0, 0.6)' : '0 2px 4px rgba(0, 0, 0, 0.2)'};
                     cursor: pointer;
                 }
 
@@ -90,8 +129,8 @@ const Gallery = ({ projects = [], projectFilter = null }) => {
                     flex: 0 0 56.25% !important;
                     z-index: 1;
                     border-radius: 12px;
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-                    border: 2px solid rgba(255, 255, 255, 0.2);
+                    box-shadow: ${theme === 'dark' ? '0 4px 8px rgba(0, 0, 0, 0.8)' : '0 4px 8px rgba(0, 0, 0, 0.3)'};
+                    border: 2px solid ${theme === 'dark' ? 'rgba(255, 255, 255, 0.3)' : 'rgba(255, 255, 255, 0.2)'};
                 }
 
                 .gallery-images:hover .gallery-item:not(:hover) {
@@ -200,6 +239,8 @@ const Gallery = ({ projects = [], projectFilter = null }) => {
                 <div className="arrow-container">
                     <div className="arrow">→</div>
                 </div>
+                </div>
+                </> 
             </div>
         </>
     )

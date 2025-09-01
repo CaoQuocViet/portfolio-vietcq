@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'next/navigation'
 import { useTheme } from 'next-themes'
-import Gallery from '../../../components/gallery/Gallery'
+import Gallery from '../../../components/Gallery'
 import Button from '../../../components/ui/Button'
 import Dock from '../../../components/layout/dock/Dock'
 import { PROJECT_NAVIGATION_ITEMS } from '../../../config/navigation'
