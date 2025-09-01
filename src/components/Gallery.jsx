@@ -11,7 +11,10 @@ import { useGallery } from '../hooks/useGallery'
 const Gallery = ({ projectFilter = null, showDock = true }) => {
     const { theme, setTheme } = useTheme()
     const [mounted, setMounted] = useState(false)
-    const [hoveredTitle, setHoveredTitle] = useState('Hover over image to see details')
+    const [hoveredTitle, setHoveredTitle] = useState('Auto-scrolling gallery - hover to pause')
+    const [currentIndex, setCurrentIndex] = useState(0)
+    const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+    const [hoveredIndex, setHoveredIndex] = useState(-1)
     
     // Use hook to fetch project images
     const { images: galleryItems, loading, error } = useGallery(projectFilter)
@@ -19,6 +22,30 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
     useEffect(() => {
         setMounted(true)
     }, [])
+
+    // Auto-scroll effect từ phải sang trái
+    useEffect(() => {
+        if (!galleryItems || galleryItems.length === 0 || !isAutoPlaying) return
+
+        const interval = setInterval(() => {
+            setCurrentIndex(prevIndex => {
+                const nextIndex = prevIndex + 1
+                if (nextIndex >= galleryItems.length) {
+                    return 0 // Reset về đầu
+                }
+                return nextIndex
+            })
+        }, 800) // Mỗi 800ms chuyển ảnh
+
+        return () => clearInterval(interval)
+    }, [galleryItems, isAutoPlaying])
+
+    // Update title khi currentIndex thay đổi
+    useEffect(() => {
+        if (galleryItems && galleryItems[currentIndex] && isAutoPlaying) {
+            setHoveredTitle(`${galleryItems[currentIndex].project}-${galleryItems[currentIndex].number}`)
+        }
+    }, [currentIndex, galleryItems, isAutoPlaying])
 
     const scrollToSection = createScrollFunction();
 
@@ -204,14 +231,24 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
                 .gallery-item {
                     position: relative;
                     height: 100%;
-                    flex: 1;
-                    transition: flex 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                    flex: 0 0 3.55%;
+                    transition: flex 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
                     overflow: hidden;
                     min-width: 0;
                     border-radius: 8px;
                     border: 2px solid ${theme === 'dark' ? 'rgba(255, 255, 255, 0.2)' : 'rgba(255, 255, 255, 0.1)'};
                     box-shadow: ${theme === 'dark' ? '0 2px 4px rgba(0, 0, 0, 0.6)' : '0 2px 4px rgba(0, 0, 0, 0.2)'};
                     cursor: pointer;
+                    opacity: 0.5;
+                }
+
+                .gallery-item.active {
+                    flex: 0 0 56.25% !important;
+                    z-index: 1;
+                    border-radius: 12px;
+                    box-shadow: ${theme === 'dark' ? '0 4px 8px rgba(0, 0, 0, 0.8)' : '0 4px 8px rgba(0, 0, 0, 0.3)'};
+                    border: 2px solid ${theme === 'dark' ? 'rgba(255, 255, 255, 0.3)' : 'rgba(255, 255, 255, 0.2)'};
+                    opacity: 1;
                 }
 
                 .gallery-item:hover {
@@ -220,6 +257,7 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
                     border-radius: 12px;
                     box-shadow: ${theme === 'dark' ? '0 4px 8px rgba(0, 0, 0, 0.8)' : '0 4px 8px rgba(0, 0, 0, 0.3)'};
                     border: 2px solid ${theme === 'dark' ? 'rgba(255, 255, 255, 0.3)' : 'rgba(255, 255, 255, 0.2)'};
+                    opacity: 1;
                 }
 
                 .gallery-images:hover .gallery-item:not(:hover) {
@@ -230,14 +268,17 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
                 .gallery-item img {
                     width: 100%;
                     height: 100%;
-                    object-fit: cover;
-                    transition: object-fit 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                     border-radius: 6px;
                 }
 
-                .gallery-item:hover img {
-                    object-fit: contain !important;
+                .gallery-item.active,
+                .gallery-item:hover {
                     background: rgba(0, 0, 0, 0.8);
+                }
+
+                .gallery-item.active img,
+                .gallery-item:hover img {
                     border-radius: 10px;
                 }
 
@@ -307,9 +348,19 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
                         {galleryItems.map((item, index) => (
                             <div 
                                 key={`${item.project}-${item.number}-${index}`}
-                                className="gallery-item"
-                                onMouseEnter={() => setHoveredTitle(`${item.project}-${item.number}`)}
-                                onMouseLeave={() => setHoveredTitle('Hover over image to see details')}
+                                className={`gallery-item ${index === currentIndex && isAutoPlaying ? 'active' : ''}`}
+                                onMouseEnter={() => {
+                                    setIsAutoPlaying(false)
+                                    setHoveredIndex(index)
+                                    setHoveredTitle(`${item.project}-${item.number}`)
+                                }}
+                                onMouseLeave={() => {
+                                    setIsAutoPlaying(true)
+                                    setHoveredIndex(-1)
+                                    if (!galleryItems || galleryItems.length === 0) {
+                                        setHoveredTitle('Auto-scrolling gallery - hover to pause')
+                                    }
+                                }}
                                 onClick={() => {
                                     window.location.href = `/project/${item.project}`;
                                 }}
@@ -318,7 +369,10 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
                                     src={item.src}
                                     alt={item.alt}
                                     fill
-                                    style={{ objectFit: 'cover' }}
+                                    style={{ 
+                                        objectFit: (index === currentIndex && isAutoPlaying) || index === hoveredIndex ? 'contain' : 'cover',
+                                        objectPosition: 'center'
+                                    }}
                                     className="transition-all duration-300"
                                 />
                             </div>
