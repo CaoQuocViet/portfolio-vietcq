@@ -2,11 +2,13 @@
 
 import { FaGithub, FaLinkedin, FaXTwitter, FaArrowDown } from "react-icons/fa6";
 import { GoMail } from "react-icons/go";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import WaveBackground from '../../ui/WaveBackground';
 import GridBackground from '../../ui/GridBackground';
 import Button from "../../ui/Button";
 import { info } from "../../../utils/info";
+import { Highlighter } from "@/components/magicui/highlighter";
 
 const handleGetMyCV = () => {
     const link = document.createElement("a");
@@ -18,9 +20,62 @@ const handleGetMyCV = () => {
   };
 
 export default function Hero({ theme, scrollToSection }) {
+    const [displayText, setDisplayText] = useState("");
+    const [showCursor, setShowCursor] = useState(true);
+    const fullText = `Hello, I'm ${info.displayName}`;
+    
+    useEffect(() => {
+        let i = 0;
+        let isDeleting = false;
+        const typingSpeed = 80; // Faster typing
+        const deletingSpeed = 50; // Faster deleting
+        const pauseTime = 2000; // Pause before deleting
+        
+        const typeInterval = setInterval(() => {
+            if (!isDeleting) {
+                // Typing forward
+                if (i < fullText.length) {
+                    setDisplayText(fullText.slice(0, i + 1));
+                    i++;
+                } else {
+                    // Pause then start deleting
+                    setTimeout(() => {
+                        isDeleting = true;
+                    }, pauseTime);
+                }
+            } else {
+                // Deleting backward
+                if (i > 0) {
+                    setDisplayText(fullText.slice(0, i - 1));
+                    i--;
+                } else {
+                    // Reset and start typing again
+                    isDeleting = false;
+                    setTimeout(() => {
+                        // Small delay before retyping
+                    }, 500);
+                }
+            }
+        }, isDeleting ? deletingSpeed : typingSpeed);
+
+        return () => clearInterval(typeInterval);
+    }, [fullText]);
 
     return (
         <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+            {/* Typing cursor */}
+            <style jsx>{`
+                @keyframes blink {
+                    0%, 50% { opacity: 1; }
+                    51%, 100% { opacity: 0; }
+                }
+                .typing-cursor::after {
+                    content: '|';
+                    animation: blink 1s infinite;
+                    color: ${theme === 'dark' ? '#60a5fa' : '#2563eb'};
+                }
+            `}</style>
+
             {/* Animated Grid Background */}
             <GridBackground theme={theme} />
 
@@ -28,15 +83,21 @@ export default function Hero({ theme, scrollToSection }) {
                 <div style={{ animation: 'fadeInUp 1s ease-out' }}>
                     <p className={`text-lg font-medium mb-6 ${
                         theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
-                    }`} style={{ animation: 'fadeInUp 1s ease-out 0.2s both' }}>
-                        Hello, I'm{' '}
-                        <span className={`bg-gradient-to-r ${
-                            theme === 'dark' 
-                                ? 'from-cyan-400 via-blue-500 to-purple-600' 
-                                : 'from-cyan-600 via-blue-700 to-purple-800'
-                        } bg-clip-text text-transparent font-bold`}>
-                            {info.displayName}
-                        </span>
+                    } ${showCursor ? 'typing-cursor' : ''}`} style={{ animation: 'fadeInUp 1s ease-out 0.2s both' }}>
+                        {displayText && displayText.includes(info.displayName) ? (
+                            <>
+                                {displayText.replace(info.displayName, '')}{' '}
+                                <span className={`bg-gradient-to-r ${
+                                    theme === 'dark' 
+                                        ? 'from-cyan-400 via-blue-500 to-purple-600' 
+                                        : 'from-cyan-600 via-blue-700 to-purple-800'
+                                } bg-clip-text text-transparent font-bold`}>
+                                    {info.displayName}
+                                </span>
+                            </>
+                        ) : (
+                            displayText
+                        )}
                     </p>
                     
                     <h1 className={`text-5xl md:text-7xl font-bold mb-8 leading-tight ${
@@ -45,7 +106,9 @@ export default function Hero({ theme, scrollToSection }) {
                         animation: 'fadeInUp 1s ease-out 0.4s both',
                         fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif'
                     }}>
+                            <Highlighter action="underline" color="#FF9800">
                         Full Stack
+                        </Highlighter>
                         <br />
                         <span className={`bg-gradient-to-r ${
                             theme === 'dark' 

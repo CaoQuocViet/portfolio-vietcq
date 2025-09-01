@@ -2,7 +2,7 @@ export const info = {
   description: "Passionate Full Stack Developer specializing in modern web technologies.",
   githubUsername: "caoquocviet",
   avatarUrl: "https://avatars.githubusercontent.com/u/caoquocviet?v=4",
-  displayName: "Cao Quoc Viet",
+  displayName: "Cao Quốc Việt",
   email: "vietcao10@gmail.com",
   social: {
     linkedin: "https://linkedin.com/in/caoquocviet",
