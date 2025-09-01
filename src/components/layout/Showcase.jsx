@@ -9,7 +9,7 @@ const Showcase = () => {
     const { theme } = useTheme()
 
     return (
-        <section id="project-showcase" className={`py-24 ${theme === 'dark' ? 'bg-gray-900/50' : 'bg-gray-50'} overflow-hidden`}>
+        <section id="project-showcase" className={`py-24 ${theme === 'dark' ? 'bg-gray-900/50' : 'bg-white'} overflow-hidden`}>
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 <div className="text-center mb-16">
                     <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${

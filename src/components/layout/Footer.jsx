@@ -43,7 +43,7 @@ export default function Footer({ theme }) {
     ];
 
     return (
-        <footer className={`py-16 border-t ${theme === 'dark' ? 'bg-gray-900/50 border-gray-800' : 'bg-gray-50 border-gray-200'
+        <footer className={`py-16 border-t ${theme === 'dark' ? 'bg-gray-900/50 border-gray-800' : 'bg-white border-gray-200'
             }`}>
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 <div className="text-center mb-8">

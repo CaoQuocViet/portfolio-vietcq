@@ -60,7 +60,7 @@ const About = ({ theme }) => {
       <section
         id="about"
         className={`relative py-24 min-h-screen ${
-          theme === "dark" ? "bg-gray-900/50" : "bg-gray-50"
+          theme === "dark" ? "bg-gray-900/50" : "bg-gray-100"
         }`}
       >
         {/* Content */}
