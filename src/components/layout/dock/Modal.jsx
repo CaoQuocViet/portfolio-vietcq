@@ -104,8 +104,10 @@ const Modal = ({ isOpen, onClose, theme, dockRect, logoRect }) => {
           </div>
           
           {/* Repositories Section */}
-          <div className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">Repositories</div>
-          <RepositoriesList theme={theme} />
+          <div>
+            <div className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">Repositories</div>
+            <RepositoriesList theme={theme} />
+          </div>
         </div>
       </div>
 

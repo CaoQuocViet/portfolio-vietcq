@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 
 const WaveBackground = ({ reversed = false }) => {
     // Wave paths - normal (upward) vs reversed (downward)

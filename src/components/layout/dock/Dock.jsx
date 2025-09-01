@@ -65,7 +65,14 @@ const NavigationItem = ({
       }`}
       title={item.label}
     >
-      <IconComponent size={isHovered ? 24 : 20} className={`transition-all duration-300 ease-out ${item.color}`} />
+      <IconComponent 
+        size={isHovered ? 24 : 20} 
+        className={`transition-all duration-300 ease-out ${
+          isHovered 
+            ? (theme === 'dark' ? 'text-gray-200' : 'text-gray-800') 
+            : item.color
+        }`} 
+      />
       <div className={`absolute -bottom-1 w-1.5 h-1.5 rounded-full transition-all duration-300 ${isActive ? "bg-white scale-100" : "bg-transparent scale-0"}`} />
       <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap hidden md:block">
         {item.label}
