@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { FaGithub, FaLinkedin, FaXTwitter, FaArrowDown } from "react-icons/fa6";
 import { GoMail } from "react-icons/go";
 import Link from "next/link";

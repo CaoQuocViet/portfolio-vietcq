@@ -1,5 +1,7 @@
 "use client";
 
+import React from "react";
+
 const WaveBackground = ({ reversed = false }) => {
     // Wave paths - normal (upward) vs reversed (downward)
     const normalPath = "M0,60 L0,60 Q100,20 200,60 Q300,100 400,60 Q500,20 600,60 Q700,100 800,60 Q900,20 1000,60 Q1100,100 1200,60 L1200,60 L1200,80 L0,80 Z";

@@ -1,3 +1,4 @@
+import React from "react";
 import PCModel from "./PCModel";
 import { info } from "../../../utils/info";
 

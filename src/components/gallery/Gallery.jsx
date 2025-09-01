@@ -1,5 +1,5 @@
 'use client'
-import { useState, useMemo } from 'react'
+import React, { useState, useMemo } from 'react'
 import Image from 'next/image'
 
 const Gallery = ({ projects = [], projectFilter = null }) => {
