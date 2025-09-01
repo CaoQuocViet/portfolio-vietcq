@@ -13,7 +13,7 @@ export default function ProjectOverview({ theme, projectData }) {
                         animation: 'fadeInUp 1s ease-out 0.4s both',
                         fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif'
                     }}>
-                        <span className={`bg-gradient-to-r ${projectData.color.gradient} bg-clip-text text-transparent`} style={{
+                        <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-blue-600 bg-clip-text text-transparent" style={{
                             backgroundSize: '200% 200%',
                             animation: 'gradientMove 3s ease-in-out infinite'
                         }}>
@@ -70,7 +70,7 @@ export default function ProjectOverview({ theme, projectData }) {
                     }`} style={{ animation: 'fadeInUp 1s ease-out 1.2s both' }}>
                         {projectData.timeline?.status && (
                             <div className="text-center">
-                                <div className={`text-2xl font-bold ${theme === 'dark' ? `text-${projectData.color.primary}-400` : `text-${projectData.color.primary}-600`}`}>
+                                <div className={`text-2xl font-bold ${theme === 'dark' ? 'text-blue-400' : 'text-blue-600'}`}>
                                     {projectData.timeline.status}
                                 </div>
                                 <div className={`text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -80,7 +80,7 @@ export default function ProjectOverview({ theme, projectData }) {
                         )}
                         {projectData.timeline?.startDate && (
                             <div className="text-center">
-                                <div className={`text-2xl font-bold ${theme === 'dark' ? `text-${projectData.color.primary}-400` : `text-${projectData.color.primary}-600`}`}>
+                                <div className={`text-2xl font-bold ${theme === 'dark' ? 'text-blue-400' : 'text-blue-600'}`}>
                                     {projectData.timeline.startDate}
                                 </div>
                                 <div className={`text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -90,7 +90,7 @@ export default function ProjectOverview({ theme, projectData }) {
                         )}
                         {projectData.features?.length > 0 && (
                             <div className="text-center">
-                                <div className={`text-2xl font-bold ${theme === 'dark' ? `text-${projectData.color.primary}-400` : `text-${projectData.color.primary}-600`}`}>
+                                <div className={`text-2xl font-bold ${theme === 'dark' ? 'text-blue-400' : 'text-blue-600'}`}>
                                     {projectData.features.length}
                                 </div>
                                 <div className={`text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -100,7 +100,7 @@ export default function ProjectOverview({ theme, projectData }) {
                         )}
                         {projectData.technologies && (
                             <div className="text-center">
-                                <div className={`text-2xl font-bold ${theme === 'dark' ? `text-${projectData.color.primary}-400` : `text-${projectData.color.primary}-600`}`}>
+                                <div className={`text-2xl font-bold ${theme === 'dark' ? 'text-blue-400' : 'text-blue-600'}`}>
                                     {Object.values(projectData.technologies).flat().length}
                                 </div>
                                 <div className={`text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
