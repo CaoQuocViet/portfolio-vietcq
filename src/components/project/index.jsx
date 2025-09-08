@@ -96,7 +96,7 @@ export default function ProjectDetailPageClient() {
 
             {/* Main Content */}
             <main className="pb-20">
-                <ProjectOverview theme={theme} projectData={projectData} />
+                <ProjectOverview theme={theme} projectData={projectData} projectId={params.id} />
                 <ProjectDetails theme={theme} projectData={projectData} />
                 <ProjectFeatures theme={theme} projectData={projectData} />
                 <ProjectGallery theme={theme} projectData={projectData} />
