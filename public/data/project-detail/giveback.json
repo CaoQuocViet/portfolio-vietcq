@@ -1,65 +1,73 @@
 {
   "id": "giveback",
-  "name": "Giveback",
-  "tagline": "Community-Driven Charity & Donation Platform",
-  "description": "A comprehensive platform connecting donors with meaningful causes, facilitating transparent charitable giving, and building stronger communities through technology-driven philanthropy.",
+  "name": "GIVEBACK - Charitable Donation Platform for Vietnam Disasters",
+  "tagline": "Transparent Disaster Relief & Charity Platform for Vietnam",
+  "description": "A comprehensive platform supporting charitable donations for disaster-affected areas in Vietnam. The system manages charity campaigns, processes user donations, and provides transparent reports on fund utilization, ensuring transparency and efficiency in donation management and fund distribution.",
   
   "timeline": {
-    "startDate": "06/2024",
-    "endDate": "07/2024",
-    "status": "Completed"
+    "startDate": "08/2024",
+    "endDate": "09/2024", 
+    "status": "Completed",
+    "developmentTime": "15 days"
   },
   
   "role": {
-    "position": "Full-stack Developer",
+    "position": "Full-stack Developer (Academic Project)",
     "responsibilities": [
-      "Designed and developed complete donation processing system with Stripe integration",
-      "Built real-time impact tracking dashboard with live donation analytics",
-      "Implemented charity verification system with admin approval workflow",
-      "Created responsive UI/UX with Tailwind CSS and Next.js",
-      "Deployed and configured production environment on Vercel"
+      "Designed and developed complete charity campaign management system",
+      "Built donation processing system with ZaloPay payment integration",
+      "Implemented multi-role authentication system (Admin, Charity, Donor, Beneficiary)",
+      "Created charity verification system with license validation workflow",
+      "Built real-time disaster news feed and heatmap for affected areas",
+      "Developed comprehensive reporting system with PDF/Excel export functionality"
     ]
   },
   
   "technologies": {
-    "frontend": ["Next.js 14", "TypeScript", "Tailwind CSS", "React Hook Form"],
-    "backend": ["Next.js API Routes", "Prisma ORM", "NextAuth.js"],
-    "database": ["PostgreSQL", "Prisma Schema"],
-    "deployment": ["Vercel", "Vercel Postgres"],
-    "payments": ["Stripe Payment API", "Stripe Webhooks"],
-    "others": ["ESLint", "Prettier", "Husky"]
+    "frontend": ["Next.js 14", "TypeScript", "Tailwind CSS", "React", "Radix UI", "Material-UI"],
+    "backend": ["Node.js", "Express.js", "Sequelize ORM"],
+    "database": ["PostgreSQL"],
+    "authentication": ["Firebase Auth", "next-firebase-auth-edge", "JWT"],
+    "payment": ["ZaloPay API"],
+    "others": ["SMS OTP (Vonage)", "PDF Generation", "Excel Export", "React Globe.gl", "Framer Motion"]
   },
   
   "features": [
-    "Secure Donation Processing with Stripe integration",
-    "Real-time Impact Tracking with live donation updates", 
-    "Community Engagement Tools for donor interaction",
-    "Charity Verification System with admin approval",
-    "Donation Analytics Dashboard with detailed insights"
+    "Multi-role User Management (Admin, Charity, Donor, Beneficiary)",
+    "Charity Verification System with license validation",
+    "Campaign Management with location-based disaster targeting",
+    "Secure Donation Processing with ZaloPay integration", 
+    "Real-time News Feed about disaster situations in Vietnam",
+    "Interactive Heatmap showing disaster-affected areas",
+    "Comprehensive Reporting & Analytics with export capabilities",
+    "OTP-based Phone Verification for enhanced security",
+    "Transparent Fund Distribution tracking",
+    "Comment & Rating system for campaigns"
   ],
   
   "achievements": {
     "metrics": [
-      "Processing $50K+ in donations within first month",
-      "99.9% uptime with Vercel deployment",
-      "Mobile-responsive design with 95+ Lighthouse score",
-      "Sub-2s page load times optimized with Next.js"
+      "Academic project completed within 15-day timeframe",
+      "Full-stack implementation with modern tech stack",
+      "Responsive design optimized for Vietnamese users", 
+      "Multi-language support (Vietnamese primary, English secondary)"
     ],
     "highlights": [
-      "Successfully integrated complex payment workflows",
-      "Built scalable database architecture with Prisma",
-      "Implemented comprehensive admin dashboard",
-      "Created seamless user authentication flow"
+      "Successfully integrated Vietnamese payment gateway (ZaloPay)",
+      "Built scalable database architecture for charity management",
+      "Implemented comprehensive admin dashboard for system oversight",
+      "Created seamless user experience for disaster relief donations",
+      "Note: This is an academic project with limitations due to time constraints"
     ]
   },
   
   "links": {
-    "live": "https://giveback-platform.vercel.app",
-    "github": "https://github.com/caoquocviet/giveback"
+    "live": "Not deployed (Academic project)",
+    "github": "https://github.com/CaoQuocViet/giveback"
   },
   
   "color": {
-    "primary": "emerald",
-    "gradient": "from-emerald-400 via-green-500 to-teal-600"
+    "primary": "blue",
+    "gradient": "from-blue-400 via-cyan-500 to-teal-600"
   }
 }
