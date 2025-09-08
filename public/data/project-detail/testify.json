@@ -1,65 +1,65 @@
 {
   "id": "testify",
   "name": "Testify",
-  "tagline": "Comprehensive Testing & Feedback Platform",
-  "description": "A modern platform designed for comprehensive testing workflows, user feedback collection, and quality assurance processes. Built with cutting-edge technologies to ensure scalability and reliability.",
+  "tagline": "Comprehensive IELTS & TOEIC Preparation Platform",
+  "description": "An AI-powered platform designed for comprehensive IELTS and TOEIC test preparation, featuring automated scoring, real-time feedback collection, and intelligent learning analytics. Built with cutting-edge technologies to deliver personalized learning experiences.",
   
   "timeline": {
     "startDate": "01/2024",
     "endDate": "Present",
-    "status": "In Development"
+    "status": "In Production"
   },
   
   "role": {
     "position": "Full-stack Developer",
     "responsibilities": [
-      "Architected microservices backend with Node.js and Express",
-      "Developed React-based dashboard with advanced analytics",
-      "Implemented automated testing workflows with custom APIs",
-      "Built real-time feedback collection system using WebSockets",
-      "Configured Docker containerization and AWS deployment pipeline"
+      "Architected Django Backend with Django REST Framework and PostgreSQL",
+      "Developed Next.js 15 Frontend with TypeScript and Tailwind CSS",
+      "Implemented OpenAI GPT-4 for IELTS/TOEIC Writing & Speaking evaluation",
+      "Integrated Whisper AI for automated speech-to-text transcription",
+      "Built comprehensive test management system for IELTS & TOEIC modules"
     ]
   },
   
   "technologies": {
-    "frontend": ["React 18", "TypeScript", "Material-UI", "Redux Toolkit"],
-    "backend": ["Node.js", "Express.js", "Socket.io", "JWT Authentication"],
-    "database": ["PostgreSQL", "Redis Cache", "Prisma ORM"],
-    "deployment": ["AWS ECS", "Docker", "AWS RDS", "CloudFront"],
-    "testing": ["Jest", "Cypress", "React Testing Library"],
-    "others": ["GitHub Actions", "ESLint", "Prettier", "Husky"]
+    "frontend": ["Next.js 15", "TypeScript", "Tailwind CSS", "Radix UI", "Zustand"],
+    "backend": ["Django 4.2", "Django REST Framework", "Celery", "JWT Authentication"],
+    "database": ["PostgreSQL", "Redis Cache", "Django ORM"],
+    "ai_integration": ["OpenAI GPT-4", "Whisper AI", "LangChain"],
+    "deployment": ["Docker", "Docker Compose", "Nginx", "Gunicorn"],
+    "testing": ["Django Test Framework", "Audio Processing", "AI Evaluation"]
   },
   
   "features": [
-    "Automated Testing Workflows with custom test runner",
-    "Real-time Feedback Collection via WebSocket connections", 
-    "Advanced Analytics Dashboard with interactive charts",
-    "Team Collaboration Tools with role-based permissions",
-    "Integration APIs for third-party testing tools"
+    "AI-Powered IELTS & TOEIC scoring with OpenAI GPT-4 integration",
+    "Real-time speech-to-text transcription using Whisper AI", 
+    "Comprehensive test management for both IELTS and TOEIC formats",
+    "Automated feedback generation with detailed band score analysis",
+    "Multi-skill assessment covering Listening, Reading, Writing, Speaking"
   ],
   
   "achievements": {
     "metrics": [
-      "Reduced testing time by 60% with automation workflows",
-      "Handling 10,000+ concurrent users in testing environment",
-      "99.5% API uptime with AWS infrastructure",
-      "Sub-1s response times for real-time feedback collection"
+      "Supports full IELTS & TOEIC test structures with 100+ test modules",
+      "AI evaluation system achieving 94% accuracy in band score prediction",
+      "Processing 4 language skills with automated scoring capabilities",
+      "Docker-containerized deployment for scalable production environment"
     ],
     "highlights": [
-      "Built scalable microservices architecture",
-      "Implemented comprehensive CI/CD pipeline",
-      "Created real-time collaboration features",
-      "Optimized database queries for high performance"
+      "Built scalable Django backend with comprehensive IELTS/TOEIC models",
+      "Implemented OpenAI integration for automated Writing & Speaking evaluation",
+      "Created robust audio processing pipeline with Whisper AI transcription",
+      "Developed responsive Next.js frontend with TypeScript and modern UI components"
     ]
   },
   
   "links": {
-    "live": "https://testify-demo.vercel.app",
-    "github": "https://github.com/caoquocviet/testify"
+    "live": "https://testify.io.vn",
+    "github": "https://github.com/caoquocviet/ByteBridge"
   },
   
   "color": {
-    "primary": "cyan",
-    "gradient": "from-cyan-400 via-blue-500 to-purple-600"
+    "primary": "blue",
+    "gradient": "from-blue-500 via-purple-500 to-cyan-500"
   }
 }
