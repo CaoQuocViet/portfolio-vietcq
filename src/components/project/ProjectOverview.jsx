@@ -7,11 +7,12 @@ import { Github, ExternalLink } from 'lucide-react'
 export default function ProjectOverview({ theme, projectData, projectId }) {
     return (
         <section id="overview" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-            {/* Background - GridBackground or TrongDongBackground based on project */}
-            {projectId === 'giveback' ? (
+            {/* Grid Background - always show */}
+            <GridBackground theme={theme} />
+            
+            {/* TrongDong Background - only for giveback project, overlay on top */}
+            {projectId === 'giveback' && (
                 <TrongDongBackground theme={theme} />
-            ) : (
-                <GridBackground theme={theme} />
             )}
             
             <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-20 pb-38 text-center relative z-10">
