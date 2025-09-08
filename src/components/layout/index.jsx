@@ -13,6 +13,7 @@ import Projects from "./Projects";
 import Showcase from "./Showcase";
 import Contact from "./Contact";
 import Footer from "./Footer";
+import ClockWidget from "../ui/ClockWidget";
 
 export default function HomePageClient() {
     const { theme, setTheme } = useTheme();
@@ -65,6 +66,9 @@ export default function HomePageClient() {
 
     return (
         <div className={`min-h-screen ${theme === 'dark' ? 'bg-gray-950' : 'bg-white'}`}>
+            {/* Clock Widget */}
+            <ClockWidget theme={theme} />
+            
             <Navigation 
                 theme={theme} 
                 setTheme={setTheme} 
