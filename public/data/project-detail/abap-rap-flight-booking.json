@@ -1,0 +1,66 @@
+{
+  "id": "abap-rap-flight-booking",
+  "name": "ABAP RAP Flight Booking",
+  "tagline": "Enterprise Flight Management System with SAP ABAP RAP",
+  "description": "A comprehensive flight management system built with SAP ABAP RESTful Application Programming (RAP) framework, featuring CDS Views, Fiori annotations, advanced search capabilities, and rich visualizations. Demonstrates modern SAP development practices with database management, business services, and enterprise-grade UI components.",
+  
+  "timeline": {
+    "startDate": "01/2024",
+    "endDate": "Present", 
+    "status": "Completed"
+  },
+  
+  "role": {
+    "position": "ABAP Developer",
+    "responsibilities": [
+      "Architected database tables for Airlines and Flight entities with ABAP DDL",
+      "Developed CDS Views with UI annotations for Fiori integration",
+      "Implemented Business Services with Service Definitions and Bindings",
+      "Created ABAP programs for data insertion and deletion operations",
+      "Built advanced search functionality with fuzzy search capabilities"
+    ]
+  },
+  
+  "technologies": {
+    "frontend": ["SAP Fiori", "UI Annotations", "Charts", "Progress Bars"],
+    "backend": ["ABAP", "ABAP RAP Framework", "CDS Views", "ABAP DDL"],
+    "database": ["SAP HANA", "Database Tables", "Association Relationships"],
+    "development": ["ABAP Development Tools (ADT)", "Visual Studio Code", "Git"],
+    "framework": ["SAP RAP (RESTful Application Programming)", "Core Data Services"],
+    "services": ["Business Services", "Service Definitions", "Service Bindings"]
+  },
+  
+  "features": [
+    "CDS Views with complex calculations and associations for flight data",
+    "Fiori UI annotations with search, filters, and selection fields",
+    "Advanced visualizations including donut charts and progress indicators", 
+    "Fuzzy search capabilities with configurable threshold settings",
+    "Real-time utilization calculations and seat availability tracking",
+    "Multi-currency support with semantic annotations for amounts"
+  ],
+  
+  "achievements": {
+    "metrics": [
+      "Built 2 core database tables with comprehensive field definitions",
+      "Implemented 1 complex CDS View with 15+ calculated fields and UI annotations",
+      "Created 4 ABAP programs for complete CRUD operations",
+      "Supports multiple airlines with varied currency and plane type configurations"
+    ],
+    "highlights": [
+      "Designed scalable database schema with proper normalization and associations",
+      "Implemented advanced UI annotations for rich Fiori user experience",
+      "Built comprehensive search functionality with fuzzy matching capabilities",
+      "Created dynamic calculations for seat utilization and availability metrics"
+    ]
+  },
+  
+  "links": {
+    "live": "",
+    "github": "https://github.com/caoquocviet/abap-rap-flight-booking"
+  },
+  
+  "color": {
+    "primary": "indigo",
+    "gradient": "from-indigo-500 via-blue-500 to-cyan-500"
+  }
+}
