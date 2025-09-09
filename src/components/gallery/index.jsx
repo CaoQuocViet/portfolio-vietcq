@@ -2,10 +2,24 @@
 import { useTheme } from 'next-themes'
 import { useState, useEffect } from 'react'
 import Gallery from '../Gallery'
+import ProjectCards from './ProjectCards'
+import { useGallery } from '../../hooks/useGallery'
 
 export default function GalleryPageClient() {
     const { theme } = useTheme()
     const [mounted, setMounted] = useState(false)
+    
+    // Fetch all gallery items to extract unique projects
+    const { images: galleryItems, loading } = useGallery(null)
+    
+    // Extract unique projects for cards
+    const uniqueProjects = galleryItems ? 
+        [...new Set(galleryItems.map(item => item.project))].map(projectName => {
+            return {
+                name: projectName,
+                count: galleryItems.filter(item => item.project === projectName).length
+            }
+        }) : []
 
     useEffect(() => {
         setMounted(true)
@@ -26,6 +40,21 @@ export default function GalleryPageClient() {
                 fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
             }}
         >
+            {/* Project Cards - 32px from top of screen */}
+            {!loading && (
+                <div style={{
+                    position: 'fixed',
+                    top: '36px',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    zIndex: 5,
+                    width: '100%'
+                }}>
+                    <ProjectCards projects={uniqueProjects} />
+                </div>
+            )}
+            
+            {/* Gallery Component - unchanged layout */}
             <Gallery />
         </div>
     )
