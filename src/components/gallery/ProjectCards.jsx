@@ -34,10 +34,10 @@ export default function ProjectCards({ projects }) {
                     overflow: hidden;
                     min-width: fit-content;
                     
-                    /* Simple elegant background */
+                    /* Beautiful gradient background using system colors */
                     background: ${theme === 'dark' 
-                        ? 'linear-gradient(135deg, #1e293b, #334155, #475569)'
-                        : 'linear-gradient(135deg, #f8fafc, #e2e8f0, #cbd5e1)'
+                        ? 'linear-gradient(135deg, #1f2937, #374151, #4b5563)'
+                        : 'linear-gradient(135deg, #0026bd, #b9a700, #460096)'
                     };
                 }
 
@@ -58,7 +58,7 @@ export default function ProjectCards({ projects }) {
                     letter-spacing: 1px;
                     
                     /* Text color */
-                    color: ${theme === 'dark' ? '#ffffff' : '#1e293b'};
+                    color: #ffffff;
                     
                     /* Remove gradient text effect for simplicity */
                 }

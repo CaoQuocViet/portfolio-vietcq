@@ -472,7 +472,7 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
                             </div>
                         ))}
                     </div>
-                    {/* Scroll indicator for many images */}
+                    {/* Scroll indicator for many images
                     {galleryItems && galleryItems.length > 50 && (
                         <div className="scroll-indicator">
                             <span>← {galleryItems.length} images - Ultra compact view →</span>
@@ -482,12 +482,12 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
                         <div className="scroll-indicator">
                             <span>← Scroll to explore all {galleryItems.length} images →</span>
                         </div>
-                    )}
+                    )} */}
                 </div>
                 <div className="arrow-container">
                     <div className="arrow">→</div>
                 </div>
-                </div>
+                </div>  
                 </> 
             </div>
         </>
