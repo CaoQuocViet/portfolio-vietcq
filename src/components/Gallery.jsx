@@ -19,6 +19,44 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
     // Use hook to fetch project images
     const { images: galleryItems, loading, error } = useGallery(projectFilter)
     
+    // Calculate dynamic width based on number of images and container
+    const calculateItemWidth = (totalImages) => {
+        if (!totalImages || totalImages === 0) return 3.55
+        
+        if (totalImages === 1) return 100 // Chỉ có 1 ảnh thì full width
+        
+        const activeItemWidth = 56.25 // Ảnh được focus chiếm 56.25%
+        const remainingWidth = 100 - activeItemWidth // 43.75% cho tất cả ảnh còn lại
+        const inactiveItemCount = totalImages - 1
+        
+        // Tính toán width cơ bản cho mỗi ảnh inactive
+        let baseWidth = remainingWidth / inactiveItemCount
+        
+        // Xử lý các trường hợp đặc biệt
+        if (totalImages === 2) {
+            // 2 ảnh: chia đều không gian còn lại
+            return remainingWidth
+        } else if (totalImages === 3) {
+            // 3 ảnh: mỗi ảnh nhỏ chiếm ~22%
+            return Math.max(20, baseWidth)
+        } else if (totalImages <= 10) {
+            // 4-10 ảnh: giữ kích thước hợp lý
+            return Math.max(4, Math.min(12, baseWidth))
+        } else if (totalImages <= 30) {
+            // 11-30 ảnh: thu nhỏ dần
+            return Math.max(1.8, Math.min(4, baseWidth))
+        } else {
+            // >30 ảnh: thu nhỏ tối đa nhưng vẫn nhìn thấy được
+            return Math.max(0.8, Math.min(1.8, baseWidth))
+        }
+    }
+    
+    const itemWidth = calculateItemWidth(galleryItems?.length || 0)
+    
+    // Responsive breakpoint cho mobile
+    const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768
+    const mobileItemWidth = isMobile ? Math.max(itemWidth * 1.5, 5) : itemWidth
+    
     useEffect(() => {
         setMounted(true)
     }, [])
@@ -224,15 +262,46 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
                     width: 100%;
                     height: 100%;
                     display: flex;
-                    justify-content: flex-start;
+                    ${galleryItems && galleryItems.length <= 3 
+                        ? 'justify-content: center;' 
+                        : galleryItems && galleryItems.length > 30
+                            ? 'justify-content: flex-start; overflow-x: auto; scrollbar-width: none;'
+                            : 'justify-content: flex-start;'
+                    }
                     gap: 2px;
                     padding: 2px;
+                }
+
+                .gallery-images::-webkit-scrollbar {
+                    display: none; /* Ẩn scrollbar trên webkit browsers */
+                }
+
+                .scroll-indicator {
+                    position: absolute;
+                    bottom: 5px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background: rgba(0, 0, 0, 0.7);
+                    color: white;
+                    padding: 5px 12px;
+                    border-radius: 15px;
+                    font-size: 12px;
+                    font-weight: 500;
+                    opacity: 0.8;
+                    z-index: 10;
+                    pointer-events: none;
+                    animation: fadeInOut 3s infinite;
+                }
+
+                @keyframes fadeInOut {
+                    0%, 100% { opacity: 0.4; }
+                    50% { opacity: 0.9; }
                 }
 
                 .gallery-item {
                     position: relative;
                     height: 100%;
-                    flex: 0 0 3.55%;
+                    flex: 0 0 ${itemWidth}%;
                     transition: flex 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
                     overflow: hidden;
                     min-width: 0;
@@ -262,7 +331,7 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
                 }
 
                 .gallery-images:hover .gallery-item:not(:hover) {
-                    flex: 0 0 3.55% !important;
+                    flex: 0 0 ${itemWidth}% !important;
                     opacity: 0.5;
                 }
 
@@ -325,19 +394,34 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
                     
                     .gallery-frame {
                         border-radius: 8px;
+                        padding-top: 50%; /* Tăng chiều cao trên mobile */
                     }
                     
                     .gallery-item {
                         border-radius: 6px;
+                        flex: 0 0 ${mobileItemWidth}% !important;
                     }
                     
-                    .gallery-item:hover {
+                    .gallery-item:hover,
+                    .gallery-item.active {
+                        flex: 0 0 ${galleryItems && galleryItems.length <= 3 ? 70 : 65}% !important;
                         border-radius: 8px;
+                    }
+
+                    .gallery-images:hover .gallery-item:not(:hover) {
+                        flex: 0 0 ${mobileItemWidth}% !important;
                     }
 
                     .arrow {
                         font-size: 30px;
                     }
+                    
+                    ${galleryItems && galleryItems.length > 30 ? `
+                    .gallery-images {
+                        overflow-x: scroll;
+                        scrollbar-width: thin;
+                    }
+                    ` : ''}
                 }
             `}</style>
             
@@ -380,6 +464,12 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
                             </div>
                         ))}
                     </div>
+                    {/* Scroll indicator for many images */}
+                    {galleryItems && galleryItems.length > 20 && (
+                        <div className="scroll-indicator">
+                            <span>← Scroll to explore all {galleryItems.length} images →</span>
+                        </div>
+                    )}
                 </div>
                 <div className="arrow-container">
                     <div className="arrow">→</div>
