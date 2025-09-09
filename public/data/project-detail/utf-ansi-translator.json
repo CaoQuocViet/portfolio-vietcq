@@ -1,0 +1,67 @@
+{
+  "id": "utf-ansi-translator",
+  "name": "UTF-ANSI Translator",
+  "tagline": "Vietnamese Diacritic Restoration System with Machine Learning",
+  "description": "A comprehensive Vietnamese text processing system that converts between UTF-8 and ANSI encodings with intelligent diacritic restoration. Features a custom transformer model for Vietnamese accent prediction, microservice architecture, and a web-based interface for seamless text conversion and file processing.",
+  
+  "timeline": {
+    "startDate": "16/04/2025",
+    "endDate": "20/04/2025", 
+    "status": "Completed"
+  },
+  
+  "role": {
+    "position": "NLP Engineer & Full-stack Developer",
+    "responsibilities": [
+      "Developed custom transformer model for Vietnamese diacritic restoration using PyTorch",
+      "Built dual-service architecture with Model Service and Web Interface components",
+      "Implemented comprehensive character mapping system for Vietnamese language processing",
+      "Created Flask web application with file upload and real-time text conversion",
+      "Developed automated startup scripts with batch files for Windows deployment"
+    ]
+  },
+  
+  "technologies": {
+    "ml_framework": ["PyTorch", "Transformers", "Hugging Face", "AutoTokenizer"],
+    "backend": ["Python", "Flask", "REST API", "Microservices"],
+    "frontend": ["HTML", "CSS", "JavaScript", "Flask Templates"],
+    "nlp": ["Token Classification", "Vietnamese NLP", "Character Encoding", "Text Processing"],
+    "deployment": ["Windows Batch Scripts", "Multi-service Architecture", "Local Server"],
+    "data_processing": ["UTF-8", "ANSI Encoding", "File Processing", "Text Normalization"]
+  },
+  
+  "features": [
+    "Custom transformer model with 528 Vietnamese accent classes for precise diacritic restoration",
+    "Bidirectional conversion between UTF-8 and ANSI encodings with character mapping",
+    "Microservice architecture with separate Model Service on port 5001 and Web Interface on port 5000",
+    "Web-based interface supporting both text input and file upload with download functionality",
+    "Comprehensive Vietnamese character mapping preserving text structure and formatting",
+    "Real-time text processing with GPU acceleration support for faster inference"
+  ],
+  
+  "achievements": {
+    "metrics": [
+      "Supports 528 distinct Vietnamese accent classification classes",
+      "Processes text files up to 5MB with preserved formatting and line breaks",
+      "Achieves high accuracy diacritic restoration using token classification approach",
+      "Handles complete Vietnamese character set including complex vowel combinations",
+      "Provides seamless conversion between UTF-8 and ANSI encoding standards"
+    ],
+    "highlights": [
+      "Successfully trained custom transformer model for Vietnamese language processing",
+      "Implemented robust microservice architecture with independent Model and Web services",
+      "Built comprehensive character mapping system covering all Vietnamese diacritics",
+      "Created user-friendly web interface with file processing capabilities"
+    ]
+  },
+  
+  "links": {
+    "live": "",
+    "github": "https://github.com/caoquocviet/UTF-ANSI-Translator"
+  },
+  
+  "color": {
+    "primary": "teal",
+    "gradient": "from-teal-500 via-green-500 to-blue-500"
+  }
+}
