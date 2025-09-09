@@ -85,7 +85,7 @@ const ClockWidget = ({ theme }) => {
                         x1="50"
                         y1="50"
                         x2="50"
-                        y2="30"
+                        y2="25"
                         stroke={theme === 'dark' ? '#60a5fa' : '#3b82f6'}
                         strokeWidth="1.5"
                         strokeLinecap="round"
@@ -98,7 +98,7 @@ const ClockWidget = ({ theme }) => {
                         x1="50"
                         y1="50"
                         x2="50"
-                        y2="35"
+                        y2="30"
                         stroke={theme === 'dark' ? '#ffffff' : '#000000'}
                         strokeWidth="3"
                         strokeLinecap="round"
@@ -111,7 +111,7 @@ const ClockWidget = ({ theme }) => {
                         x1="50"
                         y1="50"
                         x2="50"
-                        y2="25"
+                        y2="20"
                         stroke={theme === 'dark' ? '#ffffff' : '#000000'}
                         strokeWidth="2"
                         strokeLinecap="round"
@@ -124,8 +124,8 @@ const ClockWidget = ({ theme }) => {
                         x1="50"
                         y1="50"
                         x2="50"
-                        y2="20"
-                        stroke={theme === 'dark' ? '#f87171' : '#dc2626'}
+                        y2="15"
+                        stroke={theme === 'dark' ? '#979400ff' : '#fffb00ff'}
                         strokeWidth="1"
                         strokeLinecap="round"
                         transform={`rotate(${secondAngle} 50 50)`}
@@ -136,8 +136,8 @@ const ClockWidget = ({ theme }) => {
                     <circle
                         cx="50"
                         cy="50"
-                        r="1.5"
-                        fill={theme === 'dark' ? '#ffffff' : '#000000'}
+                        r="2.5"
+                        fill={theme === 'dark' ? '#ffffffff' : '#000000'}
                     />
                 </svg>
             </div>

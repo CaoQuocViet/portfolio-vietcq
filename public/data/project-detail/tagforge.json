@@ -1,0 +1,68 @@
+{
+  "id": "tagforge",
+  "name": "TagForge",
+  "tagline": "AI-Powered Icon Metadata Generation Pipeline at Scale",
+  "description": "A high-performance AI pipeline for automated metadata generation from icon sets, capable of processing millions of SVG/PNG images in hours. Leverages CLIP Interrogator, BLIP, and KeyBERT models to generate intelligent tags, descriptions, and metadata for digital asset platforms like Canva. Features advanced SVG colorization, batch processing, and enterprise-scale automation.",
+  
+  "timeline": {
+    "startDate": "21/05/2025",
+    "endDate": "22/05/2025",
+    "status": "In Production"
+  },
+  
+  "role": {
+    "position": "AI Engineer & Python Developer",
+    "responsibilities": [
+      "Architected modular AI pipeline with CLIP Interrogator and BLIP vision models",
+      "Implemented high-performance batch processing system for millions of images",
+      "Developed intelligent SVG colorization engine with automated palette generation",
+      "Built comprehensive metadata export system with CSV formatting for digital platforms",
+      "Optimized GPU utilization and memory management for large-scale processing"
+    ]
+  },
+  
+  "technologies": {
+    "ai_models": ["CLIP Interrogator", "BLIP", "KeyBERT", "Sentence Transformers", "NLTK"],
+    "computer_vision": ["PyTorch", "Torchvision", "Pillow", "OpenCV"],
+    "nlp": ["Transformers", "Hugging Face", "BERT", "Word2Vec", "Gensim"],
+    "backend": ["Python", "NumPy", "Pandas", "SciPy", "scikit-learn"],
+    "file_processing": ["SVG Parsing", "XML ElementTree", "ZIP Extraction", "CSV Export"],
+    "optimization": ["GPU Acceleration", "CUDA", "Batch Processing", "Multiprocessing"]
+  },
+  
+  "features": [
+    "Automated tag generation with 25+ intelligent keywords per image using KeyBERT",
+    "Advanced SVG colorization with intelligent palette detection and color replacement",
+    "High-performance batch processing capable of handling millions of images",
+    "Multi-modal AI description generation combining CLIP and BLIP models",
+    "Intelligent file organization with automated ZIP extraction and directory management",
+    "GPU-accelerated processing with automatic fallback to CPU for compatibility",
+    "Comprehensive metadata export in CSV format optimized for digital asset platforms"
+  ],
+  
+  "achievements": {
+    "metrics": [
+      "Processes millions of icons with sub-second per-image processing time",
+      "Generates 25+ contextually relevant tags per image with 90%+ accuracy",
+      "Supports GPU acceleration for 10x faster processing on compatible hardware",
+      "Automated SVG colorization with 50+ predefined color palettes",
+      "Handles enterprise-scale datasets with robust error handling and logging"
+    ],
+    "highlights": [
+      "Built production-ready AI pipeline capable of processing terabytes of image data",
+      "Implemented intelligent caching system reducing redundant model inference by 60%",
+      "Achieved scalable architecture supporting both local and cloud deployment",
+      "Created comprehensive automation reducing manual metadata creation from days to hours"
+    ]
+  },
+  
+  "links": {
+    "live": "",
+    "github": "https://github.com/caoquocviet/TagForge"
+  },
+  
+  "color": {
+    "primary": "purple",
+    "gradient": "from-purple-500 via-pink-500 to-red-500"
+  }
+}
