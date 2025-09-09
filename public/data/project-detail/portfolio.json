@@ -1,0 +1,69 @@
+{
+  "id": "portfolio",
+  "name": "Portfolio Website",
+  "tagline": "Personal Portfolio & Showcase Platform",
+  "description": "A modern, responsive portfolio website built with Next.js 15 and React 19, featuring dynamic project galleries, theme switching, interactive 3D elements, and comprehensive project showcases. The platform includes automated gallery management, responsive design, and advanced UI components for optimal user experience.",
+  
+  "timeline": {
+    "startDate": "08/2024",
+    "endDate": "Present",
+    "status": "Active Development"
+  },
+  
+  "role": {
+    "position": "Full-stack Developer (Personal Project)",
+    "responsibilities": [
+      "Designed and developed responsive portfolio website with modern UI/UX",
+      "Built dynamic project gallery system with auto-scrolling and responsive layouts",
+      "Implemented theme switching system with dark/light mode support",
+      "Created interactive 3D elements using Three.js and React Three Fiber",
+      "Developed automated project card system with dynamic sizing",
+      "Built comprehensive project showcase pages with detailed information",
+      "Implemented responsive navigation with animated dock components"
+    ]
+  },
+  
+  "technologies": {
+    "frontend": ["Next.js 15", "React 19", "Tailwind CSS", "Framer Motion", "Three.js", "React Three Fiber"],
+    "ui": ["Heroicons", "Lucide React", "React Icons", "Rough Notation", "CVA"],
+    "styling": ["Tailwind CSS", "PostCSS", "Tailwind Animate", "CSS-in-JS"],
+    "tools": ["Next Themes", "Lodash", "Motion"],
+    "deployment": ["Vercel", "Git", "GitHub"]
+  },
+  
+  "features": [
+    "Dynamic Gallery System with responsive layout that adapts to any number of images",
+    "Project Cards with Smart Positioning and automatic title fetching from JSON",
+    "Advanced Theme System with seamless dark/light mode switching",
+    "Interactive 3D Elements for enhanced visual experience",
+    "Responsive Design that works perfectly across all device sizes",
+    "Animated UI Components using Framer Motion for enhanced user experience"
+  ],
+  
+  "achievements": {
+    "metrics": [
+      "2000+ lines of optimized React and Next.js code",
+      "20+ reusable components with comprehensive styling",
+      "100% responsive design across all device sizes",
+      "Mathematical algorithms for dynamic image gallery sizing",
+      "Performance-optimized with Next.js 15 and React 19 features"
+    ],
+    "highlights": [
+      "Built mathematical algorithms for optimal image display handling 1-100+ images",
+      "Implemented advanced CSS-in-JS styling with theme-aware components",
+      "Created automated project management through file system-based API routes",
+      "Developed project card system with automatic title fetching and formatting",
+      "Designed responsive layout system handling extreme edge cases"
+    ]
+  },
+  
+  "links": {
+    "live": "https://portfolio-vietcq.vercel.app",
+    "github": "https://github.com/CaoQuocViet/portfolio-vietcq"
+  },
+  
+  "color": {
+    "primary": "purple",
+    "gradient": "from-purple-500 via-blue-500 to-indigo-500"
+  }
+}
