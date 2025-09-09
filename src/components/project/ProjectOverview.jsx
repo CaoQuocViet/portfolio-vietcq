@@ -32,13 +32,13 @@ export default function ProjectOverview({ theme, projectData, projectId }) {
                     </h1>
                     
                     <p className={`text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed ${
-                        theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                        theme === 'dark' ? 'text-gray-300' : 'text-white'
                     }`} style={{ animation: 'fadeInUp 1s ease-out 0.6s both' }}>
                         {projectData.tagline}
                     </p>
                     
                     <p className={`text-lg mb-8 max-w-4xl mx-auto leading-relaxed ${
-                        theme === 'dark' ? 'text-gray-400' : 'text-gray-700'
+                        theme === 'dark' ? 'text-gray-400' : 'text-white'
                     }`} style={{ animation: 'fadeInUp 1s ease-out 0.8s both' }}>
                         {projectData.description}
                     </p>

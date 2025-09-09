@@ -65,7 +65,7 @@ const ClockWidget = ({ theme }) => {
                 {/* Original SVG Clock Face Background */}
                 <div 
                     className={`absolute inset-1 rounded-full ${
-                        theme === 'dark' ? 'opacity-50' : 'opacity-70'
+                        theme === 'dark' ? 'opacity-80' : 'opacity-90'
                     }`}
                     style={{
                         backgroundImage: 'url(/img/trong-dong-dong-son.svg)',

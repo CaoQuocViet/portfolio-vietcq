@@ -15,7 +15,7 @@ const TrongDongBackground = ({ theme }) => {
                     filter: theme === 'dark' 
                         ? 'brightness(0.7) saturate(1.5) hue-rotate(35deg)' 
                         : 'brightness(1) saturate(1.2) hue-rotate(20deg)',
-                    opacity: 0.3
+                    opacity: theme === 'dark' ? 0.3 : 0.7
                 }}
             />
 
@@ -23,7 +23,7 @@ const TrongDongBackground = ({ theme }) => {
             <style jsx>{`
                 @keyframes clockwiseRotate {
                     0% { transform: rotate(0deg); }
-                    100% { transform: rotate(360deg); }
+                    100% { transform: rotate(-360deg); }
                 }
             `}</style>
         </div>
