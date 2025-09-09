@@ -19,9 +19,9 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
     // Use hook to fetch project images
     const { images: galleryItems, loading, error } = useGallery(projectFilter)
     
-    // Calculate dynamic width based on number of images and container
+    // Calculate dynamic width based on number of images - always fill 100% container
     const calculateItemWidth = (totalImages) => {
-        if (!totalImages || totalImages === 0) return 3.55
+        if (!totalImages || totalImages === 0) return 0
         
         if (totalImages === 1) return 100 // Chỉ có 1 ảnh thì full width
         
@@ -29,33 +29,8 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
         const remainingWidth = 100 - activeItemWidth // 43.75% cho tất cả ảnh còn lại
         const inactiveItemCount = totalImages - 1
         
-        // Tính toán width cơ bản cho mỗi ảnh inactive
-        let baseWidth = remainingWidth / inactiveItemCount
-        
-        // Xử lý các trường hợp đặc biệt
-        if (totalImages === 2) {
-            // 2 ảnh: chia đều không gian còn lại
-            return remainingWidth
-        } else if (totalImages === 3) {
-            // 3 ảnh: mỗi ảnh nhỏ chiếm ~22%
-            return Math.max(20, baseWidth)
-        } else if (totalImages <= 10) {
-            // 4-10 ảnh: giữ kích thước hợp lý
-            return Math.max(4, Math.min(12, baseWidth))
-        } else if (totalImages <= 30) {
-            // 11-30 ảnh: thu nhỏ dần
-            return Math.max(1.5, baseWidth)
-        } else if (totalImages <= 50) {
-            // 31-50 ảnh: thu nhỏ mạnh hơn
-            return Math.max(0.8, baseWidth)
-        } else if (totalImages <= 100) {
-            // 51-100 ảnh: thu nhỏ rất mạnh
-            return Math.max(0.4, baseWidth)
-        } else {
-            // >100 ảnh: KHÔNG giới hạn tối thiểu, có thể thu về gần 0%
-            // Ảnh sẽ như những đường line thẳng đứng
-            return Math.max(0.1, baseWidth)
-        }
+        // Chia đều phần còn lại cho các ảnh inactive để luôn lấp đầy 100% box
+        return remainingWidth / inactiveItemCount
     }
     
     const itemWidth = calculateItemWidth(galleryItems?.length || 0)
