@@ -1,0 +1,71 @@
+{
+  "id": "stormpc",
+  "name": "StormPC",
+  "tagline": "Modern WinUI Laptop Store Management System",
+  "description": "A comprehensive desktop application for laptop store management built with WinUI 3 and .NET 8. Features secure authentication, inventory management, order processing, customer management, and advanced reporting with dark mode support.",
+  
+  "timeline": {
+    "startDate": "03/2024",
+    "endDate": "06/2024",
+    "status": "Completed"
+  },
+  
+  "role": {
+    "position": "Full-stack Developer",
+    "responsibilities": [
+      "Architected WinUI 3 application with MVVM pattern using CommunityToolkit.Mvvm",
+      "Developed Entity Framework Core with PostgreSQL database integration",
+      "Implemented secure authentication system with Argon2id password encryption",
+      "Built comprehensive inventory management system for laptop products",
+      "Created advanced reporting system with charts using LiveCharts2",
+      "Designed responsive UI with dark mode support and modern WinUI controls"
+    ]
+  },
+  
+  "technologies": {
+    "frontend": ["WinUI 3", "XAML", "CommunityToolkit.Mvvm", "LiveChartsCore.SkiaSharpView"],
+    "backend": [".NET 8", "Entity Framework Core 8.0", "Npgsql", "Konscious.Security.Cryptography.Argon2"],
+    "database": ["PostgreSQL 16", "Sequelize CLI", "Docker"],
+    "ui_components": ["CommunityToolkit.WinUI.UI.Controls", "WinUIEx", "Microsoft.Xaml.Behaviors"],
+    "deployment": ["Docker Compose", "Windows App SDK", "MSIX Packaging"],
+    "development": ["Visual Studio 2022", "Windows 10/11", "PowerShell"]
+  },
+  
+  "features": [
+    "Secure login system with Argon2id encryption and backup key recovery",
+    "Comprehensive laptop inventory management with detailed specifications",
+    "Advanced order management and payment processing system",
+    "Multi-dimensional reporting with revenue, inventory, and customer analytics",
+    "Real-time activity logging for all user interactions",
+    "Advanced search functionality with multi-criteria filtering",
+    "Data backup and restore capabilities",
+    "Responsive dark mode interface with modern WinUI design"
+  ],
+  
+  "achievements": {
+    "metrics": [
+      "Complete CRUD operations for laptops, categories, brands, and specifications",
+      "Comprehensive order processing system with status tracking",
+      "Advanced reporting dashboard with visual charts and data tables",
+      "Multi-user activity logging and audit trail system",
+      "Docker-containerized PostgreSQL database deployment"
+    ],
+    "highlights": [
+      "Built scalable WinUI 3 desktop application with modern MVVM architecture",
+      "Implemented enterprise-level security with Argon2id password hashing",
+      "Created comprehensive database schema with 12+ related entities",
+      "Developed advanced reporting system with LiveCharts2 integration",
+      "Achieved responsive UI design with full dark mode support"
+    ]
+  },
+  
+  "links": {
+    "live": "",
+    "github": "https://github.com/CaoQuocViet/StormPC"
+  },
+  
+  "color": {
+    "primary": "blue",
+    "gradient": "from-blue-600 via-indigo-600 to-purple-600"
+  }
+}
