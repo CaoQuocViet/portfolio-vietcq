@@ -1,0 +1,67 @@
+{
+  "id": "abap-rap-business-analytics",
+  "name": "SAP ABAP RAP Business Analytics Dashboard",
+  "tagline": "Enterprise Sales Analytics Platform with Docker-containerized SAP ABAP",
+  "description": "A comprehensive business analytics platform built with SAP ABAP RESTful Application Programming (RAP) framework, featuring Docker containerization, sales order management, customer segmentation analysis, and automated data processing. Demonstrates enterprise-grade SAP development with Python automation and modern deployment practices.",
+  
+  "timeline": {
+    "startDate": "12/2024",
+    "endDate": "12/2024", 
+    "status": "Completed"
+  },
+  
+  "role": {
+    "position": "SAP ABAP Developer & DevOps Engineer",
+    "responsibilities": [
+      "Designed Docker containerization strategy for SAP ABAP Trial system deployment",
+      "Architected comprehensive sales orders database with 20+ business fields",
+      "Developed advanced CDS Views with business analytics and customer insights",
+      "Built Python automation pipeline for CSV data processing and ABAP code generation",
+      "Implemented Eclipse ADT integration with containerized SAP Application Server"
+    ]
+  },
+  
+  "technologies": {
+    "containerization": ["Docker", "SAP ABAP Trial Container", "Container Registry"],
+    "backend": ["ABAP", "ABAP RAP Framework", "CDS Views", "OData Services"],
+    "database": ["SAP HANA", "Sales Orders Table", "Customer Data Management"],
+    "automation": ["Python", "CSV Processing", "ABAP Code Generation", "Data Import Pipeline"],
+    "frontend": ["SAP Fiori", "Business Analytics UI", "Field Groups", "Chart Visualizations"],
+    "development": ["Eclipse ADT", "Visual Studio Code", "Git", "SAP Development Tools"]
+  },
+  
+  "features": [
+    "Docker-containerized SAP ABAP development environment with AH4 license integration",
+    "Comprehensive sales order management system with customer segmentation",
+    "Python automation scripts for CSV data import and ABAP class generation",
+    "Advanced CDS Views with business intelligence and analytics capabilities",
+    "Eclipse ADT integration with SAP Application Server connection management",
+    "Business analytics dashboard with sales insights and customer data visualization"
+  ],
+  
+  "achievements": {
+    "metrics": [
+      "Successfully containerized SAP ABAP Trial system with Docker deployment",
+      "Built 1 comprehensive sales orders table with 20+ business-critical fields",
+      "Implemented 1 advanced CDS View with customer analytics and field groupings",
+      "Created 2 automated Python scripts for data processing and code generation",
+      "Supports complete sales order lifecycle from data import to business analytics"
+    ],
+    "highlights": [
+      "Pioneered Docker containerization for SAP ABAP development environment",
+      "Built end-to-end automation pipeline from CSV data to deployed ABAP services",
+      "Implemented comprehensive business analytics with customer segmentation insights",
+      "Successfully integrated Eclipse ADT with containerized SAP environment"
+    ]
+  },
+  
+  "links": {
+    "live": "",
+    "github": "https://github.com/caoquocviet/abap-rap-business-analytics"
+  },
+  
+  "color": {
+    "primary": "emerald",
+    "gradient": "from-emerald-500 via-teal-500 to-cyan-500"
+  }
+}
