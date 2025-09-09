@@ -44,10 +44,17 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
             return Math.max(4, Math.min(12, baseWidth))
         } else if (totalImages <= 30) {
             // 11-30 ảnh: thu nhỏ dần
-            return Math.max(1.8, Math.min(4, baseWidth))
+            return Math.max(1.5, baseWidth)
+        } else if (totalImages <= 50) {
+            // 31-50 ảnh: thu nhỏ mạnh hơn
+            return Math.max(0.8, baseWidth)
+        } else if (totalImages <= 100) {
+            // 51-100 ảnh: thu nhỏ rất mạnh
+            return Math.max(0.4, baseWidth)
         } else {
-            // >30 ảnh: thu nhỏ tối đa nhưng vẫn nhìn thấy được
-            return Math.max(0.8, Math.min(1.8, baseWidth))
+            // >100 ảnh: KHÔNG giới hạn tối thiểu, có thể thu về gần 0%
+            // Ảnh sẽ như những đường line thẳng đứng
+            return Math.max(0.1, baseWidth)
         }
     }
     
@@ -55,7 +62,7 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
     
     // Responsive breakpoint cho mobile
     const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768
-    const mobileItemWidth = isMobile ? Math.max(itemWidth * 1.5, 5) : itemWidth
+    const mobileItemWidth = isMobile ? Math.max(itemWidth * 1.5, 3) : itemWidth
     
     useEffect(() => {
         setMounted(true)
@@ -304,12 +311,13 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
                     flex: 0 0 ${itemWidth}%;
                     transition: flex 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
                     overflow: hidden;
-                    min-width: 0;
-                    border-radius: 8px;
-                    border: 2px solid ${theme === 'dark' ? 'rgba(255, 255, 255, 0.2)' : 'rgba(255, 255, 255, 0.1)'};
+                    min-width: ${itemWidth < 1 ? '2px' : '0'}; /* Đảm bảo vẫn nhìn thấy như line khi rất nhỏ */
+                    border-radius: ${itemWidth < 1 ? '0px' : '8px'}; /* Bỏ border radius khi thành line */
+                    border: ${itemWidth < 1 ? '1px' : '2px'} solid ${theme === 'dark' ? 'rgba(255, 255, 255, 0.2)' : 'rgba(255, 255, 255, 0.1)'};
                     box-shadow: ${theme === 'dark' ? '0 2px 4px rgba(0, 0, 0, 0.6)' : '0 2px 4px rgba(0, 0, 0, 0.2)'};
                     cursor: pointer;
-                    opacity: 0.5;
+                    opacity: ${itemWidth < 1 ? '0.7' : '0.5'};
+                    ${itemWidth < 1 ? 'background: linear-gradient(180deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 100%);' : ''}
                 }
 
                 .gallery-item.active {
@@ -465,7 +473,12 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
                         ))}
                     </div>
                     {/* Scroll indicator for many images */}
-                    {galleryItems && galleryItems.length > 20 && (
+                    {galleryItems && galleryItems.length > 50 && (
+                        <div className="scroll-indicator">
+                            <span>← {galleryItems.length} images - Ultra compact view →</span>
+                        </div>
+                    )}
+                    {galleryItems && galleryItems.length > 20 && galleryItems.length <= 50 && (
                         <div className="scroll-indicator">
                             <span>← Scroll to explore all {galleryItems.length} images →</span>
                         </div>
