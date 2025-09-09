@@ -1,0 +1,65 @@
+{
+  "id": "abap-learning-practice",
+  "name": "ABAP Learning Practice",
+  "tagline": "Comprehensive ABAP Programming Knowledge Repository",
+  "description": "A comprehensive learning repository covering ABAP programming fundamentals to advanced topics, featuring clean code practices, extensive examples, interview preparation materials, and real-world coding patterns. Built as a structured educational resource for SAP ABAP developers.",
+  
+  "timeline": {
+    "startDate": "09/2024",
+    "endDate": "Present",
+    "status": "Active Learning"
+  },
+  
+  "role": {
+    "position": "ABAP Developer & Content Creator",
+    "responsibilities": [
+      "Developed comprehensive ABAP syntax examples from basic to advanced levels",
+      "Implemented clean ABAP coding practices and best practices documentation",
+      "Created structured learning modules covering 19+ ABAP topics",
+      "Built interview preparation materials for major consulting companies",
+      "Documented advanced topics including OOP, SQL, and modern ABAP features"
+    ]
+  },
+  
+  "technologies": {
+    "frontend": [],
+    "backend": ["ABAP", "ABAP Objects", "OpenSQL", "Native SQL"],
+    "database": ["SAP HANA", "Data Dictionary", "Internal Tables"],
+    "ai_integration": [],
+    "deployment": [],
+    "testing": ["ABAP Unit Tests", "Code Inspector"]
+  },
+  
+  "features": [
+    "Comprehensive ABAP syntax coverage from Hello World to advanced OOP concepts",
+    "Clean ABAP best practices implementation following SAP style guidelines", 
+    "Structured learning path with 19 basic syntax modules and 24 advanced topics",
+    "Interview preparation materials for top consulting companies",
+    "Real-world code examples with Vietnamese explanations and English code"
+  ],
+  
+  "achievements": {
+    "metrics": [
+      "Covers 43+ ABAP programming topics with practical examples",
+      "Includes interview materials for 10+ major consulting companies",
+      "Contains 100+ ABAP code examples and demonstrations",
+      "Implements SOLID principles and GRASP design patterns in ABAP context"
+    ],
+    "highlights": [
+      "Built comprehensive ABAP learning repository with structured progression",
+      "Implemented clean code practices following SAP official style guidelines",
+      "Created bilingual documentation approach (Vietnamese explanations, English code)",
+      "Developed extensive reference materials including system tables and transaction codes"
+    ]
+  },
+  
+  "links": {
+    "live": "",
+    "github": "https://github.com/caoquocviet/abap-learning-practice"
+  },
+  
+  "color": {
+    "primary": "green",
+    "gradient": "from-green-500 via-teal-500 to-emerald-500"
+  }
+}
