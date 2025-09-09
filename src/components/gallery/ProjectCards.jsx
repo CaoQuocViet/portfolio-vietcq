@@ -6,21 +6,43 @@ export default function ProjectCards({ projects }) {
 
     if (!projects || projects.length === 0) return null
 
+    // Create 3 copies for seamless infinite scroll
+    const tripleProjects = [...projects, ...projects, ...projects];
+
     return (
         <>
             <style jsx>{`
-                .project-cards-container {
+                @keyframes infiniteScroll {
+                    0% {
+                        transform: translateX(0);
+                    }
+                    100% {
+                        transform: translateX(-33.333%);
+                    }
+                }
+
+                .scroll-container {
+                    position: relative;
+                    width: 100%;
+                    height: 70px;
+                    overflow: hidden;
+                    margin-bottom: 20px;
+                }
+
+                .scroll-track {
                     display: flex;
-                    flex-wrap: wrap;
-                    gap: 15px;
-                    margin: 0; /* No margin to not affect layout */
-                    justify-content: center;
-                    align-items: center;
-                    padding: 0 20px;
+                    gap: 20px;
+                    animation: infiniteScroll 30s linear infinite;
+                    will-change: transform;
+                    width: fit-content;
+                }
+
+                .scroll-track:hover {
+                    animation-play-state: paused;
                 }
 
                 .project-card {
-                    height: 60px; /* Same as dock height */
+                    height: 60px;
                     padding: 0 20px;
                     border-radius: 12px;
                     display: flex;
@@ -33,8 +55,8 @@ export default function ProjectCards({ projects }) {
                     position: relative;
                     overflow: hidden;
                     min-width: fit-content;
+                    flex-shrink: 0;
                     
-                    /* Beautiful gradient background using system colors */
                     background: ${theme === 'dark' 
                         ? 'linear-gradient(135deg, #1f2937, #374151, #4b5563)'
                         : 'linear-gradient(135deg, #0026bd, #b9a700, #460096)'
@@ -44,7 +66,6 @@ export default function ProjectCards({ projects }) {
                 .project-card:hover {
                     transform: translateY(-3px) scale(1.05);
                     border-color: ${theme === 'dark' ? 'rgba(255, 255, 255, 0.4)' : 'rgba(255, 255, 255, 0.3)'};
-                    /* Removed drop shadow */
                 }
 
                 .project-card-content {
@@ -56,11 +77,8 @@ export default function ProjectCards({ projects }) {
                     font-size: 16px;
                     text-transform: uppercase;
                     letter-spacing: 1px;
-                    
-                    /* Text color */
                     color: #ffffff;
-                    
-                    /* Remove gradient text effect for simplicity */
+                    white-space: nowrap;
                 }
 
                 .project-card-count {
@@ -75,10 +93,12 @@ export default function ProjectCards({ projects }) {
                 }
 
                 @media (max-width: 768px) {
-                    .project-cards-container {
-                        gap: 10px;
-                        margin: 0; /* No margin */
-                        padding: 0 15px;
+                    .scroll-container {
+                        height: 60px;
+                    }
+                    
+                    .scroll-track {
+                        gap: 15px;
                     }
                     
                     .project-card {
@@ -98,23 +118,25 @@ export default function ProjectCards({ projects }) {
                 }
             `}</style>
             
-            <div className="project-cards-container">
-                {projects.map(project => (
-                    <div 
-                        key={project.name}
-                        className="project-card"
-                        onClick={() => {
-                            window.location.href = `/project/${project.name}`;
-                        }}
-                    >
-                        <div className="project-card-content">
-                            <span>{project.name}</span>
-                            <div className="project-card-count">
-                                {project.count}
+            <div className="scroll-container">
+                <div className="scroll-track">
+                    {tripleProjects.map((project, index) => (
+                        <div 
+                            key={`${project.name}-${index}`}
+                            className="project-card"
+                            onClick={() => {
+                                window.location.href = `/project/${project.name}`;
+                            }}
+                        >
+                            <div className="project-card-content">
+                                <span>{project.name.replace(/-/g, ' ')}</span>
+                                <div className="project-card-count">
+                                    {project.count}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
         </>
     )
