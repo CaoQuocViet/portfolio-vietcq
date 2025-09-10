@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import SocialList from "../SocialList";
-import RepositoriesList from "../RepositoriesList";
-import ProjectsList from "../ProjectsList";
+import SocialList from "../share/SocialList";
+import RepositoriesList from "../share/RepositoriesList";
+import ProjectsList from "../share/ProjectsList";
+import NavigationList from "../share/NavigationList";
 
 // Props: isOpen, onClose, theme, dockRect (DOMRect), logoRect (DOMRect)
 const Modal = ({ isOpen, onClose, theme, dockRect, logoRect }) => {
@@ -15,7 +16,7 @@ const Modal = ({ isOpen, onClose, theme, dockRect, logoRect }) => {
 
     const updatePosition = () => {
       const width = 480;   // giữ 1.5x
-      const height = 580;  // Tăng từ 500px lên 580px để chứa Projects section
+      const height = 680;  // Tăng từ 580px lên 680px để chứa Ideas section
       const dockTop =
         dockRect?.top ??
         (window.innerHeight - 56 /*fallback dockH*/ - 24 /*bottom-6*/);
@@ -74,9 +75,9 @@ const Modal = ({ isOpen, onClose, theme, dockRect, logoRect }) => {
         className={`fixed z-50 rounded-xl shadow-2xl transition-all duration-200 transform scale-100 animate-popover-in border ${modalBgClass}`}
         style={{
           width: 480,
-          height: 580,         // Tăng từ 500px lên 580px
+          height: 680,         // Tăng từ 580px lên 680px
           left: pos.left,
-          top: pos.top,        // luôn = dockTop - 32 - 580
+          top: pos.top,        // luôn = dockTop - 32 - 680
           boxShadow:
             theme === "dark"
               ? "0 20px 60px rgba(0,0,0,0.8), 0 8px 32px rgba(0,0,0,0.6)"
@@ -85,7 +86,7 @@ const Modal = ({ isOpen, onClose, theme, dockRect, logoRect }) => {
           overflow: "hidden",
         }}
       >
-        {/* Mũi tên trỏ xuống dock (cùng tông màu, opacity-50) */}
+        {/* Mũi tên trỏ xuống dock (cùng tông màu, opacity-50)
         <div style={{ position: "absolute", left: "50%", top: "100%", transform: "translateX(-50%)" }}>
           <svg width="32" height="16" viewBox="0 0 32 16" fill="none">
             <path
@@ -94,10 +95,16 @@ const Modal = ({ isOpen, onClose, theme, dockRect, logoRect }) => {
               stroke={theme === "dark" ? "rgba(30,58,138,0.5)" : "rgba(229,231,235,0.5)"} // blue-800/50 hoặc gray-200/50
             />
           </svg>
-        </div>
+        </div> */}
 
         {/* Content (giữ SocialList) */}
         <div className="flex flex-col p-6 h-full overflow-y-auto">
+          {/* Navigation Section */}
+          <div className="mb-6">
+            <div className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">Navigation</div>
+            <NavigationList theme={theme} />
+          </div>
+          
           {/* Connect Section */}
           <div className="mb-6">
             <div className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">Connect</div>
@@ -106,13 +113,13 @@ const Modal = ({ isOpen, onClose, theme, dockRect, logoRect }) => {
           
           {/* Repositories Section */}
           <div className="mb-6">
-            <div className="mb-6 text-2xl font-bold text-gray-900 dark:text-white">Repositories</div>
+            <div className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">Repositories</div>
             <RepositoriesList theme={theme} />
           </div>
 
-          {/* Projects Section - Đặt cuối cùng */}
+          {/* Projects Section */}
           <div className="mb-6 mt-4">
-            <div className="mb-6 text-2xl font-bold text-gray-900 dark:text-white">Projects</div>
+            <div className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">Projects</div>
             <ProjectsList theme={theme} />
           </div>
         </div>

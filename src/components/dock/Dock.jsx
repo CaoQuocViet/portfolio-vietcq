@@ -166,7 +166,7 @@ const Dock = ({ theme, setTheme, activeSection, scrollToSection, navigationItems
       >
         <div className="flex items-center justify-center">
           {navigationItems.map((item, index) => (
-            <div key={item.id} className={`flex items-center transition-all duration-300 ease-out ${hoveredItem === item.id ? "mx-4" : "mx-1.5"}`}>
+            <div key={item.id} className={`flex items-center transition-all duration-300 ease-out ${hoveredItem === item.id ? "mx-4" : "mx-2.5"}`}>
               <NavigationItem
                 item={item}
                 activeSection={activeSection}
@@ -184,7 +184,7 @@ const Dock = ({ theme, setTheme, activeSection, scrollToSection, navigationItems
             </div>
           ))}
           <div className={`w-px h-6 transition-all duration-300 ease-out ${hoveredItem === navigationItems[navigationItems.length - 1]?.id || hoveredItem === "theme" ? "mx-5" : "mx-4"} ${theme === "dark" ? "bg-gray-600/50" : "bg-gray-300/50"}`} />
-          <div className={`transition-all duration-300 ease-out ${hoveredItem === "theme" ? "mx-4" : "mx-1.5"}`}>
+          <div className={`transition-all duration-300 ease-out ${hoveredItem === "theme" ? "mx-4" : "mx-2"}`}>
             <ThemeToggle
               theme={theme}
               setTheme={setTheme}
