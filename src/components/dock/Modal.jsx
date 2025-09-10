@@ -17,26 +17,34 @@ const Modal = ({ isOpen, onClose, theme, dockRect, logoRect }) => {
     const updatePosition = () => {
       const width = 480;   // giữ 1.5x
       const height = 680;  // Tăng từ 580px lên 680px để chứa Ideas section
+      const isMobile = window.innerWidth < 640;
+      
       const dockTop =
         dockRect?.top ??
         (window.innerHeight - 56 /*fallback dockH*/ - 24 /*bottom-6*/);
 
-      // Căn giữa theo logo Vietcq thay vì toàn bộ dock
-      let left;
-      if (logoRect) {
-        // Căn giữa theo logo Vietcq
-        left = logoRect.left + (logoRect.width / 2) - (width / 2);
-      } else {
-        // Fallback: căn giữa màn hình
-        left = (window.innerWidth - width) / 2;
-      }
+      let left, top;
       
-      // Đảm bảo modal không bị tràn ra ngoài màn hình
-      left = Math.max(8, Math.min(left, window.innerWidth - width - 8));
+      if (isMobile) {
+        // Mobile: center horizontally, vertically
+        left = (window.innerWidth - Math.min(320, window.innerWidth - 32)) / 2;
+        top = (window.innerHeight - Math.min(500, window.innerHeight - 120)) / 2;
+      } else {
+        // Desktop/Tablet: keep existing logic
+        if (logoRect) {
+          // Căn giữa theo logo Vietcq
+          left = logoRect.left + (logoRect.width / 2) - (width / 2);
+        } else {
+          // Fallback: căn giữa màn hình
+          left = (window.innerWidth - width) / 2;
+        }
+        
+        // Đảm bảo modal không bị tràn ra ngoài màn hình
+        left = Math.max(8, Math.min(left, window.innerWidth - width - 8));
+        top = dockTop - 32 /*gap cố định*/ - height;
+      }
 
-      const top = dockTop - 32 /*gap cố định*/ - height;
-
-      setPos({ top, left, originX: 50, originY: 100 });
+      setPos({ top, left, originX: 50, originY: isMobile ? 50 : 100 });
     };
 
     requestAnimationFrame(updatePosition);
@@ -72,12 +80,13 @@ const Modal = ({ isOpen, onClose, theme, dockRect, logoRect }) => {
       <div
         ref={modalRef}
         tabIndex={-1}
-        className={`fixed z-50 rounded-xl shadow-2xl transition-all duration-200 transform scale-100 animate-popover-in border ${modalBgClass}`}
+        className={`fixed z-50 rounded-xl shadow-2xl transition-all duration-200 transform scale-100 animate-popover-in border ${modalBgClass}
+          w-80 h-[500px] max-w-[calc(100vw-2rem)] max-h-[calc(100vh-8rem)]
+          sm:w-[480px] sm:h-[680px] sm:max-w-none sm:max-h-none
+        `}
         style={{
-          width: 480,
-          height: 680,         // Tăng từ 580px lên 680px
           left: pos.left,
-          top: pos.top,        // luôn = dockTop - 32 - 680
+          top: pos.top,
           boxShadow:
             theme === "dark"
               ? "0 20px 60px rgba(0,0,0,0.8), 0 8px 32px rgba(0,0,0,0.6)"
@@ -97,29 +106,29 @@ const Modal = ({ isOpen, onClose, theme, dockRect, logoRect }) => {
           </svg>
         </div> */}
 
-        {/* Content (giữ SocialList) */}
-        <div className="flex flex-col p-6 h-full overflow-y-auto">
+        {/* Content responsive */}
+        <div className="flex flex-col p-4 sm:p-6 h-full overflow-y-auto">
           {/* Navigation Section */}
-          <div className="mb-6">
-            <div className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">Navigation</div>
+          <div className="mb-4 sm:mb-6">
+            <div className="mb-3 sm:mb-4 text-lg sm:text-2xl font-bold text-gray-900 dark:text-white">Navigation</div>
             <NavigationList theme={theme} />
           </div>
           
           {/* Connect Section */}
-          <div className="mb-6">
-            <div className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">Connect</div>
+          <div className="mb-4 sm:mb-6">
+            <div className="mb-3 sm:mb-4 text-lg sm:text-2xl font-bold text-gray-900 dark:text-white">Connect</div>
             <SocialList theme={theme} />
           </div>
           
           {/* Repositories Section */}
-          <div className="mb-6">
-            <div className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">Repositories</div>
+          <div className="mb-4 sm:mb-6">
+            <div className="mb-3 sm:mb-4 text-lg sm:text-2xl font-bold text-gray-900 dark:text-white">Repositories</div>
             <RepositoriesList theme={theme} />
           </div>
 
           {/* Projects Section */}
-          <div className="mb-6 mt-4">
-            <div className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">Projects</div>
+          <div className="mb-4 sm:mb-6 mt-2 sm:mt-4">
+            <div className="mb-3 sm:mb-4 text-lg sm:text-2xl font-bold text-gray-900 dark:text-white">Projects</div>
             <ProjectsList theme={theme} />
           </div>
         </div>
