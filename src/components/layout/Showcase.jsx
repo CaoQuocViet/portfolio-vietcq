@@ -28,15 +28,15 @@ const Showcase = () => {
                         ? 'bg-black/20 border-white/10 shadow-black/30' 
                         : 'bg-white/30 border-white/20 shadow-gray-500/20'
                 }`}>
-                    <div className="flex items-center gap-8 p-12">
-                        {/* Left: Octocat */}
-                        <div className="flex-shrink-0">
+                    <div className="flex items-center gap-4 md:gap-8 p-6 md:p-12">
+                        {/* Left: Octocat - Hidden on mobile, smaller on tablet */}
+                        <div className="hidden sm:block flex-shrink-0">
                             <Image
                                 src="/img/octocat.png"
                                 alt="GitHub Octocat"
                                 width={300}
                                 height={300}
-                                className="object-contain"
+                                className="object-contain w-32 h-32 md:w-56 md:h-56 lg:w-72 lg:h-72"
                                 priority
                             />
                         </div>

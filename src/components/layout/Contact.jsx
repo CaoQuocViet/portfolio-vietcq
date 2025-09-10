@@ -45,14 +45,14 @@ export default function Contact({ theme }) {
                 </div>
 
                 <div className="max-w-6xl mx-auto">
-                    <div className="grid md:grid-cols-2 gap-16 items-center">
+                    <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center">
                         {/* ======= ORBITING ICONS ======= */}
                         <div className="text-center">
-                            <div className="relative w-96 h-96 mx-auto">
+                            <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 mx-auto">
                                 {/* Center Button */}
                                 <div className="absolute inset-0 flex items-center justify-center">
-                                    <div className="w-24 h-24 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-xl">
-                                        Contact Me
+                                    <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center text-white font-bold text-sm sm:text-lg md:text-xl shadow-xl">
+                                        <span className="text-center leading-tight">Contact<br className="sm:hidden" /><span className="hidden sm:inline"> </span>Me</span>
                                     </div>
                                 </div>
 
@@ -65,9 +65,9 @@ export default function Contact({ theme }) {
                                             target="_blank" 
                                             rel="noopener noreferrer"
                                             aria-label={item.platform.label}
-                                            className={`${item.position} ${item.size} ${item.platform.color} rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-lg border-2`}
+                                            className={`${item.position} ${item.size.replace('w-18 h-18', 'w-12 h-12 sm:w-14 sm:h-14 md:w-18 md:h-18').replace('w-[72px] h-[72px]', 'w-12 h-12 sm:w-14 sm:h-14 md:w-[72px] md:h-[72px]')} ${item.platform.color} rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-lg border-2`}
                                         >
-                                            <div className="w-9 h-9 flex items-center justify-center">
+                                            <div className="w-6 h-6 sm:w-7 sm:h-7 md:w-9 md:h-9 flex items-center justify-center">
                                                 {item.platform.icon}
                                             </div>
                                         </a>
@@ -76,7 +76,7 @@ export default function Contact({ theme }) {
                             </div>
                         </div>
 
-                        <div className={`p-8 rounded-2xl ${theme === 'dark' ? 'bg-gray-800' : 'bg-white shadow-xl'
+                        <div className={`p-6 md:p-8 rounded-2xl ${theme === 'dark' ? 'bg-gray-800' : 'bg-white shadow-xl'
                             }`}>
                             <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
                                 <div>

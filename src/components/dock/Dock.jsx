@@ -7,7 +7,7 @@ import Modal from "./Modal";
 
 const NavigationItem = ({
   item, activeSection, theme, scrollToSection,
-  isHovered, onHover, onLeave, onLogoClick, logoRef
+  isHovered, onHover, onLeave, onLogoClick, logoRef, isMobile
 }) => {
   const IconComponent = item.icon;
   const isActive = activeSection === item.id;
@@ -20,7 +20,7 @@ const NavigationItem = ({
         onClick={onLogoClick}
         onMouseEnter={onHover}
         onMouseLeave={onLeave}
-        className={`relative group flex items-center justify-center h-12 px-4 rounded-2xl transition-all duration-500 ease-out transform cursor-pointer ${
+        className={`relative group flex items-center justify-center h-10 sm:h-12 px-3 sm:px-4 rounded-xl sm:rounded-2xl transition-all duration-500 ease-out transform cursor-pointer ${
           isHovered ? "scale-125" : "hover:scale-110"
         } ${
           activeSection === "hero"
@@ -30,7 +30,7 @@ const NavigationItem = ({
         title="Open Vietcq Modal"
       >
         <span
-          className={`text-lg font-bold transition-all duration-500 bg-gradient-to-r ${
+          className={`text-base sm:text-lg font-bold transition-all duration-500 bg-gradient-to-r ${
             theme === "dark"
               ? "from-blue-400 via-purple-400 to-blue-400"
               : "from-blue-600 via-purple-600 to-blue-600"
@@ -40,7 +40,7 @@ const NavigationItem = ({
           Vietcq
         </span>
         <span
-          className={`inline-block ml-1 text-base transition-all duration-500 ${
+          className={`inline-block ml-1 text-sm sm:text-base transition-all duration-500 ${
             theme === "dark" ? "text-purple-400" : "text-purple-600"
           }`}
           style={{ animation: "float 3s ease-in-out infinite" }}
@@ -56,7 +56,7 @@ const NavigationItem = ({
       onClick={() => (item.link ? (window.location.href = item.link) : scrollToSection(item.id))}
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
-      className={`relative group flex flex-col items-center justify-center w-12 h-12 rounded-2xl transition-all duration-500 ease-out transform cursor-pointer ${
+      className={`relative group flex flex-col items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl transition-all duration-500 ease-out transform cursor-pointer ${
         isHovered
           ? "scale-125"
           : isActive
@@ -66,7 +66,7 @@ const NavigationItem = ({
       title={item.label}
     >
       <IconComponent 
-        size={isHovered ? 24 : 20} 
+        size={isHovered ? (isMobile ? 18 : 24) : (isMobile ? 16 : 20)} 
         className={`transition-all duration-500 ease-out ${
           isHovered 
             ? (theme === 'dark' ? 'text-gray-200' : 'text-gray-800') 
@@ -82,20 +82,20 @@ const NavigationItem = ({
   );
 };
 
-const ThemeToggle = ({ theme, setTheme, isHovered, onHover, onLeave }) => (
+const ThemeToggle = ({ theme, setTheme, isHovered, onHover, onLeave, isMobile }) => (
   <button
     onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
     onMouseEnter={onHover}
     onMouseLeave={onLeave}
-    className={`relative group flex items-center justify-center w-12 h-12 rounded-2xl transition-all duration-500 ease-out transform cursor-pointer ${
+    className={`relative group flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl transition-all duration-500 ease-out transform cursor-pointer ${
       isHovered ? "scale-125" : "hover:scale-110"
     } hover:bg-gray-100/60 dark:hover:bg-gray-800/60 active:scale-95`}
     title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
   >
     {theme === "dark" ? (
-      <FaSun size={isHovered ? 22 : 18} className="text-yellow-600 group-hover:text-yellow-500 transition-all duration-500 ease-out" />
+      <FaSun size={isHovered ? (isMobile ? 18 : 22) : (isMobile ? 16 : 18)} className="text-yellow-600 group-hover:text-yellow-500 transition-all duration-500 ease-out" />
     ) : (
-      <FaMoon size={isHovered ? 22 : 18} className="text-slate-600 group-hover:text-slate-500 transition-all duration-500 ease-out" />
+      <FaMoon size={isHovered ? (isMobile ? 18 : 22) : (isMobile ? 16 : 18)} className="text-slate-600 group-hover:text-slate-500 transition-all duration-500 ease-out" />
     )}
     <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap hidden md:block">
       {theme === "dark" ? "Light mode" : "Dark mode"}
@@ -109,6 +109,7 @@ const Dock = ({ theme, setTheme, activeSection, scrollToSection, navigationItems
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [dockRect, setDockRect] = useState(null);
   const [logoRect, setLogoRect] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   const logoBtnRef = useRef(null);
   const dockRef = useRef(null);
@@ -119,6 +120,17 @@ const Dock = ({ theme, setTheme, activeSection, scrollToSection, navigationItems
 
   // Sử dụng class từ global.css
   const dockBgClass = "glass-effect";
+
+  // Check screen size
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
 
   // cập nhật dockRect để modal tính vị trí
   useEffect(() => {
@@ -162,11 +174,19 @@ const Dock = ({ theme, setTheme, activeSection, scrollToSection, navigationItems
     <>
       <nav
         ref={dockRef}
-        className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 rounded-2xl px-5 py-3 ${dockBgClass} shadow-2xl`}
+        className={`fixed z-50 transition-all duration-300 shadow-2xl ${dockBgClass}
+          bottom-6 right-6 sm:bottom-6 sm:left-1/2 sm:-translate-x-1/2 sm:right-auto
+          rounded-2xl sm:px-5 sm:py-3 px-3 py-5
+          flex flex-col sm:flex-row items-center justify-center
+        `}
       >
-        <div className="flex items-center justify-center">
+        <div className="flex flex-col sm:flex-row items-center justify-center">
           {navigationItems.map((item, index) => (
-            <div key={item.id} className={`flex items-center transition-all duration-300 ease-out ${hoveredItem === item.id ? "mx-4" : "mx-2.5"}`}>
+            <div key={item.id} className={`flex items-center transition-all duration-300 ease-out ${
+              hoveredItem === item.id 
+                ? "sm:mx-4 my-3 sm:my-0" 
+                : "sm:mx-2.5 my-2 sm:my-0"
+            }`}>
               <NavigationItem
                 item={item}
                 activeSection={activeSection}
@@ -177,20 +197,36 @@ const Dock = ({ theme, setTheme, activeSection, scrollToSection, navigationItems
                 onLeave={handleItemLeave}
                 onLogoClick={item.isLogo ? handleLogoClick : undefined}
                 logoRef={item.isLogo ? logoBtnRef : undefined}
+                isMobile={isMobile}
               />
               {index === 0 && (
-                <div className={`w-px h-6 transition-all duration-300 ease-out ${hoveredItem === item.id || hoveredItem === navigationItems[index + 1]?.id ? "mx-5" : "mx-4"} ${theme === "dark" ? "bg-gray-600/50" : "bg-gray-300/50"}`} />
+                <div className={`transition-all duration-300 ease-out ${
+                  hoveredItem === item.id || hoveredItem === navigationItems[index + 1]?.id 
+                    ? "sm:mx-5 my-4 sm:my-0" 
+                    : "sm:mx-4 my-3 sm:my-0"
+                } ${theme === "dark" ? "bg-gray-600/50" : "bg-gray-300/50"}
+                  w-4 h-px sm:w-px sm:h-6
+                `} />
               )}
             </div>
           ))}
-          <div className={`w-px h-6 transition-all duration-300 ease-out ${hoveredItem === navigationItems[navigationItems.length - 1]?.id || hoveredItem === "theme" ? "mx-5" : "mx-4"} ${theme === "dark" ? "bg-gray-600/50" : "bg-gray-300/50"}`} />
-          <div className={`transition-all duration-300 ease-out ${hoveredItem === "theme" ? "mx-4" : "mx-2"}`}>
+          <div className={`transition-all duration-300 ease-out ${
+            hoveredItem === navigationItems[navigationItems.length - 1]?.id || hoveredItem === "theme" 
+              ? "sm:mx-5 my-4 sm:my-0" 
+              : "sm:mx-4 my-3 sm:my-0"
+          } ${theme === "dark" ? "bg-gray-600/50" : "bg-gray-300/50"}
+            w-4 h-px sm:w-px sm:h-6
+          `} />
+          <div className={`transition-all duration-300 ease-out ${
+            hoveredItem === "theme" ? "sm:mx-4 my-3 sm:my-0" : "sm:mx-2 my-2 sm:my-0"
+          }`}>
             <ThemeToggle
               theme={theme}
               setTheme={setTheme}
               isHovered={hoveredItem === "theme"}
               onHover={() => handleItemHover("theme")}
               onLeave={handleItemLeave}
+              isMobile={isMobile}
             />
           </div>
         </div>
