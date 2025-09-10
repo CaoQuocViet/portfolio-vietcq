@@ -1,5 +1,5 @@
 {
-  "id": "abap-rap-business-analytics",
+  "id": "abap-rap",
   "name": "SAP ABAP RAP Business Analytics Dashboard",
   "tagline": "Enterprise Sales Analytics Platform with Docker-containerized SAP ABAP",
   "description": "A comprehensive business analytics platform built with SAP ABAP RESTful Application Programming (RAP) framework, featuring Docker containerization, sales order management, customer segmentation analysis, and automated data processing. Demonstrates enterprise-grade SAP development with Python automation and modern deployment practices.",

@@ -1,7 +1,7 @@
 import Button from '../ui/Button'
 import WaveBackground from '../ui/WaveBackground'
 import GridBackground from '../ui/GridBackground'
-import TrongDongBackground from '../ui/TrongDongBackground'
+import TrongDongBackground from './TrongDongBackground'
 import { Github, ExternalLink } from 'lucide-react'
 
 export default function ProjectOverview({ theme, projectData, projectId }) {

@@ -1,4 +1,4 @@
-import { SOCIAL_PLATFORMS } from "../data/socialPlatforms";
+import { SOCIAL_PLATFORMS } from "../../data/socialPlatforms";
 
 export default function SocialList({ className = "", showLabel = true, theme = "dark" }) {
   return (

@@ -13,7 +13,7 @@ import Projects from "./Projects";
 import Showcase from "./Showcase";
 import Contact from "./Contact";
 import Footer from "./Footer";
-import ClockWidget from "../ui/ClockWidget";
+import ClockWidget from "./ClockWidget";
 
 export default function HomePageClient() {
     const { theme, setTheme } = useTheme();
