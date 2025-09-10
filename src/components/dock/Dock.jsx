@@ -20,7 +20,7 @@ const NavigationItem = ({
         onClick={onLogoClick}
         onMouseEnter={onHover}
         onMouseLeave={onLeave}
-        className={`relative group flex items-center justify-center h-10 sm:h-12 px-3 sm:px-4 rounded-xl sm:rounded-2xl transition-all duration-500 ease-out transform cursor-pointer ${
+        className={`relative group flex items-center justify-center w-10 h-10 sm:w-auto sm:h-12 sm:px-4 rounded-xl sm:rounded-2xl transition-all duration-500 ease-out transform cursor-pointer ${
           isHovered ? "scale-125" : "hover:scale-110"
         } ${
           activeSection === "hero"
@@ -37,16 +37,18 @@ const NavigationItem = ({
           } bg-clip-text text-transparent`}
           style={{ fontFamily: "Inter, -apple-system, BlinkMacSystemFont, sans-serif" }}
         >
-          Vietcq
+          {isMobile ? "V" : "Vietcq"}
         </span>
-        <span
-          className={`inline-block ml-1 text-sm sm:text-base transition-all duration-500 ${
-            theme === "dark" ? "text-purple-400" : "text-purple-600"
-          }`}
-          style={{ animation: "float 3s ease-in-out infinite" }}
-        >
-          .
-        </span>
+        {!isMobile && (
+          <span
+            className={`inline-block ml-1 text-sm sm:text-base transition-all duration-500 ${
+              theme === "dark" ? "text-purple-400" : "text-purple-600"
+            }`}
+            style={{ animation: "float 3s ease-in-out infinite" }}
+          >
+            .
+          </span>
+        )}
       </button>
     );
   }
@@ -89,13 +91,26 @@ const ThemeToggle = ({ theme, setTheme, isHovered, onHover, onLeave, isMobile })
     onMouseLeave={onLeave}
     className={`relative group flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl transition-all duration-500 ease-out transform cursor-pointer ${
       isHovered ? "scale-125" : "hover:scale-110"
-    } hover:bg-gray-100/60 dark:hover:bg-gray-800/60 active:scale-95`}
+    } ${
+      theme === "dark"
+        ? "bg-yellow-600/20 hover:bg-yellow-600/30"
+        : "bg-slate-600/20 hover:bg-slate-600/30"
+    } active:scale-95`}
     title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
   >
-    {theme === "dark" ? (
-      <FaSun size={isHovered ? (isMobile ? 18 : 22) : (isMobile ? 16 : 18)} className="text-yellow-600 group-hover:text-yellow-500 transition-all duration-500 ease-out" />
+    {/* Show opposite icon on hover to indicate what will happen on click */}
+    {isHovered ? (
+      theme === "dark" ? (
+        <FaMoon size={isMobile ? 18 : 22} className="text-slate-600 transition-all duration-500 ease-out" />
+      ) : (
+        <FaSun size={isMobile ? 18 : 22} className="text-yellow-600 transition-all duration-500 ease-out" />
+      )
     ) : (
-      <FaMoon size={isHovered ? (isMobile ? 18 : 22) : (isMobile ? 16 : 18)} className="text-slate-600 group-hover:text-slate-500 transition-all duration-500 ease-out" />
+      theme === "dark" ? (
+        <FaSun size={isMobile ? 16 : 18} className="text-yellow-600 transition-all duration-500 ease-out" />
+      ) : (
+        <FaMoon size={isMobile ? 16 : 18} className="text-slate-600 transition-all duration-500 ease-out" />
+      )
     )}
     <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap hidden md:block">
       {theme === "dark" ? "Light mode" : "Dark mode"}
@@ -182,10 +197,10 @@ const Dock = ({ theme, setTheme, activeSection, scrollToSection, navigationItems
       >
         <div className="flex flex-col sm:flex-row items-center justify-center">
           {navigationItems.map((item, index) => (
-            <div key={item.id} className={`flex items-center transition-all duration-300 ease-out ${
+            <div key={item.id} className={`flex flex-col sm:flex-row items-center transition-all duration-300 ease-out ${
               hoveredItem === item.id 
-                ? "sm:mx-4 my-3 sm:my-0" 
-                : "sm:mx-2.5 my-2 sm:my-0"
+                ? "sm:mx-4 my-2 sm:my-0" 
+                : "sm:mx-2.5 my-1.5 sm:my-0"
             }`}>
               <NavigationItem
                 item={item}
@@ -199,26 +214,20 @@ const Dock = ({ theme, setTheme, activeSection, scrollToSection, navigationItems
                 logoRef={item.isLogo ? logoBtnRef : undefined}
                 isMobile={isMobile}
               />
-              {index === 0 && (
-                <div className={`transition-all duration-300 ease-out ${
-                  hoveredItem === item.id || hoveredItem === navigationItems[index + 1]?.id 
-                    ? "sm:mx-5 my-4 sm:my-0" 
-                    : "sm:mx-4 my-3 sm:my-0"
-                } ${theme === "dark" ? "bg-gray-600/50" : "bg-gray-300/50"}
-                  w-4 h-px sm:w-px sm:h-6
-                `} />
-              )}
             </div>
-          ))}
+          ))} 
+          
+          {/* Separator before theme toggle */}
           <div className={`transition-all duration-300 ease-out ${
             hoveredItem === navigationItems[navigationItems.length - 1]?.id || hoveredItem === "theme" 
-              ? "sm:mx-5 my-4 sm:my-0" 
-              : "sm:mx-4 my-3 sm:my-0"
+              ? "sm:mx-5 my-3 sm:my-0" 
+              : "sm:mx-4 my-2 sm:my-0"
           } ${theme === "dark" ? "bg-gray-600/50" : "bg-gray-300/50"}
-            w-4 h-px sm:w-px sm:h-6
+            w-6 h-0.5 sm:w-0.5 sm:h-6
           `} />
+          
           <div className={`transition-all duration-300 ease-out ${
-            hoveredItem === "theme" ? "sm:mx-4 my-3 sm:my-0" : "sm:mx-2 my-2 sm:my-0"
+            hoveredItem === "theme" ? "sm:mx-4 my-2 sm:my-0" : "sm:mx-2 my-1.5 sm:my-0"
           }`}>
             <ThemeToggle
               theme={theme}

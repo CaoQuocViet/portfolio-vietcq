@@ -82,7 +82,7 @@ const About = ({ theme }) => {
             />
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="lg:grid lg:grid-cols-2 gap-16 items-center">
             {/* Scrolling Card */}
             <div className={`relative max-w-xl lg:max-w-none mx-auto h-96 sm:h-120 lg:h-160 rounded-lg shadow-2xl border overflow-hidden group ${
               theme === 'dark' 
@@ -132,8 +132,8 @@ const About = ({ theme }) => {
               </div>
             </div>
 
-            {/* 3D Model - Hidden on tablet and mobile */}
-            <div className="relative h-full items-center justify-center hidden lg:flex">
+            {/* 3D Model - Responsive sizes */}
+            <div className="relative flex items-center justify-center mt-8 lg:mt-0 h-96 sm:h-120 md:h-144 lg:h-full w-full">
               <PCModel />
             </div>
           </div>
