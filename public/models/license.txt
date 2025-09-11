@@ -1,0 +1,11 @@
+Model Information:
+* title:	BM86 Portable PC
+* source:	https://sketchfab.com/3d-models/bm86-portable-pc-d6f9790446eb4ad5bdfb9c537be5d17c
+* author:	HippoStance (https://sketchfab.com/hippostance)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "BM86 Portable PC" (https://sketchfab.com/3d-models/bm86-portable-pc-d6f9790446eb4ad5bdfb9c537be5d17c) by HippoStance (https://sketchfab.com/hippostance) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
