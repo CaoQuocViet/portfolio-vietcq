@@ -3,7 +3,7 @@ export default function ProjectDetails({ theme, projectData }) {
     const gradient = 'from-cyan-400 via-blue-500 to-blue-600';
 
     return (
-        <section className={`py-24 ${theme === 'dark' ? 'bg-gray-900' : 'bg-gray-200'}`}>
+        <section className="py-24 bg-gray-200 dark:bg-gray-900">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 <div className="grid lg:grid-cols-2 gap-16">
                     {/* Project Timeline & Role */}
@@ -35,11 +35,11 @@ export default function ProjectDetails({ theme, projectData }) {
                                             <div className="flex justify-between items-center">
                                                 <div className="flex items-center gap-3">
                                                     <div className={`w-4 h-4 rounded-full bg-gradient-to-r ${gradient} shadow-lg`} />
-                                                    <span className={`text-lg font-semibold ${theme === 'dark' ? 'text-gray-200' : 'text-gray-700'}`}>
+                                                    <span className="text-lg font-semibold text-gray-700 dark:text-gray-200">
                                                         Duration
                                                     </span>
                                                 </div>
-                                                <span className={`text-lg font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
+                                                <span className="text-lg font-bold text-gray-900 dark:text-white">
                                                     {projectData.timeline.startDate} - {projectData.timeline.endDate || 'Present'}
                                                 </span>
                                             </div>
@@ -48,7 +48,7 @@ export default function ProjectDetails({ theme, projectData }) {
                                             <div className="flex justify-between items-center">
                                                 <div className="flex items-center gap-3">
                                                     <div className={`w-4 h-4 rounded-full bg-gradient-to-r ${gradient} shadow-lg`} />
-                                                    <span className={`text-lg font-semibold ${theme === 'dark' ? 'text-gray-200' : 'text-gray-700'}`}>
+                                                    <span className="text-lg font-semibold text-gray-700 dark:text-gray-200">
                                                         Status
                                                     </span>
                                                 </div>

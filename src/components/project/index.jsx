@@ -56,19 +56,17 @@ export default function ProjectDetailPageClient() {
 
     if (loading) {
         return (
-            <div className={`min-h-screen ${theme === 'dark' ? 'bg-gray-950' : 'bg-white'} flex items-center justify-center`}>
-                <div className={`animate-spin rounded-full h-12 w-12 border-b-2 ${
-                    theme === 'dark' ? 'border-cyan-400' : 'border-blue-600'
-                }`} />
+            <div className="min-h-screen bg-white dark:bg-gray-950 flex items-center justify-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 dark:border-cyan-400" />
             </div>
         )
     }
 
     if (error || !projectData) {
         return (
-            <div className={`min-h-screen ${theme === 'dark' ? 'bg-gray-950' : 'bg-white'} flex items-center justify-center`}>
+            <div className="min-h-screen bg-white dark:bg-gray-950 flex items-center justify-center">
                 <div className="text-center">
-                    <h1 className={`text-2xl font-bold mb-4 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
+                    <h1 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
                         Project Not Found
                     </h1>
                     <Button 
@@ -84,7 +82,7 @@ export default function ProjectDetailPageClient() {
     }
 
     return (
-        <div className={`min-h-screen ${theme === 'dark' ? 'bg-gray-950' : 'bg-white'}`}>
+        <div className="min-h-screen bg-white dark:bg-gray-950">
             {/* Dock Navigation */}
             <Dock 
                 theme={theme}
