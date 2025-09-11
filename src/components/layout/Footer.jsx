@@ -42,7 +42,7 @@ export default function Footer({ theme }) {
     ];
 
     return (
-        <footer className="py-16 border-t bg-white dark:bg-gray-950 border-gray-200 dark:border-gray-800">
+        <footer className="py-16 bg-white dark:bg-gray-950">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 <div className="text-center mb-8">
                     <FooterLogo theme={theme} />

@@ -15,11 +15,11 @@ export default function NavigationList({ theme }) {
                         key={item.id}
                         onClick={() => handleNavigate(item.link)}
                         className={`
-                            p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer
+                            p-4 rounded-xl transition-all duration-300 cursor-pointer
                             hover:scale-[1.02] hover:shadow-lg group
                             ${theme === 'dark' 
-                                ? 'bg-gray-800/50 border-gray-700 hover:bg-gray-800 hover:border-gray-600' 
-                                : 'bg-gray-50 border-gray-200 hover:bg-gray-100 hover:border-gray-300'
+                                ? 'bg-gray-800/50 hover:bg-gray-800' 
+                                : 'bg-gray-50 hover:bg-gray-100'
                             }
                         `}
                     >

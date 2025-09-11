@@ -68,8 +68,8 @@ const Modal = ({ isOpen, onClose, theme, dockRect, logoRect }) => {
 
   // Background phù hợp cho modal - không quá trong suốt
   const modalBgClass = theme === "dark" 
-    ? "bg-gray-900/95 border border-gray-700/50" 
-    : "bg-white/95 border border-gray-200/50";
+    ? "bg-gray-900/95" 
+    : "bg-white/95";
 
   return (
     <>
@@ -80,7 +80,7 @@ const Modal = ({ isOpen, onClose, theme, dockRect, logoRect }) => {
       <div
         ref={modalRef}
         tabIndex={-1}
-        className={`fixed z-50 rounded-xl shadow-2xl transition-all duration-200 transform scale-100 animate-popover-in border ${modalBgClass}
+        className={`fixed z-50 rounded-xl shadow-2xl transition-all duration-200 transform scale-100 animate-popover-in ${modalBgClass}
           w-80 h-[500px] max-w-[calc(100vw-2rem)] max-h-[calc(100vh-8rem)]
           sm:w-[480px] sm:h-[680px] sm:max-w-none sm:max-h-none
         `}

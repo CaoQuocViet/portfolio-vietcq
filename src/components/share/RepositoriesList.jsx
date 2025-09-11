@@ -32,15 +32,13 @@ const RepositoriesList = ({ theme = "dark" }) => {
           rel="noopener noreferrer"
           className="block"
         >
-          <div className="group relative bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 
-                         border border-gray-200/60 dark:border-gray-700/60 rounded-2xl p-6 
-                         transition-all duration-500 shadow-lg hover:shadow-2xl 
-                         hover:-translate-y-2 hover:scale-[1.02] cursor-pointer
-                         hover:border-green-400/50 dark:hover:border-green-500/50
-                         hover:shadow-green-500/10 dark:hover:shadow-green-400/20
-                         before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-br 
-                         before:from-green-500/5 before:to-blue-500/5 before:opacity-0 
-                         hover:before:opacity-100 before:transition-opacity before:duration-500">
+          <div className={`group transition-all duration-300 
+                         rounded-2xl p-6 
+                         hover:scale-[1.02] hover:shadow-lg
+                         ${theme === 'dark' 
+                             ? 'bg-gray-800/30 hover:bg-gray-800/50' 
+                             : 'bg-white/50 hover:bg-white/80'
+                         }`}>
             {/* Repository Header */}
             <div className="flex items-center justify-between mb-4">
               <h4 className="font-bold text-lg text-gray-900 dark:text-white 

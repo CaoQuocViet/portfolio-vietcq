@@ -136,8 +136,8 @@ const Dock = ({ theme, setTheme, activeSection, scrollToSection, navigationItems
   const handleItemLeave = () => setHoveredItem(null);
   const handleLogoClick = () => setIsModalOpen((prev) => !prev);
 
-  // Sử dụng class từ global.css
-  const dockBgClass = "bg-white/10 dark:bg-black/20 backdrop-blur-2xl border border-white/20 dark:border-white/10";
+  // Hiệu ứng 3D và đảo ngược màu cho dark/light mode
+  const dockBgClass = "bg-black/15 dark:bg-white/15 backdrop-blur-2xl shadow-2xl shadow-black/20 dark:shadow-white/10";
 
   // Check screen size
   useEffect(() => {

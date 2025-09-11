@@ -67,10 +67,9 @@ const ProjectsList = ({ theme }) => {
                     key={project.id}
                     onClick={() => handleProjectClick(project.id)}
                     className="group relative bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 
-                              border border-gray-200/60 dark:border-gray-700/60 rounded-2xl p-6 
+                              rounded-2xl p-6 
                               transition-all duration-500 shadow-lg hover:shadow-2xl 
                               hover:-translate-y-2 hover:scale-[1.02] cursor-pointer
-                              hover:border-blue-400/50 dark:hover:border-blue-500/50
                               hover:shadow-blue-500/10 dark:hover:shadow-blue-400/20
                               before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-br 
                               before:from-blue-500/5 before:to-purple-500/5 before:opacity-0 
