@@ -35,21 +35,18 @@ export default function NavigationList({ theme }) {
                             </div>
                             
                             <div className="flex-1">
-                                <h4 className={`font-semibold text-lg mb-1 ${
-                                    theme === 'dark' ? 'text-white' : 'text-gray-900'
-                                }`}>
+                                <h4 className="font-semibold text-lg mb-1 text-gray-900 dark:text-white">
                                     {item.title}
                                 </h4>
-                                <p className={`text-sm ${
-                                    theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
-                                }`}>
+                                <p className="text-sm text-gray-600 dark:text-gray-400">
                                     {item.description}
                                 </p>
                             </div>
                             
                             <div className={`
                                 text-lg font-medium transition-all duration-300
-                                ${theme === 'dark' ? 'text-gray-400 group-hover:text-white' : 'text-gray-600 group-hover:text-gray-900'}
+                                text-gray-600 dark:text-gray-400 
+                                group-hover:text-gray-900 dark:group-hover:text-white
                             `}>
                                 →
                             </div>

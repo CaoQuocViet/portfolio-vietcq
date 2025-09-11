@@ -9,14 +9,14 @@ const RepositoriesList = ({ theme = "dark" }) => {
   if (loading) {
     return (
       <div className="flex justify-center py-4">
-        <div className={`animate-spin rounded-full h-6 w-6 border-b-2 ${theme === 'dark' ? 'border-blue-400' : 'border-blue-600'}`} />
+        <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600 dark:border-blue-400" />
       </div>
     );
   }
 
   if (repos.length === 0) {
     return (
-      <div className={`text-center py-4 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
+      <div className="text-center py-4 text-gray-600 dark:text-gray-400">
         No repositories found
       </div>
     );
@@ -32,49 +32,68 @@ const RepositoriesList = ({ theme = "dark" }) => {
           rel="noopener noreferrer"
           className="block"
         >
-          <div className="card-modern hover:card-glow transition-all duration-300 cursor-pointer">
+          <div className="group relative bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 
+                         border border-gray-200/60 dark:border-gray-700/60 rounded-2xl p-6 
+                         transition-all duration-500 shadow-lg hover:shadow-2xl 
+                         hover:-translate-y-2 hover:scale-[1.02] cursor-pointer
+                         hover:border-green-400/50 dark:hover:border-green-500/50
+                         hover:shadow-green-500/10 dark:hover:shadow-green-400/20
+                         before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-br 
+                         before:from-green-500/5 before:to-blue-500/5 before:opacity-0 
+                         hover:before:opacity-100 before:transition-opacity before:duration-500">
             {/* Repository Header */}
-            <div className="flex items-center justify-between mb-3">
-              <h4 className="font-semibold text-base gradient-text truncate">
+            <div className="flex items-center justify-between mb-4">
+              <h4 className="font-bold text-lg text-gray-900 dark:text-white 
+                            group-hover:text-green-600 dark:group-hover:text-green-400 
+                            transition-colors duration-300">
                 {repo.name.replace(/-/g, ' ').replace(/_/g, ' ')}
               </h4>
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-3">
                 {/* Stars */}
-                <div className="flex items-center space-x-2">
-                  <Star className="w-4 h-4 text-yellow-500" />
-                  <span className="text-sm font-medium text-gray-600 dark:text-gray-300">
+                <div className="flex items-center space-x-1 bg-yellow-50 dark:bg-yellow-500/10 
+                               px-2 py-1 rounded-full">
+                  <span className="text-yellow-500 text-xs">⭐</span>
+                  <span className="text-xs font-medium text-yellow-700 dark:text-yellow-400">
                     {repo.stargazers_count || 0}
                   </span>
                 </div>
-                
                 {/* Forks */}
-                <div className="flex items-center space-x-2">
-                  <GitFork className="w-4 h-4 text-green-500" />
-                  <span className="text-sm font-medium text-gray-600 dark:text-gray-300">
+                <div className="flex items-center space-x-1 bg-green-50 dark:bg-green-500/10 
+                               px-2 py-1 rounded-full">
+                  <span className="text-green-500 text-xs">🍴</span>
+                  <span className="text-xs font-medium text-green-700 dark:text-green-400">
                     {repo.forks_count || 0}
                   </span>
                 </div>
               </div>
             </div>
             
-            {/* Repository Description */}
+                        {/* Description */}
             {repo.description && (
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-2">
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 leading-relaxed
+                            overflow-hidden"
+                 style={{
+                   display: '-webkit-box',
+                   WebkitLineClamp: 2,
+                   WebkitBoxOrient: 'vertical'
+                 }}>
                 {repo.description}
               </p>
             )}
-            
-            {/* Repository Footer */}
-            <div className="flex items-center justify-between pt-3 border-t border-gray-200 dark:border-gray-700">
+
+            {/* Footer */}
+            <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
                 {repo.language && (
-                  <span className="px-2 py-1 text-xs font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full">
+                  <span className="text-xs bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 
+                                   px-2 py-1 rounded-full font-medium">
                     {repo.language}
                   </span>
                 )}
               </div>
-              <span className="text-xs text-gray-500 dark:text-gray-400">
-                Updated {new Date(repo.updated_at).toLocaleDateString()}
+              <span className="text-xs text-green-600 dark:text-green-400 font-medium 
+                             bg-green-50 dark:bg-green-500/10 px-3 py-1 rounded-full">
+                View Repo
               </span>
             </div>
           </div>
