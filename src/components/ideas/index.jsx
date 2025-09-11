@@ -45,7 +45,7 @@ export default function IdeasPageClient() {
     return (
         <>
             {/* Ideas Page Section */}
-            <div className="relative min-h-screen bg-gray-100 dark:bg-gray-950">
+            <div className="relative min-h-screen bg-gray-100 dark:bg-gray-950 overflow-x-hidden">
             {/* Grid Background Component */}
             <GridBackground theme={theme} colorScheme="pink" />
 
