@@ -38,51 +38,49 @@ const Button = forwardRef(({
                  before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/0 before:via-white/20 before:to-white/0
                  before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-1000`,
         
-        secondary: theme === 'dark'
-            ? `bg-gray-800 text-white border-2 border-gray-700
-               hover:bg-gray-700 hover:border-blue-500 hover:scale-105 hover:shadow-lg
-               focus:ring-gray-500
-               before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/0 before:via-white/10 before:to-white/0
-               before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-1000`
-            : `bg-white text-gray-900 border-2 border-gray-300
-               hover:bg-gray-50 hover:border-blue-500 hover:scale-105 hover:shadow-lg
-               focus:ring-blue-500
-               before:absolute before:inset-0 before:bg-gradient-to-r before:from-gray-200/0 before:via-gray-200/30 before:to-gray-200/0
-               before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-1000`,
+        secondary: `bg-white dark:bg-gray-800 
+                   text-gray-900 dark:text-white 
+                   border-2 border-gray-300 dark:border-gray-700
+                   hover:bg-gray-50 dark:hover:bg-gray-700 
+                   hover:border-blue-500 dark:hover:border-blue-500 
+                   hover:scale-105 hover:shadow-lg
+                   focus:ring-blue-500 dark:focus:ring-gray-500
+                   before:absolute before:inset-0 before:bg-gradient-to-r 
+                   before:from-gray-200/0 before:via-gray-200/30 before:to-gray-200/0
+                   dark:before:from-white/0 dark:before:via-white/10 dark:before:to-white/0
+                   before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-1000`,
         
-        outline: theme === 'dark'
-            ? `bg-transparent text-blue-400 border-2 border-blue-400
-               hover:bg-blue-400 hover:text-gray-900 hover:scale-105 hover:shadow-lg
-               focus:ring-blue-400
-               before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/0 before:via-white/20 before:to-white/0
-               before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-1000`
-            : `bg-transparent text-blue-600 border-2 border-blue-600
-               hover:bg-blue-600 hover:text-white hover:scale-105 hover:shadow-lg
-               focus:ring-blue-600
-               before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/0 before:via-white/30 before:to-white/0
-               before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-1000`,
+        outline: `bg-transparent 
+                 text-blue-600 dark:text-blue-400 
+                 border-2 border-blue-600 dark:border-blue-400
+                 hover:bg-blue-600 dark:hover:bg-blue-400 
+                 hover:text-white dark:hover:text-gray-900 
+                 hover:scale-105 hover:shadow-lg
+                 focus:ring-blue-600 dark:focus:ring-blue-400
+                 before:absolute before:inset-0 before:bg-gradient-to-r 
+                 before:from-white/0 before:via-white/30 before:to-white/0
+                 dark:before:from-white/0 dark:before:via-white/20 dark:before:to-white/0
+                 before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-1000`,
         
-        ghost: theme === 'dark'
-            ? `bg-transparent text-gray-300 hover:bg-gray-800 hover:text-white
+        ghost: `bg-transparent 
+               text-gray-700 dark:text-gray-300 
+               hover:bg-gray-100 dark:hover:bg-gray-800 
+               hover:text-gray-900 dark:hover:text-white
                hover:scale-105 focus:ring-gray-500
-               before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/0 before:via-white/10 before:to-white/0
-               before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-1000`
-            : `bg-transparent text-gray-700 hover:bg-gray-100 hover:text-gray-900
-               hover:scale-105 focus:ring-gray-500
-               before:absolute before:inset-0 before:bg-gradient-to-r before:from-gray-200/0 before:via-gray-200/20 before:to-gray-200/0
+               before:absolute before:inset-0 before:bg-gradient-to-r 
+               before:from-gray-200/0 before:via-gray-200/20 before:to-gray-200/0
+               dark:before:from-white/0 dark:before:via-white/10 dark:before:to-white/0
                before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-1000`,
         
-        gradient: theme === 'dark'
-            ? `bg-gradient-to-r from-cyan-600 to-blue-600 text-white
-               hover:from-cyan-500 hover:to-blue-500 hover:scale-105 hover:shadow-xl
-               focus:ring-blue-500 shadow-lg shadow-cyan-500/25
-               before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/0 before:via-white/20 before:to-white/0
-               before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-1000`
-            : `bg-gradient-to-r from-blue-600 to-cyan-600 text-white
-               hover:from-blue-500 hover:to-cyan-500 hover:scale-105 hover:shadow-xl
-               focus:ring-blue-500 shadow-lg shadow-blue-500/25
-               before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/0 before:via-white/20 before:to-white/0
-               before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-1000`,
+        gradient: `bg-gradient-to-r 
+                  from-blue-600 to-cyan-600 dark:from-cyan-600 dark:to-blue-600 
+                  text-white
+                  hover:from-blue-500 hover:to-cyan-500 dark:hover:from-cyan-500 dark:hover:to-blue-500 
+                  hover:scale-105 hover:shadow-xl
+                  focus:ring-blue-500 shadow-lg 
+                  shadow-blue-500/25 dark:shadow-cyan-500/25
+                  before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/0 before:via-white/20 before:to-white/0
+                  before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-1000`,
         
         success: `bg-gradient-to-r from-green-500 to-emerald-600 text-white
                  hover:from-green-400 hover:to-emerald-500 hover:scale-105 hover:shadow-xl

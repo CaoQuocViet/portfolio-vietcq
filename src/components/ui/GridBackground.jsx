@@ -21,8 +21,8 @@ const GridBackground = ({ theme }) => {
                 className="absolute inset-0 opacity-30"
                 style={{
                     backgroundImage: `
-                        linear-gradient(to right, ${theme === 'dark' ? 'rgba(59, 130, 246, 0.15)' : 'rgba(59, 130, 246, 0.25)'} 1px, transparent 1px),
-                        linear-gradient(to bottom, ${theme === 'dark' ? 'rgba(59, 130, 246, 0.15)' : 'rgba(59, 130, 246, 0.25)'} 1px, transparent 1px)
+                        linear-gradient(to right, rgba(59, 130, 246, 0.25) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(59, 130, 246, 0.25) 1px, transparent 1px)
                     `,
                     backgroundSize: '50px 50px',
                     animation: 'gridMove 20s linear infinite'
@@ -34,8 +34,8 @@ const GridBackground = ({ theme }) => {
                 className="absolute inset-0 opacity-15"
                 style={{
                     backgroundImage: `
-                        linear-gradient(to right, ${theme === 'dark' ? 'rgba(139, 92, 246, 0.2)' : 'rgba(139, 92, 246, 0.3)'} 1px, transparent 1px),
-                        linear-gradient(to bottom, ${theme === 'dark' ? 'rgba(139, 92, 246, 0.2)' : 'rgba(139, 92, 246, 0.3)'} 1px, transparent 1px)
+                        linear-gradient(to right, rgba(139, 92, 246, 0.3) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(139, 92, 246, 0.3) 1px, transparent 1px)
                     `,
                     backgroundSize: '20px 20px',
                     animation: 'gridMove 30s linear infinite reverse'
@@ -62,9 +62,7 @@ const GridBackground = ({ theme }) => {
                 {[...Array(12)].map((_, i) => (
                     <div
                         key={i}
-                        className={`absolute w-1 h-1 rounded-full ${
-                            theme === 'dark' ? 'bg-blue-400/40' : 'bg-blue-600/50'
-                        }`}
+                        className="absolute w-1 h-1 rounded-full bg-blue-600/50 dark:bg-blue-400/40"
                         style={{
                             left: `${Math.random() * 100}%`,
                             top: `${Math.random() * 100}%`,
