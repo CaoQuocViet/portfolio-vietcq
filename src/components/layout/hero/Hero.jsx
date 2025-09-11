@@ -81,9 +81,7 @@ export default function Hero({ theme, scrollToSection }) {
 
             <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-32 pb-16 text-center relative z-10">
                 <div style={{ animation: 'fadeInUp 1s ease-out' }}>
-                    <p className={`text-lg font-medium mb-6 ${
-                        theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
-                    } ${showCursor ? 'typing-cursor' : ''}`} style={{ animation: 'fadeInUp 1s ease-out 0.2s both' }}>
+                    <p className={`text-lg font-medium mb-6 text-blue-600 dark:text-blue-400 ${showCursor ? 'typing-cursor' : ''}`} style={{ animation: 'fadeInUp 1s ease-out 0.2s both' }}>
                         {displayText && displayText.includes(info.displayName) ? (
                             <>
                                 {displayText.replace(info.displayName, '')}{' '}
@@ -100,9 +98,7 @@ export default function Hero({ theme, scrollToSection }) {
                         )}
                     </p>
                     
-                    <h1 className={`text-5xl md:text-7xl font-bold mb-8 leading-tight ${
-                        theme === 'dark' ? 'text-white' : 'text-gray-900'
-                    }`} style={{ 
+                    <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight text-gray-900 dark:text-white" style={{ 
                         animation: 'fadeInUp 1s ease-out 0.4s both',
                         fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif'
                     }}>
@@ -122,9 +118,7 @@ export default function Hero({ theme, scrollToSection }) {
                         </span>
                     </h1>
                     
-                    <p className={`text-xl md:text-2xl mb-12 max-w-3xl mx-auto leading-relaxed ${
-                        theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
-                    }`} style={{ animation: 'fadeInUp 1s ease-out 0.6s both' }}>
+                    <p className="text-xl md:text-2xl mb-12 max-w-3xl mx-auto leading-relaxed text-gray-600 dark:text-gray-300" style={{ animation: 'fadeInUp 1s ease-out 0.6s both' }}>
                         I create exceptional digital experiences through clean code, 
                         modern design, and innovative solutions.
                     </p>

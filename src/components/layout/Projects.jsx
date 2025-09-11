@@ -24,7 +24,9 @@ const Projects = () => {
             if (popularityScore >= 50) return 'bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 text-transparent bg-clip-text group-hover:from-cyan-300 group-hover:via-blue-400 group-hover:to-purple-500'
             if (popularityScore >= 20) return 'bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-600 text-transparent bg-clip-text group-hover:from-emerald-300 group-hover:via-teal-400 group-hover:to-cyan-500'
             if (popularityScore >= 5) return 'bg-gradient-to-r from-amber-400 via-orange-500 to-red-500 text-transparent bg-clip-text group-hover:from-amber-300 group-hover:via-orange-400 group-hover:to-red-400'
-            return theme === 'dark' ? 'bg-gradient-to-r from-slate-200 to-slate-400 text-transparent bg-clip-text group-hover:from-slate-100 group-hover:to-slate-300' : 'bg-gradient-to-r from-slate-700 to-slate-900 text-transparent bg-clip-text group-hover:from-slate-600 group-hover:to-slate-800'
+            const getTitleColor = () => {
+            return 'bg-gradient-to-r from-slate-700 to-slate-900 text-transparent bg-clip-text group-hover:from-slate-600 group-hover:to-slate-800 dark:from-slate-200 dark:to-slate-400 dark:group-hover:from-slate-100 dark:group-hover:to-slate-300'
+        }
         }
 
         return (
@@ -44,14 +46,24 @@ const Projects = () => {
 
                         {/* Content */}
                         <div className="p-3 h-full flex flex-col relative z-10">
-                            <h3 className={`font-semibold text-sm mb-2 line-clamp-1 transition-all duration-300 ${getTitleColor()}`}>
+                            <h3 className={`font-semibold text-sm mb-2 transition-all duration-300 overflow-hidden ${getTitleColor()}`}
+                                style={{
+                                  display: '-webkit-box',
+                                  WebkitLineClamp: 1,
+                                  WebkitBoxOrient: 'vertical'
+                                }}>
                                 {(repo.name || repo.title || 'Project').replace(/-/g, ' ').replace(/_/g, ' ')}
                             </h3>
 
-                            <p className={`text-xs mb-4 line-clamp-3 transition-colors duration-300 ${theme === 'dark'
+                            <p className={`text-xs mb-4 transition-colors duration-300 overflow-hidden ${theme === 'dark'
                                     ? 'text-slate-400 group-hover:text-slate-300'
                                     : 'text-slate-600 group-hover:text-slate-700'
-                                }`}>
+                                }`}
+                               style={{
+                                 display: '-webkit-box',
+                                 WebkitLineClamp: 3,
+                                 WebkitBoxOrient: 'vertical'
+                               }}>
                                 {repo.description || 'A modern web project'}
                             </p>
 
@@ -69,8 +81,7 @@ const Projects = () => {
 
                                 {/* Stats */}
                                 {(repo.stargazers_count !== undefined || repo.forks_count !== undefined) && (
-                                    <div className={`flex items-center space-x-2 text-xs ${theme === 'dark' ? 'text-slate-400' : 'text-slate-500'
-                                        }`}>
+                                    <div className="flex items-center space-x-2 text-xs text-slate-500 dark:text-slate-400">
                                         {repo.stargazers_count !== undefined && (
                                             <span className="flex items-center space-x-1">
                                                 <Star className="w-3 h-3" />
@@ -127,25 +138,21 @@ const Projects = () => {
     }
 
     return (
-        <section id="projects" className={`py-24 ${theme === 'dark' ? 'bg-gray-900/50' : 'bg-gray-200'} overflow-hidden`}>
+        <section id="projects" className="py-24 bg-gray-200 dark:bg-gray-900/50 overflow-hidden">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 <div className="text-center mb-16">
-                    <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${theme === 'dark' ? 'text-white' : 'text-gray-900'
-                        }`}>
+                    <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
                         Github Repositories
                     </h2>
-                    <div className={`w-24 h-1 mx-auto rounded-full ${theme === 'dark' ? 'bg-blue-400' : 'bg-blue-600'
-                        }`} />
-                    <p className={`text-lg mt-6 max-w-2xl mx-auto ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
-                        }`}>
+                    <div className="w-24 h-1 mx-auto rounded-full bg-blue-600 dark:bg-blue-400" />
+                    <p className="text-lg mt-6 max-w-2xl mx-auto text-gray-600 dark:text-gray-300">
                         Explore my latest projects showcasing modern web technologies and innovative solutions.
                     </p>
                 </div>
 
                 {loading ? (
                     <div className="flex justify-center">
-                        <div className={`animate-spin rounded-full h-12 w-12 border-b-2 ${theme === 'dark' ? 'border-blue-400' : 'border-blue-600'
-                            }`} />
+                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 dark:border-blue-400" />
                     </div>
                 ) : (
                     <div className="space-y-6 relative">

@@ -65,7 +65,7 @@ export default function HomePageClient() {
     if (!mounted) return null;
 
     return (
-        <div className={`min-h-screen ${theme === 'dark' ? 'bg-gray-950' : 'bg-white'}`}>
+        <div className="min-h-screen bg-white dark:bg-gray-950">
             {/* Clock Widget */}
             <ClockWidget theme={theme} />
             

@@ -28,16 +28,14 @@ export default function Contact({ theme }) {
     const email = info.email;
 
     return (
-        <section id="contact" className={`py-24 ${theme === 'dark' ? 'bg-gray-900/50' : 'bg-gray-200'}`}>
+        <section id="contact" className="py-24 bg-gray-200 dark:bg-gray-900/50">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 <div className="text-center mb-16">
-                    <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${theme === 'dark' ? 'text-white' : 'text-gray-900'
-                        }`}>
+                    <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
                         Connect with me
                     </h2>
                     <p
-                        className={`text-xl max-w-3xl mx-auto ${theme === "dark" ? "text-gray-300" : "text-gray-600"
-                            }`}
+                        className="text-xl max-w-3xl mx-auto text-gray-600 dark:text-gray-300"
                     >
                         Have a question about Tech, need technical advice, or want to discuss opportunities?
                         I'm here to help with any technology-related topics.
@@ -76,12 +74,10 @@ export default function Contact({ theme }) {
                             </div>
                         </div>
 
-                        <div className={`p-6 md:p-8 rounded-2xl ${theme === 'dark' ? 'bg-gray-800' : 'bg-white shadow-xl'
-                            }`}>
+                        <div className="p-6 md:p-8 rounded-2xl bg-white shadow-xl dark:bg-gray-800">
                             <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
                                 <div>
-                                    <label className={`block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
-                                        }`}>
+                                    <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
                                         Name
                                     </label>
                                     <input
@@ -97,8 +93,7 @@ export default function Contact({ theme }) {
                                 </div>
 
                                 <div>
-                                    <label className={`block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
-                                        }`}>
+                                    <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
                                         Subject
                                     </label>
                                     <input
@@ -114,8 +109,7 @@ export default function Contact({ theme }) {
                                 </div>
 
                                 <div>
-                                    <label className={`block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
-                                        }`}>
+                                    <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
                                         Message
                                     </label>
                                     <textarea
@@ -158,8 +152,7 @@ export default function Contact({ theme }) {
                                 </button>
 
                                 {submitMessage && (
-                                    <div className={`text-center p-3 rounded-lg ${theme === 'dark' ? 'bg-green-900/20 text-green-400' : 'bg-green-100 text-green-700'
-                                        }`}>
+                                    <div className="text-center p-3 rounded-lg bg-green-100 text-green-700 dark:bg-green-900/20 dark:text-green-400">
                                         {submitMessage}
                                     </div>
                                 )}

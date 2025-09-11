@@ -262,25 +262,25 @@ const Services = ({ theme }) => {
                                     <FaReact className={`text-2xl mr-3 ${
                                         theme === 'dark' ? 'text-cyan-400' : 'text-cyan-600'
                                     }`} />
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>React.js</span>
+                                    <span className="text-blue-800 dark:text-blue-100">React.js</span>
                                 </div>
                                 <div className="flex items-center">
                                     <SiNextdotjs className={`text-2xl mr-3 ${
                                         theme === 'dark' ? 'text-white' : 'text-black'
                                     }`} />
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>Next.js</span>
+                                    <span className="text-blue-800 dark:text-blue-100">Next.js</span>
                                 </div>
                                 <div className="flex items-center">
                                     <SiTailwindcss className={`text-2xl mr-3 ${
                                         theme === 'dark' ? 'text-cyan-400' : 'text-cyan-600'
                                     }`} />
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>Tailwind CSS</span>
+                                    <span className="text-blue-800 dark:text-blue-100">Tailwind CSS</span>
                                 </div>
                                 <div className="flex items-center">
                                     <SiTypescript className={`text-2xl mr-3 ${
                                         theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
                                     }`} />
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>TypeScript</span>
+                                    <span className="text-blue-800 dark:text-blue-100">TypeScript</span>
                                 </div>
                             </div>
                         </div>
@@ -299,25 +299,25 @@ const Services = ({ theme }) => {
                                     <FaNodeJs className={`text-2xl mr-3 ${
                                         theme === 'dark' ? 'text-green-400' : 'text-green-600'
                                     }`} />
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>Node.js</span>
+                                    <span className="text-blue-800 dark:text-blue-100">Node.js</span>
                                 </div>
                                 <div className="flex items-center">
                                     <FaPython className={`text-2xl mr-3 ${
                                         theme === 'dark' ? 'text-yellow-400' : 'text-yellow-600'
                                     }`} />
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>Python</span>
+                                    <span className="text-blue-800 dark:text-blue-100">Python</span>
                                 </div>
                                 <div className="flex items-center">
                                     <SiPostgresql className={`text-2xl mr-3 ${
                                         theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
                                     }`} />
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>PostgreSQL</span>
+                                    <span className="text-blue-800 dark:text-blue-100">PostgreSQL</span>
                                 </div>
                                 <div className="flex items-center">
                                     <SiRedis className={`text-2xl mr-3 ${
                                         theme === 'dark' ? 'text-red-400' : 'text-red-600'
                                     }`} />
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>Redis</span>
+                                    <span className="text-blue-800 dark:text-blue-100">Redis</span>
                                 </div>
                             </div>
                         </div>
@@ -336,25 +336,25 @@ const Services = ({ theme }) => {
                                     <FaGitAlt className={`text-2xl mr-3 ${
                                         theme === 'dark' ? 'text-orange-400' : 'text-orange-600'
                                     }`} />
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>Git & GitHub</span>
+                                    <span className="text-blue-800 dark:text-blue-100">Git & GitHub</span>
                                 </div>
                                 <div className="flex items-center">
                                     <FaDocker className={`text-2xl mr-3 ${
                                         theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
                                     }`} />
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>Docker</span>
+                                    <span className="text-blue-800 dark:text-blue-100">Docker</span>
                                 </div>
                                 <div className="flex items-center">
                                     <FaAws className={`text-2xl mr-3 ${
                                         theme === 'dark' ? 'text-orange-400' : 'text-orange-600'
                                     }`} />
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>AWS</span>
+                                    <span className="text-blue-800 dark:text-blue-100">AWS</span>
                                 </div>
                                 <div className="flex items-center">
                                     <FaLinux className={`text-2xl mr-3 ${
                                         theme === 'dark' ? 'text-white' : 'text-black'
                                     }`} />
-                                    <span className={`${theme === 'dark' ? 'text-blue-100' : 'text-blue-800'}`}>Linux</span>
+                                    <span className="text-blue-800 dark:text-blue-100">Linux</span>
                                 </div>
                             </div>
                         </div>

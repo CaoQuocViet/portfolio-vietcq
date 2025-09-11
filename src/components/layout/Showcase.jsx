@@ -9,41 +9,35 @@ const Showcase = () => {
     const { theme } = useTheme()
 
     return (
-        <section id="project-showcase" className={`py-24 ${theme === 'dark' ? 'bg-gray-950' : 'bg-white'} overflow-hidden`}>
+        <section id="project-showcase" className="py-24 bg-white dark:bg-gray-950 overflow-hidden">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 <div className="text-center mb-16">
-                    <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${
-                        theme === 'dark' ? 'text-white' : 'text-gray-900'
-                    }`}>
+                    <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
                         Show Cases
                     </h2>
-                    <div className={`w-24 h-1 mx-auto rounded-full ${
-                        theme === 'dark' ? 'bg-blue-400' : 'bg-blue-600'
-                    }`} />
+                    <div className="w-24 h-1 mx-auto rounded-full bg-blue-600 dark:bg-blue-400" />
                 </div>
 
                 {/* Main Showcase Container */}
-                <div className={`relative overflow-hidden rounded-3xl shadow-2xl backdrop-blur-lg border transition-all duration-300 ${
-                    theme === 'dark' 
-                        ? 'bg-black/20 border-white/10 shadow-black/30' 
-                        : 'bg-white/30 border-white/20 shadow-gray-500/20'
-                }`}>
+                <div className="relative overflow-hidden rounded-3xl shadow-2xl backdrop-blur-lg border transition-all duration-300 
+                               bg-white/30 dark:bg-black/20 border-white/20 dark:border-white/10 
+                               shadow-gray-500/20 dark:shadow-black/30">
                     <div className="flex items-center gap-4 md:gap-8 p-6 md:p-12">
                         {/* Left: Octocat - Hidden on mobile, smaller on tablet */}
                         <div className="hidden sm:block flex-shrink-0">
                             <Image
                                 src="/img/octocat.png"
                                 alt="GitHub Octocat"
-                                width={300}
-                                height={300}
-                                className="object-contain w-32 h-32 md:w-56 md:h-56 lg:w-72 lg:h-72"
+                                width={250}
+                                height={250}
+                                className="object-contain w-40 h-40 md:w-64 md:h-64 lg:w-80 lg:h-80"
                                 priority
                             />
                         </div>
 
                         {/* Right: Project Preview */}
                         <div className="flex-1 flex justify-center">
-                            <div className="relative group w-full max-w-4xl">
+                            <div className="relative group w-full max-w-2xl">
                                 <div className="relative overflow-hidden rounded-2xl shadow-2xl">
                                     <Image
                                         src="/img/gif/showcase.gif"
@@ -72,11 +66,10 @@ const Showcase = () => {
                     <div className="text-center pb-12">
                         <Link 
                             href="/gallery"
-                            className={`inline-flex items-center gap-3 px-10 py-5 rounded-2xl font-bold text-lg transition-all duration-500 group relative overflow-hidden ${
-                                theme === 'dark'
-                                    ? 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white hover:from-cyan-500 hover:to-blue-500 shadow-lg shadow-cyan-500/25'
-                                    : 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white hover:from-blue-500 hover:to-cyan-500 shadow-lg shadow-blue-500/25'
-                            }`}
+                            className="inline-flex items-center gap-3 px-10 py-5 rounded-2xl font-bold text-lg transition-all duration-500 group relative overflow-hidden 
+                                     bg-gradient-to-r from-blue-600 to-cyan-600 dark:from-cyan-600 dark:to-blue-600 
+                                     text-white hover:from-blue-500 hover:to-cyan-500 dark:hover:from-cyan-500 dark:hover:to-blue-500 
+                                     shadow-lg shadow-blue-500/25 dark:shadow-cyan-500/25"
                         >
                             {/* Button background animation */}
                             <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
@@ -85,7 +78,7 @@ const Showcase = () => {
                             <ExternalLink className="w-5 h-5 relative z-10 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
                         </Link>
                         
-                        <p className={`text-sm mt-4 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
+                        <p className="text-sm mt-4 text-gray-600 dark:text-gray-400">
                             Discover interactive project galleries and detailed case studies
                         </p>
                     </div>
