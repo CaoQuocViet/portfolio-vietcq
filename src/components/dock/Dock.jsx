@@ -20,30 +20,28 @@ const NavigationItem = ({
         onClick={onLogoClick}
         onMouseEnter={onHover}
         onMouseLeave={onLeave}
-        className={`relative group flex items-center justify-center w-10 h-10 sm:w-auto sm:h-12 sm:px-4 rounded-xl sm:rounded-2xl transition-all duration-500 ease-out transform cursor-pointer ${
+        className={`relative group flex items-center justify-center w-10 h-10 sm:w-auto sm:h-12 sm:px-4 rounded-xl sm:rounded-2xl transition-all duration-500 ease-out transform cursor-pointer bg-blue-600/20 hover:bg-blue-600/30 dark:bg-blue-600/20 dark:hover:bg-blue-600/30 ${
           isHovered ? "scale-125" : "hover:scale-110"
         } ${
           activeSection === "hero"
-            ? "bg-gradient-to-r from-blue-600/20 to-blue-700/20 shadow-lg"
-            : "hover:bg-gray-100/30 dark:hover:bg-gray-800/30"
+            ? "shadow-lg"
+            : ""
         }`}
         title="Open Vietcq Modal"
       >
         <span
-          className={`text-base sm:text-lg font-bold transition-all duration-500 bg-gradient-to-r ${
-            theme === "dark"
-              ? "from-blue-400 via-purple-400 to-blue-400"
-              : "from-blue-600 via-purple-600 to-blue-600"
-          } bg-clip-text text-transparent`}
+          className="text-base sm:text-lg font-bold transition-all duration-500 bg-gradient-to-r 
+                     from-blue-600 via-purple-600 to-blue-600 
+                     dark:from-blue-400 dark:via-purple-400 dark:to-blue-400 
+                     bg-clip-text text-transparent"
           style={{ fontFamily: "Inter, -apple-system, BlinkMacSystemFont, sans-serif" }}
         >
           {isMobile ? "V" : "Vietcq"}
         </span>
         {!isMobile && (
           <span
-            className={`inline-block ml-1 text-sm sm:text-base transition-all duration-500 ${
-              theme === "dark" ? "text-purple-400" : "text-purple-600"
-            }`}
+            className="inline-block ml-1 text-sm sm:text-base transition-all duration-500 
+                       text-purple-600 dark:text-purple-400"
             style={{ animation: "float 3s ease-in-out infinite" }}
           >
             .
@@ -71,14 +69,19 @@ const NavigationItem = ({
         size={isHovered ? (isMobile ? 18 : 24) : (isMobile ? 16 : 20)} 
         className={`transition-all duration-500 ease-out ${
           isHovered 
-            ? (theme === 'dark' ? 'text-gray-200' : 'text-gray-800') 
+            ? "text-gray-800 dark:text-gray-200" 
             : item.color
         }`} 
       />
       <div className={`absolute -bottom-1 w-1.5 h-1.5 rounded-full transition-all duration-500 ${isActive ? "bg-white scale-100" : "bg-transparent scale-0"}`} />
-      <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap hidden md:block">
+      <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 
+                     bg-gray-900 dark:bg-gray-100 
+                     text-white dark:text-gray-900 
+                     text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 
+                     pointer-events-none whitespace-nowrap hidden md:block">
         {item.label}
-        <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-2 border-r-2 border-t-2 border-transparent border-t-gray-900 dark:border-t-gray-100" />
+        <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-2 border-r-2 border-t-2 
+                       border-transparent border-t-gray-900 dark:border-t-gray-100" />
       </div>
     </button>
   );
@@ -134,7 +137,7 @@ const Dock = ({ theme, setTheme, activeSection, scrollToSection, navigationItems
   const handleLogoClick = () => setIsModalOpen((prev) => !prev);
 
   // Sử dụng class từ global.css
-  const dockBgClass = "glass-effect";
+  const dockBgClass = "bg-white/10 dark:bg-black/20 backdrop-blur-2xl border border-white/20 dark:border-white/10";
 
   // Check screen size
   useEffect(() => {
@@ -197,23 +200,36 @@ const Dock = ({ theme, setTheme, activeSection, scrollToSection, navigationItems
       >
         <div className="flex flex-col sm:flex-row items-center justify-center">
           {navigationItems.map((item, index) => (
-            <div key={item.id} className={`flex flex-col sm:flex-row items-center transition-all duration-300 ease-out ${
-              hoveredItem === item.id 
-                ? "sm:mx-4 my-2 sm:my-0" 
-                : "sm:mx-2.5 my-1.5 sm:my-0"
-            }`}>
-              <NavigationItem
-                item={item}
-                activeSection={activeSection}
-                theme={theme}
-                scrollToSection={scrollToSection}
-                isHovered={hoveredItem === item.id}
-                onHover={() => handleItemHover(item.id)}
-                onLeave={handleItemLeave}
-                onLogoClick={item.isLogo ? handleLogoClick : undefined}
-                logoRef={item.isLogo ? logoBtnRef : undefined}
-                isMobile={isMobile}
-              />
+            <div key={item.id} className="flex flex-col sm:flex-row items-center">
+              <div className={`flex flex-col sm:flex-row items-center transition-all duration-300 ease-out ${
+                hoveredItem === item.id 
+                  ? "sm:mx-4 my-2 sm:my-0" 
+                  : "sm:mx-2.5 my-1.5 sm:my-0"
+              }`}>
+                <NavigationItem
+                  item={item}
+                  activeSection={activeSection}
+                  theme={theme}
+                  scrollToSection={scrollToSection}
+                  isHovered={hoveredItem === item.id}
+                  onHover={() => handleItemHover(item.id)}
+                  onLeave={handleItemLeave}
+                  onLogoClick={item.isLogo ? handleLogoClick : undefined}
+                  logoRef={item.isLogo ? logoBtnRef : undefined}
+                  isMobile={isMobile}
+                />
+              </div>
+              
+              {/* Separator after logo */}
+              {item.isLogo && (
+                <div className={`transition-all duration-300 ease-out ${
+                  hoveredItem === item.id || hoveredItem === navigationItems[index + 1]?.id
+                    ? "sm:mx-5 my-3 sm:my-0" 
+                    : "sm:mx-4 my-2 sm:my-0"
+                } bg-gray-300/50 dark:bg-gray-600/50
+                  w-6 h-0.5 sm:w-0.5 sm:h-6
+                `} />
+              )}
             </div>
           ))} 
           
@@ -222,7 +238,7 @@ const Dock = ({ theme, setTheme, activeSection, scrollToSection, navigationItems
             hoveredItem === navigationItems[navigationItems.length - 1]?.id || hoveredItem === "theme" 
               ? "sm:mx-5 my-3 sm:my-0" 
               : "sm:mx-4 my-2 sm:my-0"
-          } ${theme === "dark" ? "bg-gray-600/50" : "bg-gray-300/50"}
+          } bg-gray-300/50 dark:bg-gray-600/50
             w-6 h-0.5 sm:w-0.5 sm:h-6
           `} />
           

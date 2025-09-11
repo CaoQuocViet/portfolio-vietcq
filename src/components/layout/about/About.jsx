@@ -240,7 +240,7 @@ function ContentBlock({ theme }) {
         </h3>
         {/* Social Links sẽ được render từ SocialList component */}
         <div className="text-sm">
-          <p className={`${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>
+          <p className="text-gray-500 dark:text-gray-400">
             Check out all my social platforms and links in the dock! 
             <span className="text-blue-500"> → Click the dock icon at the bottom</span>
           </p>
