@@ -2,6 +2,8 @@
 import { useState, useEffect } from 'react'
 import { useTheme } from 'next-themes'
 import { FaLightbulb, FaRocket, FaClock, FaCode, FaBrain, FaHome, FaEye } from 'react-icons/fa'
+import GridBackground from '../ui/GridBackground'
+import WaveBackground from '../ui/WaveBackground'
 import Dock from '../dock/Dock'
 import Footer from '../layout/Footer'
 import { IDEAS_NAVIGATION_ITEMS } from '../../config/navigation'
@@ -14,55 +16,8 @@ export default function IdeasPageClient() {
         setMounted(true)
     }, [])
 
-    const ideas = [
-        {
-            id: 'ai-code-assistant',
-            icon: FaBrain,
-            title: 'AI-Powered Code Review Assistant',
-            description: 'A tool that automatically reviews code and suggests improvements using advanced AI models',
-            status: 'planning',
-            priority: 'high',
-            technologies: ['TypeScript', 'OpenAI API', 'VS Code Extension'],
-            estimatedTime: '3 months',
-            category: 'Development Tools'
-        },
-        {
-            id: 'collaborative-whiteboard',
-            icon: FaRocket,
-            title: 'Real-time Collaborative Whiteboard',
-            description: 'Interactive whiteboard with real-time collaboration, perfect for remote teams',
-            status: 'researching',
-            priority: 'medium',
-            technologies: ['React', 'Socket.io', 'Canvas API', 'Node.js'],
-            estimatedTime: '2 months',
-            category: 'Collaboration'
-        },
-        {
-            id: 'smart-dashboard',
-            icon: FaCode,
-            title: 'Smart Home Dashboard',
-            description: 'Central dashboard to control and monitor all smart home devices',
-            status: 'idea',
-            priority: 'low',
-            technologies: ['Next.js', 'IoT', 'MQTT', 'Raspberry Pi'],
-            estimatedTime: '4 months',
-            category: 'IoT & Hardware'
-        },
-        {
-            id: 'expense-tracker',
-            icon: FaClock,
-            title: 'Expense Tracker with AI Insights',
-            description: 'Track expenses and get AI-powered insights on spending patterns',
-            status: 'planning',
-            priority: 'high',
-            technologies: ['React Native', 'Machine Learning', 'Python'],
-            estimatedTime: '2.5 months',
-            category: 'FinTech'
-        }
-    ]
-
     const getStatusColor = (status) => {
-        switch(status) {
+        switch (status) {
             case 'idea': return 'text-yellow-600 bg-yellow-100 dark:text-yellow-400 dark:bg-yellow-400/20'
             case 'planning': return 'text-blue-600 bg-blue-100 dark:text-blue-400 dark:bg-blue-400/20'
             case 'researching': return 'text-purple-600 bg-purple-100 dark:text-purple-400 dark:bg-purple-400/20'
@@ -71,7 +26,7 @@ export default function IdeasPageClient() {
     }
 
     const getPriorityIcon = (priority) => {
-        switch(priority) {
+        switch (priority) {
             case 'high': return <FaRocket className="text-red-500" />
             case 'medium': return <FaClock className="text-yellow-500" />
             case 'low': return <FaCode className="text-green-500" />
@@ -88,137 +43,153 @@ export default function IdeasPageClient() {
     }
 
     return (
-        <div className="min-h-screen bg-gray-200 dark:bg-gray-900/50">
+        <div className="min-h-screen bg-gray-100 dark:bg-gray-950">
+            {/* Grid Background Component */}
+            <GridBackground theme={theme} colorScheme="pink" />
+
             {/* Dock Navigation */}
-            <Dock 
+            <Dock
                 theme={theme}
                 setTheme={setTheme}
                 activeSection={null}
-                scrollToSection={() => {}}
+                scrollToSection={() => { }}
                 navigationItems={IDEAS_NAVIGATION_ITEMS}
             />
 
             {/* Main Content */}
-            <main className="container mx-auto px-6 pt-32 pb-20">
-                {/* Header */}
-                <div className="text-center mb-16">
-                    <div className="flex items-center justify-center gap-3 mb-6">
-                        <FaLightbulb className="text-4xl text-yellow-500 dark:text-yellow-400" />
-                        <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white">
-                            Future Ideas
-                        </h1>
+            <div className="relative z-10 flex flex-col justify-center px-6 py-8" style={{ minHeight: 'calc(100vh - 120px)' }}>
+                <div className="container max-w-6xl mx-auto">
+                    {/* Header */}
+                    <div className="text-center mb-12">
+                        <div className="flex items-center justify-center gap-3 mb-6">
+                            <FaLightbulb className="text-4xl text-amber-500 dark:text-amber-400" />
+                            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white">
+                                Future Ideas
+                            </h1>
+                        </div>
+                        <p className="text-xl max-w-3xl mx-auto text-gray-600 dark:text-gray-400">
+                            ✨ Exploring innovative concepts and upcoming project possibilities
+                        </p>
                     </div>
-                    <p className="text-xl max-w-3xl mx-auto text-gray-600 dark:text-gray-300">
-                        Exploring innovative concepts and upcoming project possibilities for the future
-                    </p>
-                </div>
 
-                {/* Ideas Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                    {ideas.map((idea) => {
-                        const Icon = idea.icon
-                        return (
-                            <div
-                                key={idea.id}
-                                className={`
-                                    p-8 rounded-2xl border-2 transition-all duration-300
-                                    hover:scale-[1.02] hover:shadow-xl cursor-pointer
-                                    ${theme === 'dark' 
-                                        ? 'bg-gray-900/50 border-gray-800 hover:border-gray-700' 
-                                        : 'bg-white border-gray-200 hover:border-gray-300'
-                                    }
-                                `}
-                            >
-                                {/* Header */}
-                                <div className="flex items-start justify-between mb-4">
-                                    <div className="flex items-center gap-3">
-                                        {getPriorityIcon(idea.priority)}
-                                        <div>
-                                            <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                                                {idea.title}
-                                            </h3>
-                                            <p className="text-sm text-gray-500 dark:text-gray-400">
-                                                {idea.category}
-                                            </p>
+                    {/* Ideas Cards */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {/* Digital Art Store */}
+                        <div className="group rounded-2xl p-8 transition-all duration-500 hover:scale-[1.02] hover:shadow-xl bg-white shadow-md dark:bg-gray-900 dark:shadow-2xl flex flex-col">
+                            <div className="flex items-start justify-between mb-6 h-20">
+                                <div className="flex items-center gap-4">
+                                    <div className="relative">
+                                        <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-purple-100 dark:bg-purple-900/50 transition-all duration-300 group-hover:scale-110">
+                                            🎨
                                         </div>
+                                        <div className="absolute -top-1 -right-1 w-4 h-4 bg-purple-500 rounded-full"></div>
                                     </div>
-                                    <span className={`
-                                        px-3 py-1 rounded-full text-xs font-medium capitalize
-                                        ${getStatusColor(idea.status)}
-                                    `}>
-                                        {idea.status}
-                                    </span>
+                                    <div>
+                                        <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                                            ArtVault Digital Store
+                                        </h3>
+                                        <p className="text-sm text-purple-600 dark:text-purple-400">
+                                            Print on Demand • Digital Downloads • E-commerce
+                                        </p>
+                                    </div>
                                 </div>
+                                <span className="px-3 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-700 dark:bg-purple-900/50 dark:text-purple-300">
+                                    Concept
+                                </span>
+                            </div>
 
-                                {/* Description */}
-                                <p className="mb-6 leading-relaxed text-gray-600 dark:text-gray-300">
-                                    {idea.description}
+                            <div className="flex-1 mb-6">
+                                <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                                    <strong>Digital art marketplace platform</strong> with integrated print-on-demand and instant digital downloads. Optimized SEO system, modern UI/UX design.
                                 </p>
 
-                                {/* Technologies */}
-                                <div className="mb-4">
-                                    <p className="text-sm font-medium mb-2 text-gray-500 dark:text-gray-400">
-                                        Technologies:
-                                    </p>
-                                    <div className="flex flex-wrap gap-2">
-                                        {idea.technologies.map((tech, index) => (
-                                            <span
-                                                key={index}
-                                                className="px-3 py-1 rounded-lg text-sm font-medium bg-blue-100 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400"
-                                            >
-                                                {tech}
-                                            </span>
-                                        ))}
+                                <div className="grid grid-cols-1 gap-3">
+                                    <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800/50">
+                                        <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-1">Core Features</h4>
+                                        <p className="text-sm text-gray-600 dark:text-gray-400">Artist portfolio management, watermark protection, payment integration, automated delivery</p>
                                     </div>
-                                </div>
 
-                                {/* Footer */}
-                                <div className="flex items-center justify-between pt-4 border-t border-gray-700">
-                                    <div className="flex items-center gap-2">
-                                        <FaClock className="text-sm text-gray-500 dark:text-gray-400" />
-                                        <span className="text-sm text-gray-500 dark:text-gray-400">
-                                            {idea.estimatedTime}
-                                        </span>
-                                    </div>
-                                    <div className={`
-                                        px-3 py-1 rounded-lg text-xs font-medium
-                                        ${idea.priority === 'high' 
-                                            ? 'bg-red-500/20 text-red-400'
-                                            : idea.priority === 'medium'
-                                            ? 'bg-yellow-500/20 text-yellow-400'
-                                            : 'bg-green-500/20 text-green-400'
-                                        }
-                                    `}>
-                                        {idea.priority} priority
+                                    <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800/50">
+                                        <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-1">Print Services</h4>
+                                        <p className="text-sm text-gray-600 dark:text-gray-400">Canvas, poster, sticker printing, size customization, shipping integration</p>
                                     </div>
                                 </div>
                             </div>
-                        )
-                    })}
-                </div>
 
-                {/* Call to Action */}
-                <div className={`
-                    text-center mt-16 p-8 rounded-2xl
-                    ${theme === 'dark' 
-                        ? 'bg-gray-900/30 border border-gray-800' 
-                        : 'bg-gray-50 border border-gray-200'
-                    }
-                `}>
-                    <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
-                        Have an idea for collaboration?
-                    </h3>
-                    <p className="text-lg mb-6 text-gray-600 dark:text-gray-300">
-                        Let's discuss your project concepts and bring innovative solutions to life
-                    </p>
-                    <button 
-                        onClick={() => window.location.href = '/#contact'}
-                        className="px-8 py-3 rounded-lg font-medium transition-all duration-300 bg-blue-600 hover:bg-blue-700 text-white hover:scale-105 hover:shadow-lg"
-                    >
-                        Get In Touch
-                    </button>
+                            <div className="flex flex-wrap gap-2">
+                                <span className="px-3 py-1 text-xs rounded-full bg-yellow-500 text-white font-semibold">Python FastAPI</span>
+                                <span className="px-3 py-1 text-xs rounded-full bg-black text-white">Next.js</span>
+                                <span className="px-3 py-1 text-xs rounded-full bg-purple-100 text-purple-800 dark:bg-purple-900/50 dark:text-purple-300">Stripe API</span>
+                                <span className="px-3 py-1 text-xs rounded-full bg-orange-500 text-white">AWS S3</span>
+                            </div>
+                        </div>
+
+                        {/* Language Testing Hub */}
+                        <div className="group rounded-2xl p-8 transition-all duration-500 hover:scale-[1.02] hover:shadow-xl bg-white shadow-md dark:bg-gray-900 dark:shadow-2xl flex flex-col">
+                            <div className="flex items-start justify-between mb-6 h-20">
+                                <div className="flex items-center gap-4">
+                                    <div className="relative">
+                                        <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-blue-100 dark:bg-blue-900/50 transition-all duration-300 group-hover:scale-110">
+                                            🌐
+                                        </div>
+                                        <div className="absolute -top-1 -right-1 w-4 h-4 bg-blue-500 rounded-full"></div>
+                                    </div>
+                                    <div>
+                                        <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                                            LinguaCert Testing Hub
+                                        </h3>
+                                        <p className="text-sm text-blue-600 dark:text-blue-400">
+                                            Multi-Language Certification • Enterprise Scale • Global Standards
+                                        </p>
+                                    </div>
+                                </div>
+                                <span className="px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300">
+                                    Enterprise
+                                </span>
+                            </div>
+
+                            <div className="flex-1 mb-6">
+                                <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                                    <strong>Testing hub system</strong> for 50+ international language certifications. Complex microservices architecture, high performance, scalable infrastructure.
+                                </p>
+
+                                <div className="grid grid-cols-1 gap-3">
+                                    <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800/50">
+                                        <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-1">Testing Engine</h4>
+                                        <p className="text-sm text-gray-600 dark:text-gray-400">AI-powered question generation, adaptive testing, real-time scoring, proctoring system</p>
+                                    </div>
+
+                                    <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800/50">
+                                        <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-1">Architecture</h4>
+                                        <p className="text-sm text-gray-600 dark:text-gray-400">Microservices, micro frontends, event-driven design, CQRS pattern, containerized deployment</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="flex flex-wrap gap-2">
+                                <span className="px-3 py-1 text-xs rounded-full bg-yellow-500 text-white font-semibold">Python</span>
+                                <span className="px-3 py-1 text-xs rounded-full bg-red-600 text-white">NestJS</span>
+                                <span className="px-3 py-1 text-xs rounded-full bg-black text-white">Next.js</span>
+                                <span className="px-3 py-1 text-xs rounded-full bg-indigo-600 text-white">PHP</span>
+                                <span className="px-3 py-1 text-xs rounded-full bg-blue-500 text-white">Docker</span>
+                                <span className="px-3 py-1 text-xs rounded-full bg-blue-600 text-white">Kubernetes</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </main>
+            </div>
+
+            {/* Wave Background at Bottom */}
+            <div className="absolute bottom-0 left-0 w-full">
+                {/* Bottom Wave - Sóng lồi lên */}
+                <div className="relative">
+                    <WaveBackground />
+                </div>
+                {/* Top Wave - Sóng lồi xuống */}
+                <div className="relative -mt-10">
+                    <WaveBackground reversed />
+                </div>
+            </div>
 
             {/* Footer */}
             <Footer theme={theme} />
