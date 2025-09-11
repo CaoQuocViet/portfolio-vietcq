@@ -3,9 +3,9 @@ import { useState, useEffect } from 'react'
 import { useTheme } from 'next-themes'
 import { FaLightbulb, FaRocket, FaClock, FaCode, FaBrain, FaHome, FaEye } from 'react-icons/fa'
 import GridBackground from '../ui/GridBackground'
-import WaveBackground from '../ui/WaveBackground'
 import Dock from '../dock/Dock'
 import Footer from '../layout/Footer'
+import WaveBackground from '../ui/WaveBackground'
 import { IDEAS_NAVIGATION_ITEMS } from '../../config/navigation'
 
 export default function IdeasPageClient() {
@@ -43,7 +43,9 @@ export default function IdeasPageClient() {
     }
 
     return (
-        <div className="min-h-screen bg-gray-100 dark:bg-gray-950">
+        <>
+            {/* Ideas Page Section */}
+            <div className="relative min-h-screen bg-gray-100 dark:bg-gray-950">
             {/* Grid Background Component */}
             <GridBackground theme={theme} colorScheme="pink" />
 
@@ -57,7 +59,7 @@ export default function IdeasPageClient() {
             />
 
             {/* Main Content */}
-            <div className="relative z-10 flex flex-col justify-center px-6 py-8" style={{ minHeight: 'calc(100vh - 120px)' }}>
+            <div className="relative z-20 flex flex-col justify-center px-6 py-8" style={{ minHeight: 'calc(100vh - 120px)' }}>
                 <div className="container max-w-6xl mx-auto">
                     {/* Header */}
                     <div className="text-center mb-12">
@@ -73,10 +75,10 @@ export default function IdeasPageClient() {
                     </div>
 
                     {/* Ideas Cards */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                         {/* Digital Art Store */}
-                        <div className="group rounded-2xl p-8 transition-all duration-500 hover:scale-[1.02] hover:shadow-xl bg-white shadow-md dark:bg-gray-900 dark:shadow-2xl flex flex-col">
-                            <div className="flex items-start justify-between mb-6 h-20">
+                        <div className="group rounded-2xl p-6 md:p-8 transition-all duration-500 hover:scale-[1.02] hover:shadow-xl bg-white shadow-md dark:bg-gray-900 dark:shadow-2xl flex flex-col min-h-[500px]">
+                            <div className="flex items-start justify-between mb-4 md:mb-6 min-h-[80px]">
                                 <div className="flex items-center gap-4">
                                     <div className="relative">
                                         <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-purple-100 dark:bg-purple-900/50 transition-all duration-300 group-hover:scale-110">
@@ -98,7 +100,7 @@ export default function IdeasPageClient() {
                                 </span>
                             </div>
 
-                            <div className="flex-1 mb-6">
+                            <div className="flex-1 mb-4 md:mb-6">
                                 <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
                                     <strong>Digital art marketplace platform</strong> with integrated print-on-demand and instant digital downloads. Optimized SEO system, modern UI/UX design.
                                 </p>
@@ -125,8 +127,8 @@ export default function IdeasPageClient() {
                         </div>
 
                         {/* Language Testing Hub */}
-                        <div className="group rounded-2xl p-8 transition-all duration-500 hover:scale-[1.02] hover:shadow-xl bg-white shadow-md dark:bg-gray-900 dark:shadow-2xl flex flex-col">
-                            <div className="flex items-start justify-between mb-6 h-20">
+                        <div className="group rounded-2xl p-6 md:p-8 transition-all duration-500 hover:scale-[1.02] hover:shadow-xl bg-white shadow-md dark:bg-gray-900 dark:shadow-2xl flex flex-col min-h-[500px]">
+                            <div className="flex items-start justify-between mb-4 md:mb-6 min-h-[80px]">
                                 <div className="flex items-center gap-4">
                                     <div className="relative">
                                         <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-blue-100 dark:bg-blue-900/50 transition-all duration-300 group-hover:scale-110">
@@ -148,7 +150,7 @@ export default function IdeasPageClient() {
                                 </span>
                             </div>
 
-                            <div className="flex-1 mb-6">
+                            <div className="flex-1 mb-4 md:mb-6">
                                 <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
                                     <strong>Testing hub system</strong> for 50+ international language certifications. Complex microservices architecture, high performance, scalable infrastructure.
                                 </p>
@@ -178,9 +180,8 @@ export default function IdeasPageClient() {
                     </div>
                 </div>
             </div>
-
-            {/* Wave Background at Bottom */}
-            <div className="absolute bottom-0 left-0 w-full">
+            {/* Wave Background at bottom - Hidden on mobile, visible on tablet+ */}
+            <div className="hidden md:block absolute bottom-0 left-0 w-full">
                 {/* Bottom Wave - Sóng lồi lên */}
                 <div className="relative">
                     <WaveBackground />
@@ -190,9 +191,10 @@ export default function IdeasPageClient() {
                     <WaveBackground reversed />
                 </div>
             </div>
-
-            {/* Footer */}
-            <Footer theme={theme} />
         </div>
+        
+        {/* Footer Section - Completely separate */}
+        <Footer theme={theme} />
+        </>
     )
 }
