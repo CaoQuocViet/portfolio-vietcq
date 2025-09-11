@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { GoMail } from "react-icons/go";
 import { info } from "../../utils/info";
 import { SOCIAL_PLATFORMS } from "../../data/socialPlatforms";
 

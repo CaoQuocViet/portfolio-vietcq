@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { useTheme } from 'next-themes'
-import { FaLightbulb, FaRocket, FaClock, FaCode, FaBrain, FaHome, FaEye } from 'react-icons/fa'
+import { FaLightbulb } from 'react-icons/fa'
 import GridBackground from '../ui/GridBackground'
 import Dock from '../dock/Dock'
 import Footer from '../layout/Footer'
@@ -15,24 +15,6 @@ export default function IdeasPageClient() {
     useEffect(() => {
         setMounted(true)
     }, [])
-
-    const getStatusColor = (status) => {
-        switch (status) {
-            case 'idea': return 'text-yellow-600 bg-yellow-100 dark:text-yellow-400 dark:bg-yellow-400/20'
-            case 'planning': return 'text-blue-600 bg-blue-100 dark:text-blue-400 dark:bg-blue-400/20'
-            case 'researching': return 'text-purple-600 bg-purple-100 dark:text-purple-400 dark:bg-purple-400/20'
-            default: return 'text-gray-600 bg-gray-100 dark:text-gray-400 dark:bg-gray-400/20'
-        }
-    }
-
-    const getPriorityIcon = (priority) => {
-        switch (priority) {
-            case 'high': return <FaRocket className="text-red-500" />
-            case 'medium': return <FaClock className="text-yellow-500" />
-            case 'low': return <FaCode className="text-green-500" />
-            default: return <FaLightbulb className="text-gray-500" />
-        }
-    }
 
     if (!mounted) {
         return (

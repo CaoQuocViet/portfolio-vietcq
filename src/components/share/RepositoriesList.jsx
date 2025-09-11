@@ -1,6 +1,4 @@
-import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Star, GitFork } from "lucide-react";
 import { useGitHubRepos } from "../../hooks/useGitHubRepos";
 
 const RepositoriesList = ({ theme = "dark" }) => {
