@@ -63,10 +63,10 @@ export default function IdeasPageClient() {
 
     const getStatusColor = (status) => {
         switch(status) {
-            case 'idea': return theme === 'dark' ? 'text-yellow-400 bg-yellow-400/20' : 'text-yellow-600 bg-yellow-100'
-            case 'planning': return theme === 'dark' ? 'text-blue-400 bg-blue-400/20' : 'text-blue-600 bg-blue-100'
-            case 'researching': return theme === 'dark' ? 'text-purple-400 bg-purple-400/20' : 'text-purple-600 bg-purple-100'
-            default: return theme === 'dark' ? 'text-gray-400 bg-gray-400/20' : 'text-gray-600 bg-gray-100'
+            case 'idea': return 'text-yellow-600 bg-yellow-100 dark:text-yellow-400 dark:bg-yellow-400/20'
+            case 'planning': return 'text-blue-600 bg-blue-100 dark:text-blue-400 dark:bg-blue-400/20'
+            case 'researching': return 'text-purple-600 bg-purple-100 dark:text-purple-400 dark:bg-purple-400/20'
+            default: return 'text-gray-600 bg-gray-100 dark:text-gray-400 dark:bg-gray-400/20'
         }
     }
 
@@ -88,7 +88,7 @@ export default function IdeasPageClient() {
     }
 
     return (
-        <div className={`min-h-screen ${theme === 'dark' ? 'bg-gray-950' : 'bg-white'}`}>
+        <div className="min-h-screen bg-gray-200 dark:bg-gray-900/50">
             {/* Dock Navigation */}
             <Dock 
                 theme={theme}
@@ -103,18 +103,12 @@ export default function IdeasPageClient() {
                 {/* Header */}
                 <div className="text-center mb-16">
                     <div className="flex items-center justify-center gap-3 mb-6">
-                        <FaLightbulb className={`text-4xl ${
-                            theme === 'dark' ? 'text-yellow-400' : 'text-yellow-500'
-                        }`} />
-                        <h1 className={`text-4xl md:text-6xl font-bold ${
-                            theme === 'dark' ? 'text-white' : 'text-gray-900'
-                        }`}>
+                        <FaLightbulb className="text-4xl text-yellow-500 dark:text-yellow-400" />
+                        <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white">
                             Future Ideas
                         </h1>
                     </div>
-                    <p className={`text-xl max-w-3xl mx-auto ${
-                        theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
-                    }`}>
+                    <p className="text-xl max-w-3xl mx-auto text-gray-600 dark:text-gray-300">
                         Exploring innovative concepts and upcoming project possibilities for the future
                     </p>
                 </div>
@@ -140,14 +134,10 @@ export default function IdeasPageClient() {
                                     <div className="flex items-center gap-3">
                                         {getPriorityIcon(idea.priority)}
                                         <div>
-                                            <h3 className={`text-xl font-bold ${
-                                                theme === 'dark' ? 'text-white' : 'text-gray-900'
-                                            }`}>
+                                            <h3 className="text-xl font-bold text-gray-900 dark:text-white">
                                                 {idea.title}
                                             </h3>
-                                            <p className={`text-sm ${
-                                                theme === 'dark' ? 'text-gray-400' : 'text-gray-500'
-                                            }`}>
+                                            <p className="text-sm text-gray-500 dark:text-gray-400">
                                                 {idea.category}
                                             </p>
                                         </div>
@@ -161,30 +151,20 @@ export default function IdeasPageClient() {
                                 </div>
 
                                 {/* Description */}
-                                <p className={`mb-6 leading-relaxed ${
-                                    theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
-                                }`}>
+                                <p className="mb-6 leading-relaxed text-gray-600 dark:text-gray-300">
                                     {idea.description}
                                 </p>
 
                                 {/* Technologies */}
                                 <div className="mb-4">
-                                    <p className={`text-sm font-medium mb-2 ${
-                                        theme === 'dark' ? 'text-gray-400' : 'text-gray-500'
-                                    }`}>
+                                    <p className="text-sm font-medium mb-2 text-gray-500 dark:text-gray-400">
                                         Technologies:
                                     </p>
                                     <div className="flex flex-wrap gap-2">
                                         {idea.technologies.map((tech, index) => (
                                             <span
                                                 key={index}
-                                                className={`
-                                                    px-3 py-1 rounded-lg text-sm font-medium
-                                                    ${theme === 'dark' 
-                                                        ? 'bg-blue-500/20 text-blue-400' 
-                                                        : 'bg-blue-100 text-blue-600'
-                                                    }
-                                                `}
+                                                className="px-3 py-1 rounded-lg text-sm font-medium bg-blue-100 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400"
                                             >
                                                 {tech}
                                             </span>
@@ -195,12 +175,8 @@ export default function IdeasPageClient() {
                                 {/* Footer */}
                                 <div className="flex items-center justify-between pt-4 border-t border-gray-700">
                                     <div className="flex items-center gap-2">
-                                        <FaClock className={`text-sm ${
-                                            theme === 'dark' ? 'text-gray-400' : 'text-gray-500'
-                                        }`} />
-                                        <span className={`text-sm ${
-                                            theme === 'dark' ? 'text-gray-400' : 'text-gray-500'
-                                        }`}>
+                                        <FaClock className="text-sm text-gray-500 dark:text-gray-400" />
+                                        <span className="text-sm text-gray-500 dark:text-gray-400">
                                             {idea.estimatedTime}
                                         </span>
                                     </div>
@@ -229,26 +205,15 @@ export default function IdeasPageClient() {
                         : 'bg-gray-50 border border-gray-200'
                     }
                 `}>
-                    <h3 className={`text-2xl font-bold mb-4 ${
-                        theme === 'dark' ? 'text-white' : 'text-gray-900'
-                    }`}>
+                    <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
                         Have an idea for collaboration?
                     </h3>
-                    <p className={`text-lg mb-6 ${
-                        theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
-                    }`}>
+                    <p className="text-lg mb-6 text-gray-600 dark:text-gray-300">
                         Let's discuss your project concepts and bring innovative solutions to life
                     </p>
                     <button 
                         onClick={() => window.location.href = '/#contact'}
-                        className={`
-                            px-8 py-3 rounded-lg font-medium transition-all duration-300
-                            ${theme === 'dark' 
-                                ? 'bg-blue-600 hover:bg-blue-700 text-white' 
-                                : 'bg-blue-600 hover:bg-blue-700 text-white'
-                            }
-                            hover:scale-105 hover:shadow-lg
-                        `}
+                        className="px-8 py-3 rounded-lg font-medium transition-all duration-300 bg-blue-600 hover:bg-blue-700 text-white hover:scale-105 hover:shadow-lg"
                     >
                         Get In Touch
                     </button>
