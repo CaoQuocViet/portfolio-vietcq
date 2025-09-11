@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-function GridBackground({ children, theme = 'dark', colorScheme = 'blue' }) {
+function GridBackground({ theme = 'dark', colorScheme = 'blue' }) {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
     // Color configuration based on scheme
@@ -39,70 +39,60 @@ function GridBackground({ children, theme = 'dark', colorScheme = 'blue' }) {
     }, []);
 
     return (
-        <div className={children ? "relative" : "absolute inset-0 overflow-hidden pointer-events-none"}>
-            {/* Background Layer */}
-            <div className={children ? "absolute inset-0 overflow-hidden pointer-events-none" : ""}>
-                {/* Main Grid Pattern */}
-                <div
-                    className="absolute inset-0 opacity-30"
-                    style={{
-                        backgroundImage: `
-                            linear-gradient(to right, ${theme === 'dark' ? currentColors.main.dark : currentColors.main.light} 1px, transparent 1px),
-                            linear-gradient(to bottom, ${theme === 'dark' ? currentColors.main.dark : currentColors.main.light} 1px, transparent 1px)
-                        `,
-                        backgroundSize: '50px 50px',
-                        animation: 'gridMove 20s linear infinite'
-                    }}
-                />
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            {/* Main Grid Pattern */}
+            <div
+                className="absolute inset-0 opacity-30"
+                style={{
+                    backgroundImage: `
+                        linear-gradient(to right, ${theme === 'dark' ? currentColors.main.dark : currentColors.main.light} 1px, transparent 1px),
+                        linear-gradient(to bottom, ${theme === 'dark' ? currentColors.main.dark : currentColors.main.light} 1px, transparent 1px)
+                    `,
+                    backgroundSize: '50px 50px',
+                    animation: 'gridMove 20s linear infinite'
+                }}
+            />
 
-                {/* Secondary Grid Pattern - Smaller */}
-                <div
-                    className="absolute inset-0 opacity-15"
-                    style={{
-                        backgroundImage: `
-                            linear-gradient(to right, ${theme === 'dark' ? currentColors.secondary.dark : currentColors.secondary.light} 1px, transparent 1px),
-                            linear-gradient(to bottom, ${theme === 'dark' ? currentColors.secondary.dark : currentColors.secondary.light} 1px, transparent 1px)
-                        `,
-                        backgroundSize: '20px 20px',
-                        animation: 'gridMove 30s linear infinite reverse'
-                    }}
-                />
+            {/* Secondary Grid Pattern - Smaller */}
+            <div
+                className="absolute inset-0 opacity-15"
+                style={{
+                    backgroundImage: `
+                        linear-gradient(to right, ${theme === 'dark' ? currentColors.secondary.dark : currentColors.secondary.light} 1px, transparent 1px),
+                        linear-gradient(to bottom, ${theme === 'dark' ? currentColors.secondary.dark : currentColors.secondary.light} 1px, transparent 1px)
+                    `,
+                    backgroundSize: '20px 20px',
+                    animation: 'gridMove 30s linear infinite reverse'
+                }}
+            />
 
-                {/* Mouse Follow Spotlight */}
-                <div
-                    className="absolute pointer-events-none"
-                    style={{
-                        background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, ${
-                            theme === 'dark' ? currentColors.spotlight.dark : currentColors.spotlight.light
-                        })`,
-                        width: '100%',
-                        height: '100%',
-                        transition: 'all 0.3s ease'
-                    }}
-                />
+            {/* Mouse Follow Spotlight */}
+            <div
+                className="absolute pointer-events-none"
+                style={{
+                    background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, ${
+                        theme === 'dark' ? currentColors.spotlight.dark : currentColors.spotlight.light
+                    })`,
+                    width: '100%',
+                    height: '100%',
+                    transition: 'all 0.3s ease'
+                }}
+            />
 
-                {/* Floating Dots */}
-                <div className="absolute inset-0">
-                    {[...Array(12)].map((_, i) => (
-                        <div
-                            key={i}
-                            className={`absolute w-1 h-1 rounded-full ${currentColors.dots}`}
-                            style={{
-                                left: `${Math.random() * 100}%`,
-                                top: `${Math.random() * 100}%`,
-                                animation: `float ${3 + Math.random() * 4}s ease-in-out infinite ${Math.random() * 2}s`
-                            }}
-                        />
-                    ))}
-                </div>
+            {/* Floating Dots */}
+            <div className="absolute inset-0">
+                {[...Array(12)].map((_, i) => (
+                    <div
+                        key={i}
+                        className={`absolute w-1 h-1 rounded-full ${currentColors.dots}`}
+                        style={{
+                            left: `${Math.random() * 100}%`,
+                            top: `${Math.random() * 100}%`,
+                            animation: `float ${3 + Math.random() * 4}s ease-in-out infinite ${Math.random() * 2}s`
+                        }}
+                    />
+                ))}
             </div>
-
-            {/* Content Layer - Only render if there are children */}
-            {children && (
-                <div className="relative z-10">
-                    {children}
-                </div>
-            )}
 
             {/* CSS Styles */}
             <style jsx>{`

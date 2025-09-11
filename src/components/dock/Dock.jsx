@@ -32,7 +32,7 @@ const NavigationItem = ({
         <span
           className="text-base sm:text-lg font-bold transition-all duration-500 bg-gradient-to-r 
                      from-blue-600 via-purple-600 to-blue-600 
-                     dark:from-blue-400 dark:via-purple-400 dark:to-blue-400 
+                     dark:from-blue-600 dark:via-purple-600 dark:to-blue-600 
                      bg-clip-text text-transparent"
           style={{ fontFamily: "Inter, -apple-system, BlinkMacSystemFont, sans-serif" }}
         >
