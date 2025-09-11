@@ -6,6 +6,7 @@ import Dock from './dock/Dock'
 import { GALLERY_NAVIGATION_ITEMS } from '../config/navigation'
 import { createScrollFunction } from '../utils/navigation'
 import { useGallery } from '../hooks/useGallery'
+import { LoadingSpinner } from './ui/loading'
 
 
 const Gallery = ({ projectFilter = null, showDock = true }) => {
@@ -94,10 +95,8 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
                     }}
                 >
                     <div className="text-center">
-                        <div className={`animate-spin rounded-full h-12 w-12 border-b-2 mx-auto mb-4 ${
-                            theme === 'dark' ? 'border-cyan-400' : 'border-white'
-                        }`} />
-                        <p className="text-white text-lg">Loading Gallery...</p>
+                        <LoadingSpinner size="lg" />
+                        <p className="text-white text-lg mt-4">Loading Gallery...</p>
                     </div>
                 </div>
             </>

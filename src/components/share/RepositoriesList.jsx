@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useGitHubRepos } from "../../hooks/useGitHubRepos";
+import { LoadingSpinner } from "../ui/loading";
 
 const RepositoriesList = ({ theme = "dark" }) => {
   const { repos, loading } = useGitHubRepos(8); // Chỉ lấy 8 repos cho modal
@@ -7,7 +8,7 @@ const RepositoriesList = ({ theme = "dark" }) => {
   if (loading) {
     return (
       <div className="flex justify-center py-4">
-        <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600 dark:border-blue-400" />
+        <LoadingSpinner size="sm" />
       </div>
     );
   }

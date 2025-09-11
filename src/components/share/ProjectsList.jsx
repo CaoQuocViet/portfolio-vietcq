@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { LoadingSpinner } from "../ui/loading";
 
 const ProjectsList = ({ theme }) => {
     const [projects, setProjects] = useState([]);
@@ -39,7 +40,7 @@ const ProjectsList = ({ theme }) => {
     if (loading) {
         return (
             <div className="flex justify-center py-4">
-                <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600 dark:border-blue-400" />
+                <LoadingSpinner size="sm" />
             </div>
         );
     }
