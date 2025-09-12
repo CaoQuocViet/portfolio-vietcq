@@ -1,7 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { useTheme } from 'next-themes'
-import GridBackground from '../ui/GridBackground'
 
 const AdminAuth = ({ onAuthSuccess }) => {
     const { theme } = useTheme()
@@ -85,8 +84,7 @@ const AdminAuth = ({ onAuthSuccess }) => {
 
     if (loading && !error) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-950">
-                <GridBackground theme={theme} />
+            <div className="min-h-screen flex items-center justify-center bg-gray-200 dark:bg-gray-900/50">
                 <div className="text-gray-900 dark:text-white text-center relative z-10">
                     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 dark:border-white mx-auto mb-4"></div>
                     <p>Loading...</p>
@@ -96,9 +94,10 @@ const AdminAuth = ({ onAuthSuccess }) => {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center px-4 bg-white dark:bg-gray-950">
-            <GridBackground theme={theme} />
-            <div className="max-w-md w-full backdrop-filter backdrop-blur-lg bg-white/80 dark:bg-gray-900/80 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-lg p-8 relative z-10">
+        <div className="min-h-screen flex items-center justify-center px-4 bg-gray-200 dark:bg-gray-900/50">
+            <div className={`max-w-md w-full rounded-2xl shadow-lg p-8 relative z-10 ${
+                theme === 'dark' ? 'bg-gray-800' : 'bg-white'
+            }`}>
                 <div className="text-center mb-8">
                     <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
                         {isSetup ? 'Setup Admin' : 'Admin Login'}
@@ -121,7 +120,11 @@ const AdminAuth = ({ onAuthSuccess }) => {
                             id="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className="w-full px-4 py-3 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                            className={`w-full px-4 py-3 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
+                                theme === 'dark'
+                                    ? 'bg-gray-700 text-white placeholder-gray-400'
+                                    : 'bg-gray-50 text-gray-900 placeholder-gray-500'
+                            }`}
                             placeholder="Enter password"
                             required
                             minLength={6}
@@ -138,7 +141,11 @@ const AdminAuth = ({ onAuthSuccess }) => {
                                 id="confirmPassword"
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
-                                className="w-full px-4 py-3 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                className={`w-full px-4 py-3 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
+                                theme === 'dark'
+                                    ? 'bg-gray-700 text-white placeholder-gray-400'
+                                    : 'bg-gray-50 text-gray-900 placeholder-gray-500'
+                            }`}
                                 placeholder="Confirm password"
                                 required
                                 minLength={6}
@@ -147,7 +154,11 @@ const AdminAuth = ({ onAuthSuccess }) => {
                     )}
 
                     {error && (
-                        <div className="bg-red-50 dark:bg-red-900/50 border border-red-300 dark:border-red-500 text-red-700 dark:text-red-200 px-4 py-3 rounded-lg">
+                        <div className={`px-4 py-3 rounded-lg ${
+                            theme === 'dark'
+                                ? 'bg-red-900 text-red-200'
+                                : 'bg-red-50 text-red-700'
+                        }`}>
                             {error}
                         </div>
                     )}

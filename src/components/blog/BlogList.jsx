@@ -121,7 +121,7 @@ const BlogList = () => {
                 {/* Create Post Button - Fixed position */}
                 <Link 
                     href="/admin"
-                    className="fixed top-24 right-6 z-50 p-3 bg-indigo-600/90 hover:bg-indigo-700 text-white rounded-full shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-110"
+                    className="fixed top-24 right-6 z-50 p-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full shadow-lg transition-all duration-300 hover:scale-110"
                 >
                     <PlusIcon className="w-6 h-6" />
                 </Link>
@@ -144,7 +144,11 @@ const BlogList = () => {
                                 placeholder="Search posts..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full max-w-md px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white/90 dark:bg-gray-800/90 text-gray-900 dark:text-white backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+                                className={`w-full max-w-md px-4 py-3 rounded-xl ${
+                                    theme === 'dark'
+                                        ? 'bg-gray-800 text-white placeholder-gray-400'
+                                        : 'bg-white text-gray-900 placeholder-gray-500'
+                                } shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all`}
                             />
                         </div>
 
@@ -153,7 +157,11 @@ const BlogList = () => {
                             <select
                                 value={selectedCategory}
                                 onChange={(e) => setSelectedCategory(e.target.value)}
-                                className="px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white/90 dark:bg-gray-800/90 text-gray-900 dark:text-white backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+                                className={`px-4 py-3 rounded-xl ${
+                                    theme === 'dark'
+                                        ? 'bg-gray-800 text-white'
+                                        : 'bg-white text-gray-900'
+                                } shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all`}
                             >
                                 {categories.map(category => (
                                     <option key={category} value={category}>
@@ -165,7 +173,11 @@ const BlogList = () => {
                             <select
                                 value={selectedTag}
                                 onChange={(e) => setSelectedTag(e.target.value)}
-                                className="px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white/90 dark:bg-gray-800/90 text-gray-900 dark:text-white backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+                                className={`px-4 py-3 rounded-xl ${
+                                    theme === 'dark'
+                                        ? 'bg-gray-800 text-white'
+                                        : 'bg-white text-gray-900'
+                                } shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all`}
                             >
                                 {tags.map(tag => (
                                     <option key={tag} value={tag}>
@@ -176,7 +188,7 @@ const BlogList = () => {
                         </div>
                     </div>
 
-                    {/* Blog Posts Grid */}
+                    {/* Blog Posts */}
                     {sortedPosts.length === 0 ? (
                         <div className="text-center py-12">
                             <div className="text-gray-400 dark:text-gray-500 text-6xl mb-4">📝</div>
@@ -186,10 +198,30 @@ const BlogList = () => {
                             </p>
                         </div>
                     ) : (
-                        <div className="grid gap-6 md:gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-4">
-                            {sortedPosts.map(post => (
-                                <BlogCard key={post.id} post={post} theme={theme} />
-                            ))}
+                        <div className="space-y-12">
+                            {/* Featured Posts - Top 3 in Grid */}
+                            {sortedPosts.slice(0, 3).length > 0 && (
+                                <div>
+                                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Featured Posts</h2>
+                                    <div className="grid gap-6 md:gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                                        {sortedPosts.slice(0, 3).map(post => (
+                                            <BlogCard key={post.id} post={post} theme={theme} />
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Regular Posts - Horizontal Layout */}
+                            {sortedPosts.slice(3).length > 0 && (
+                                <div>
+                                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">All Posts</h2>
+                                    <div className="space-y-6">
+                                        {sortedPosts.slice(3).map(post => (
+                                            <BlogCardHorizontal key={post.id} post={post} theme={theme} />
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     )}
                 </div>
@@ -214,12 +246,12 @@ const BlogCard = ({ post, theme }) => {
             <article
                 className={`
                     group relative overflow-hidden rounded-2xl p-6 transition-all duration-300 cursor-pointer
-                    backdrop-filter backdrop-blur-lg border shadow-lg
+                    shadow-lg hover:shadow-xl
                     ${theme === 'dark'
-                        ? 'bg-gray-900/80 border-gray-700 hover:bg-gray-900/90 hover:border-gray-600'
-                        : 'bg-white/80 border-gray-200 hover:bg-white/90 hover:border-gray-300'
+                        ? 'bg-gray-800 hover:bg-gray-700'
+                        : 'bg-gray-50 hover:bg-white'
                     }
-                    hover:scale-105 hover:shadow-2xl
+                    hover:scale-105
                     ${post.featured ? 'ring-2 ring-yellow-400' : ''}
                 `}
             >
@@ -262,22 +294,141 @@ const BlogCard = ({ post, theme }) => {
                         {post.tags.slice(0, 3).map(tag => (
                             <span
                                 key={tag}
-                                className="text-xs px-2 py-1 rounded-full bg-indigo-100 dark:bg-indigo-500/30 text-indigo-700 dark:text-indigo-200"
+                                className={`text-xs px-2 py-1 rounded-full ${
+                                    theme === 'dark'
+                                        ? 'bg-indigo-900 text-indigo-200'
+                                        : 'bg-indigo-100 text-indigo-700'
+                                }`}
                             >
                                 {tag}
                             </span>
                         ))}
                         {post.tags.length > 3 && (
-                            <span className="text-xs px-2 py-1 rounded-full bg-gray-100 dark:bg-gray-500/30 text-gray-700 dark:text-gray-300">
+                            <span className={`text-xs px-2 py-1 rounded-full ${
+                                theme === 'dark'
+                                    ? 'bg-gray-700 text-gray-300'
+                                    : 'bg-gray-200 text-gray-600'
+                            }`}>
                                 +{post.tags.length - 3}
                             </span>
                         )}
                     </div>
 
-                    <div className="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+                    <div className={`flex items-center justify-between pt-4 border-t ${
+                        theme === 'dark' ? 'border-gray-700' : 'border-gray-200'
+                    }`}>
                         <span className="text-sm text-gray-600 dark:text-gray-400">By {post.author}</span>
-                        <span className="text-sm font-medium text-indigo-700 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-500/20 px-2 py-1 rounded">
+                        <span className={`text-sm font-medium px-2 py-1 rounded ${
+                            theme === 'dark'
+                                ? 'text-indigo-200 bg-indigo-900'
+                                : 'text-indigo-700 bg-indigo-100'
+                        }`}>
                             {post.category}
+                        </span>
+                    </div>
+                </div>
+            </article>
+        </Link>
+    )
+}
+
+// Horizontal Blog Card Component for regular posts
+const BlogCardHorizontal = ({ post, theme }) => {
+    const formatDate = (dateString) => {
+        return new Date(dateString).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+        })
+    }
+
+    return (
+        <Link href={`/blog/${post.slug}`}>
+            <article
+                className={`
+                    group relative overflow-hidden rounded-xl p-6 transition-all duration-300 cursor-pointer
+                    shadow-md hover:shadow-lg
+                    ${theme === 'dark'
+                        ? 'bg-gray-800 hover:bg-gray-700'
+                        : 'bg-gray-50 hover:bg-white'
+                    }
+                    hover:scale-[1.02]
+                    ${post.featured ? 'ring-2 ring-yellow-400' : ''}
+                    flex flex-col md:flex-row gap-6
+                `}
+            >
+                {post.featured && (
+                    <div className="absolute top-4 right-4 bg-yellow-400 text-black text-xs font-bold px-2 py-1 rounded-full">
+                        Featured
+                    </div>
+                )}
+
+                {/* Image */}
+                {post.image && (
+                    <div className="relative w-full md:w-48 h-32 md:h-28 flex-shrink-0 rounded-lg overflow-hidden">
+                        <Image
+                            src={post.image}
+                            alt={post.title}
+                            fill
+                            style={{ objectFit: 'cover' }}
+                            className="transition-transform duration-300 group-hover:scale-110"
+                        />
+                    </div>
+                )}
+
+                {/* Content */}
+                <div className="flex-1 space-y-3">
+                    <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+                        <span>{formatDate(post.date)}</span>
+                        <span>•</span>
+                        <span>{post.readTime}</span>
+                        <span>•</span>
+                        <span className={`px-2 py-1 rounded text-xs font-medium ${
+                            theme === 'dark'
+                                ? 'bg-indigo-900 text-indigo-200'
+                                : 'bg-indigo-100 text-indigo-700'
+                        }`}>
+                            {post.category}
+                        </span>
+                    </div>
+
+                    <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors leading-tight">
+                        {post.title}
+                    </h3>
+
+                    <p className="text-gray-700 dark:text-gray-300 text-sm md:text-base line-clamp-2">
+                        {post.excerpt}
+                    </p>
+
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-2">
+                        {post.tags.slice(0, 4).map(tag => (
+                            <span
+                                key={tag}
+                                className={`text-xs px-2 py-1 rounded-full ${
+                                    theme === 'dark'
+                                        ? 'bg-gray-700 text-gray-300'
+                                        : 'bg-gray-200 text-gray-600'
+                                }`}
+                            >
+                                {tag}
+                            </span>
+                        ))}
+                        {post.tags.length > 4 && (
+                            <span className={`text-xs px-2 py-1 rounded-full ${
+                                theme === 'dark'
+                                    ? 'bg-gray-700 text-gray-300'
+                                    : 'bg-gray-200 text-gray-600'
+                            }`}>
+                                +{post.tags.length - 4}
+                            </span>
+                        )}
+                    </div>
+
+                    <div className="flex items-center justify-between pt-2">
+                        <span className="text-sm text-gray-600 dark:text-gray-400">By {post.author}</span>
+                        <span className="text-sm text-indigo-600 dark:text-indigo-400 font-medium">
+                            Read more →
                         </span>
                     </div>
                 </div>

@@ -7,7 +7,6 @@ import ReactMarkdown from 'react-markdown'
 import rehypeHighlight from 'rehype-highlight'
 import Dock from '../dock/Dock'
 import Footer from '../layout/Footer'
-import GridBackground from '../ui/GridBackground'
 import { BLOG_NAVIGATION_ITEMS } from '../../config/navigation'
 import { createScrollFunction } from '../../utils/navigation'
 import { useBlogPost } from '../../hooks/useBlog'
@@ -38,10 +37,7 @@ const BlogPost = ({ slug }) => {
                     scrollToSection={scrollToSection}
                     navigationItems={BLOG_NAVIGATION_ITEMS}
                 />
-                <div
-                    className="min-h-screen flex justify-center items-center p-5 bg-white dark:bg-gray-950"
-                >
-                    <GridBackground theme={theme} />
+                <div className="min-h-screen flex justify-center items-center p-5 bg-gray-200 dark:bg-gray-900/50">
                     <div className="text-center relative z-10">
                         <LoadingSpinner size="lg" />
                         <p className="text-gray-900 dark:text-white text-lg mt-4">Loading Blog Post...</p>
@@ -61,10 +57,7 @@ const BlogPost = ({ slug }) => {
                     scrollToSection={scrollToSection}
                     navigationItems={BLOG_NAVIGATION_ITEMS}
                 />
-                <div
-                    className="min-h-screen flex justify-center items-center p-5 bg-white dark:bg-gray-950"
-                >
-                    <GridBackground theme={theme} />
+                <div className="min-h-screen flex justify-center items-center p-5 bg-gray-200 dark:bg-gray-900/50">
                     <div className="text-center relative z-10">
                         <div className="text-red-500 dark:text-red-400 text-6xl mb-4">📝</div>
                         <h2 className="text-gray-900 dark:text-white text-2xl font-bold mb-2">Post Not Found</h2>
@@ -99,15 +92,17 @@ const BlogPost = ({ slug }) => {
                 navigationItems={BLOG_NAVIGATION_ITEMS}
             />
 
-            <div className="min-h-screen bg-white dark:bg-gray-950">
-                <GridBackground theme={theme} />
-                
+            <div className="min-h-screen bg-gray-200 dark:bg-gray-900/50">
                 <div className="px-4 md:px-6 lg:px-8 max-w-5xl mx-auto relative z-10">
                     {/* Back button */}
                     <div className="pt-24 mb-8">
                         <Link 
                             href="/blog"
-                            className="inline-flex items-center text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors backdrop-blur-sm bg-white/80 dark:bg-gray-900/80 px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700"
+                            className={`inline-flex items-center transition-colors px-4 py-2 rounded-lg ${
+                                theme === 'dark'
+                                    ? 'text-white hover:text-indigo-400 bg-gray-800 hover:bg-gray-700'
+                                    : 'text-gray-900 hover:text-indigo-600 bg-white hover:bg-gray-50'
+                            } shadow-md`}
                         >
                             <span className="mr-2">←</span>
                             Back to Blog
@@ -116,10 +111,10 @@ const BlogPost = ({ slug }) => {
                     <article
                         className={`
                             relative overflow-hidden rounded-2xl p-6 md:p-8 lg:p-12
-                            backdrop-filter backdrop-blur-lg border shadow-2xl
+                            shadow-2xl
                             ${theme === 'dark' 
-                                ? 'bg-gray-900/80 border-gray-700' 
-                                : 'bg-white/80 border-gray-200'
+                                ? 'bg-gray-800' 
+                                : 'bg-white'
                             }
                         `}
                     >
@@ -137,7 +132,11 @@ const BlogPost = ({ slug }) => {
                                 <span>•</span>
                                 <span>{post.readTime}</span>
                                 <span>•</span>
-                                <span className="bg-indigo-100 dark:bg-indigo-500/30 text-indigo-700 dark:text-indigo-200 px-2 py-1 rounded">
+                                <span className={`px-2 py-1 rounded ${
+                                    theme === 'dark'
+                                        ? 'bg-indigo-900 text-indigo-200'
+                                        : 'bg-indigo-100 text-indigo-700'
+                                }`}>
                                     {post.category}
                                 </span>
                             </div>
@@ -155,7 +154,11 @@ const BlogPost = ({ slug }) => {
                                 {post.tags.map(tag => (
                                     <span
                                         key={tag}
-                                        className="text-sm px-3 py-1 rounded-full bg-indigo-100 dark:bg-indigo-500/30 text-indigo-700 dark:text-indigo-200"
+                                        className={`text-sm px-3 py-1 rounded-full ${
+                                            theme === 'dark'
+                                                ? 'bg-indigo-900 text-indigo-200'
+                                                : 'bg-indigo-100 text-indigo-700'
+                                        }`}
                                     >
                                         #{tag}
                                     </span>
@@ -256,7 +259,9 @@ const BlogPost = ({ slug }) => {
                         </div>
 
                         {/* Footer */}
-                        <footer className="mt-12 pt-8 border-t border-gray-300 dark:border-gray-600">
+                        <footer className={`mt-12 pt-8 border-t ${
+                            theme === 'dark' ? 'border-gray-700' : 'border-gray-200'
+                        }`}>
                             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                                 <div className="text-gray-600 dark:text-gray-400">
                                     <p>Published on {formatDate(post.date)} by {post.author}</p>
@@ -264,7 +269,7 @@ const BlogPost = ({ slug }) => {
 
                                 <Link
                                     href="/blog"
-                                    className="inline-flex items-center px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
+                                    className="inline-flex items-center px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors shadow-md"
                                 >
                                     <span className="mr-2">←</span>
                                     More Posts

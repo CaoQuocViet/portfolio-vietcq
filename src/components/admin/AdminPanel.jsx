@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react'
 import { useTheme } from 'next-themes'
 import Dock from '../dock/Dock'
 import Footer from '../layout/Footer'
-import GridBackground from '../ui/GridBackground'
 import { BLOG_NAVIGATION_ITEMS } from '../../config/navigation'
 import { createScrollFunction } from '../../utils/navigation'
 import AdminAuth from './AdminAuth'
@@ -168,13 +167,13 @@ const AdminPanel = () => {
                 navigationItems={BLOG_NAVIGATION_ITEMS}
             />
 
-            <div className="min-h-screen bg-white dark:bg-gray-950">
-                <GridBackground theme={theme} />
-                
+            <div className="min-h-screen bg-gray-200 dark:bg-gray-900/50">
                 <div className="p-4 pt-20 relative z-10">
                     {/* Header */}
                     <div className="max-w-6xl mx-auto mb-8">
-                        <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                        <div className={`rounded-lg p-6 shadow-lg ${
+                            theme === 'dark' ? 'bg-gray-800' : 'bg-white'
+                        }`}>
                             <div className="flex justify-between items-center">
                                 <div>
                                     <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Blog Admin Panel</h1>
