@@ -137,9 +137,20 @@ const BlogList = () => {
                         <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
                             Technical Blog
                         </h1>
-                        <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+                        <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
                             Sharing insights, tutorials, and thoughts about software development
                         </p>
+                        
+                        {/* Create Post Button */}
+                        <div className="flex justify-center">
+                            <Link 
+                                href="/admin"
+                                className="inline-flex items-center px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg transition-colors"
+                            >
+                                <span className="mr-2">✏️</span>
+                                Create Post
+                            </Link>
+                        </div>
                     </div>
 
                     {/* Filters */}
