@@ -1,5 +1,6 @@
 import { BlogPost } from '../../../components/blog'
 
-export default function BlogPostPage({ params }) {
-    return <BlogPost slug={params.slug} />
+export default async function BlogPostPage({ params }) {
+    const { slug } = await params
+    return <BlogPost slug={slug} />
 }

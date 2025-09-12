@@ -211,6 +211,13 @@ const BlogList = () => {
                         </div>
                     )}
                 </div>
+                
+                {/* Footer */}
+                <footer className="mt-16 py-8 border-t border-gray-600/30">
+                    <div className="text-center text-gray-400">
+                        <p>© 2025 Viet CQ. All rights reserved.</p>
+                    </div>
+                </footer>
             </div>
         </>
     )

@@ -1,17 +1,26 @@
 'use client'
 import { useState, useEffect } from 'react'
+import { useTheme } from 'next-themes'
+import Dock from '../dock/Dock'
+import { BLOG_NAVIGATION_ITEMS } from '../../config/navigation'
+import { createScrollFunction } from '../../utils/navigation'
 import AdminAuth from './AdminAuth'
 import BlogEditor from './BlogEditor'
 
 const AdminPanel = () => {
+    const { theme, setTheme } = useTheme()
+    const [mounted, setMounted] = useState(false)
     const [isAuthenticated, setIsAuthenticated] = useState(false)
     const [posts, setPosts] = useState([])
     const [loading, setLoading] = useState(true)
     const [currentView, setCurrentView] = useState('list') // 'list', 'create', 'edit'
     const [editingPost, setEditingPost] = useState(null)
     const [error, setError] = useState('')
+    
+    const scrollToSection = createScrollFunction()
 
     useEffect(() => {
+        setMounted(true)
         // Check if already authenticated
         const authState = sessionStorage.getItem('adminAuth')
         if (authState === 'true') {
@@ -137,6 +146,8 @@ const AdminPanel = () => {
         return <AdminAuth onAuthSuccess={handleAuthSuccess} />
     }
 
+    if (!mounted) return null
+
     const formatDate = (dateString) => {
         return new Date(dateString).toLocaleDateString('en-US', {
             year: 'numeric',
@@ -146,7 +157,16 @@ const AdminPanel = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gray-900 p-4">
+        <>
+            <Dock 
+                theme={theme}
+                setTheme={setTheme}
+                activeSection={null}
+                scrollToSection={scrollToSection}
+                navigationItems={BLOG_NAVIGATION_ITEMS}
+            />
+            
+            <div className="min-h-screen bg-gray-900 p-4 pt-20">
             {/* Header */}
             <div className="max-w-6xl mx-auto mb-8">
                 <div className="bg-gray-800 rounded-lg p-6">
@@ -213,7 +233,15 @@ const AdminPanel = () => {
                     />
                 )}
             </div>
+            
+            {/* Footer */}
+            <footer className="mt-8 py-8 border-t border-gray-700">
+                <div className="text-center text-gray-400">
+                    <p>© 2025 Viet CQ. All rights reserved.</p>
+                </div>
+            </footer>
         </div>
+        </>
     )
 }
 

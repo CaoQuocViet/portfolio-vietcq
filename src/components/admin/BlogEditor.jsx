@@ -226,16 +226,30 @@ const BlogEditor = ({ post, onSave, onCancel }) => {
                 </div>
 
                 <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">
-                        Content * (Markdown supported)
-                    </label>
+                    <div className="flex items-center justify-between mb-2">
+                        <label className="block text-sm font-medium text-gray-300">
+                            Content * (Markdown supported)
+                        </label>
+                        <div className="text-xs text-gray-400 bg-gray-700/50 px-3 py-1 rounded">
+                            💡 Images: Use /img/path.jpg or /data/blog/images/filename.jpg
+                        </div>
+                    </div>
                     <textarea
                         name="content"
                         value={formData.content}
                         onChange={handleInputChange}
                         rows={20}
                         className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 font-mono text-sm"
-                        placeholder="Write your blog post content in Markdown..."
+                        placeholder="Write your blog post content in Markdown...
+
+Example image syntax:
+![Alt text](/img/gif/showcase.gif)
+![Blog image](/data/blog/images/your-image.jpg)
+
+For code blocks:
+```javascript
+const example = 'Hello World'
+```"
                         required
                     />
                 </div>
