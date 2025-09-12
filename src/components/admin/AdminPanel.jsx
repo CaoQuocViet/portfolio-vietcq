@@ -167,7 +167,10 @@ const AdminPanel = () => {
                 navigationItems={BLOG_NAVIGATION_ITEMS}
             />
 
-            <div className="min-h-screen bg-gray-200 dark:bg-gray-900/50">
+            <div className="min-h-screen bg-white dark:bg-gray-950 overflow-x-hidden">
+                <section 
+                    className="py-24 bg-gray-200 dark:bg-gray-900/50"
+                >
                 <div className="p-4 pt-20 relative z-10">
                     {/* Header */}
                     <div className="max-w-6xl mx-auto mb-8">
@@ -239,6 +242,7 @@ const AdminPanel = () => {
                     </div>
 
                 </div>
+            </section>
             </div>
             <Footer theme={theme} />
 

@@ -37,10 +37,12 @@ const BlogPost = ({ slug }) => {
                     scrollToSection={scrollToSection}
                     navigationItems={BLOG_NAVIGATION_ITEMS}
                 />
-                <div className="min-h-screen flex justify-center items-center p-5 bg-gray-200 dark:bg-gray-900/50">
-                    <div className="text-center relative z-10">
-                        <LoadingSpinner size="lg" />
-                        <p className="text-gray-900 dark:text-white text-lg mt-4">Loading Blog Post...</p>
+                <div className="min-h-screen bg-white dark:bg-gray-950 overflow-x-hidden">
+                    <div className="py-16 bg-gray-200 dark:bg-gray-900/50 min-h-screen flex justify-center items-center">
+                        <div className="text-center relative z-10">
+                            <LoadingSpinner size="lg" />
+                            <p className="text-gray-900 dark:text-white text-lg mt-4">Loading Blog Post...</p>
+                        </div>
                     </div>
                 </div>
             </>
@@ -57,17 +59,19 @@ const BlogPost = ({ slug }) => {
                     scrollToSection={scrollToSection}
                     navigationItems={BLOG_NAVIGATION_ITEMS}
                 />
-                <div className="min-h-screen flex justify-center items-center p-5 bg-gray-200 dark:bg-gray-900/50">
-                    <div className="text-center relative z-10">
-                        <div className="text-red-500 dark:text-red-400 text-6xl mb-4">📝</div>
-                        <h2 className="text-gray-900 dark:text-white text-2xl font-bold mb-2">Post Not Found</h2>
-                        <p className="text-gray-600 dark:text-gray-300 mb-4">{error || 'The blog post you\'re looking for doesn\'t exist.'}</p>
-                        <Link
-                            href="/blog"
-                            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-                        >
-                            Back to Blog
-                        </Link>
+                <div className="min-h-screen bg-white dark:bg-gray-950 overflow-x-hidden">
+                    <div className="py-4 bg-gray-200 dark:bg-gray-900/50 min-h-screen flex justify-center items-center">
+                        <div className="text-center relative z-10">
+                            <div className="text-red-500 dark:text-red-400 text-6xl mb-4">📝</div>
+                            <h2 className="text-gray-900 dark:text-white text-2xl font-bold mb-2">Post Not Found</h2>
+                            <p className="text-gray-600 dark:text-gray-300 mb-4">{error || 'The blog post you\'re looking for doesn\'t exist.'}</p>
+                            <Link
+                                href="/blog"
+                                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                            >
+                                Back to Blog
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </>
@@ -92,10 +96,11 @@ const BlogPost = ({ slug }) => {
                 navigationItems={BLOG_NAVIGATION_ITEMS}
             />
 
-            <div className="min-h-screen bg-gray-200 dark:bg-gray-900/50">
+            <div className="min-h-screen bg-white dark:bg-gray-950 overflow-x-hidden">
+                <div className="py-4 bg-gray-200 dark:bg-gray-900/50">
                 <div className="px-4 md:px-6 lg:px-8 max-w-5xl mx-auto relative z-10">
                     {/* Back button */}
-                    <div className="pt-24 mb-8">
+                    <div className="pt-8 mb-8">
                         <Link 
                             href="/blog"
                             className={`inline-flex items-center transition-colors px-4 py-2 rounded-lg ${
@@ -279,6 +284,7 @@ const BlogPost = ({ slug }) => {
                     </article>
 
                 </div>
+            </div>
             </div>
             <Footer theme={theme} />
         </>
