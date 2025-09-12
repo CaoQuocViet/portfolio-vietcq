@@ -5,7 +5,8 @@ import {
     BriefcaseIcon,
     EnvelopeIcon,
     PhotoIcon,
-    LightBulbIcon
+    LightBulbIcon,
+    DocumentTextIcon
 } from "@heroicons/react/24/solid";
 
 // Navigation config cho trang Home - full navigation
@@ -62,6 +63,14 @@ export const HOME_NAVIGATION_ITEMS = [
         bg: "bg-gradient-to-br from-yellow-500 to-yellow-600",
         link: "/ideas",
     },
+    {
+        id: "blog",
+        label: "Blog",
+        icon: DocumentTextIcon,
+        color: "text-white",
+        bg: "bg-gradient-to-br from-indigo-500 to-indigo-600",
+        link: "/blog",
+    },
 ];
 
 // Navigation config cho trang Gallery - chỉ logo + home + ideas + theme
@@ -83,10 +92,55 @@ export const GALLERY_NAVIGATION_ITEMS = [
         bg: "bg-gradient-to-br from-yellow-500 to-yellow-600",
         link: "/ideas",
     },
+    {
+        id: "blog",
+        label: "Blog",
+        icon: DocumentTextIcon,
+        color: "text-white",
+        bg: "bg-gradient-to-br from-indigo-500 to-indigo-600",
+        link: "/blog",
+    },
 ];
 
 // Navigation config cho trang Project detail - logo + home + gallery + theme
 export const PROJECT_NAVIGATION_ITEMS = [
+    { id: "logo", label: "Vietcq", isLogo: true },
+    {
+        id: "home",
+        label: "Home",
+        icon: HomeIcon,
+        color: "text-white",
+        bg: "bg-gradient-to-br from-blue-500 to-blue-600",
+        link: "/",
+    },
+    {
+        id: "gallery",
+        label: "Gallery",
+        icon: PhotoIcon,
+        color: "text-white",
+        bg: "bg-gradient-to-br from-purple-500 to-purple-600",
+        link: "/gallery",
+    },
+    {
+        id: "ideas",
+        label: "Ideas",
+        icon: LightBulbIcon,
+        color: "text-white",
+        bg: "bg-gradient-to-br from-yellow-500 to-yellow-600",
+        link: "/ideas",
+    },
+    {
+        id: "blog",
+        label: "Blog",
+        icon: DocumentTextIcon,
+        color: "text-white",
+        bg: "bg-gradient-to-br from-indigo-500 to-indigo-600",
+        link: "/blog",
+    },
+];
+
+// Navigation config cho trang Blog - logo + home + gallery + ideas + theme
+export const BLOG_NAVIGATION_ITEMS = [
     { id: "logo", label: "Vietcq", isLogo: true },
     {
         id: "home",
@@ -133,6 +187,14 @@ export const IDEAS_NAVIGATION_ITEMS = [
         bg: "bg-gradient-to-br from-purple-500 to-purple-600",
         link: "/gallery",
     },
+    {
+        id: "blog",
+        label: "Blog",
+        icon: DocumentTextIcon,
+        color: "text-white",
+        bg: "bg-gradient-to-br from-indigo-500 to-indigo-600",
+        link: "/blog",
+    },
 ];
 
 // Navigation config cho Modal - direct đến các trang
@@ -154,6 +216,15 @@ export const MODAL_NAVIGATION_ITEMS = [
         link: "/ideas",
         color: "text-white",
         bg: "bg-gradient-to-br from-yellow-500 to-yellow-600",
+    },
+    {
+        id: "blog",
+        icon: DocumentTextIcon,
+        title: "Blog",
+        description: "Technical articles and development thoughts",
+        link: "/blog",
+        color: "text-white",
+        bg: "bg-gradient-to-br from-indigo-500 to-indigo-600",
     },
 ];
 
