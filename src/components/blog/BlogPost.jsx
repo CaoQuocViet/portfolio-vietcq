@@ -6,6 +6,8 @@ import Image from 'next/image'
 import ReactMarkdown from 'react-markdown'
 import rehypeHighlight from 'rehype-highlight'
 import Dock from '../dock/Dock'
+import Footer from '../layout/Footer'
+import GridBackground from '../ui/GridBackground'
 import { BLOG_NAVIGATION_ITEMS } from '../../config/navigation'
 import { createScrollFunction } from '../../utils/navigation'
 import { useBlogPost } from '../../hooks/useBlog'
@@ -15,9 +17,9 @@ import 'highlight.js/styles/github-dark.css'
 const BlogPost = ({ slug }) => {
     const { theme, setTheme } = useTheme()
     const [mounted, setMounted] = useState(false)
-    
+
     const { post, loading, error } = useBlogPost(slug)
-    
+
     useEffect(() => {
         setMounted(true)
     }, [])
@@ -29,25 +31,20 @@ const BlogPost = ({ slug }) => {
     if (loading) {
         return (
             <>
-                <Dock 
+                <Dock
                     theme={theme}
                     setTheme={setTheme}
                     activeSection={null}
                     scrollToSection={scrollToSection}
                     navigationItems={BLOG_NAVIGATION_ITEMS}
                 />
-                <div 
-                    className="min-h-screen flex justify-center items-center p-5"
-                    style={{
-                        margin: 0,
-                        background: theme === 'dark' 
-                            ? 'linear-gradient(135deg, #1f2937, #374151, #4b5563)' 
-                            : 'linear-gradient(135deg, #0026bd, #b9a700, #460096)',
-                    }}
+                <div
+                    className="min-h-screen flex justify-center items-center p-5 bg-white dark:bg-gray-950"
                 >
-                    <div className="text-center">
+                    <GridBackground theme={theme} />
+                    <div className="text-center relative z-10">
                         <LoadingSpinner size="lg" />
-                        <p className="text-white text-lg mt-4">Loading Blog Post...</p>
+                        <p className="text-gray-900 dark:text-white text-lg mt-4">Loading Blog Post...</p>
                     </div>
                 </div>
             </>
@@ -57,27 +54,22 @@ const BlogPost = ({ slug }) => {
     if (error || !post) {
         return (
             <>
-                <Dock 
+                <Dock
                     theme={theme}
                     setTheme={setTheme}
                     activeSection={null}
                     scrollToSection={scrollToSection}
                     navigationItems={BLOG_NAVIGATION_ITEMS}
                 />
-                <div 
-                    className="min-h-screen flex justify-center items-center p-5"
-                    style={{
-                        margin: 0,
-                        background: theme === 'dark' 
-                            ? 'linear-gradient(135deg, #1f2937, #374151, #4b5563)' 
-                            : 'linear-gradient(135deg, #0026bd, #b9a700, #460096)',
-                    }}
+                <div
+                    className="min-h-screen flex justify-center items-center p-5 bg-white dark:bg-gray-950"
                 >
-                    <div className="text-center">
-                        <div className="text-red-400 text-6xl mb-4">📝</div>
-                        <h2 className="text-white text-2xl font-bold mb-2">Post Not Found</h2>
-                        <p className="text-gray-300 mb-4">{error || 'The blog post you\'re looking for doesn\'t exist.'}</p>
-                        <Link 
+                    <GridBackground theme={theme} />
+                    <div className="text-center relative z-10">
+                        <div className="text-red-500 dark:text-red-400 text-6xl mb-4">📝</div>
+                        <h2 className="text-gray-900 dark:text-white text-2xl font-bold mb-2">Post Not Found</h2>
+                        <p className="text-gray-600 dark:text-gray-300 mb-4">{error || 'The blog post you\'re looking for doesn\'t exist.'}</p>
+                        <Link
                             href="/blog"
                             className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                         >
@@ -99,7 +91,7 @@ const BlogPost = ({ slug }) => {
 
     return (
         <>
-            <Dock 
+            <Dock
                 theme={theme}
                 setTheme={setTheme}
                 activeSection={null}
@@ -107,35 +99,27 @@ const BlogPost = ({ slug }) => {
                 navigationItems={BLOG_NAVIGATION_ITEMS}
             />
 
-            <div 
-                className="min-h-screen p-5"
-                style={{
-                    margin: 0,
-                    background: theme === 'dark' 
-                        ? 'linear-gradient(135deg, #1f2937, #374151, #4b5563)' 
-                        : 'linear-gradient(135deg, #0026bd, #b9a700, #460096)',
-                }}
-            >
-                <div className="max-w-4xl mx-auto">
+            <div className="min-h-screen bg-white dark:bg-gray-950">
+                <GridBackground theme={theme} />
+                
+                <div className="px-4 md:px-6 lg:px-8 max-w-5xl mx-auto relative z-10">
                     {/* Back button */}
-                    <div className="pt-20 mb-8">
+                    <div className="pt-24 mb-8">
                         <Link 
                             href="/blog"
-                            className="inline-flex items-center text-white hover:text-indigo-300 transition-colors"
+                            className="inline-flex items-center text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors backdrop-blur-sm bg-white/80 dark:bg-gray-900/80 px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700"
                         >
                             <span className="mr-2">←</span>
                             Back to Blog
                         </Link>
-                    </div>
-
-                    {/* Article */}
-                    <article 
+                    </div>                    {/* Article */}
+                    <article
                         className={`
-                            relative overflow-hidden rounded-2xl p-8 md:p-12
-                            backdrop-filter backdrop-blur-lg border
+                            relative overflow-hidden rounded-2xl p-6 md:p-8 lg:p-12
+                            backdrop-filter backdrop-blur-lg border shadow-2xl
                             ${theme === 'dark' 
-                                ? 'bg-black/40 border-white/20' 
-                                : 'bg-white/20 border-white/30'
+                                ? 'bg-gray-900/80 border-gray-700' 
+                                : 'bg-white/80 border-gray-200'
                             }
                         `}
                     >
@@ -148,30 +132,30 @@ const BlogPost = ({ slug }) => {
 
                         {/* Header */}
                         <header className="mb-8">
-                            <div className="flex flex-wrap items-center gap-4 text-sm text-gray-300 mb-4">
+                            <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-gray-400 mb-4">
                                 <span>{formatDate(post.date)}</span>
                                 <span>•</span>
                                 <span>{post.readTime}</span>
                                 <span>•</span>
-                                <span className="bg-indigo-500/30 text-indigo-200 px-2 py-1 rounded">
+                                <span className="bg-indigo-100 dark:bg-indigo-500/30 text-indigo-700 dark:text-indigo-200 px-2 py-1 rounded">
                                     {post.category}
                                 </span>
                             </div>
 
-                            <h1 className="text-3xl md:text-5xl font-bold text-white mb-4 leading-tight">
+                            <h1 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
                                 {post.title}
                             </h1>
 
-                            <p className="text-xl text-gray-300 mb-6">
+                            <p className="text-xl text-gray-700 dark:text-gray-300 mb-6">
                                 {post.excerpt}
                             </p>
 
                             {/* Tags */}
                             <div className="flex flex-wrap gap-2 mb-6">
                                 {post.tags.map(tag => (
-                                    <span 
+                                    <span
                                         key={tag}
-                                        className="text-sm px-3 py-1 rounded-full bg-indigo-500/30 text-indigo-200"
+                                        className="text-sm px-3 py-1 rounded-full bg-indigo-100 dark:bg-indigo-500/30 text-indigo-700 dark:text-indigo-200"
                                     >
                                         #{tag}
                                     </span>
@@ -179,7 +163,7 @@ const BlogPost = ({ slug }) => {
                             </div>
 
                             {/* Author */}
-                            <div className="flex items-center text-gray-400">
+                            <div className="flex items-center text-gray-600 dark:text-gray-400">
                                 <span>By {post.author}</span>
                             </div>
                         </header>
@@ -198,17 +182,17 @@ const BlogPost = ({ slug }) => {
                         )}
 
                         {/* Content */}
-                        <div 
+                        <div
                             className={`
                                 prose prose-lg max-w-none
-                                ${theme === 'dark' 
-                                    ? 'prose-invert prose-headings:text-white prose-p:text-gray-300 prose-strong:text-white prose-code:text-indigo-300' 
-                                    : 'prose-headings:text-gray-900 prose-p:text-gray-700'
+                                ${theme === 'dark'
+                                    ? 'prose-invert prose-headings:text-white prose-p:text-gray-300 prose-strong:text-white prose-code:text-indigo-300'
+                                    : 'prose-headings:text-gray-900 prose-p:text-gray-700 prose-strong:text-gray-900 prose-code:text-indigo-600'
                                 }
                                 prose-pre:bg-gray-900 prose-pre:text-gray-100
-                                prose-code:bg-gray-800 prose-code:text-indigo-300 prose-code:px-1 prose-code:py-0.5 prose-code:rounded
-                                prose-blockquote:border-l-indigo-500 prose-blockquote:bg-indigo-500/10 prose-blockquote:pl-4
-                                prose-a:text-indigo-400 hover:prose-a:text-indigo-300
+                                prose-code:bg-gray-100 dark:prose-code:bg-gray-800 prose-code:px-1 prose-code:py-0.5 prose-code:rounded
+                                prose-blockquote:border-l-indigo-500 prose-blockquote:bg-indigo-50 dark:prose-blockquote:bg-indigo-500/10 prose-blockquote:pl-4
+                                prose-a:text-indigo-600 dark:prose-a:text-indigo-400 hover:prose-a:text-indigo-700 dark:hover:prose-a:text-indigo-300
                                 prose-headings:scroll-mt-20
                             `}
                         >
@@ -217,48 +201,48 @@ const BlogPost = ({ slug }) => {
                                 components={{
                                     // Custom components for better styling
                                     h1: ({ children }) => (
-                                        <h1 className="text-4xl font-bold mb-6 mt-8 text-white border-b border-gray-600 pb-2">
+                                        <h1 className="text-4xl font-bold mb-6 mt-8 text-gray-900 dark:text-white border-b border-gray-300 dark:border-gray-600 pb-2">
                                             {children}
                                         </h1>
                                     ),
                                     h2: ({ children }) => (
-                                        <h2 className="text-3xl font-bold mb-4 mt-8 text-white">
+                                        <h2 className="text-3xl font-bold mb-4 mt-8 text-gray-900 dark:text-white">
                                             {children}
                                         </h2>
                                     ),
                                     h3: ({ children }) => (
-                                        <h3 className="text-2xl font-bold mb-3 mt-6 text-white">
+                                        <h3 className="text-2xl font-bold mb-3 mt-6 text-gray-900 dark:text-white">
                                             {children}
                                         </h3>
                                     ),
                                     p: ({ children }) => (
-                                        <p className="mb-4 text-gray-300 leading-relaxed">
+                                        <p className="mb-4 text-gray-700 dark:text-gray-300 leading-relaxed">
                                             {children}
                                         </p>
                                     ),
                                     ul: ({ children }) => (
-                                        <ul className="mb-4 space-y-2 text-gray-300">
+                                        <ul className="mb-4 space-y-2 text-gray-700 dark:text-gray-300">
                                             {children}
                                         </ul>
                                     ),
                                     ol: ({ children }) => (
-                                        <ol className="mb-4 space-y-2 text-gray-300">
+                                        <ol className="mb-4 space-y-2 text-gray-700 dark:text-gray-300">
                                             {children}
                                         </ol>
                                     ),
                                     li: ({ children }) => (
-                                        <li className="text-gray-300">
+                                        <li className="text-gray-700 dark:text-gray-300">
                                             {children}
                                         </li>
                                     ),
                                     blockquote: ({ children }) => (
-                                        <blockquote className="border-l-4 border-indigo-500 bg-indigo-500/10 pl-4 py-2 my-4 italic text-gray-300">
+                                        <blockquote className="border-l-4 border-indigo-500 bg-indigo-50 dark:bg-indigo-500/10 pl-4 py-2 my-4 italic text-gray-700 dark:text-gray-300">
                                             {children}
                                         </blockquote>
                                     ),
                                     code: ({ inline, children }) => {
                                         return inline ? (
-                                            <code className="bg-gray-800 text-indigo-300 px-1 py-0.5 rounded text-sm">
+                                            <code className="bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-300 px-1 py-0.5 rounded text-sm">
                                                 {children}
                                             </code>
                                         ) : (
@@ -272,13 +256,13 @@ const BlogPost = ({ slug }) => {
                         </div>
 
                         {/* Footer */}
-                        <footer className="mt-12 pt-8 border-t border-gray-600">
+                        <footer className="mt-12 pt-8 border-t border-gray-300 dark:border-gray-600">
                             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                                <div className="text-gray-400">
+                                <div className="text-gray-600 dark:text-gray-400">
                                     <p>Published on {formatDate(post.date)} by {post.author}</p>
                                 </div>
-                                
-                                <Link 
+
+                                <Link
                                     href="/blog"
                                     className="inline-flex items-center px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
                                 >
@@ -288,15 +272,10 @@ const BlogPost = ({ slug }) => {
                             </div>
                         </footer>
                     </article>
-                    
-                    {/* Footer */}
-                    <footer className="mt-8 py-8 border-t border-gray-600/30">
-                        <div className="text-center text-gray-400">
-                            <p>© 2025 Viet CQ. All rights reserved.</p>
-                        </div>
-                    </footer>
+
                 </div>
             </div>
+            <Footer theme={theme} />
         </>
     )
 }

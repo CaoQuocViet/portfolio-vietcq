@@ -1,7 +1,11 @@
 'use client'
 import { useState, useEffect } from 'react'
+import { useTheme } from 'next-themes'
+import GridBackground from '../ui/GridBackground'
 
 const AdminAuth = ({ onAuthSuccess }) => {
+    const { theme } = useTheme()
+    const [mounted, setMounted] = useState(false)
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [isSetup, setIsSetup] = useState(false)
@@ -10,6 +14,7 @@ const AdminAuth = ({ onAuthSuccess }) => {
     const [error, setError] = useState('')
 
     useEffect(() => {
+        setMounted(true)
         checkAdminSetup()
     }, [])
 
@@ -76,11 +81,14 @@ const AdminAuth = ({ onAuthSuccess }) => {
         }
     }
 
+    if (!mounted) return null
+
     if (loading && !error) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-gray-900">
-                <div className="text-white text-center">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
+            <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-950">
+                <GridBackground theme={theme} />
+                <div className="text-gray-900 dark:text-white text-center relative z-10">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 dark:border-white mx-auto mb-4"></div>
                     <p>Loading...</p>
                 </div>
             </div>
@@ -88,13 +96,14 @@ const AdminAuth = ({ onAuthSuccess }) => {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-900 px-4">
-            <div className="max-w-md w-full bg-gray-800 rounded-lg shadow-lg p-8">
+        <div className="min-h-screen flex items-center justify-center px-4 bg-white dark:bg-gray-950">
+            <GridBackground theme={theme} />
+            <div className="max-w-md w-full backdrop-filter backdrop-blur-lg bg-white/80 dark:bg-gray-900/80 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-lg p-8 relative z-10">
                 <div className="text-center mb-8">
-                    <h1 className="text-3xl font-bold text-white mb-2">
+                    <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
                         {isSetup ? 'Setup Admin' : 'Admin Login'}
                     </h1>
-                    <p className="text-gray-400">
+                    <p className="text-gray-600 dark:text-gray-400">
                         {isSetup 
                             ? 'Create your admin password to manage blog posts' 
                             : 'Enter your admin password to access the dashboard'
@@ -104,7 +113,7 @@ const AdminAuth = ({ onAuthSuccess }) => {
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
-                        <label htmlFor="password" className="block text-sm font-medium text-gray-300 mb-2">
+                        <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                             {isSetup ? 'Create Password' : 'Password'}
                         </label>
                         <input
@@ -112,7 +121,7 @@ const AdminAuth = ({ onAuthSuccess }) => {
                             id="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                            className="w-full px-4 py-3 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                             placeholder="Enter password"
                             required
                             minLength={6}
@@ -121,7 +130,7 @@ const AdminAuth = ({ onAuthSuccess }) => {
 
                     {isSetup && (
                         <div>
-                            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-300 mb-2">
+                            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                 Confirm Password
                             </label>
                             <input
@@ -129,7 +138,7 @@ const AdminAuth = ({ onAuthSuccess }) => {
                                 id="confirmPassword"
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
-                                className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                className="w-full px-4 py-3 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                                 placeholder="Confirm password"
                                 required
                                 minLength={6}
@@ -138,7 +147,7 @@ const AdminAuth = ({ onAuthSuccess }) => {
                     )}
 
                     {error && (
-                        <div className="bg-red-900/50 border border-red-500 text-red-200 px-4 py-3 rounded-lg">
+                        <div className="bg-red-50 dark:bg-red-900/50 border border-red-300 dark:border-red-500 text-red-700 dark:text-red-200 px-4 py-3 rounded-lg">
                             {error}
                         </div>
                     )}

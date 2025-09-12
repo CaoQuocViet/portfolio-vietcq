@@ -2,6 +2,8 @@
 import { useState, useEffect } from 'react'
 import { useTheme } from 'next-themes'
 import Dock from '../dock/Dock'
+import Footer from '../layout/Footer'
+import GridBackground from '../ui/GridBackground'
 import { BLOG_NAVIGATION_ITEMS } from '../../config/navigation'
 import { createScrollFunction } from '../../utils/navigation'
 import AdminAuth from './AdminAuth'
@@ -16,7 +18,7 @@ const AdminPanel = () => {
     const [currentView, setCurrentView] = useState('list') // 'list', 'create', 'edit'
     const [editingPost, setEditingPost] = useState(null)
     const [error, setError] = useState('')
-    
+
     const scrollToSection = createScrollFunction()
 
     useEffect(() => {
@@ -158,89 +160,89 @@ const AdminPanel = () => {
 
     return (
         <>
-            <Dock 
+            <Dock
                 theme={theme}
                 setTheme={setTheme}
                 activeSection={null}
                 scrollToSection={scrollToSection}
                 navigationItems={BLOG_NAVIGATION_ITEMS}
             />
-            
-            <div className="min-h-screen bg-gray-900 p-4 pt-20">
-            {/* Header */}
-            <div className="max-w-6xl mx-auto mb-8">
-                <div className="bg-gray-800 rounded-lg p-6">
-                    <div className="flex justify-between items-center">
-                        <div>
-                            <h1 className="text-3xl font-bold text-white mb-2">Blog Admin Panel</h1>
-                            <p className="text-gray-400">Manage your blog posts</p>
-                        </div>
-                        
-                        <div className="flex gap-4">
-                            {currentView === 'list' && (
-                                <button
-                                    onClick={() => setCurrentView('create')}
-                                    className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors"
-                                >
-                                    Create New Post
-                                </button>
-                            )}
-                            
-                            <button
-                                onClick={handleLogout}
-                                className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors"
-                            >
-                                Logout
-                            </button>
+
+            <div className="min-h-screen bg-white dark:bg-gray-950">
+                <GridBackground theme={theme} />
+                
+                <div className="p-4 pt-20 relative z-10">
+                    {/* Header */}
+                    <div className="max-w-6xl mx-auto mb-8">
+                        <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <div className="flex justify-between items-center">
+                                <div>
+                                    <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Blog Admin Panel</h1>
+                                    <p className="text-gray-600 dark:text-gray-400">Manage your blog posts</p>
+                                </div>
+
+                                <div className="flex gap-4">
+                                    {currentView === 'list' && (
+                                        <button
+                                            onClick={() => setCurrentView('create')}
+                                            className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors"
+                                        >
+                                            Create New Post
+                                        </button>
+                                    )}
+
+                                    <button
+                                        onClick={handleLogout}
+                                        className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors"
+                                    >
+                                        Logout
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            {/* Error Message */}
-            {error && (
-                <div className="max-w-6xl mx-auto mb-6">
-                    <div className="bg-red-900/50 border border-red-500 text-red-200 p-4 rounded-lg">
-                        {error}
+                    {/* Error Message */}
+                    {error && (
+                        <div className="max-w-6xl mx-auto mb-6">
+                            <div className="bg-red-900/50 border border-red-500 text-red-200 p-4 rounded-lg">
+                                {error}
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Content */}
+                    <div className="max-w-6xl mx-auto">
+                        {currentView === 'list' && (
+                            <PostsList
+                                posts={posts}
+                                loading={loading}
+                                onEdit={handleEditPost}
+                                onDelete={handleDeletePost}
+                                formatDate={formatDate}
+                            />
+                        )}
+
+                        {currentView === 'create' && (
+                            <BlogEditor
+                                onSave={handleCreatePost}
+                                onCancel={handleCancelEdit}
+                            />
+                        )}
+
+                        {currentView === 'edit' && editingPost && (
+                            <BlogEditor
+                                post={editingPost}
+                                onSave={handleUpdatePost}
+                                onCancel={handleCancelEdit}
+                            />
+                        )}
                     </div>
+
                 </div>
-            )}
-
-            {/* Content */}
-            <div className="max-w-6xl mx-auto">
-                {currentView === 'list' && (
-                    <PostsList 
-                        posts={posts} 
-                        loading={loading}
-                        onEdit={handleEditPost}
-                        onDelete={handleDeletePost}
-                        formatDate={formatDate}
-                    />
-                )}
-
-                {currentView === 'create' && (
-                    <BlogEditor
-                        onSave={handleCreatePost}
-                        onCancel={handleCancelEdit}
-                    />
-                )}
-
-                {currentView === 'edit' && editingPost && (
-                    <BlogEditor
-                        post={editingPost}
-                        onSave={handleUpdatePost}
-                        onCancel={handleCancelEdit}
-                    />
-                )}
             </div>
-            
-            {/* Footer */}
-            <footer className="mt-8 py-8 border-t border-gray-700">
-                <div className="text-center text-gray-400">
-                    <p>© 2025 Viet CQ. All rights reserved.</p>
-                </div>
-            </footer>
-        </div>
+            <Footer theme={theme} />
+
         </>
     )
 }
@@ -270,7 +272,7 @@ const PostsList = ({ posts, loading, onEdit, onDelete, formatDate }) => {
             <div className="px-6 py-4 border-b border-gray-700">
                 <h2 className="text-xl font-bold text-white">All Posts ({posts.length})</h2>
             </div>
-            
+
             <div className="divide-y divide-gray-700">
                 {posts.map(post => (
                     <div key={post.id} className="p-6 hover:bg-gray-750 transition-colors">
@@ -286,11 +288,11 @@ const PostsList = ({ posts, loading, onEdit, onDelete, formatDate }) => {
                                         </span>
                                     )}
                                 </div>
-                                
+
                                 <p className="text-gray-300 text-sm mb-3 line-clamp-2">
                                     {post.excerpt}
                                 </p>
-                                
+
                                 <div className="flex items-center gap-4 text-sm text-gray-400">
                                     <span>{formatDate(post.date)}</span>
                                     <span>•</span>
@@ -301,7 +303,7 @@ const PostsList = ({ posts, loading, onEdit, onDelete, formatDate }) => {
                                     <span>{post.tags.length} tags</span>
                                 </div>
                             </div>
-                            
+
                             <div className="flex gap-2 ml-4">
                                 <button
                                     onClick={() => window.open(`/blog/${post.slug}`, '_blank')}
