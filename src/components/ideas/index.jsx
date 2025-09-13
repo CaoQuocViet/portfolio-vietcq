@@ -71,7 +71,7 @@ export default function IdeasPageClient() {
                                         </div>
                                         <div>
                                             <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-                                                ArtVault Digital Store
+                                                Artermis Digital Store
                                             </h3>
                                             <p className="text-sm text-purple-600 dark:text-purple-400">
                                                 Print on Demand • Digital Downloads • E-commerce
@@ -121,7 +121,7 @@ export default function IdeasPageClient() {
                                         </div>
                                         <div>
                                             <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-                                                LinguaCert Testing Hub
+                                                ThithoTesting Hub
                                             </h3>
                                             <p className="text-sm text-blue-600 dark:text-blue-400">
                                                 Multi-Language Certification • Enterprise Scale • Global Standards
