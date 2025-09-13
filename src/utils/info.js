@@ -5,11 +5,13 @@ export const info = {
   displayName: "Cao Quốc Việt",
   email: "vietcao10@gmail.com",
   social: {
-    linkedin: "https://linkedin.com/in/caoquocviet",
-    twitter: "https://twitter.com/caoquocviet",
+    linkedin: "https://linkedin.com/in/cao-quoc-viet",
+    twitter: "https://twitter.com",
     github: "https://github.com/caoquocviet",
-    youtube: "https://www.youtube.com/@CaoQu%E1%BB%91cVi%E1%BB%87t1173",
-    discord: "https://discord.gg/caoquocviet",
-    facebook: "https://facebook.com/cao.quocviet.23.01"
+    youtube: "https://www.youtube.com/@vietcq",
+    discord: "https://discord.gg/PsZbxn77dy",
+    facebook: "https://facebook.com/cao.quocviet.23.01",
+    daily: "https://app.daily.dev/vietcq",
+    website: "https://portfolio-vietcq.vercel.app/"
   }
 };
