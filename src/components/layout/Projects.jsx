@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useTheme } from 'next-themes'
 import { Github, ExternalLink, Star, GitFork } from 'lucide-react'
 import { useGitHubRepos } from '../../hooks/useGitHubRepos'
+import { LoadingSpinner } from "../ui/loading";
 
 const Projects = () => {
     const { theme } = useTheme()
@@ -151,7 +152,7 @@ const Projects = () => {
 
                 {loading ? (
                     <div className="flex justify-center">
-                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 dark:border-blue-400" />
+                        <LoadingSpinner />
                     </div>
                 ) : (
                     <div className="space-y-6 relative">

@@ -40,7 +40,7 @@ const BlogPost = ({ slug }) => {
                 <div className="min-h-screen bg-white dark:bg-gray-950 overflow-x-hidden">
                     <div className="py-16 bg-gray-200 dark:bg-gray-900/50 min-h-screen flex justify-center items-center">
                         <div className="text-center relative z-10">
-                            <LoadingSpinner size="lg" />
+                            <LoadingSpinner />
                             <p className="text-gray-900 dark:text-white text-lg mt-4">Loading Blog Post...</p>
                         </div>
                     </div>

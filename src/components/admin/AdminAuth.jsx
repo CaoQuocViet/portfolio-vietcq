@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { useTheme } from 'next-themes'
+import { LoadingSpinner } from "../ui/loading";
 
 const AdminAuth = ({ onAuthSuccess }) => {
     const { theme } = useTheme()
@@ -86,7 +87,7 @@ const AdminAuth = ({ onAuthSuccess }) => {
         return (
             <div className="min-h-screen flex items-center justify-center bg-gray-200 dark:bg-gray-900/50">
                 <div className="text-gray-900 dark:text-white text-center relative z-10">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 dark:border-white mx-auto mb-4"></div>
+                    <LoadingSpinner />
                     <p>Loading...</p>
                 </div>
             </div>

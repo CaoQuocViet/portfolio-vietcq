@@ -7,6 +7,7 @@ import Dock from '../dock/Dock'
 import Footer from '../layout/Footer'
 import WaveBackground from '../ui/WaveBackground'
 import { IDEAS_NAVIGATION_ITEMS } from '../../config/navigation'
+import { LoadingSpinner } from "../ui/loading";
 
 export default function IdeasPageClient() {
     const { theme, setTheme } = useTheme()
@@ -19,7 +20,7 @@ export default function IdeasPageClient() {
     if (!mounted) {
         return (
             <div className="min-h-screen bg-white flex items-center justify-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600" />
+                <LoadingSpinner />
             </div>
         )
     }

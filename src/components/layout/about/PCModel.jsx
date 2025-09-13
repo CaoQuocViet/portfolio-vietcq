@@ -2,6 +2,7 @@
 import { Suspense, useState, useEffect } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls, useGLTF, Float, Environment } from '@react-three/drei'
+import { LoadingSpinner } from "../../ui/loading";
 
 function Model() {
   const { scene } = useGLTF('/models/bm86_portable_pc.glb')
@@ -15,14 +16,6 @@ function Model() {
         rotation={[0, -Math.PI / 4, 0]}
       />
     </Float>
-  )
-}
-
-function LoadingSpinner() {
-  return (
-    <div className="flex items-center justify-center h-full">
-      <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-500"></div>
-    </div>
   )
 }
 

@@ -8,7 +8,7 @@ const RepositoriesList = ({ theme = "dark" }) => {
   if (loading) {
     return (
       <div className="flex justify-center py-4">
-        <LoadingSpinner size="sm" />
+        <LoadingSpinner />
       </div>
     );
   }

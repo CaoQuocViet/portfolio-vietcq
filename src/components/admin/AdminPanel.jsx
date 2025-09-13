@@ -7,6 +7,7 @@ import { BLOG_NAVIGATION_ITEMS } from '../../config/navigation'
 import { createScrollFunction } from '../../utils/navigation'
 import AdminAuth from './AdminAuth'
 import BlogEditor from './BlogEditor'
+import { LoadingSpinner } from "../ui/loading";
 
 const AdminPanel = () => {
     const { theme, setTheme } = useTheme()
@@ -254,7 +255,7 @@ const PostsList = ({ posts, loading, onEdit, onDelete, formatDate }) => {
     if (loading) {
         return (
             <div className="bg-gray-800 rounded-lg p-8 text-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
+                <LoadingSpinner />
                 <p className="text-white">Loading posts...</p>
             </div>
         )

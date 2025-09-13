@@ -69,7 +69,7 @@ const BlogList = () => {
                 >
                     <GridBackground theme={theme} />
                     <div className="text-center relative z-10">
-                        <LoadingSpinner size="lg" />
+                        <LoadingSpinner />
                         <p className="text-gray-900 dark:text-white text-lg mt-4">Loading Blog Posts...</p>
                     </div>
                 </div>

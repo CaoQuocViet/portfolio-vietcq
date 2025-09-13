@@ -95,7 +95,7 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
                     }}
                 >
                     <div className="text-center">
-                        <LoadingSpinner size="lg" />
+                        <LoadingSpinner />
                         <p className="text-white text-lg mt-4">Loading Gallery...</p>
                     </div>
                 </div>
