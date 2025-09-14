@@ -3,20 +3,15 @@ import { useEffect } from 'react';
 export function useWindowsSound() {
   useEffect(() => {
     const audio = new Audio('/audio/Windows_Vista_7_8_10.mp3');
-    audio.volume = 1; // Increased volume to 60%
+    audio.volume = 0.8;
     
-    // Simple play with user interaction fallback
-    const playSound = () => {
-      audio.play().catch(() => {
-        // If autoplay fails, play on first user interaction
-        const handleInteraction = () => {
-          audio.play();
-          document.removeEventListener('click', handleInteraction);
-        };
-        document.addEventListener('click', handleInteraction, { once: true });
-      });
-    };
-
-    playSound();
+    // Simple: try to play, if fails then on first click
+    audio.play().catch(() => {
+      const handleClick = () => {
+        audio.play();
+        document.removeEventListener('click', handleClick);
+      };
+      document.addEventListener('click', handleClick, { once: true });
+    });
   }, []);
 }

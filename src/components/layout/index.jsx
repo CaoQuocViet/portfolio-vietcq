@@ -36,7 +36,6 @@ export default function HomePageClient() {
             setTimeout(() => document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' }), 100);
         }
         
-        // Scroll tracking - nonn re-render
         const track = () => {
             const sections = ['hero', 'about', 'services', 'projects', 'contact'];
             const offset = window.innerHeight / 3;
