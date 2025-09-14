@@ -2,9 +2,13 @@ import { NextResponse } from 'next/server';
 import path from 'path';
 import fs from 'fs';
 
-export async function GET() {
+export async function GET(request) {
     try {
-        const projectsDir = path.join(process.cwd(), 'public', 'data', 'project-detail');
+        // Get language from query params, default to 'en'
+        const { searchParams } = new URL(request.url);
+        const language = searchParams.get('lang') || 'en';
+        
+        const projectsDir = path.join(process.cwd(), 'public', 'data', 'project-detail', language);
         
         // Check if directory exists
         if (!fs.existsSync(projectsDir)) {

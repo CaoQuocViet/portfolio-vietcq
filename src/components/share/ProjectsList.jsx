@@ -3,20 +3,22 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { LoadingSpinner } from "../ui/loading";
+import { useLanguage } from "../../contexts/LanguageContext";
 
 const ProjectsList = ({ theme }) => {
     const [projects, setProjects] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const router = useRouter();
+    const { language } = useLanguage();
 
     useEffect(() => {
         const fetchProjects = async () => {
             try {
                 setLoading(true);
                 
-                // Use API route to get project list dynamically
-                const response = await fetch('/api/projects');
+                // Use API route to get project list dynamically with language
+                const response = await fetch(`/api/projects?lang=${language}`);
                 if (response.ok) {
                     const data = await response.json();
                     setProjects(data.projects || []);
@@ -31,7 +33,7 @@ const ProjectsList = ({ theme }) => {
         };
 
         fetchProjects();
-    }, []);
+    }, [language]);
 
     const handleProjectClick = (projectId) => {
         router.push(`/project/${projectId}`);

@@ -1,0 +1,197 @@
+'use client'
+import { useState, useEffect } from 'react'
+import { useLanguage } from "../../contexts/LanguageContext";
+
+export function LanguageIcon({ language, onToggle }) {
+  return (
+    <div 
+      onClick={onToggle}
+      className={`
+        relative w-6 h-6 rounded-md flex items-center justify-center cursor-pointer transition-all duration-200 text-xs font-semibold
+        ${language === 'en' 
+          ? 'bg-blue-500/90 text-white hover:bg-blue-600' 
+          : 'bg-red-500/90 text-white hover:bg-red-600'
+        }
+        shadow-sm hover:shadow-md
+      `}
+    >
+      {language === 'en' ? 'E' : 'V'}
+    </div>
+  )
+}
+
+export function WiFiIcon() {
+  return (
+    <div className="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors cursor-pointer flex items-center justify-center min-h-[32px]">
+      <div className="flex items-center justify-center">
+        <svg width="18" height="18" viewBox="0 0 16 16" fill="none" className="text-gray-700 dark:text-gray-300">
+          <path d="M8 9.5c-1.38 0-2.5 1.12-2.5 2.5h1c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5h1c0-1.38-1.12-2.5-2.5-2.5z" fill="currentColor"/>
+          <path d="M8 7c-2.76 0-5 2.24-5 5h1c0-2.21 1.79-4 4-4s4 1.79 4 4h1c0-2.76-2.24-5-5-5z" fill="currentColor"/>
+          <path d="M8 4.5c-4.14 0-7.5 3.36-7.5 7.5h1c0-3.59 2.91-6.5 6.5-6.5s6.5 2.91 6.5 6.5h1c0-4.14-3.36-7.5-7.5-7.5z" fill="currentColor"/>
+        </svg>
+      </div>
+    </div>
+  )
+}
+
+export function VolumeIcon() {
+  const [volume, setVolume] = useState(75)
+  const [isMuted, setIsMuted] = useState(false)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setVolume(prev => Math.max(20, Math.min(100, prev + (Math.random() - 0.5) * 10)))
+    }, 8000)
+    return () => clearInterval(interval)
+  }, [])
+
+  const getVolumeIcon = () => {
+    if (isMuted || volume === 0) {
+      return (
+        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0014 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+          <path d="M6.5 12L12 6.5 17.5 12 12 17.5 6.5 12z" stroke="currentColor" strokeWidth="2" fill="none"/>
+        </svg>
+      )
+    } else if (volume < 30) {
+      return (
+        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M3 9v6h4l5 5V4L7 9H3z"/>
+        </svg>
+      )
+    } else if (volume < 70) {
+      return (
+        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0014 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
+        </svg>
+      )
+    } else {
+      return (
+        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0014 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+        </svg>
+      )
+    }
+  }
+
+  return (
+    <div 
+      onClick={() => setIsMuted(!isMuted)}
+      className="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors cursor-pointer flex items-center justify-center min-h-[32px]"
+    >
+      <div className="text-gray-700 dark:text-gray-300 flex items-center justify-center">
+        {getVolumeIcon()}
+      </div>
+    </div>
+  )
+}
+
+export function BatteryIcon() {
+  const [batteryLevel, setBatteryLevel] = useState(82)
+  const [isCharging, setIsCharging] = useState(false)
+
+  useEffect(() => {
+    if ('getBattery' in navigator) {
+      navigator.getBattery().then(battery => {
+        setBatteryLevel(Math.round(battery.level * 100))
+        setIsCharging(battery.charging)
+        
+        battery.addEventListener('levelchange', () => {
+          setBatteryLevel(Math.round(battery.level * 100))
+        })
+        
+        battery.addEventListener('chargingchange', () => {
+          setIsCharging(battery.charging)
+        })
+      })
+    } else {
+      const interval = setInterval(() => {
+        setBatteryLevel(prev => {
+          const change = isCharging ? 1 : -0.5
+          return Math.max(15, Math.min(100, prev + change))
+        })
+        
+        if (Math.random() < 0.05) {
+          setIsCharging(prev => !prev)
+        }
+      }, 15000)
+      return () => clearInterval(interval)
+    }
+  }, [isCharging])
+
+  const getBatteryColor = () => {
+    if (isCharging) return 'text-green-400'
+    if (batteryLevel < 20) return 'text-red-400'
+    if (batteryLevel < 50) return 'text-orange-400'
+    return 'text-green-400'
+  }
+
+  return (
+    <div className="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors cursor-pointer flex items-center justify-center min-h-[32px]">
+      <div className={`relative flex items-center justify-center ${getBatteryColor()}`}>
+        {/* Battery Body */}
+        <div className="relative w-5 h-3 border border-current rounded-sm">
+          {/* Battery Tip */}
+          <div className="absolute -right-0.5 top-1 w-0.5 h-1 bg-current rounded-r-sm"></div>
+          
+          {/* Battery Fill */}
+          <div className="absolute inset-0.5 bg-gray-700 rounded-sm overflow-hidden">
+            <div 
+              className={`h-full transition-all duration-1000 ${
+                isCharging ? 'bg-green-400' : 
+                batteryLevel < 20 ? 'bg-red-400' : 
+                batteryLevel < 50 ? 'bg-orange-400' : 'bg-green-400'
+              }`}
+              style={{ width: `${batteryLevel}%` }}
+            />
+          </div>
+          
+          {/* Charging Icon */}
+          {isCharging && (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <svg className="w-1.5 h-1.5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M11,20L6.5,14H10V4L14,10H11V20Z" />
+              </svg>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export function CalendarIcon() {
+  const now = new Date();
+  const time = now.toLocaleTimeString('en-US', { 
+    hour: '2-digit', 
+    minute: '2-digit',
+    hour12: true
+  }).replace(' ', ''); // Remove space between time and AM/PM
+  const date = now.toLocaleDateString('en-GB');
+
+  return (
+    <div className="px-3 py-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors cursor-pointer flex items-center justify-center">
+      <div className="flex flex-col items-start justify-center text-xs text-gray-700 dark:text-gray-300 font-medium">
+        <div className="text-[14px] leading-none mb-1 whitespace-nowrap">{time}</div>
+        <div className="text-[14px] leading-none whitespace-nowrap">{date}</div>
+      </div>
+    </div>
+  )
+}
+
+// Main SystemIcons component that groups all icons
+export default function SystemIcons() {
+  const { language, toggleLanguage } = useLanguage();
+
+  return (
+    <div className="flex items-center gap-3">
+      <LanguageIcon language={language} onToggle={toggleLanguage} />
+      <WiFiIcon />
+      <VolumeIcon />
+      <BatteryIcon />
+      <div className="ml-1">
+        <CalendarIcon />
+      </div>
+    </div>
+  );
+}   

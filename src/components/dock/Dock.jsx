@@ -4,6 +4,7 @@ import { FaSun, FaMoon } from "react-icons/fa6";
 import { DEFAULT_NAVIGATION_ITEMS } from "../../config/navigation";
 import { useState, useRef, useEffect } from "react";
 import Modal from "./Modal";
+import SystemIcons from "./SystemIcons";
 
 const NavigationItem = ({
   item, activeSection, theme, scrollToSection,
@@ -253,6 +254,18 @@ const Dock = ({ theme, setTheme, activeSection, scrollToSection, navigationItems
               onLeave={handleItemLeave}
               isMobile={isMobile}
             />
+          </div>
+          
+          {/* System Icons Separator */}
+          <div className={`transition-all duration-300 ease-out ${
+            hoveredItem ? "sm:mx-5 my-3 sm:my-0" : "sm:mx-4 my-2 sm:my-0"
+          } bg-gray-300/50 dark:bg-gray-600/50 w-6 h-0.5 sm:w-0.5 sm:h-6`} />
+          
+          {/* System Icons */}
+          <div className={`hidden sm:block transition-all duration-300 ease-out ${
+            hoveredItem ? "sm:mx-4 my-2 sm:my-0" : "sm:mx-2 my-1.5 sm:my-0"
+          }`}>
+            <SystemIcons />
           </div>
         </div>
       </nav>

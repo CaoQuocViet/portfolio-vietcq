@@ -8,18 +8,21 @@ import Footer from '../layout/Footer'
 import ProjectOverview from './ProjectOverview'
 import ProjectDetails from './ProjectDetails'
 import ProjectFeatures from './ProjectFeatures'
-import { LoadingSpinner } from "../ui/loading";
 import ProjectGallery from './ProjectGallery'
+import { LoadingSpinner } from "../ui/loading";
+import { useLanguage } from "../../contexts/LanguageContext";
 import { PROJECT_NAVIGATION_ITEMS } from '../../config/navigation'
 import { createScrollFunction } from '../../utils/navigation'
 
-export default function ProjectDetailPageClient() {
-    const { theme, setTheme } = useTheme()
+const ProjectPage = () => {
     const params = useParams()
+    const { theme, setTheme } = useTheme()
+    const { language } = useLanguage()
+    const [activeSection, setActiveSection] = useState("project-overview")
+    const [mounted, setMounted] = useState(false)
     const [projectData, setProjectData] = useState(null)
     const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(null)
-    const [mounted, setMounted] = useState(false)
+    const [error, setError] = useState('')
 
     useEffect(() => {
         setMounted(true)
@@ -30,7 +33,7 @@ export default function ProjectDetailPageClient() {
     useEffect(() => {
         const loadProjectData = async () => {
             try {
-                const response = await fetch(`/data/project-detail/${params.id}.json`)
+                const response = await fetch(`/data/project-detail/${language}/${params.id}.json`)
                 if (!response.ok) throw new Error('Project not found')
                 
                 const data = await response.json()
@@ -43,9 +46,10 @@ export default function ProjectDetailPageClient() {
         }
 
         if (params.id) {
+            setLoading(true)
             loadProjectData()
         }
-    }, [params.id])
+    }, [params.id, language])
 
     if (!mounted) {
         return (
@@ -106,3 +110,5 @@ export default function ProjectDetailPageClient() {
         </div>
     )
 }
+
+export default ProjectPage
