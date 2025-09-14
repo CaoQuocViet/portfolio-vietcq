@@ -5,13 +5,10 @@ export function useWindowsSound() {
     const audio = new Audio('/audio/Windows_Vista_7_8_10.mp3');
     audio.volume = 0.8;
     
-    // Simple: try to play, if fails then on first click
+    // Simple: just try to play
     audio.play().catch(() => {
-      const handleClick = () => {
-        audio.play();
-        document.removeEventListener('click', handleClick);
-      };
-      document.addEventListener('click', handleClick, { once: true });
+      // If autoplay blocked, play on first user click
+      document.addEventListener('click', () => audio.play(), { once: true });
     });
   }, []);
 }
