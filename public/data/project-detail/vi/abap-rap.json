@@ -1,0 +1,67 @@
+{
+  "id": "abap-rap",
+  "name": "SAP ABAP RAP Business Analytics Dashboard",
+  "tagline": "Enterprise Sales Analytics Platform với Docker-containerized SAP ABAP",
+  "description": "Nền tảng phân tích kinh doanh được xây dựng với SAP ABAP RESTful Application Programming (RAP), bao gồm containerization Docker, quản lý đơn hàng bán, phân tích phân khúc khách hàng và xử lý dữ liệu tự động. Minh họa phát triển SAP cấp doanh nghiệp với tự động hóa Python và thực hành triển khai hiện đại.",
+  
+  "timeline": {
+    "startDate": "12/2024",
+    "endDate": "12/2024", 
+    "status": "Hoàn thành"
+  },
+  
+  "role": {
+    "position": "SAP ABAP Developer & DevOps Engineer",
+    "responsibilities": [
+      "Thiết kế containerization Docker để triển khai hệ thống SAP ABAP Trial",
+      "Xây dựng cơ sở dữ liệu đơn hàng bán với các trường thông tin nghiệp vụ",
+      "Phát triển CDS Views với tính năng phân tích kinh doanh và thông tin khách hàng",
+      "Xây dựng pipeline Python tự động để xử lý dữ liệu CSV và tạo code ABAP",
+      "Triển khai tích hợp Eclipse ADT với SAP Application Server được containerize"
+    ]
+  },
+  
+  "technologies": {
+    "containerization": ["Docker", "SAP ABAP Trial Container", "Container Registry"],
+    "backend": ["ABAP", "ABAP RAP Framework", "CDS Views", "OData Services"],
+    "database": ["SAP HANA", "Sales Orders Table", "Customer Data Management"],
+    "automation": ["Python", "CSV Processing", "ABAP Code Generation", "Data Import Pipeline"],
+    "frontend": ["SAP Fiori", "Business Analytics UI", "Field Groups", "Chart Visualizations"],
+    "development": ["Eclipse ADT", "Visual Studio Code", "Git", "SAP Development Tools"]
+  },
+  
+  "features": [
+    "Môi trường phát triển SAP ABAP được containerize với Docker",
+    "Hệ thống quản lý đơn hàng bán với phân khúc khách hàng",
+    "Scripts Python tự động để import dữ liệu CSV và tạo ABAP class",
+    "CDS Views với tính năng business intelligence và phân tích",
+    "Tích hợp Eclipse ADT với quản lý kết nối SAP Application Server",
+    "Dashboard phân tích kinh doanh với insights bán hàng và trực quan hóa dữ liệu"
+  ],
+  
+  "achievements": {
+    "metrics": [
+      "Containerize thành công hệ thống SAP ABAP Trial với Docker",
+      "Xây dựng bảng đơn hàng bán với các trường thông tin nghiệp vụ cần thiết",
+      "Triển khai CDS View với tính năng phân tích khách hàng",
+      "Tạo các script Python tự động để xử lý dữ liệu và tạo code",
+      "Hỗ trợ đầy đủ quy trình từ import dữ liệu đến phân tích kinh doanh"
+    ],
+    "highlights": [
+      "Tiên phong containerization Docker cho môi trường phát triển SAP ABAP",
+      "Xây dựng pipeline tự động end-to-end từ dữ liệu CSV đến triển khai ABAP services",
+      "Triển khai business analytics toàn diện với customer segmentation insights",
+      "Thành công tích hợp Eclipse ADT với containerized SAP environment"
+    ]
+  },
+  
+  "links": {
+    "live": "",
+    "github": "https://github.com/caoquocviet/abap-rap-business-analytics"
+  },
+  
+  "color": {
+    "primary": "emerald",
+    "gradient": "from-emerald-500 via-teal-500 to-cyan-500"
+  }
+}

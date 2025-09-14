@@ -1,0 +1,75 @@
+{
+  "id": "giveback",
+  "name": "Giveback",
+  "tagline": "Nền tảng cứu trợ thiên tai & từ thiện minh bạch cho Việt Nam",
+  "description": "Nền tảng quyên góp từ thiện hỗ trợ các khu vực bị thiên tai tại Việt Nam. Quản lý các chiến dịch từ thiện, xử lý quyên góp từ người dùng và cung cấp báo cáo minh bạch về việc sử dụng quỹ, đảm bảo tính minh bạch và hiệu quả trong phân phối.",
+  
+  "timeline": {
+    "startDate": "08/2024",
+    "endDate": "09/2024", 
+    "status": "Hoàn thành",
+    "developmentTime": "15 ngày"
+  },
+  
+  "role": {
+    "position": "Lập trình viên Full-stack (Đồ án học tập)",
+    "responsibilities": [
+      "Thiết kế và phát triển hệ thống quản lý chiến dịch từ thiện",
+      "Xây dựng hệ thống quyên góp với tích hợp thanh toán ZaloPay",
+      "Tạo hệ thống xác thực nhiều vai trò (Admin, Tổ chức, Người quyên góp, Người thụ hưởng)",
+      "Xây dựng hệ thống xác minh tổ chức từ thiện với quy trình duyệt giấy phép",
+      "Tạo feed tin tức thiên tai thời gian thực và bản đồ nhiệt các khu vực ảnh hưởng",
+      "Phát triển hệ thống báo cáo với tính năng xuất PDF/Excel"
+    ]
+  },
+  
+  "technologies": {
+    "frontend": ["Next.js 14", "TypeScript", "Tailwind CSS", "React", "Radix UI", "Material-UI"],
+    "backend": ["Node.js", "Express.js", "Sequelize ORM"],
+    "database": ["PostgreSQL"],
+    "authentication": ["Firebase Auth", "next-firebase-auth-edge", "JWT"],
+    "payment": ["ZaloPay API", "Webhook Integration"],
+    "mapping": ["Leaflet.js", "OpenStreetMap", "React-Leaflet"],
+    "data_visualization": ["Chart.js", "React-Chartjs-2", "D3.js"],
+    "export": ["jsPDF", "ExcelJS", "React-PDF"],
+    "deployment": ["Vercel", "PostgreSQL Cloud", "Firebase"]
+  },
+  
+  "features": [
+    "Quản lý chiến dịch từ thiện với tiến trình và mục tiêu",
+    "Hệ thống quyên góp tích hợp ZaloPay và theo dõi thời gian thực",
+    "Xác thực tổ chức từ thiện với quy trình phê duyệt",
+    "Bảng điều khiển minh bạch với biểu đồ và báo cáo chi tiết",
+    "Bản đồ thiên tai thời gian thực với vùng ảnh hưởng",
+    "Xuất báo cáo PDF/Excel với dữ liệu đầy đủ"
+  ],
+  
+  "achievements": {
+    "metrics": [
+      "Codebase TypeScript/Next.js được tối ưu và có cấu trúc tốt",
+      "Backend Node.js/Express mạnh mẽ",
+      "Thiết kế responsive hoàn toàn trên mọi thiết bị",
+      "Thời gian hoạt động ổn định với hiệu suất được tối ưu",
+      "Quản lý nhiều vai trò người dùng khác nhau"
+    ],
+    "impact": [
+      "Tạo ra nền tảng minh bạch cho hoạt động từ thiện",
+      "Đơn giản hóa quy trình quyên góp và theo dõi quỹ",
+      "Cung cấp thông tin thời gian thực về tình hình thiên tai",
+      "Đảm bảo trách nhiệm giải trình trong phân phối quỹ từ thiện"
+    ]
+  },
+  
+  "challenges": [
+    "Thiết kế hệ thống xác thực nhiều vai trò phức tạp",
+    "Tích hợp cổng thanh toán ZaloPay với xử lý webhook",
+    "Xây dựng bản đồ thiên tai thời gian thực với dữ liệu chính xác",
+    "Đảm bảo tính toàn vẹn dữ liệu cho các giao dịch tài chính"
+  ],
+  
+  "links": {
+    "github": "https://github.com/CaoQuocViet/giveback",
+    "demo": "https://giveback-platform.vercel.app/",
+    "documentation": "https://github.com/CaoQuocViet/giveback#readme"
+  }
+}

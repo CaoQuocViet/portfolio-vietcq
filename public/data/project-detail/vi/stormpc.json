@@ -1,0 +1,70 @@
+{
+  "id": "stormpc",
+  "name": "StormPC",
+  "tagline": "Hệ thống quản lý cửa hàng laptop hiện đại với WinUI",
+  "description": "Ứng dụng desktop toàn diện quản lý cửa hàng laptop được xây dựng với WinUI 3 và .NET 8. Tích hợp tính năng xác thực bảo mật, quản lý kho hàng, xử lý đơn hàng, quản lý khách hàng và báo cáo nâng cao với hỗ trợ giao diện tối.",
+  
+  "timeline": {
+    "startDate": "03/2024",
+    "endDate": "06/2024",
+    "status": "Completed"
+  },
+  
+  "role": {
+    "position": "Full-stack Developer",
+    "responsibilities": [
+      "Phát triển cơ sở dữ liệu Entity Framework Core với PostgreSQL",
+      "Làm hệ thống đăng nhập bảo mật với mã hóa mật khẩu Argon2id",
+      "Xây dựng hệ thống quản lý kho hàng laptop toàn diện",
+      "Tạo hệ thống báo cáo với biểu đồ bằng LiveCharts2",
+      "Thiết kế giao diện responsive có hỗ trợ dark mode"
+    ]
+  },
+  
+  "technologies": {
+    "frontend": ["WinUI 3", "XAML", "CommunityToolkit.Mvvm", "LiveChartsCore.SkiaSharpView"],
+    "backend": [".NET 8", "Entity Framework Core 8.0", "Npgsql", "Konscious.Security.Cryptography.Argon2"],
+    "database": ["PostgreSQL 16", "Sequelize CLI", "Docker"],
+    "ui_components": ["CommunityToolkit.WinUI.UI.Controls", "WinUIEx", "Microsoft.Xaml.Behaviors"],
+    "deployment": ["Docker Compose", "Windows App SDK", "MSIX Packaging"],
+    "development": ["Visual Studio 2022", "Windows 10/11", "PowerShell"]
+  },
+  
+  "features": [
+    "Hệ thống đăng nhập bảo mật với mã hóa Argon2id và khôi phục bằng backup key",
+    "Quản lý kho hàng laptop toàn diện với thông số kỹ thuật chi tiết",
+    "Hệ thống quản lý đơn hàng và xử lý thanh toán nâng cao",
+    "Báo cáo đa chiều với phân tích doanh thu, kho hàng và khách hàng",
+    "Ghi lại hoạt động thời gian thực cho tất cả tương tác người dùng",
+    "Tính năng tìm kiếm nâng cao với lọc theo nhiều tiêu chí",
+    "Khả năng sao lưu và khôi phục dữ liệu",
+    "Giao diện responsive chế độ tối với thiết kế WinUI hiện đại"
+  ],
+  
+  "achievements": {
+    "metrics": [
+      "Hoàn thiện các thao tác CRUD cho laptops, categories, brands và specifications",
+      "Hệ thống xử lý đơn hàng toàn diện với theo dõi trạng thái",
+      "Dashboard báo cáo nâng cao với biểu đồ trực quan và bảng dữ liệu",
+      "Hỗ trợ quản lý sản phẩm laptop với quản lý kho hàng thời gian thực",
+      "Thời gian phản hồi nhanh cho tất cả các thao tác cơ sở dữ liệu"
+    ],
+    "highlights": [
+      "Xây dựng ứng dụng desktop WinUI 3 có khả năng mở rộng với kiến trúc MVVM hiện đại",
+      "Triển khai bảo mật cấp enterprise với Argon2id password hashing",
+      "Tạo database schema toàn diện với hơn 12 entities liên quan",
+      "Phát triển hệ thống báo cáo nâng cao với tích hợp LiveCharts2",
+      "Đạt được thiết kế UI responsive với hỗ trợ full dark mode"
+    ]
+  },
+  
+  "links": {
+    "live": "",
+    "github": "https://github.com/CaoQuocViet/StormPC"
+  },
+  
+  "color": {
+    "primary": "blue",
+    "gradient": "from-blue-600 via-indigo-600 to-purple-600"
+  }
+}

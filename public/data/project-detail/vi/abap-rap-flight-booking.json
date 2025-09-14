@@ -1,0 +1,66 @@
+{
+  "id": "abap-rap-flight-booking",
+  "name": "ABAP RAP Flight Booking",
+  "tagline": "Enterprise Flight Management System với SAP ABAP RAP",
+  "description": "Hệ thống quản lý chuyến bay được xây dựng với SAP ABAP RESTful Application Programming (RAP), bao gồm CDS Views, Fiori annotations, khả năng tìm kiếm nâng cao và trực quan hóa phong phú. Minh họa các thực hành phát triển SAP hiện đại với quản lý cơ sở dữ liệu, dịch vụ kinh doanh và thành phần giao diện cấp doanh nghiệp.",
+  
+  "timeline": {
+    "startDate": "12/2024",
+    "endDate": "12/2024", 
+    "status": "Hoàn thành"
+  },
+  
+  "role": {
+    "position": "ABAP Developer",
+    "responsibilities": [
+      "Thiết kế bảng cơ sở dữ liệu cho Airlines và Flight entities với ABAP DDL",
+      "Phát triển CDS Views với UI annotations để tích hợp Fiori",
+      "Triển khai Business Services với Service Definitions và Bindings",
+      "Tạo các chương trình ABAP cho thao tác thêm và xóa dữ liệu",
+      "Xây dựng tính năng tìm kiếm nâng cao với khả năng fuzzy search"
+    ]
+  },
+  
+  "technologies": {
+    "frontend": ["SAP Fiori", "UI Annotations", "Charts", "Progress Bars"],
+    "backend": ["ABAP", "ABAP RAP Framework", "CDS Views", "ABAP DDL"],
+    "database": ["SAP HANA", "Database Tables", "Association Relationships"],
+    "development": ["ABAP Development Tools (ADT)", "Visual Studio Code", "Git"],
+    "framework": ["SAP RAP (RESTful Application Programming)", "Core Data Services"],
+    "services": ["Business Services", "Service Definitions", "Service Bindings"]
+  },
+  
+  "features": [
+    "CDS Views với tính toán phức tạp và associations cho dữ liệu chuyến bay",
+    "Fiori UI annotations với tìm kiếm, lọc và trường lựa chọn",
+    "Trực quan hóa nâng cao bao gồm donut charts và thanh tiến trình", 
+    "Khả năng fuzzy search với cài đặt ngưỡng có thể cấu hình",
+    "Tính toán sử dụng thời gian thực và theo dõi ghế trống",
+    "Hỗ trợ đa tiền tệ với semantic annotations cho số tiền"
+  ],
+  
+  "achievements": {
+    "metrics": [
+      "Xây dựng các bảng cơ sở dữ liệu cốt lõi với định nghĩa trường toàn diện",
+      "Triển khai CDS View phức tạp với các trường tính toán và UI annotations",
+      "Tạo các chương trình ABAP cho thao tác CRUD hoàn chỉnh",
+      "Hỗ trợ nhiều hãng hàng không với cấu hình tiền tệ và loại máy bay khác nhau"
+    ],
+    "highlights": [
+      "Thiết kế schema cơ sở dữ liệu có khả năng mở rộng với chuẩn hóa phù hợp",
+      "Triển khai UI annotations nâng cao cho rich Fiori user experience",
+      "Xây dựng tính năng search toàn diện với fuzzy matching capabilities",
+      "Tạo calculations động cho seat utilization và availability metrics"
+    ]
+  },
+  
+  "links": {
+    "live": "",
+    "github": "https://github.com/caoquocviet/abap-rap-flight-booking"
+  },
+  
+  "color": {
+    "primary": "indigo",
+    "gradient": "from-indigo-500 via-blue-500 to-cyan-500"
+  }
+}

@@ -2,7 +2,7 @@
   "id": "testify",
   "name": "Testify",
   "tagline": "Comprehensive IELTS & TOEIC Preparation Platform",
-  "description": "An AI-powered platform designed for comprehensive IELTS and TOEIC test preparation, featuring automated scoring, real-time feedback collection, and intelligent learning analytics. Built with cutting-edge technologies to deliver personalized learning experiences.",
+  "description": "IELTS and TOEIC preparation platform with AI integration, providing automated scoring, instant feedback, and learning progress analysis. Built with modern technology to create personalized learning experiences for students.",
   
   "timeline": {
     "startDate": "01/2024",
@@ -13,11 +13,11 @@
   "role": {
     "position": "Full-stack Developer",
     "responsibilities": [
-      "Architected Django Backend with Django REST Framework and PostgreSQL",
-      "Developed Next.js 15 Frontend with TypeScript and Tailwind CSS",
-      "Implemented OpenAI GPT-4 for IELTS/TOEIC Writing & Speaking evaluation",
-      "Integrated Whisper AI for automated speech-to-text transcription",
-      "Built comprehensive test management system for IELTS & TOEIC modules"
+      "Designed and developed Django backend with REST Framework",
+      "Developed Next.js 15 frontend using TypeScript and Tailwind CSS",
+      "Integrated OpenAI GPT-4 for Writing & Speaking scoring",
+      "Used Whisper AI for speech recognition and text conversion",
+      "Built test management system and learning progress tracking"
     ]
   },
   
@@ -40,10 +40,11 @@
   
   "achievements": {
     "metrics": [
-      "Supports full IELTS & TOEIC test structures with 100+ test modules",
-      "AI evaluation system achieving 94% accuracy in band score prediction",
-      "Processing 4 language skills with automated scoring capabilities",
-      "Docker-containerized deployment for scalable production environment"
+      "Well-structured and optimized Python/Django backend codebase",
+      "Modern TypeScript/Next.js frontend with user-friendly interface",
+      "High accuracy AI scoring system",
+      "Comprehensive test suite for AI features",
+      "Efficient daily audio file processing"
     ],
     "highlights": [
       "Built scalable Django backend with comprehensive IELTS/TOEIC models",

@@ -1,0 +1,63 @@
+{
+  "id": "web1-hcmus",
+  "name": "Web1 Student Project",
+  "tagline": "Basic Multi-page Website for University Course",
+  "description": "University assignment for Web Development course (Web1 - HCMUS). Built a multi-page website using HTML, CSS, JavaScript with features like login, search, blog comments, and contact form.",
+  
+  "timeline": {
+    "startDate": "09/2022",
+    "endDate": "12/2022",
+    "status": "Completed"
+  },
+  
+  "role": {
+    "position": "Student",
+    "responsibilities": [
+      "Built website interface with HTML and Bootstrap 5",
+      "Wrote JavaScript to handle login and API calls",
+      "Designed responsive layout with CSS and Bootstrap",
+      "Integrated API to display data"
+    ]
+  },
+  
+  "technologies": {
+    "frontend": ["HTML5", "CSS3", "JavaScript", "Bootstrap 5"],
+    "backend": ["External REST API"],
+    "database": ["API Data Source"],
+    "ai_integration": [],
+    "deployment": ["Static Web Hosting"],
+    "testing": ["Manual Browser Testing"]
+  },
+  
+  "features": [
+    "Website with 5 main pages (Home, About, Blog, Gallery, Contact)",
+    "Login system with authentication",
+    "Search functionality",
+    "Comment system for blog posts",
+    "Contact form that can send emails"
+  ],
+  
+  "achievements": {
+    "metrics": [
+      "Responsive website works well on all devices",
+      "Stable login system functionality",
+      "Successful API integration",
+      "Completed all assignment requirements"
+    ],
+    "highlights": [
+      "Got good grades for Web Development course",
+      "Learned how to integrate APIs",
+      "Mastered responsive design",
+      "Gained proficiency in JavaScript and DOM manipulation"
+    ]
+  },
+  "links": {
+    "live": "https://web1-22810218.vercel.app",
+    "github": "https://github.com/CaoQuocViet/web1_project"
+  },
+  
+  "color": {
+    "primary": "pink",
+    "gradient": "from-pink-400 via-blue-400 to-green-400"
+  }
+}

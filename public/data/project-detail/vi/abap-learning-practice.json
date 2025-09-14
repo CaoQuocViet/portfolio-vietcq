@@ -1,0 +1,65 @@
+{
+  "id": "abap-learning-practice",
+  "name": "ABAP Learning Practice",
+  "tagline": "Repository kiến thức lập trình ABAP toàn diện",
+  "description": "Kho tài liệu học tập ABAP toàn diện từ cơ bản đến nâng cao, bao gồm các nguyên tắc viết code sạch, ví dụ thực tế, tài liệu ôn thi phỏng vấn và các mẫu lập trình. Được xây dựng như một nguồn tài nguyên giáo dục có cấu trúc cho các lập trình viên SAP ABAP.",
+  
+  "timeline": {
+    "startDate": "09/2024",
+    "endDate": "Present",
+    "status": "Đang thực hiện"
+  },
+  
+  "role": {
+    "position": "Lập trình viên ABAP & Tác giả nội dung",
+    "responsibilities": [
+      "Phát triển các ví dụ cú pháp ABAP toàn diện từ cơ bản đến nâng cao",
+      "Triển khai các nguyên tắc viết code ABAP sạch và tài liệu thực hành tốt",
+      "Tạo các module học tập có cấu trúc bao gồm nhiều chủ đề ABAP",
+      "Xây dựng tài liệu chuẩn bị phỏng vấn cho các công ty tư vấn lớn",
+      "Viết tài liệu các chủ đề nâng cao bao gồm OOP, SQL và tính năng ABAP hiện đại"
+    ]
+  },
+  
+  "technologies": {
+    "frontend": [],
+    "backend": ["ABAP", "ABAP Objects", "OpenSQL", "Native SQL"],
+    "database": ["SAP HANA", "Data Dictionary", "Internal Tables"],
+    "ai_integration": [],
+    "deployment": [],
+    "testing": ["ABAP Unit Tests", "Code Inspector"]
+  },
+  
+  "features": [
+    "Bao quát toàn diện cú pháp ABAP từ Hello World đến các khái niệm OOP nâng cao",
+    "Triển khai các thực hành tốt nhất theo hướng dẫn style của SAP", 
+    "Lộ trình học tập có cấu trúc với nhiều module cú pháp cơ bản và chủ đề nâng cao",
+    "Tài liệu chuẩn bị phỏng vấn cho các công ty tư vấn hàng đầu",
+    "Ví dụ code thực tế với giải thích bằng tiếng Việt và code bằng tiếng Anh"
+  ],
+  
+  "achievements": {
+    "metrics": [
+      "Bao quát nhiều chủ đề lập trình ABAP với các ví dụ thực tế",
+      "Bao gồm tài liệu phỏng vấn cho các công ty tư vấn lớn",
+      "Chứa nhiều ví dụ code ABAP và minh họa",
+      "Triển khai các nguyên lý SOLID và mẫu thiết kế GRASP trong bối cảnh ABAP"
+    ],
+    "highlights": [
+      "Xây dựng kho tài liệu học ABAP toàn diện với lộ trình có cấu trúc",
+      "Triển khai các thực hành viết code sạch theo hướng dẫn chính thức của SAP",
+      "Tạo phương pháp tài liệu song ngữ (giải thích tiếng Việt, code tiếng Anh)",
+      "Phát triển tài liệu tham khảo mở rộng bao gồm bảng hệ thống và mã giao dịch"
+    ]
+  },
+  
+  "links": {
+    "live": "",
+    "github": "https://github.com/caoquocviet/abap-learning-practice"
+  },
+  
+  "color": {
+    "primary": "green",
+    "gradient": "from-green-500 via-teal-500 to-emerald-500"
+  }
+}

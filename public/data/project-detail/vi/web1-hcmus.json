@@ -1,0 +1,63 @@
+{
+  "id": "web1-hcmus",
+  "name": "Dự án Web1 HCMUS",
+  "tagline": "Website đa trang cơ bản cho môn học đại học",
+  "description": "Bài tập lớn môn Phát triển Web (Web1 - HCMUS). Xây dựng website đa trang sử dụng HTML, CSS, JavaScript với các tính năng đăng nhập, tìm kiếm, bình luận blog và form liên hệ.",
+  
+  "timeline": {
+    "startDate": "09/2022",
+    "endDate": "12/2022",
+    "status": "Hoàn thành"
+  },
+  
+  "role": {
+    "position": "Sinh viên",
+    "responsibilities": [
+      "Xây dựng giao diện website với HTML và Bootstrap 5",
+      "Viết JavaScript để xử lý đăng nhập và gọi API",
+      "Thiết kế layout responsive với CSS và Bootstrap",
+      "Tích hợp API để hiển thị dữ liệu"
+    ]
+  },
+  
+  "technologies": {
+    "frontend": ["HTML5", "CSS3", "JavaScript", "Bootstrap 5"],
+    "backend": ["External REST API"],
+    "database": ["API Data Source"],
+    "ai_integration": [],
+    "deployment": ["Static Web Hosting"],
+    "testing": ["Manual Browser Testing"]
+  },
+  
+  "features": [
+    "Website gồm 5 trang chính (Trang chủ, Giới thiệu, Blog, Thư viện ảnh, Liên hệ)",
+    "Hệ thống đăng nhập với xác thực",
+    "Tính năng tìm kiếm",
+    "Hệ thống bình luận cho bài viết",
+    "Form liên hệ có thể gửi email"
+  ],
+  
+  "achievements": {
+    "metrics": [
+      "5 trang web với thiết kế responsive",
+      "Hệ thống xác thực người dùng",
+      "Tích hợp API để xử lý dữ liệu",
+      "Hoàn thành đầy đủ yêu cầu bài tập lớn"
+    ],
+    "highlights": [
+      "Đạt điểm cao cho môn Web Development",
+      "Làm quen với việc tích hợp REST API",
+      "Áp dụng responsive design",
+      "Nắm vững JavaScript DOM và xử lý sự kiện"
+    ]
+  },
+  "links": {
+    "live": "https://web1-22810218.vercel.app",
+    "github": "https://github.com/CaoQuocViet/web1_project"
+  },
+  
+  "color": {
+    "primary": "pink",
+    "gradient": "from-pink-400 via-blue-400 to-green-400"
+  }
+}

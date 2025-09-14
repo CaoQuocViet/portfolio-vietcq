@@ -1,0 +1,66 @@
+{
+  "id": "utf-ansi-translator",
+  "name": "UTF-ANSI Translator",
+  "tagline": "Hệ thống khôi phục dấu tiếng Việt với Machine Learning",
+  "description": "Hệ thống xử lý văn bản tiếng Việt toàn diện để chuyển đổi giữa mã hóa UTF-8 và ANSI với khôi phục dấu thông minh. Tích hợp mô hình transformer tùy chỉnh cho dự đoán dấu tiếng Việt, kiến trúc microservice và giao diện web để chuyển đổi văn bản và xử lý file.",
+  
+  "timeline": {
+    "startDate": "16/04/2025",
+    "endDate": "20/04/2025", 
+    "status": "Hoàn thành"
+  },
+  
+  "role": {
+    "position": "Kỹ sư NLP & Lập trình viên Full-stack",
+    "responsibilities": [
+      "Phát triển mô hình transformer tùy chỉnh để khôi phục dấu tiếng Việt bằng PyTorch",
+      "Xây dựng kiến trúc dịch vụ kép với Model Service và Web Interface",
+      "Triển khai hệ thống ánh xạ ký tự toàn diện cho xử lý ngôn ngữ tiếng Việt",
+      "Tạo ứng dụng web Flask với tải file và chuyển đổi văn bản thời gian thực",
+      "Phát triển script khởi động tự động với batch files cho triển khai Windows"
+    ]
+  },
+  
+  "technologies": {
+    "ml_framework": ["PyTorch", "Transformers", "Hugging Face", "AutoTokenizer"],
+    "backend": ["Python", "Flask", "REST API", "Microservices"],
+    "frontend": ["HTML", "CSS", "JavaScript", "Flask Templates"],
+    "nlp": ["Token Classification", "Vietnamese NLP", "Character Encoding", "Text Processing"],
+    "deployment": ["Windows Batch Scripts", "Multi-service Architecture", "Local Server"],
+    "data_processing": ["UTF-8", "ANSI Encoding", "File Processing", "Text Normalization"]
+  },
+  
+  "features": [
+    "Mô hình transformer tùy chỉnh với nhiều lớp dấu tiếng Việt để khôi phục chính xác",
+    "Chuyển đổi hai chiều giữa mã hóa UTF-8 và ANSI với ánh xạ ký tự",
+    "Kiến trúc microservice với Model Service riêng trên cổng 5001 và Web Interface trên cổng 5000",
+    "Tải file và xử lý văn bản với kết quả chuyển đổi thời gian thực",
+    "Ánh xạ ký tự tiếng Việt toàn diện bảo tồn cấu trúc và định dạng văn bản"
+  ],
+  
+  "achievements": {
+    "metrics": [
+      "Hỗ trợ các lớp phân loại dấu tiếng Việt đa dạng",
+      "Xử lý file văn bản với bảo tồn định dạng và ngắt dòng",
+      "Đạt độ chính xác cao trong khôi phục dấu sử dụng phương pháp phân loại token",
+      "Xử lý hoàn chỉnh bộ ký tự tiếng Việt bao gồm các tổ hợp nguyên âm phức tạp",
+      "Cung cấp chuyển đổi mượt mà giữa các tiêu chuẩn mã hóa UTF-8 và ANSI"
+    ],
+    "highlights": [
+      "Huấn luyện thành công mô hình transformer tùy chỉnh cho xử lý ngôn ngữ tiếng Việt",
+      "Triển khai kiến trúc microservice mạnh mẽ với các dịch vụ Model và Web độc lập",
+      "Xây dựng hệ thống ánh xạ ký tự toàn diện bao gồm tất cả dấu tiếng Việt",
+      "Tạo giao diện web thân thiện với khả năng xử lý file"
+    ]
+  },
+  
+  "links": {
+    "live": "",
+    "github": "https://github.com/caoquocviet/UTF-ANSI-Translator"
+  },
+  
+  "color": {
+    "primary": "teal",
+    "gradient": "from-teal-500 via-green-500 to-blue-500"
+  }
+}

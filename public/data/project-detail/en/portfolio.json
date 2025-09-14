@@ -2,7 +2,7 @@
   "id": "portfolio",
   "name": "Portfolio Website",
   "tagline": "Personal Portfolio & Showcase Platform",
-  "description": "A modern, responsive portfolio website built with Next.js 15 and React 19, featuring dynamic project galleries, theme switching, interactive 3D elements, and comprehensive project showcases. The platform includes automated gallery management, responsive design, and advanced UI components for optimal user experience.",
+  "description": "Modern responsive portfolio website built with Next.js 15 and React 19, featuring dynamic project galleries, light/dark theme switching, interactive 3D effects, and detailed project pages. The website includes automated gallery management, responsive design for all screen sizes, and modern UI components.",
   
   "timeline": {
     "startDate": "08/2024",

@@ -1,0 +1,70 @@
+{
+  "id": "testify",
+  "name": "Testify",
+  "tagline": "Nền tảng ôn thi IELTS & TOEIC toàn diện",
+  "description": "Nền tảng ôn thi IELTS và TOEIC có tích hợp AI, giúp chấm điểm tự động, phản hồi ngay lập tức và phân tích quá trình học. Được xây dựng bằng công nghệ hiện đại để tạo ra trải nghiệm học tập cá nhân hóa cho từng học viên.",
+  
+  "timeline": {
+    "startDate": "01/2024",
+    "endDate": "Hiện tại",
+    "status": "Đang vận hành"
+  },
+  
+  "role": {
+    "position": "Lập trình viên Full-stack",
+    "responsibilities": [
+      "Thiết kế và phát triển backend Django với REST Framework",
+      "Phát triển frontend Next.js 15 bằng TypeScript và Tailwind CSS",
+      "Tích hợp OpenAI GPT-4 để chấm điểm Writing & Speaking",
+      "Sử dụng Whisper AI để nhận diện giọng nói và chuyển thành văn bản",
+      "Xây dựng hệ thống quản lý bài thi và theo dõi tiến độ học"
+    ]
+  },
+  
+  "technologies": {
+    "frontend": ["Next.js 15", "TypeScript", "Tailwind CSS", "Radix UI", "Zustand"],
+    "backend": ["Django 4.2", "Django REST Framework", "Celery", "JWT Authentication"],
+    "database": ["PostgreSQL", "Redis Cache", "Django ORM"],
+    "ai_integration": ["OpenAI GPT-4", "Whisper AI", "LangChain"],
+    "deployment": ["Docker", "Docker Compose", "Nginx", "Gunicorn"],
+    "testing": ["Django Test Framework", "Audio Processing", "AI Evaluation"]
+  },
+  
+  "features": [
+    "Chấm điểm IELTS/TOEIC tự động bằng AI với độ chính xác cao",
+    "Đánh giá Speaking theo thời gian thực với phân tích phát âm",
+    "Hệ thống phản hồi chi tiết cho từng kỹ năng",
+    "Bảng điều khiển phân tích tiến độ với biểu đồ và gợi ý",
+    "Ngân hàng câu hỏi đầy đủ với các dạng bài thi thực tế",
+    "Môi trường thi thử mô phỏng điều kiện thi thật"
+  ],
+  
+  "achievements": {
+    "metrics": [
+      "Codebase Python/Django backend được tối ưu và có cấu trúc tốt",
+      "Frontend TypeScript/Next.js với giao diện người dùng hiện đại",
+      "Độ chính xác chấm điểm AI cao",
+      "Bộ test case toàn diện cho các tính năng AI",
+      "Xử lý hiệu quả các file âm thanh hàng ngày"
+    ],
+    "impact": [
+      "Giảm đáng kể thời gian chấm bài so với phương pháp thông thường",
+      "Cung cấp phản hồi chi tiết và khách quan cho học viên",
+      "Tự động hóa quy trình đánh giá và báo cáo tiến độ",
+      "Tạo ra trải nghiệm học tập phù hợp với từng học viên"
+    ]
+  },
+  
+  "challenges": [
+    "Tích hợp nhiều mô hình AI (GPT-4, Whisper) một cách hiệu quả",
+    "Xử lý và phân tích file âm thanh trong thời gian thực",
+    "Thiết kế thuật toán chấm điểm chính xác cho IELTS/TOEIC",
+    "Tối ưu hiệu suất cho xử lý AI với dữ liệu lớn"
+  ],
+  
+  "links": {
+    "github": "https://github.com/CaoQuocViet/testify",
+    "demo": "https://testify-platform.vercel.app/",
+    "documentation": "https://github.com/CaoQuocViet/testify#readme"
+  }
+}

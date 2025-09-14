@@ -1,0 +1,69 @@
+{
+  "id": "tagforge",
+  "name": "TagForge",
+  "tagline": "AI Pipeline cho việc tạo metadata icon tự động ở quy mô lớn",
+  "description": "Hệ thống AI hiệu suất cao để tạo metadata tự động từ bộ icon, có khả năng xử lý hàng triệu hình ảnh SVG/PNG trong vài giờ. Sử dụng các mô hình CLIP Interrogator, BLIP và KeyBERT để tạo tags thông minh, mô tả và metadata cho các nền tảng tài sản số như Canva. Tích hợp tính năng tô màu SVG nâng cao, xử lý hàng loạt và tự động hóa quy mô doanh nghiệp.",
+  
+  "timeline": {
+    "startDate": "21/05/2025",
+    "endDate": "22/05/2025",
+    "status": "Đang production"
+  },
+  
+  "role": {
+    "position": "Kỹ sư AI & Lập trình viên Python",
+    "responsibilities": [
+      "Thiết kế hệ thống AI modular với các mô hình CLIP Interrogator và BLIP vision",
+      "Triển khai hệ thống xử lý hàng loạt hiệu suất cao cho hàng triệu hình ảnh",
+      "Phát triển engine tô màu SVG thông minh với tạo bảng màu tự động",
+      "Xây dựng hệ thống xuất metadata toàn diện với định dạng CSV cho nền tảng số",
+      "Tối ưu sử dụng GPU và quản lý bộ nhớ cho xử lý quy mô lớn"
+    ]
+  },
+  
+  "technologies": {
+    "ai_models": ["CLIP Interrogator", "BLIP", "KeyBERT", "Sentence Transformers", "NLTK"],
+    "computer_vision": ["PyTorch", "Torchvision", "Pillow", "OpenCV"],
+    "nlp": ["Transformers", "Hugging Face", "BERT", "Word2Vec", "Gensim"],
+    "backend": ["Python", "NumPy", "Pandas", "SciPy", "scikit-learn"],
+    "file_processing": ["SVG Parsing", "XML ElementTree", "ZIP Extraction", "CSV Export"],
+    "optimization": ["GPU Acceleration", "CUDA", "Batch Processing", "Multiprocessing"]
+  },
+  
+  "features": [
+    "Xử lý hàng loạt nhiều icon với tăng tốc GPU và bộ nhớ đệm thông minh",
+    "Tạo tags tự động với từ khóa thông minh cho mỗi hình ảnh sử dụng KeyBERT",
+    "Tô màu SVG nâng cao với phát hiện bảng màu thông minh và thay thế màu",
+    "Tạo chú thích tự động với mô hình BLIP cho mô tả hình ảnh chi tiết",
+    "Tích hợp CLIP Interrogator để hiểu ngữ nghĩa và độ liên quan của tag",
+    "Tổ chức file thông minh với giải nén ZIP tự động và quản lý thư mục",
+    "Pipeline tiền xử lý có thể tùy chỉnh để chuẩn hóa và tối ưu hình ảnh",
+    "Xuất metadata toàn diện ở định dạng CSV được tối ưu cho nền tảng tài sản số"
+  ],
+  
+  "achievements": {
+    "metrics": [
+      "Xử lý hiệu quả các bộ icon lớn với thời gian xử lý tối ưu",
+      "Tạo tags phù hợp ngữ cảnh cho mỗi hình ảnh với độ chính xác cao",
+      "Hỗ trợ tăng tốc GPU để tăng tốc độ xử lý trên phần cứng tương thích",
+      "Tô màu SVG tự động với nhiều bảng màu được định nghĩa sẵn",
+      "Xử lý datasets quy mô lớn với xử lý lỗi và ghi log mạnh mẽ"
+    ],
+    "highlights": [
+      "Xây dựng hệ thống AI sẵn sàng sản xuất có khả năng xử lý dữ liệu hình ảnh lớn",
+      "Triển khai hệ thống bộ nhớ đệm thông minh giảm thiểu suy luận mô hình dư thừa",
+      "Đạt được kiến trúc có khả năng mở rộng hỗ trợ cả triển khai local và cloud",
+      "Tạo tự động hóa toàn diện giảm đáng kể thời gian tạo metadata thủ công"
+    ]
+  },
+  
+  "links": {
+    "live": "",
+    "github": "https://github.com/caoquocviet/TagForge"
+  },
+  
+  "color": {
+    "primary": "purple",
+    "gradient": "from-purple-500 via-pink-500 to-red-500"
+  }
+}

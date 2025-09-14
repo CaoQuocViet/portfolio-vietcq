@@ -1,0 +1,75 @@
+{
+  "id": "portfolio",
+  "name": "Website Portfolio",
+  "tagline": "Trang Web Giới Thiệu Cá Nhân",
+  "description": "Website giới thiệu cá nhân hiện đại với thiết kế responsive, được xây dựng bằng Next.js 15 và React 19. Có thư viện dự án động, chuyển đổi giao diện sáng/tối, hiệu ứng 3D tương tác và trang chi tiết dự án. Website bao gồm quản lý thư viện tự động, thiết kế thích ứng mọi màn hình và các thành phần giao diện hiện đại.",
+  
+  "timeline": {
+    "startDate": "08/2024",
+    "endDate": "Hiện tại",
+    "status": "Đang phát triển"
+  },
+  
+  "role": {
+    "position": "Full-stack Developer (Dự án cá nhân)",
+    "responsibilities": [
+      "Thiết kế và phát triển website portfolio với giao diện hiện đại",
+      "Xây dựng hệ thống thư viện dự án có thể tự động điều chỉnh",
+      "Làm tính năng chuyển đổi theme sáng/tối",
+      "Tạo các hiệu ứng 3D tương tác bằng Three.js và React Three Fiber",
+      "Phát triển hệ thống thẻ dự án tự động thay đổi kích thước",
+      "Xây dựng trang showcase dự án với thông tin đầy đủ",
+      "Thiết kế thanh điều hướng responsive như macOS",
+      "Tạo các component có thể tái sử dụng với TypeScript",
+      "Làm hệ thống điều hướng responsive với hiệu ứng động",
+      "Tích hợp các model 3D với showcase tương tác",
+      "Xây dựng hệ thống dark mode lưu được cài đặt"
+    ]
+  },
+  
+  "technologies": {
+    "frontend": ["Next.js 15", "React 19", "Tailwind CSS", "Framer Motion", "Three.js", "React Three Fiber"],
+    "ui": ["Heroicons", "Lucide React", "React Icons", "Rough Notation", "CVA"],
+    "styling": ["Tailwind CSS", "PostCSS", "Tailwind Animate", "CSS-in-JS"],
+    "tools": ["Next Themes", "Lodash", "Motion"],
+    "deployment": ["Vercel", "Git", "GitHub"]
+  },
+  
+  "features": [
+    "Hệ thống thư viện động thích ứng với bất kỳ số lượng hình ảnh nào",
+    "Thẻ dự án thông minh tự động lấy tiêu đề từ dữ liệu JSON",
+    "Hệ thống giao diện chuyển đổi mượt mà giữa sáng và tối",
+    "Hiệu ứng 3D tương tác tăng trải nghiệm người dùng",
+    "Thiết kế thích ứng hoạt động tốt trên mọi kích thước màn hình",
+    "Các thành phần giao diện có hiệu ứng động"
+  ],
+  
+  "achievements": {
+    "metrics": [
+      "Codebase React và Next.js được tối ưu và có cấu trúc tốt",
+      "Các thành phần có thể tái sử dụng",
+      "Thiết kế responsive hoàn toàn trên mọi thiết bị",
+      "Thuật toán tính toán kích thước thư viện hình ảnh động",
+      "Hiệu suất được tối ưu với tính năng mới của Next.js 15 và React 19"
+    ],
+    "impact": [
+      "Tạo ra nền tảng portfolio chuyên nghiệp và hiện đại",
+      "Thể hiện khả năng kỹ thuật và sáng tạo một cách toàn diện",
+      "Cung cấp trải nghiệm người dùng mượt mà và trực quan",
+      "Giới thiệu các dự án một cách hiệu quả và hấp dẫn"
+    ]
+  },
+  
+  "challenges": [
+    "Tính toán bố cục thư viện động cho số lượng hình ảnh không xác định",
+    "Tối ưu hiệu suất với các thành phần 3D phức tạp",
+    "Đảm bảo thiết kế thích ứng hoàn hảo trên mọi thiết bị",
+    "Tích hợp nhiều thư viện hiệu ứng một cách mượt mà"
+  ],
+  
+  "links": {
+    "github": "https://github.com/CaoQuocViet/portfolio-vietcq",
+    "demo": "https://portfolio-vietcq.vercel.app/",
+    "documentation": "https://github.com/CaoQuocViet/portfolio-vietcq#readme"
+  }
+}
