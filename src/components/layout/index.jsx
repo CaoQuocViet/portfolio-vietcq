@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
 import { info } from "../../utils/info";
+import { useWindowsSound } from "../../hooks/useWindowsSound";
 
 // Import components
 import Navigation from "./Navigation";
@@ -20,6 +21,9 @@ export default function HomePageClient() {
     const [mounted, setMounted] = useState(false);
     const activeSection = useRef('hero');
     const [dotPosition, setDotPosition] = useState('hero'); // Chỉ cho Navigation dot
+
+    // Play Windows startup sound
+    useWindowsSound();
 
     useEffect(() => {
         setMounted(true);
