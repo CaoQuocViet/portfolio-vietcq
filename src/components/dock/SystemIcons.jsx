@@ -9,8 +9,8 @@ export function LanguageIcon({ language, onToggle }) {
       className={`
         relative w-6 h-6 rounded-md flex items-center justify-center cursor-pointer transition-all duration-200 text-xs font-semibold
         ${language === 'en' 
-          ? 'bg-blue-500/90 text-white hover:bg-blue-600' 
-          : 'bg-red-500/90 text-white hover:bg-red-600'
+          ? 'bg-blue-500/80 text-white hover:bg-blue-600/90' 
+          : 'bg-red-500/80 text-white hover:bg-red-600/90'
         }
         shadow-sm hover:shadow-md
       `}
@@ -23,11 +23,22 @@ export function LanguageIcon({ language, onToggle }) {
 export function WiFiIcon() {
   return (
     <div className="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors cursor-pointer flex items-center justify-center min-h-[32px]">
-      <div className="flex items-center justify-center">
-        <svg width="18" height="18" viewBox="0 0 16 16" fill="none" className="text-gray-700 dark:text-gray-300">
-          <path d="M8 9.5c-1.38 0-2.5 1.12-2.5 2.5h1c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5h1c0-1.38-1.12-2.5-2.5-2.5z" fill="currentColor"/>
-          <path d="M8 7c-2.76 0-5 2.24-5 5h1c0-2.21 1.79-4 4-4s4 1.79 4 4h1c0-2.76-2.24-5-5-5z" fill="currentColor"/>
-          <path d="M8 4.5c-4.14 0-7.5 3.36-7.5 7.5h1c0-3.59 2.91-6.5 6.5-6.5s6.5 2.91 6.5 6.5h1c0-4.14-3.36-7.5-7.5-7.5z" fill="currentColor"/>
+      <div className="scale-130 flex items-center justify-center">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="text-gray-700 dark:text-gray-300">
+          {/* Innermost circle (device) */}
+          <circle cx="12" cy="18" r="1" fill="currentColor"/>
+          
+          {/* First arc */}
+          <path d="M9.5 15.5C10.4 14.6 11.1 14.1 12 14.1S13.6 14.6 14.5 15.5" 
+                stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+          
+          {/* Second arc */}
+          <path d="M7 13C8.9 11.1 10.4 10.2 12 10.2S15.1 11.1 17 13" 
+                stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+          
+          {/* Third arc */}
+          <path d="M4.5 10.5C7.4 7.6 9.6 6.3 12 6.3S16.6 7.6 19.5 10.5" 
+                stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
         </svg>
       </div>
     </div>
@@ -79,7 +90,7 @@ export function VolumeIcon() {
       onClick={() => setIsMuted(!isMuted)}
       className="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors cursor-pointer flex items-center justify-center min-h-[32px]"
     >
-      <div className="text-gray-700 dark:text-gray-300 flex items-center justify-center">
+      <div className="text-gray-700 dark:text-gray-300 scale-130 flex items-center justify-center">
         {getVolumeIcon()}
       </div>
     </div>
@@ -128,7 +139,7 @@ export function BatteryIcon() {
 
   return (
     <div className="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors cursor-pointer flex items-center justify-center min-h-[32px]">
-      <div className={`relative flex items-center justify-center ${getBatteryColor()}`}>
+      <div className={`relative scale-130 flex items-center justify-center ${getBatteryColor()}`}>
         {/* Battery Body */}
         <div className="relative w-5 h-3 border border-current rounded-sm">
           {/* Battery Tip */}

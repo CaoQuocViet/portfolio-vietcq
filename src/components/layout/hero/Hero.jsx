@@ -114,7 +114,7 @@ export default function Hero({ theme, scrollToSection }) {
                             backgroundSize: '200% 200%',
                             animation: 'gradientMove 3s ease-in-out infinite'
                         }}>
-                            Developer
+                            Web Developer
                         </span>
                     </h1>
                     
