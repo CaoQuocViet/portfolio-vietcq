@@ -197,6 +197,7 @@ const Dock = ({ theme, setTheme, activeSection, scrollToSection, navigationItems
           bottom-6 right-6 sm:bottom-6 sm:left-1/2 sm:-translate-x-1/2 sm:right-auto
           rounded-2xl sm:px-5 sm:py-3 px-3 py-5
           flex flex-col sm:flex-row items-center justify-center
+          ${isMobile ? 'scale-90' : 'scale-100'}
         `}
       >
         <div className="flex flex-col sm:flex-row items-center justify-center">
