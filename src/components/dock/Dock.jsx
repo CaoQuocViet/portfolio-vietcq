@@ -37,9 +37,9 @@ const NavigationItem = ({
                      bg-clip-text text-transparent"
           style={{ fontFamily: "Inter, -apple-system, BlinkMacSystemFont, sans-serif" }}
         >
-          {isMobile ? "V" : "Vietcq"}
+          {window.innerWidth < 1024 ? "V" : "Vietcq"}
         </span>
-        {!isMobile && (
+        {window.innerWidth >= 1024 && (
           <span
             className="inline-block ml-1 text-sm sm:text-base transition-all duration-500 
                        text-purple-600 dark:text-purple-400"
@@ -140,10 +140,10 @@ const Dock = ({ theme, setTheme, activeSection, scrollToSection, navigationItems
   // Hiệu ứng 3D và đảo ngược màu cho dark/light mode
   const dockBgClass = "bg-black/15 dark:bg-white/15 backdrop-blur-2xl shadow-2xl shadow-black/20 dark:shadow-white/10";
 
-  // Check screen size
+  // Check screen size - include tablet
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsMobile(window.innerWidth < 640);
+      setIsMobile(window.innerWidth < 1024); // Include tablet
     };
     
     checkScreenSize();
@@ -256,17 +256,21 @@ const Dock = ({ theme, setTheme, activeSection, scrollToSection, navigationItems
             />
           </div>
           
-          {/* System Icons Separator */}
-          <div className={`transition-all duration-300 ease-out ${
-            hoveredItem ? "sm:mx-5 my-3 sm:my-0" : "sm:mx-4 my-2 sm:my-0"
-          } bg-gray-300/50 dark:bg-gray-600/50 w-6 h-0.5 sm:w-0.5 sm:h-6`} />
+          {/* System Icons Separator - Only show on desktop */}
+          {!isMobile && (
+            <div className={`transition-all duration-300 ease-out ${
+              hoveredItem ? "sm:mx-5 my-3 sm:my-0" : "sm:mx-4 my-2 sm:my-0"
+            } bg-gray-300/50 dark:bg-gray-600/50 w-6 h-0.5 sm:w-0.5 sm:h-6`} />
+          )}
           
-          {/* System Icons */}
-          <div className={`hidden sm:block transition-all duration-300 ease-out ${
-            hoveredItem ? "sm:mx-4 my-2 sm:my-0" : "sm:mx-2 my-1.5 sm:my-0"
-          }`}>
-            <SystemIcons />
-          </div>
+          {/* System Icons - Only show on desktop */}
+          {!isMobile && (
+            <div className={`transition-all duration-300 ease-out ${
+              hoveredItem ? "sm:mx-4 my-2 sm:my-0" : "sm:mx-2 my-1.5 sm:my-0"
+            }`}>
+              <SystemIcons />
+            </div>
+          )}
         </div>
       </nav>
 
