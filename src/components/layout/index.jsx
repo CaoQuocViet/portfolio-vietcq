@@ -22,11 +22,14 @@ export default function HomePageClient() {
     const activeSection = useRef('hero');
     const [dotPosition, setDotPosition] = useState('hero'); // Chỉ cho Navigation dot
 
-    // Play Windows startup sound
-    useWindowsSound();
+    // Windows sound hook for volume control
+    const { playSound } = useWindowsSound();
 
     useEffect(() => {
         setMounted(true);
+        
+        // Play startup sound on mount
+        playSound();
         
         // Load từ hash khi reload
         const hash = window.location.hash.slice(1);
