@@ -107,7 +107,7 @@ const Modal = ({ isOpen, onClose, theme, dockRect, logoRect }) => {
         </div> */}
 
         {/* Content responsive */}
-        <div className="flex flex-col p-4 sm:p-6 h-full overflow-y-auto">
+        <div className="flex flex-col p-4 sm:p-6 h-full overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {/* Navigation Section */}
           <div className="mb-4 sm:mb-6">
             <div className="mb-3 sm:mb-4 text-lg sm:text-2xl font-bold text-gray-900 dark:text-white">Navigation</div>
