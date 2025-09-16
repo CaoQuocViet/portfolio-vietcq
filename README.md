@@ -1,3 +1,5 @@
+![Home](./public/data/project-demo/portfolio/home.png)
+
 # Portfolio Vietcq
 
 A modern, responsive portfolio website built with Next.js 15 and React 19, featuring a sleek design with dark/light theme support, interactive 3D elements, dynamic project galleries, and comprehensive project management system.
