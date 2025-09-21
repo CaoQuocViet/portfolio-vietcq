@@ -1,23 +1,23 @@
 {
   "id": "testify",
   "name": "Testify",
-  "tagline": "Nền tảng ôn thi IELTS & TOEIC toàn diện",
-  "description": "Nền tảng ôn thi IELTS và TOEIC có tích hợp AI, giúp chấm điểm tự động, phản hồi ngay lập tức và phân tích quá trình học. Được xây dựng bằng công nghệ hiện đại để tạo ra trải nghiệm học tập cá nhân hóa cho từng học viên.",
+  "tagline": "Nền tảng luyện thi IELTS & TOEIC toàn diện",
+  "description": "Một nền tảng học tập thông minh được phát triển dành riêng cho việc ôn luyện thi IELTS và TOEIC. Hệ thống tích hợp công nghệ AI hiện đại để chấm điểm tự động, phản hồi ngay lập tức và phân tích học tập thông minh. Được xây dựng bằng những công nghệ tiên tiến nhất nhằm mang đến trải nghiệm học tập cá nhân hóa tốt nhất.",
   
   "timeline": {
     "startDate": "01/2024",
     "endDate": "Hiện tại",
-    "status": "Đang vận hành"
+    "status": "Đang vận hành (Phiên bản 2.0 Beta)"
   },
   
   "role": {
-    "position": "Lập trình viên Full-stack",
+    "position": "Full-stack",
     "responsibilities": [
-      "Thiết kế và phát triển backend Django với REST Framework",
-      "Phát triển frontend Next.js 15 bằng TypeScript và Tailwind CSS",
-      "Tích hợp OpenAI GPT-4 để chấm điểm Writing & Speaking",
-      "Sử dụng Whisper AI để nhận diện giọng nói và chuyển thành văn bản",
-      "Xây dựng hệ thống quản lý bài thi và theo dõi tiến độ học"
+      "Thiết kế và phát triển Backend Django với Django REST Framework và PostgreSQL",
+      "Phát triển Frontend Next.js 15 với TypeScript và Tailwind CSS",
+      "Tích hợp OpenAI GPT-4 để đánh giá bài Viết và Nói cho IELTS/TOEIC",
+      "Tích hợp Whisper AI để chuyển đổi giọng nói thành văn bản tự động",
+      "Xây dựng hệ thống quản lý bài thi toàn diện cho các module IELTS & TOEIC"
     ]
   },
   
@@ -25,46 +25,54 @@
     "frontend": ["Next.js 15", "TypeScript", "Tailwind CSS", "Radix UI", "Zustand"],
     "backend": ["Django 4.2", "Django REST Framework", "Celery", "JWT Authentication"],
     "database": ["PostgreSQL", "Redis Cache", "Django ORM"],
-    "ai_integration": ["OpenAI GPT-4", "Whisper AI", "LangChain"],
+    "ai_integration": ["OpenAI GPT-4", "Whisper AI", "LangChain", "Transformers"],
     "deployment": ["Docker", "Docker Compose", "Nginx", "Gunicorn"],
     "testing": ["Django Test Framework", "Audio Processing", "AI Evaluation"]
   },
   
   "features": [
-    "Chấm điểm IELTS/TOEIC tự động bằng AI với độ chính xác cao",
-    "Đánh giá Speaking theo thời gian thực với phân tích phát âm",
-    "Hệ thống phản hồi chi tiết cho từng kỹ năng",
-    "Bảng điều khiển phân tích tiến độ với biểu đồ và gợi ý",
-    "Ngân hàng câu hỏi đầy đủ với các dạng bài thi thực tế",
-    "Môi trường thi thử mô phỏng điều kiện thi thật"
+    "Xác thực JWT bảo mật với tự động làm mới token",
+    "Đăng nhập qua mạng xã hội (Google, GitHub, Microsoft)",
+    "Hệ thống thi IELTS đầy đủ (Nghe, Đọc, Viết, Nói)",
+    "Module thi TOEIC L&R và S&W toàn diện",
+    "Chấm điểm thông minh bằng OpenAI GPT-4 với độ chính xác 94%",
+    "Chuyển đổi giọng nói thành văn bản thời gian thực bằng Whisper AI",
+    "Bảng điều khiển riêng biệt cho IELTS và TOEIC",
+    "Hỗ trợ đa ngôn ngữ (Tiếng Việt, Tiếng Anh, Tiếng Trung, Tiếng Nhật, Tiếng Hàn)",
+    "Chuyển đổi giao diện sáng/tối",
+    "Thông báo thời gian thực và theo dõi tiến độ",
+    "Hệ thống thảo luận cộng đồng với bình luận",
+    "Hệ thống thông báo email với thiết kế đẹp mắt",
+    "Tối ưu hóa SEO với meta tags và sitemap",
+    "Tương thích đa thiết bị (PC, điện thoại, máy tính bảng)"
   ],
   
   "achievements": {
     "metrics": [
-      "Codebase Python/Django backend được tối ưu và có cấu trúc tốt",
-      "Frontend TypeScript/Next.js với giao diện người dùng hiện đại",
-      "Độ chính xác chấm điểm AI cao",
-      "Bộ test case toàn diện cho các tính năng AI",
-      "Xử lý hiệu quả các file âm thanh hàng ngày"
+      "Triển khai thành công 34+ tính năng cốt lõi bao gồm xác thực, thi thử và phân tích",
+      "Hỗ trợ đầy đủ cả hai định dạng IELTS Academic và General Training",
+      "Hệ thống đánh giá TOEIC L&R hoàn chỉnh (200 câu hỏi) và S&W",
+      "Hệ thống đánh giá AI đạt độ chính xác 94% trong dự đoán band điểm",
+      "Triển khai bằng Docker cho môi trường production có thể mở rộng"
     ],
-    "impact": [
-      "Giảm đáng kể thời gian chấm bài so với phương pháp thông thường",
-      "Cung cấp phản hồi chi tiết và khách quan cho học viên",
-      "Tự động hóa quy trình đánh giá và báo cáo tiến độ",
-      "Tạo ra trải nghiệm học tập phù hợp với từng học viên"
+    "highlights": [
+      "Xây dựng backend Django có khả năng mở rộng với các model IELTS/TOEIC toàn diện",
+      "Triển khai tích hợp OpenAI để đánh giá tự động bài Viết và Nói",
+      "Tạo pipeline xử lý âm thanh mạnh mẽ với phiên âm Whisper AI",
+      "Phát triển frontend Next.js responsive với TypeScript và các component UI hiện đại",
+      "Thiết lập hệ thống xác thực hybrid kết hợp NextAuth.js và Django JWT",
+      "Triển khai Redis Cache để tối ưu hiệu suất và Celery để xử lý tác vụ nền",
+      "Sử dụng Transformers models để cải thiện độ chính xác đánh giá AI"
     ]
   },
   
-  "challenges": [
-    "Tích hợp nhiều mô hình AI (GPT-4, Whisper) một cách hiệu quả",
-    "Xử lý và phân tích file âm thanh trong thời gian thực",
-    "Thiết kế thuật toán chấm điểm chính xác cho IELTS/TOEIC",
-    "Tối ưu hiệu suất cho xử lý AI với dữ liệu lớn"
-  ],
-  
   "links": {
-    "github": "https://github.com/CaoQuocViet/testify",
-    "demo": "https://testify-platform.vercel.app/",
-    "documentation": "https://github.com/CaoQuocViet/testify#readme"
+    "live": "https://testify.io.vn",
+    "github": "https://github.com/caoquocviet/ByteBridge"
+  },
+  
+  "color": {
+    "primary": "blue",
+    "gradient": "from-blue-500 via-purple-500 to-cyan-500"
   }
 }

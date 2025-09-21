@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en" className={calSans.variable} suppressHydrationWarning>
-			<body className={`${process.env.NODE_ENV === "development" ? "debug-screens" : ''}`}>
+			<body suppressHydrationWarning>
 				<LanguageProvider>
 					<ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
 						{children}
