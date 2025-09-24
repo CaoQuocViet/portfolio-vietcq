@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback, memo, useRef } from 'react'
 import { useTheme } from 'next-themes'
 import Image from 'next/image'
 import Dock from './dock/Dock'
@@ -12,61 +12,72 @@ import { LoadingSpinner } from './ui/loading'
 const Gallery = ({ projectFilter = null, showDock = true }) => {
     const { theme, setTheme } = useTheme()
     const [mounted, setMounted] = useState(false)
-    const [hoveredTitle, setHoveredTitle] = useState('Auto-scrolling gallery - hover to pause')
-    const [currentIndex, setCurrentIndex] = useState(0)
-    const [isAutoPlaying, setIsAutoPlaying] = useState(true)
-    const [hoveredIndex, setHoveredIndex] = useState(-1)
-    
+    // Combine related states to reduce re-renders
+    const [galleryState, setGalleryState] = useState({
+        hoveredTitle: 'Auto-scrolling gallery - hover to pause',
+        currentIndex: 0,
+        isAutoPlaying: true,
+        hoveredIndex: -1
+    })
+
+    const intervalRef = useRef(null)
+
     // Use hook to fetch project images
     const { images: galleryItems, loading, error } = useGallery(projectFilter)
-    
+
     // Calculate dynamic width based on number of images - always fill 100% container
     const calculateItemWidth = (totalImages) => {
         if (!totalImages || totalImages === 0) return 0
-        
+
         if (totalImages === 1) return 100 // Chỉ có 1 ảnh thì full width
-        
+
         const activeItemWidth = 56.25 // Ảnh được focus chiếm 56.25%
         const remainingWidth = 100 - activeItemWidth // 43.75% cho tất cả ảnh còn lại
         const inactiveItemCount = totalImages - 1
-        
+
         // Chia đều phần còn lại cho các ảnh inactive để luôn lấp đầy 100% box
         return remainingWidth / inactiveItemCount
     }
-    
+
     const itemWidth = calculateItemWidth(galleryItems?.length || 0)
-    
+
     // Responsive breakpoint cho mobile
     const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768
     const mobileItemWidth = isMobile ? Math.max(itemWidth * 1.5, 3) : itemWidth
-    
+
     useEffect(() => {
         setMounted(true)
     }, [])
 
-    // Auto-scroll effect từ phải sang trái
+    // OPTIMIZED: Combined auto-scroll effect
     useEffect(() => {
-        if (!galleryItems || galleryItems.length === 0 || !isAutoPlaying) return
-
-        const interval = setInterval(() => {
-            setCurrentIndex(prevIndex => {
-                const nextIndex = prevIndex + 1
-                if (nextIndex >= galleryItems.length) {
-                    return 0 // Reset về đầu
-                }
-                return nextIndex
-            })
-        }, 800) // Mỗi 800ms chuyển ảnh
-
-        return () => clearInterval(interval)
-    }, [galleryItems, isAutoPlaying])
-
-    // Update title khi currentIndex thay đổi
-    useEffect(() => {
-        if (galleryItems && galleryItems[currentIndex] && isAutoPlaying) {
-            setHoveredTitle(`${galleryItems[currentIndex].project}-${galleryItems[currentIndex].number}`)
+        if (!galleryItems?.length || !galleryState.isAutoPlaying) {
+            if (intervalRef.current) {
+                clearInterval(intervalRef.current)
+                intervalRef.current = null
+            }
+            return
         }
-    }, [currentIndex, galleryItems, isAutoPlaying])
+
+        intervalRef.current = setInterval(() => {
+            setGalleryState(prev => {
+                const nextIndex = (prev.currentIndex + 1) % galleryItems.length
+                return {
+                    ...prev,
+                    currentIndex: nextIndex,
+                    hoveredTitle: galleryItems[nextIndex] ?
+                        `${galleryItems[nextIndex].project}-${galleryItems[nextIndex].number}` :
+                        'Auto-scrolling gallery'
+                }
+            })
+        }, 800)
+
+        return () => {
+            if (intervalRef.current) {
+                clearInterval(intervalRef.current)
+            }
+        }
+    }, [galleryItems, galleryState.isAutoPlaying])
 
     const scrollToSection = createScrollFunction();
 
@@ -77,7 +88,7 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
         return (
             <>
                 {showDock && (
-                    <Dock 
+                    <Dock
                         theme={theme}
                         setTheme={setTheme}
                         activeSection={null}
@@ -85,12 +96,12 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
                         navigationItems={GALLERY_NAVIGATION_ITEMS}
                     />
                 )}
-                <div 
+                <div
                     className={`min-h-screen flex justify-center items-center p-5`}
                     style={{
                         margin: 0,
-                        background: theme === 'dark' 
-                            ? 'linear-gradient(135deg, #1f2937, #374151, #4b5563)' 
+                        background: theme === 'dark'
+                            ? 'linear-gradient(135deg, #1f2937, #374151, #4b5563)'
                             : 'linear-gradient(135deg, #0026bd, #b9a700, #460096)',
                     }}
                 >
@@ -108,7 +119,7 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
         return (
             <>
                 {showDock && (
-                    <Dock 
+                    <Dock
                         theme={theme}
                         setTheme={setTheme}
                         activeSection={null}
@@ -116,12 +127,12 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
                         navigationItems={GALLERY_NAVIGATION_ITEMS}
                     />
                 )}
-                <div 
+                <div
                     className={`min-h-screen flex justify-center items-center p-5`}
                     style={{
                         margin: 0,
-                        background: theme === 'dark' 
-                            ? 'linear-gradient(135deg, #1f2937, #374151, #4b5563)' 
+                        background: theme === 'dark'
+                            ? 'linear-gradient(135deg, #1f2937, #374151, #4b5563)'
                             : 'linear-gradient(135deg, #0026bd, #b9a700, #460096)',
                     }}
                 >
@@ -129,7 +140,7 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
                         <div className="text-red-400 text-6xl mb-4">⚠️</div>
                         <h2 className="text-white text-2xl font-bold mb-2">Error Loading Gallery</h2>
                         <p className="text-gray-300 mb-4">{error}</p>
-                        <button 
+                        <button
                             onClick={() => window.location.reload()}
                             className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                         >
@@ -146,7 +157,7 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
         return (
             <>
                 {showDock && (
-                    <Dock 
+                    <Dock
                         theme={theme}
                         setTheme={setTheme}
                         activeSection={null}
@@ -154,12 +165,12 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
                         navigationItems={GALLERY_NAVIGATION_ITEMS}
                     />
                 )}
-                <div 
+                <div
                     className={`min-h-screen flex justify-center items-center p-5`}
                     style={{
                         margin: 0,
-                        background: theme === 'dark' 
-                            ? 'linear-gradient(135deg, #1f2937, #374151, #4b5563)' 
+                        background: theme === 'dark'
+                            ? 'linear-gradient(135deg, #1f2937, #374151, #4b5563)'
                             : 'linear-gradient(135deg, #0026bd, #b9a700, #460096)',
                     }}
                 >
@@ -179,7 +190,7 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
         <>
             {/* Dock Navigation - chỉ logo + home + theme */}
             {showDock && (
-                <Dock 
+                <Dock
                     theme={theme}
                     setTheme={setTheme}
                     activeSection={null} // Không track active section
@@ -189,8 +200,8 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
             )}
 
             {/* Main Content */}
-            <div 
-                id="gallery" 
+            <div
+                id="gallery"
                 className="min-h-screen flex justify-center items-center p-5"
             >
                 {/* Gallery Content */}
@@ -243,12 +254,12 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
                     width: 100%;
                     height: 100%;
                     display: flex;
-                    ${galleryItems && galleryItems.length <= 3 
-                        ? 'justify-content: center;' 
-                        : galleryItems && galleryItems.length > 30
-                            ? 'justify-content: flex-start; overflow-x: auto; scrollbar-width: none;'
-                            : 'justify-content: flex-start;'
-                    }
+                    ${galleryItems && galleryItems.length <= 3
+                            ? 'justify-content: center;'
+                            : galleryItems && galleryItems.length > 30
+                                ? 'justify-content: flex-start; overflow-x: auto; scrollbar-width: none;'
+                                : 'justify-content: flex-start;'
+                        }
                     gap: 2px;
                     padding: 2px;
                 }
@@ -406,67 +417,82 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
                     ` : ''}
                 }
             `}</style>
-            
-            <div className="gallery-container enhanced-card">
-                <div className="title-card enhanced-card">
-                    {hoveredTitle}
-                </div>
-                <div className="gallery-frame">
-                    <div className="gallery-images">
-                        {galleryItems.map((item, index) => (
-                            <div 
-                                key={`${item.project}-${item.number}-${index}`}
-                                className={`gallery-item ${index === currentIndex && isAutoPlaying ? 'active' : ''}`}
-                                onMouseEnter={() => {
-                                    setIsAutoPlaying(false)
-                                    setHoveredIndex(index)
-                                    setHoveredTitle(`${item.project}-${item.number}`)
-                                }}
-                                onMouseLeave={() => {
-                                    setIsAutoPlaying(true)
-                                    setHoveredIndex(-1)
-                                    if (!galleryItems || galleryItems.length === 0) {
-                                        setHoveredTitle('Auto-scrolling gallery - hover to pause')
-                                    }
-                                }}
-                                onClick={() => {
-                                    window.location.href = `/project/${item.project}`;
-                                }}
-                            >
-                                <Image
-                                    src={item.src}
-                                    alt={item.alt}
-                                    fill
-                                    style={{ 
-                                        objectFit: (index === currentIndex && isAutoPlaying) || index === hoveredIndex ? 'contain' : 'cover',
-                                        objectPosition: 'center'
-                                    }}
-                                    className="transition-all duration-300"
-                                />
+
+                    <div className="gallery-container enhanced-card">
+                        <div className="title-card enhanced-card">
+                            {galleryState.hoveredTitle}
+                        </div>
+                        <div className="gallery-frame">
+                            <div className="gallery-images">
+                                {galleryItems.map((item, index) => {
+                                    // PERFORMANCE: Only render images within visible range for large galleries
+                                    const isActive = index === galleryState.currentIndex && galleryState.isAutoPlaying
+                                    const distanceFromActive = Math.abs(index - galleryState.currentIndex)
+                                    const shouldLoadImage = galleryItems.length <= 50 || distanceFromActive <= 10 // Load within 10 items range
+
+                                    return (
+                                        <div
+                                            key={`${item.project}-${item.number}-${index}`}
+                                            className={`gallery-item ${isActive ? 'active' : ''}`}
+                                            onMouseEnter={() => {
+                                                setGalleryState(prev => ({
+                                                    ...prev,
+                                                    isAutoPlaying: false,
+                                                    hoveredIndex: index,
+                                                    hoveredTitle: `${item.project}-${item.number}`
+                                                }))
+                                            }}
+                                            onMouseLeave={() => {
+                                                setGalleryState(prev => ({
+                                                    ...prev,
+                                                    isAutoPlaying: true,
+                                                    hoveredIndex: -1,
+                                                    hoveredTitle: 'Auto-scrolling gallery - hover to pause'
+                                                }))
+                                            }}
+                                            onClick={() => {
+                                                window.location.href = `/project/${item.project}`;
+                                            }}
+                                        >
+                                            {shouldLoadImage ? (
+                                                <Image
+                                                    src={item.src}
+                                                    alt={item.alt}
+                                                    fill
+                                                    style={{
+                                                        objectFit: (index === galleryState.currentIndex && galleryState.isAutoPlaying) || index === galleryState.hoveredIndex ? 'contain' : 'cover',
+                                                        objectPosition: 'center'
+                                                    }}
+                                                    className="transition-all duration-300"
+                                                />
+                                            ) : (
+                                                <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                                                    <span className="text-gray-500">Loading...</span>
+                                                </div>
+                                            )}
+                                        </div>
+                                    )
+                                })}
                             </div>
-                        ))}
+                            {/* Scroll indicator for many images
+                            {galleryItems && galleryItems.length > 50 && (
+                                <div className="scroll-indicator">
+                                    <span>← {galleryItems.length} images - Ultra compact view →</span>
+                                </div>
+                            )}
+                            {galleryItems && galleryItems.length > 20 && galleryItems.length <= 50 && (
+                                <div className="scroll-indicator">
+                                    <span>← Scroll to explore all {galleryItems.length} images →</span>
+                                </div>
+                            )} */}
+                        </div>
                     </div>
-                    {/* Scroll indicator for many images
-                    {galleryItems && galleryItems.length > 50 && (
-                        <div className="scroll-indicator">
-                            <span>← {galleryItems.length} images - Ultra compact view →</span>
-                        </div>
-                    )}
-                    {galleryItems && galleryItems.length > 20 && galleryItems.length <= 50 && (
-                        <div className="scroll-indicator">
-                            <span>← Scroll to explore all {galleryItems.length} images →</span>
-                        </div>
-                    )} */}
-                </div>
-                <div className="arrow-container">
-                    <div className="arrow">→</div>
-                </div>
-                </div>  
-                </> 
+                </>
+
             </div>
         </>
     )
 }
 
-export default Gallery
+                export default Gallery
 
