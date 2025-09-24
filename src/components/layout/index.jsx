@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback, memo } from "react";
 import { useTheme } from "next-themes";
-import { info } from "../../utils/info";
 import { useWindowsSound } from "../../hooks/useWindowsSound";
 
 // Import components
@@ -16,133 +15,219 @@ import Contact from "./Contact";
 import Footer from "./Footer";
 import ClockWidget from "./ClockWidget";
 
+const SECTIONS = ["hero", "about", "services", "projects", "showcase", "contact"];
+
+// CRITICAL: Zero re-render components
+const StableClock = memo(ClockWidget, () => true); // Never re-render unless forced
+
+const StableNavigation = memo(Navigation, (prev, next) => (
+    prev.theme === next.theme &&
+    prev.activeSection === next.activeSection
+)); // Remove scrollToSection from comparison to prevent re-render
+
+const StableHero = memo(Hero, (prev, next) => prev.theme === next.theme);
+const StableAbout = memo(About, (prev, next) => prev.theme === next.theme);
+const StableServices = memo(Services, (prev, next) => prev.theme === next.theme);
+const StableProjects = memo(Projects, (prev, next) => prev.theme === next.theme);
+const StableShowcase = memo(Showcase, (prev, next) => prev.theme === next.theme);
+const StableContact = memo(Contact, (prev, next) => prev.theme === next.theme);
+const StableFooter = memo(Footer, (prev, next) => prev.theme === next.theme);
+
 export default function HomePageClient() {
     const { theme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
-    const activeSection = useRef('hero');
-    const [dotPosition, setDotPosition] = useState('hero'); // Chỉ cho Navigation dot
-
-    // Windows sound hook for volume control
+    
+    // CRITICAL: Use ONLY refs, NO state for active section to prevent re-renders
+    const activeSectionRef = useRef("hero");
+    const navActiveRef = useRef("hero"); // Separate ref for navigation
+    const observerRef = useRef(null);
+    const frameIdRef = useRef(null);
+    const setNavSectionRef = useRef(null);
+    
     const { playSound } = useWindowsSound();
-
+    
+    // PERFORMANCE: Create stable scroll function ONCE
+    const scrollToSectionRef = useRef(null);
+    
     useEffect(() => {
-        setMounted(true);
-        
-        // Play startup sound on mount
-        playSound();
-        
-        // Load từ hash khi reload
-        const hash = window.location.hash.slice(1);
-        if (hash) {
-            activeSection.current = hash;
-            setDotPosition(hash);
-            setTimeout(() => document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' }), 100);
-        }
-        
-        const track = () => {
-            const sections = ['hero', 'about', 'services', 'projects', 'contact'];
-            const offset = window.innerHeight / 3;
-            const scrollY = window.scrollY + offset;
+        scrollToSectionRef.current = (sectionId) => {
+            if (SECTIONS.indexOf(sectionId) === -1) return;
             
-            for (let i = sections.length - 1; i >= 0; i--) {
-                const el = document.getElementById(sections[i]);
-                if (el && scrollY >= el.offsetTop) {
-                    if (activeSection.current !== sections[i]) {
-                        activeSection.current = sections[i];
-                        setDotPosition(sections[i]); 
-                        window.history.replaceState(null, null, `#${sections[i]}`);
-                    }
-                    break;
-                }
+            activeSectionRef.current = sectionId;
+            navActiveRef.current = sectionId;
+            
+            // Update navigation directly without causing re-render
+            if (setNavSectionRef.current) {
+                setNavSectionRef.current(sectionId);
             }
+            
+            requestAnimationFrame(() => {
+                document.getElementById(sectionId)?.scrollIntoView({ 
+                    behavior: "smooth",
+                    block: "start"
+                });
+            });
+            
+            window.history.replaceState(null, "", `#${sectionId}`);
         };
-        
-        window.addEventListener('scroll', track, { passive: true });
-        return () => window.removeEventListener('scroll', track);
     }, []);
 
-    const scrollToSection = (sectionId) => {
-        activeSection.current = sectionId;
-        setDotPosition(sectionId);
-        window.location.hash = sectionId;
-        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
-    };
+    // Mount only
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    // Initial setup - run once
+    useEffect(() => {
+        if (!mounted) return;
+        
+        playSound?.();
+        
+        const hash = window.location.hash.slice(1);
+        if (hash && SECTIONS.indexOf(hash) !== -1) {
+            activeSectionRef.current = hash;
+            navActiveRef.current = hash;
+            
+            setTimeout(() => {
+                document.getElementById(hash)?.scrollIntoView({ behavior: "smooth" });
+            }, 100);
+        }
+    }, [mounted, playSound]);
+
+    // ZERO RE-RENDER IntersectionObserver
+    useEffect(() => {
+        if (!mounted) return;
+
+        let pendingSection = null;
+        
+        const handleIntersection = (entries) => {
+            let bestRatio = 0;
+            let bestSection = null;
+            
+            for (let i = 0; i < entries.length; i++) {
+                const entry = entries[i];
+                if (!entry.isIntersecting) continue;
+                
+                const sectionId = entry.target.id;
+                if (SECTIONS.indexOf(sectionId) === -1) continue;
+                
+                if (entry.intersectionRatio > bestRatio) {
+                    bestRatio = entry.intersectionRatio;
+                    bestSection = sectionId;
+                }
+            }
+
+            if (!bestSection || bestSection === pendingSection || 
+                bestSection === activeSectionRef.current) {
+                return;
+            }
+
+            pendingSection = bestSection;
+            
+            if (frameIdRef.current) {
+                cancelAnimationFrame(frameIdRef.current);
+            }
+            
+            frameIdRef.current = requestAnimationFrame(() => {
+                pendingSection = null;
+                activeSectionRef.current = bestSection;
+                navActiveRef.current = bestSection;
+                
+                // Update navigation directly without causing main component re-render
+                if (setNavSectionRef.current) {
+                    setNavSectionRef.current(bestSection);
+                }
+                
+                window.history.replaceState(null, "", `#${bestSection}`);
+            });
+        };
+
+        observerRef.current = new IntersectionObserver(handleIntersection, {
+            rootMargin: "-40% 0px -40% 0px",
+            threshold: [0.1, 0.5, 0.9]
+        });
+
+        for (let i = 0; i < SECTIONS.length; i++) {
+            const element = document.getElementById(SECTIONS[i]);
+            if (element) {
+                observerRef.current.observe(element);
+            }
+        }
+
+        return () => {
+            if (observerRef.current) {
+                observerRef.current.disconnect();
+            }
+            if (frameIdRef.current) {
+                cancelAnimationFrame(frameIdRef.current);
+            }
+        };
+    }, [mounted]);
 
     if (!mounted) return null;
 
     return (
         <div className="min-h-screen bg-white dark:bg-gray-950 overflow-x-hidden">
-            {/* Clock Widget */}
-            <ClockWidget theme={theme} />
+            <StableClock theme={theme} />
             
-            <Navigation 
-                theme={theme} 
-                setTheme={setTheme} 
-                activeSection={dotPosition} 
-                scrollToSection={scrollToSection} 
+            <StableNavigation
+                theme={theme}
+                setTheme={setTheme}
+                activeSection={navActiveRef.current}
+                scrollToSection={scrollToSectionRef.current}
+                setNavSectionRef={setNavSectionRef}
             />
-            
-            <Hero theme={theme} scrollToSection={scrollToSection} />
-            <About theme={theme} />
-            <Services theme={theme} />
-            <Projects theme={theme} />
-            <Showcase theme={theme} />
-            <Contact theme={theme} scrollToSection={scrollToSection} />
-            <Footer theme={theme} />
 
-            {/* Global Animation Styles */}
+            <StableHero theme={theme} scrollToSection={scrollToSectionRef.current} />
+            <StableAbout theme={theme} />
+            <StableServices theme={theme} />
+            <StableProjects theme={theme} />
+            <StableShowcase theme={theme} />
+            <StableContact theme={theme} scrollToSection={scrollToSectionRef.current} />
+            <StableFooter theme={theme} />
+
+            {/* OPTIMIZED CSS */}
             <style jsx>{`
+                * {
+                    backface-visibility: hidden;
+                    -webkit-backface-visibility: hidden;
+                }
+                
                 @keyframes float {
-                    0%, 100% { transform: translateY(0px); }
-                    50% { transform: translateY(-10px); }
+                    0%, 100% { transform: translate3d(0, 0, 0); }
+                    50% { transform: translate3d(0, -10px, 0); }
                 }
                 
                 @keyframes fadeInUp {
-                    from {
-                        opacity: 0;
-                        transform: translateY(30px);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
+                    from { opacity: 0; transform: translate3d(0, 30px, 0); }
+                    to { opacity: 1; transform: translate3d(0, 0, 0); }
                 }
                 
                 @keyframes gradientMove {
-                    0%, 100% { background-position: 0% 50%; }
-                    50% { background-position: 100% 50%; }
+                    0%, 100% { background-position: 0% 0%; }
+                    50% { background-position: 100% 100%; }
                 }
                 
                 @keyframes slideIn {
-                    from { transform: scaleX(0); }
-                    to { transform: scaleX(1); }
+                    from { transform: scaleX(0) translateZ(0); }
+                    to { transform: scaleX(1) translateZ(0); }
                 }
                 
                 @keyframes bounce {
-                    0%, 20%, 53%, 80%, 100% { transform: translateY(0); }
-                    40%, 43% { transform: translateY(-10px); }
-                    70% { transform: translateY(-5px); }
-                    90% { transform: translateY(-2px); }
+                    0%, 20%, 53%, 80%, 100% { transform: translate3d(0, 0, 0); }
+                    40%, 43% { transform: translate3d(0, -10px, 0); }
+                    70% { transform: translate3d(0, -5px, 0); }
+                    90% { transform: translate3d(0, -2px, 0); }
                 }
 
                 @keyframes orbitRotate {
-                    from {
-                        transform: translate(-50%, -50%) rotate(0deg) translateY(-200px) rotate(0deg);
-                    }
-                    to {
-                        transform: translate(-50%, -50%) rotate(360deg) translateY(-200px) rotate(-360deg);
-                    }
+                    from { transform: translate(-50%, -50%) rotate(0deg) translateY(-200px) rotate(0deg) translateZ(0); }
+                    to { transform: translate(-50%, -50%) rotate(360deg) translateY(-200px) rotate(-360deg) translateZ(0); }
                 }
 
                 @keyframes pulse {
-                    0%, 100% {
-                        opacity: 1;
-                        transform: translate(-50%, -50%) scale(1);
-                    }
-                    50% {
-                        opacity: 0.8;
-                        transform: translate(-50%, -50%) scale(1.05);
-                    }
+                    0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1) translateZ(0); }
+                    50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.05) translateZ(0); }
                 }
                 
                 .line-clamp-3 {
@@ -151,6 +236,9 @@ export default function HomePageClient() {
                     -webkit-box-orient: vertical;
                     overflow: hidden;
                 }
+
+                html { scroll-behavior: smooth; }
+                img { transform: translateZ(0); }
             `}</style>
         </div>
     );
