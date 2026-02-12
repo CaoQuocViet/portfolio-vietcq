@@ -61,35 +61,27 @@ const About = ({ theme }) => {
 
       <section
         id="about"
-        className={`relative py-24 min-h-screen ${
-          theme === "dark" ? "bg-gray-900/50" : "bg-gray-200"
-        }`}
+        className="relative py-24 min-h-screen bg-[var(--bg-section-alt)]"
       >
         {/* Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 h-full flex flex-col justify-center">
           <div className="text-center mb-16">
             <h2
-              className={`text-4xl md:text-5xl font-bold mb-6 ${
-                theme === "dark"
-                  ? "text-white drop-shadow-lg"
-                  : "text-gray-900 drop-shadow-lg"
-              }`}
+              className="text-4xl md:text-5xl font-bold mb-6 text-[var(--text-heading)] drop-shadow-lg"
             >
               {t('about.sectionTitle')}
             </h2>
             <div
-              className={`w-24 h-1 mx-auto rounded-full ${
-                theme === "dark" ? "bg-blue-400" : "bg-blue-600"
-              }`}
+              className="w-24 h-1 mx-auto rounded-full bg-[var(--btn-primary)]"
             />
           </div>
 
           <div className="lg:grid lg:grid-cols-2 gap-16 items-center">
             {/* Scrolling Card */}
-            <div className={`relative max-w-xl lg:max-w-none mx-auto h-96 sm:h-120 lg:h-160 rounded-lg shadow-2xl border overflow-hidden group ${
-              theme === 'dark' 
-                ? 'bg-slate-800 border-blue-200/20' 
-                : 'bg-white border-blue-300/40'
+            <div className={`relative max-w-xl lg:max-w-none mx-auto h-96 sm:h-120 lg:h-160 rounded-lg shadow-2xl border overflow-hidden group bg-[var(--bg-card)] ${
+              theme === 'dark'
+                ? 'border-blue-200/20'
+                : 'border-blue-300/40'
             }`}>
               {/* Top Scroll Bar */}
               <div className={`absolute top-0 left-0 right-0 h-8 border-b flex items-center justify-center z-10 ${
@@ -150,20 +142,14 @@ function ContentBlock({ theme, t }) {
   return (
     <>
       <div className="px-8 py-4 text-left relative z-10">
-        <h1 className={`text-2xl font-bold mb-4 text-center ${
-          theme === 'dark' ? 'text-white' : 'text-gray-900'
-        }`}>
+        <h1 className="text-2xl font-bold mb-4 text-center text-[var(--text-heading)]">
           {t('about.greeting')} <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">{t('about.name')}</span>
         </h1>
-        <h3 className={`text-lg font-semibold mb-6 text-center ${
-          theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
-        }`}>
+        <h3 className="text-lg font-semibold mb-6 text-center text-[var(--text-link)]">
           {t('about.role')}
         </h3>
         
-        <div className={`space-y-4 text-sm mb-6 ${
-          theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
-        }`}>
+        <div className="space-y-4 text-sm mb-6 text-[var(--text-secondary)]">
           {/* Location & Work */}
           <div className="bg-gradient-to-r from-blue-50/10 to-cyan-50/10 rounded-lg p-3 border border-blue-200/20">
             <p className="mb-2">
@@ -211,54 +197,44 @@ function ContentBlock({ theme, t }) {
 
       {/* Contact & Social */}
       <div className="px-8 py-4">
-        <h3 className={`text-lg font-semibold mb-4 ${
-          theme === 'dark' ? 'text-white' : 'text-gray-900'
-        }`}>
+        <h3 className="text-lg font-semibold mb-4 text-[var(--text-heading)]">
           📞 {t('about.contactInfo')}
         </h3>
-        <div className={`space-y-3 text-sm mb-6 ${
-          theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
-        }`}>
+        <div className="space-y-3 text-sm mb-6 text-[var(--text-secondary)]">
           <div className="flex items-center gap-2">
             <span>📱</span>
             <strong className="text-blue-500">{t('about.phone')}</strong>
-            <a href="tel:+84367252854" className="text-blue-500 hover:text-blue-400 transition-colors">
+            <a href="tel:+84367252854" className="text-[var(--text-link)] hover:text-[var(--text-link-hover)] transition-colors">
               +84 367 252 854
             </a>
           </div>
           <div className="flex items-center gap-2">
             <span>✉️</span>
             <strong className="text-blue-500">{t('about.email')}</strong>
-            <a href="mailto:vietcao10@gmail.com" className="text-blue-500 hover:text-blue-400 transition-colors">
+            <a href="mailto:vietcao10@gmail.com" className="text-[var(--text-link)] hover:text-[var(--text-link-hover)] transition-colors">
               vietcao10@gmail.com
             </a>
           </div>
         </div>
 
-        <h3 className={`text-lg font-semibold mb-3 ${
-          theme === 'dark' ? 'text-white' : 'text-gray-900'
-        }`}>
+        <h3 className="text-lg font-semibold mb-3 text-[var(--text-heading)]">
           🌐 {t('about.connectWithMe')}
         </h3>
         {/* Social Links sẽ được render từ SocialList component */}
         <div className="text-sm">
-          <p className="text-gray-500 dark:text-gray-400">
+          <p className="text-[var(--text-muted)]">
             {t('about.socialLinks')}
-            <span className="text-blue-500"> {t('about.socialLinksAction')}</span>
+            <span className="text-[var(--text-link)]"> {t('about.socialLinksAction')}</span>
           </p>
         </div>
       </div>
 
       {/* Current Projects */}
       <div className="px-8 py-4">
-        <h3 className={`text-lg font-semibold mb-3 ${
-          theme === 'dark' ? 'text-white' : 'text-gray-900'
-        }`}>
+        <h3 className="text-lg font-semibold mb-3 text-[var(--text-heading)]">
           🔭 {t('about.currentProjects')}
         </h3>
-        <div className={`text-sm space-y-2 ${
-          theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
-        }`}>
+        <div className="text-sm space-y-2 text-[var(--text-secondary)]">
           <p><span className="text-blue-500 font-semibold">• Giveback:</span> Social impact platform</p>
           <p><span className="text-purple-500 font-semibold">• ByteBridge:</span> Development tools</p>
           <p><span className="text-green-500 font-semibold">• ABAP RAP Flight:</span> Enterprise booking system</p>
@@ -268,14 +244,10 @@ function ContentBlock({ theme, t }) {
 
       {/* Languages and Tools */}
       <div className="px-8 py-4">
-        <h3 className={`text-lg font-semibold mb-3 ${
-          theme === 'dark' ? 'text-white' : 'text-gray-900'
-        }`}>
+        <h3 className="text-lg font-semibold mb-3 text-[var(--text-heading)]">
           🛠️ {t('about.languagesTools')}
         </h3>
-        <div className={`text-sm space-y-2 ${
-          theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
-        }`}>
+        <div className="text-sm space-y-2 text-[var(--text-secondary)]">
           <p><strong className="text-blue-500">{t('about.programming')}</strong> {t('about.programmingValue')}</p>
           <p><strong className="text-cyan-500">{t('about.webDevelopment')}</strong> {t('about.webDevelopmentValue')}</p>
           <p><strong className="text-green-500">{t('about.database')}</strong> {t('about.databaseValue')}</p>
@@ -286,17 +258,13 @@ function ContentBlock({ theme, t }) {
 
       {/* GitHub Stats */}
       <div className="px-8 py-4">
-        <h3 className={`text-lg font-semibold mb-3 ${
-          theme === 'dark' ? 'text-white' : 'text-gray-900'
-        }`}>
+        <h3 className="text-lg font-semibold mb-3 text-[var(--text-heading)]">
           📊 {t('about.githubActivity')}
         </h3>
-        <div className={`text-sm ${
-          theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
-        }`}>
+        <div className="text-sm text-[var(--text-secondary)]">
           <p>{t('about.githubActivityText')}</p>
           <p className="mt-2">
-            <a href={info.social.github} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-400 transition-colors font-semibold">
+            <a href={info.social.github} target="_blank" rel="noopener noreferrer" className="text-[var(--text-link)] hover:text-[var(--text-link-hover)] transition-colors font-semibold">
               🔗 @{info.githubUsername}
             </a>
           </p>
@@ -306,14 +274,10 @@ function ContentBlock({ theme, t }) {
       {/* Fun Fact */}
       <div className="px-8 py-4">
         <div className="bg-gradient-to-r from-yellow-50/10 to-orange-50/10 rounded-lg p-4 border border-yellow-200/20">
-          <h3 className={`text-lg font-semibold mb-2 ${
-            theme === 'dark' ? 'text-yellow-400' : 'text-yellow-600'
-          }`}>
+          <h3 className="text-lg font-semibold mb-2 text-[var(--color-warning)]">
             ⚡ {t('about.funFact')}
           </h3>
-          <p className={`text-sm ${
-            theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
-          }`}>
+          <p className="text-sm text-[var(--text-secondary)]">
             {t('about.funFactText')}
           </p>
         </div>

@@ -60,10 +60,10 @@ export default function PCModel() {
   return (
     <div id="pc-model-container" className="w-full h-full">
       {!isInView && (
-        <div className="w-full h-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 rounded-lg">
+        <div className="w-full h-full flex items-center justify-center bg-[var(--bg-card)] rounded-lg">
           <div className="text-center">
-            <div className="w-16 h-16 bg-gray-300 dark:bg-gray-600 rounded-lg mx-auto mb-2 animate-pulse"></div>
-            <p className="text-sm text-gray-500 dark:text-gray-400">3D Model Loading...</p>
+            <div className="w-16 h-16 bg-[var(--bg-skeleton)] rounded-lg mx-auto mb-2 animate-pulse"></div>
+            <p className="text-sm text-[var(--text-muted)]">3D Model Loading...</p>
           </div>
         </div>
       )}
@@ -113,10 +113,10 @@ export default function PCModel() {
               />
             </Canvas>
           ) : (
-            <div className="w-full h-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 rounded-lg">
+            <div className="w-full h-full flex items-center justify-center bg-[var(--bg-card)] rounded-lg">
               <div className="text-center">
-                <div className="w-16 h-16 bg-gray-300 dark:bg-gray-600 rounded-lg mx-auto mb-2"></div>
-                <p className="text-sm text-gray-500 dark:text-gray-400">3D Model (Client Only)</p>
+                <div className="w-16 h-16 bg-[var(--bg-skeleton)] rounded-lg mx-auto mb-2"></div>
+                <p className="text-sm text-[var(--text-muted)]">3D Model (Client Only)</p>
               </div>
             </div>
           )}

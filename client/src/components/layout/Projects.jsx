@@ -57,10 +57,7 @@ const Projects = () => {
                                 {(repo.name || repo.title || 'Project').replace(/-/g, ' ').replace(/_/g, ' ')}
                             </h3>
 
-                            <p className={`text-xs mb-4 transition-colors duration-300 overflow-hidden ${theme === 'dark'
-                                    ? 'text-slate-400 group-hover:text-slate-300'
-                                    : 'text-slate-600 group-hover:text-slate-700'
-                                }`}
+                            <p className="text-xs mb-4 transition-colors duration-300 overflow-hidden text-[var(--text-secondary)] group-hover:text-[var(--text-body)]"
                                style={{
                                  display: '-webkit-box',
                                  WebkitLineClamp: 3,
@@ -83,7 +80,7 @@ const Projects = () => {
 
                                 {/* Stats */}
                                 {(repo.stargazers_count !== undefined || repo.forks_count !== undefined) && (
-                                    <div className="flex items-center space-x-2 text-xs text-slate-500 dark:text-slate-400">
+                                    <div className="flex items-center space-x-2 text-xs text-[var(--text-muted)]">
                                         {repo.stargazers_count !== undefined && (
                                             <span className="flex items-center space-x-1">
                                                 <Star className="w-3 h-3" />
@@ -101,22 +98,13 @@ const Projects = () => {
                             </div>
 
                             {/* Footer */}
-                            <div className={`flex justify-between items-center pt-2 mt-auto border-t transition-all duration-500 ${theme === 'dark'
-                                    ? 'border-slate-600/50 group-hover:border-blue-500/70 group-hover:border-opacity-80'
-                                    : 'border-slate-200/70 group-hover:border-blue-400/80 group-hover:border-opacity-80'
-                                }`}>
-                                <span className={`text-xs flex items-center gap-1.5 transition-all duration-500 font-medium ${theme === 'dark'
-                                        ? 'text-slate-400 group-hover:text-blue-300 group-hover:scale-105'
-                                        : 'text-slate-600 group-hover:text-blue-700 group-hover:scale-105'
-                                    }`}>
+                            <div className="flex justify-between items-center pt-2 mt-auto border-t transition-all duration-500 border-[var(--border-default)] group-hover:border-[var(--border-hover)]">
+                                <span className="text-xs flex items-center gap-1.5 transition-all duration-500 font-medium text-[var(--text-muted)] group-hover:text-[var(--text-link)] group-hover:scale-105">
                                     <Github className="w-3 h-3 group-hover:text-blue-400 transition-colors duration-500" />
                                     <span>{t('projects.viewButton')}</span>
                                 </span>
 
-                                <ExternalLink className={`w-3 h-3 transition-all duration-500 group-hover:scale-125 group-hover:rotate-12 ${theme === 'dark'
-                                        ? 'text-slate-400 group-hover:text-blue-300 group-hover:drop-shadow-lg group-hover:drop-shadow-blue-400/50'
-                                        : 'text-slate-500 group-hover:text-blue-600 group-hover:drop-shadow-lg group-hover:drop-shadow-blue-500/50'
-                                    }`} />
+                                <ExternalLink className="w-3 h-3 transition-all duration-500 group-hover:scale-125 group-hover:rotate-12 text-[var(--text-muted)] group-hover:text-[var(--text-link)] group-hover:drop-shadow-lg" />
                             </div>
                         </div>
 
@@ -130,7 +118,7 @@ const Projects = () => {
                         {/* Floating particles effect */}
                         <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700">
                             <div className="absolute top-2 right-2 w-2 h-2 bg-blue-400 rounded-full animate-ping"></div>
-                            <div className="absolute bottom-3 left-3 w-1.5 h-1.5 bg-slate-400 rounded-full animate-ping" style={{ animationDelay: '0.5s' }}></div>
+                            <div className="absolute bottom-3 left-3 w-1.5 h-1.5 bg-[var(--text-disabled)] rounded-full animate-ping" style={{ animationDelay: '0.5s' }}></div>
                             <div className="absolute top-1/2 right-4 w-1 h-1 bg-blue-300 rounded-full animate-ping" style={{ animationDelay: '1s' }}></div>
                         </div>
                     </div>
@@ -140,14 +128,14 @@ const Projects = () => {
     }
 
     return (
-        <section id="projects" className="py-24 bg-gray-200 dark:bg-gray-900/50 overflow-hidden">
+        <section id="projects" className="py-24 bg-[var(--bg-section-alt)] overflow-hidden">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 <div className="text-center mb-16">
-                    <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
+                    <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[var(--text-heading)]">
                         {t('projects.sectionTitle')}
                     </h2>
-                    <div className="w-24 h-1 mx-auto rounded-full bg-blue-600 dark:bg-blue-400" />
-                    <p className="text-lg mt-6 max-w-2xl mx-auto text-gray-600 dark:text-gray-300">
+                    <div className="w-24 h-1 mx-auto rounded-full bg-[var(--btn-primary)]" />
+                    <p className="text-lg mt-6 max-w-2xl mx-auto text-[var(--text-secondary)]">
                         {t('projects.description')}
                     </p>
                 </div>
@@ -162,16 +150,10 @@ const Projects = () => {
                         <div className="relative">
                             <div className="overflow-hidden relative">
                                 {/* Left Fade - match section background */}
-                                <div className={`absolute left-0 top-0 bottom-0 w-32 z-10 pointer-events-none ${theme === 'dark'
-                                        ? 'bg-gradient-to-r from-gray-900/50 to-transparent'
-                                        : 'bg-gradient-to-r from-gray-50 to-transparent'
-                                    }`} />
+                                <div className={`absolute left-0 top-0 bottom-0 w-32 z-10 pointer-events-none bg-gradient-to-r from-[var(--bg-section-alt)] to-transparent`} />
 
                                 {/* Right Fade - match section background */}
-                                <div className={`absolute right-0 top-0 bottom-0 w-32 z-10 pointer-events-none ${theme === 'dark'
-                                        ? 'bg-gradient-to-l from-gray-900/50 to-transparent'
-                                        : 'bg-gradient-to-l from-gray-50 to-transparent'
-                                    }`} />
+                                <div className={`absolute right-0 top-0 bottom-0 w-32 z-10 pointer-events-none bg-gradient-to-l from-[var(--bg-section-alt)] to-transparent`} />
 
                                 <div
                                     className="flex"
@@ -191,16 +173,10 @@ const Projects = () => {
                         <div className="relative">
                             <div className="overflow-hidden relative">
                                 {/* Left Fade - match section background */}
-                                <div className={`absolute left-0 top-0 bottom-0 w-32 z-10 pointer-events-none ${theme === 'dark'
-                                        ? 'bg-gradient-to-r from-gray-900/50 to-transparent'
-                                        : 'bg-gradient-to-r from-gray-50 to-transparent'
-                                    }`} />
+                                <div className={`absolute left-0 top-0 bottom-0 w-32 z-10 pointer-events-none bg-gradient-to-r from-[var(--bg-section-alt)] to-transparent`} />
 
                                 {/* Right Fade - match section background */}
-                                <div className={`absolute right-0 top-0 bottom-0 w-32 z-10 pointer-events-none ${theme === 'dark'
-                                        ? 'bg-gradient-to-l from-gray-900/50 to-transparent'
-                                        : 'bg-gradient-to-l from-gray-50 to-transparent'
-                                    }`} />
+                                <div className={`absolute right-0 top-0 bottom-0 w-32 z-10 pointer-events-none bg-gradient-to-l from-[var(--bg-section-alt)] to-transparent`} />
 
                                 <div
                                     className="flex"
