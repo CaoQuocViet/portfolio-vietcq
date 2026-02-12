@@ -17,10 +17,7 @@ export default function NavigationList({ theme }) {
                         className={`
                             p-4 rounded-xl transition-all duration-300 cursor-pointer
                             hover:scale-[1.02] hover:shadow-lg group
-                            ${theme === 'dark' 
-                                ? 'bg-gray-800/50 hover:bg-gray-800' 
-                                : 'bg-gray-50 hover:bg-gray-100'
-                            }
+                            bg-[var(--bg-card)] hover:bg-[var(--bg-card-hover)]
                         `}
                     >
                         <div className="flex items-center gap-4">
@@ -35,18 +32,18 @@ export default function NavigationList({ theme }) {
                             </div>
                             
                             <div className="flex-1">
-                                <h4 className="font-semibold text-lg mb-1 text-gray-900 dark:text-white">
+                                <h4 className="font-semibold text-lg mb-1 text-[var(--text-heading)]">
                                     {item.title}
                                 </h4>
-                                <p className="text-sm text-gray-600 dark:text-gray-400">
+                                <p className="text-sm text-[var(--text-secondary)]">
                                     {item.description}
                                 </p>
                             </div>
                             
                             <div className={`
                                 text-lg font-medium transition-all duration-300
-                                text-gray-600 dark:text-gray-400 
-                                group-hover:text-gray-900 dark:group-hover:text-white
+                                text-[var(--text-secondary)]
+                                group-hover:text-[var(--text-heading)]
                             `}>
                                 →
                             </div>

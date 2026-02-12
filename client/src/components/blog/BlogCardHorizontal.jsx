@@ -26,12 +26,12 @@ const BlogCardHorizontal = ({ post, theme, isLatest = false, t, dateLocale }) =>
                 <div className="flex-1 p-5 flex flex-col gap-2.5">
                     <div className="flex items-center gap-2 text-xs text-[var(--text-secondary)]">
                         <time dateTime={post.published_at}>{formatPostDate(post.published_at, dateLocale, 'short')}</time>
-                        <span className="w-1 h-1 rounded-full bg-zinc-300 dark:bg-zinc-600" />
+                        <span className="w-1 h-1 rounded-full bg-[var(--border-divider)]" />
                         <span className="inline-flex items-center gap-1"><Clock className="w-3 h-3" />{readTime}</span>
                         {post.category && (
                             <>
-                                <span className="w-1 h-1 rounded-full bg-zinc-300 dark:bg-zinc-600" />
-                                <span className="px-2 py-0.5 rounded-full font-medium bg-[var(--color-50)] text-[var(--color-600)] dark:bg-[var(--color-900)] dark:text-[var(--color-300)]">
+                                <span className="w-1 h-1 rounded-full bg-[var(--border-divider)]" />
+                                <span className="px-2 py-0.5 rounded-full font-medium bg-[var(--bg-badge)] text-[var(--text-badge)]">
                                     {post.category}
                                 </span>
                             </>
@@ -46,7 +46,7 @@ const BlogCardHorizontal = ({ post, theme, isLatest = false, t, dateLocale }) =>
                         {post.excerpt}
                     </p>
 
-                    <div className="flex items-center gap-1 text-sm font-medium text-[var(--color-500)] dark:text-[var(--color-400)] mt-auto pt-1">
+                    <div className="flex items-center gap-1 text-sm font-medium text-[var(--text-link)] mt-auto pt-1">
                         <span className="group-hover:underline underline-offset-4">{t('blog.readMore')}</span>
                         <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </div>

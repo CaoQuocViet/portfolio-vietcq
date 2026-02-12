@@ -51,7 +51,7 @@ const ProjectsList = ({ theme }) => {
 
     if (error) {
         return (
-            <div className="text-center py-4 text-gray-600 dark:text-gray-400">
+            <div className="text-center py-4 text-[var(--text-secondary)]">
                 {t('common.noProjectsFound')}
             </div>
         );
@@ -59,7 +59,7 @@ const ProjectsList = ({ theme }) => {
 
     if (projects.length === 0) {
         return (
-            <div className="text-center py-4 text-gray-600 dark:text-gray-400">
+            <div className="text-center py-4 text-[var(--text-secondary)]">
                 {t('common.noProjectsFound')}
             </div>
         );
@@ -71,7 +71,7 @@ const ProjectsList = ({ theme }) => {
                 <div
                     key={project.id}
                     onClick={() => handleProjectClick(project.id)}
-                    className="group relative bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 
+                    className="group relative bg-gradient-to-br from-[var(--bg-page)] to-[var(--bg-section-alt)] 
                               rounded-2xl p-6 
                               transition-all duration-500 shadow-lg hover:shadow-2xl 
                               hover:-translate-y-2 hover:scale-[1.02] cursor-pointer
@@ -81,15 +81,15 @@ const ProjectsList = ({ theme }) => {
                               hover:before:opacity-100 before:transition-opacity before:duration-500"
                 >
                     {/* Project Name */}
-                    <h4 className="font-bold text-lg mb-3 text-gray-900 dark:text-white 
-                                  group-hover:text-blue-600 dark:group-hover:text-blue-400 
+                    <h4 className="font-bold text-lg mb-3 text-[var(--text-heading)]
+                                  group-hover:text-[var(--text-link)]
                                   transition-colors duration-300">
                         {project.name}
                     </h4>
                     
                     {/* Project Tagline */}
                     {project.tagline && (
-                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 leading-relaxed
+                        <p className="text-sm text-[var(--text-secondary)] mb-4 leading-relaxed
                                       overflow-hidden"
                            style={{
                              display: '-webkit-box',

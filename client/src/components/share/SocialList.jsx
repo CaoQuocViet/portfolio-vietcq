@@ -9,7 +9,7 @@ export default function SocialList({ className = "", showLabel = true, theme = "
           href={item.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-4 p-3 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-800/30 transition-all duration-200 cursor-pointer"
+          className="flex items-center gap-4 p-3 rounded-lg hover:bg-[var(--bg-hover)] transition-all duration-200 cursor-pointer"
         >
           {/* Circular icon */}
           <div className={`w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 ${item.color} shadow-lg hover:shadow-xl transition-all duration-200`}>
@@ -19,7 +19,7 @@ export default function SocialList({ className = "", showLabel = true, theme = "
           </div>
           {/* Text written directly on modal background */}
           {showLabel && (
-            <span className="text-lg font-semibold text-gray-900 dark:text-gray-100">{item.label}</span>
+            <span className="text-lg font-semibold text-[var(--text-heading)]">{item.label}</span>
           )}
         </a>
       ))}
