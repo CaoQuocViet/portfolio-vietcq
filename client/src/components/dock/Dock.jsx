@@ -103,8 +103,8 @@ const ThemeToggle = ({ theme, setTheme, scale, isMobile }) => {
 
 // Calculate magnification scale based on distance from mouse cursor.
 // Items closer to the mouse scale up more (macOS dock behavior).
-const MAX_SCALE = 1.3;
-const MAGNIFY_RANGE = 120; // px — how far the magnification effect reaches
+const MAX_SCALE = 1.2;
+const MAGNIFY_RANGE = 80; // px — how far the magnification effect reaches
 
 function getScale(distance, isOnDock) {
   if (!isOnDock || distance > MAGNIFY_RANGE) return 1;
@@ -185,12 +185,16 @@ const Dock = ({ theme, setTheme, activeSection, scrollToSection, navigationItems
         ref={dockRef}
         onMouseMove={handleDockMouseMove}
         onMouseLeave={handleDockMouseLeave}
-        className={`fixed z-50 transition-all duration-300 shadow-2xl ${dockBgClass}
+        className={`fixed z-50 shadow-2xl ${dockBgClass}
           bottom-6 right-6 sm:bottom-6 sm:left-1/2 sm:-translate-x-1/2 sm:right-auto
-          rounded-2xl sm:px-5 sm:py-3 px-3 py-5
+          rounded-2xl
           flex flex-col sm:flex-row items-center justify-center
-          ${isMobile ? 'scale-90' : 'scale-100'}
+          ${isMobile ? 'scale-75' : 'scale-100'}
         `}
+        style={{
+          padding: isMobile ? '20px 12px' : isOnDock ? '16px 24px' : '12px 20px',
+          transition: 'padding 200ms ease-out',
+        }}
       >
         <div className="flex flex-col sm:flex-row items-end justify-center">
           {navigationItems.map((item, index) => (
