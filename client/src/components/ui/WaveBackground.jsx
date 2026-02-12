@@ -9,9 +9,9 @@ const WaveBackground = ({ reversed = false }) => {
     const wavePath = reversed ? reversedPath : normalPath;
     
     // Container positioning
-    const containerClass = reversed 
-        ? "absolute left-0 w-full h-20 overflow-hidden"
-        : "absolute bottom-10 left-0 w-full h-20 overflow-hidden";
+    const containerClass = reversed
+        ? "absolute left-0 w-full h-10 sm:h-20 overflow-hidden"
+        : "absolute bottom-10 left-0 w-full h-10 sm:h-20 overflow-hidden";
     
     // Animation prefix
     const animPrefix = reversed ? 'waveFlowReversed' : 'waveFlow';
