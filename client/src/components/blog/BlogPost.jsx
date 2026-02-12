@@ -86,8 +86,8 @@ const BlogPost = ({ slug }) => {
     return (
         <ErrorBoundary>
             {/* Reading progress bar */}
-            <div className="fixed top-0 left-0 right-0 z-50 h-0.5 bg-zinc-200 dark:bg-zinc-800" aria-hidden="true">
-                <div className="h-full bg-blue-600 transition-[width] duration-150 ease-out" style={{ width: `${readProgress}%` }} />
+            <div className="fixed top-0 left-0 right-0 z-50 h-0.5 bg-[var(--border-default)]" aria-hidden="true">
+                <div className="h-full bg-[var(--btn-primary)] transition-[width] duration-150 ease-out" style={{ width: `${readProgress}%` }} />
             </div>
 
             <Dock {...dockProps} />
@@ -113,20 +113,20 @@ const BlogPost = ({ slug }) => {
                             <time dateTime={post.published_at}>{formatPostDate(post.published_at, dateLocale)}</time>
                             {post.read_time && (
                                 <>
-                                    <span className="w-1 h-1 rounded-full bg-zinc-300 dark:bg-zinc-600" />
+                                    <span className="w-1 h-1 rounded-full bg-[var(--border-divider)]" />
                                     <span className="inline-flex items-center gap-1"><Clock className="w-3.5 h-3.5" />{post.read_time} min read</span>
                                 </>
                             )}
                             {post.category && (
                                 <>
-                                    <span className="w-1 h-1 rounded-full bg-zinc-300 dark:bg-zinc-600" />
-                                    <span className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-[var(--color-50)] text-[var(--color-600)] dark:bg-[var(--color-900)] dark:text-[var(--color-300)] border border-[var(--color-100)] dark:border-[var(--color-500)]/20">{post.category}</span>
+                                    <span className="w-1 h-1 rounded-full bg-[var(--border-divider)]" />
+                                    <span className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-[var(--bg-badge)] text-[var(--text-badge)] border border-[var(--border-default)]">{post.category}</span>
                                 </>
                             )}
                             {post.featured && (
                                 <>
-                                    <span className="w-1 h-1 rounded-full bg-zinc-300 dark:bg-zinc-600" />
-                                    <span className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-500/10 text-amber-600 dark:text-amber-400 ring-1 ring-amber-500/20">{t('blog.featuredPost')}</span>
+                                    <span className="w-1 h-1 rounded-full bg-[var(--border-divider)]" />
+                                    <span className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-[var(--color-warning)]/10 text-[var(--color-warning)] ring-1 ring-[var(--color-warning)]/20">{t('blog.featuredPost')}</span>
                                 </>
                             )}
                         </div>
@@ -160,7 +160,7 @@ const BlogPost = ({ slug }) => {
                         )}
 
                         {/* Content */}
-                        <div className="prose prose-lg max-w-none prose-invert dark:prose-invert prose-headings:text-[var(--text-heading)] prose-p:text-[var(--text-body)] prose-strong:text-[var(--text-heading)] prose-code:text-[var(--color-500)] dark:prose-code:text-[var(--color-400)] prose-code:bg-[var(--bg-section-alt)] prose-a:text-[var(--color-500)] dark:prose-a:text-[var(--color-400)] hover:prose-a:text-[var(--color-600)] dark:hover:prose-a:text-[var(--color-300)] prose-pre:bg-zinc-900 prose-pre:rounded-xl prose-pre:ring-1 prose-pre:ring-zinc-800 prose-code:px-1.5 prose-code:rounded prose-blockquote:border-l-blue-500 prose-blockquote:text-[var(--text-body)] prose-img:rounded-xl prose-hr:border-[var(--border-default)] prose-headings:tracking-tight">
+                        <div className="prose prose-lg max-w-none prose-headings:text-[var(--text-heading)] prose-p:text-[var(--text-body)] prose-strong:text-[var(--text-heading)] prose-code:text-[var(--text-code)] prose-code:bg-[var(--bg-code-inline)] prose-a:text-[var(--text-link)] hover:prose-a:text-[var(--text-link-hover)] prose-pre:bg-[var(--bg-code-block)] prose-pre:rounded-xl prose-pre:ring-1 prose-pre:ring-[var(--border-default)] prose-code:px-1.5 prose-code:rounded prose-blockquote:border-l-[var(--btn-primary)] prose-blockquote:text-[var(--text-body)] prose-img:rounded-xl prose-hr:border-[var(--border-default)] prose-headings:tracking-tight">
                             <ReactMarkdown rehypePlugins={[rehypeSanitize, rehypeHighlight]}>{post.content}</ReactMarkdown>
                         </div>
 
