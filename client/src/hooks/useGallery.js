@@ -1,44 +1,22 @@
-import { useState, useEffect } from 'react';
+import { useQuery } from '@tanstack/react-query'
 
 export function useGallery(projectId = null) {
-    const [images, setImages] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const { data: images = [], isLoading: loading, error } = useQuery({
+        queryKey: ['gallery', projectId],
+        queryFn: async () => {
+            const url = projectId
+                ? `/api/gallery?projectId=${projectId}`
+                : '/api/gallery'
+            const res = await fetch(url)
+            if (!res.ok) throw new Error('Failed to fetch images')
+            const data = await res.json()
 
-    useEffect(() => {
-        const fetchImages = async () => {
-            try {
-                setLoading(true);
-                setError(null);
-                
-                const url = projectId 
-                    ? `/api/gallery?projectId=${projectId}`
-                    : '/api/gallery';
-                
-                const response = await fetch(url);
-                if (!response.ok) throw new Error('Failed to fetch images');
-                
-                const data = await response.json();
-                
-                if (projectId) {
-                    setImages(data.images || []);
-                } else {
-                    const allImages = [];
-                    data.projects?.forEach(project => {
-                        allImages.push(...project.images);
-                    });
-                    setImages(allImages);
-                }
-            } catch (err) {
-                setError(err.message);
-                setImages([]);
-            } finally {
-                setLoading(false);
-            }
-        };
+            if (projectId) return data.images || []
+            const all = []
+            data.projects?.forEach(p => all.push(...p.images))
+            return all
+        },
+    })
 
-        fetchImages();
-    }, [projectId]);
-
-    return { images, loading, error };
+    return { images, loading, error: error?.message ?? null }
 }
