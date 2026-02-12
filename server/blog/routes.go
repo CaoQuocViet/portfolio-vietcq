@@ -1,7 +1,6 @@
 package blog
 
 import (
-	"github.com/pocketbase/pocketbase/apis"
 	"github.com/pocketbase/pocketbase/core"
 	"github.com/pocketbase/pocketbase/tools/hook"
 )
@@ -16,11 +15,6 @@ var cacheKeys = []string{
 
 func registerServe(app core.App, cfg Config) {
 	app.OnServe().BindFunc(func(e *core.ServeEvent) error {
-		e.Router.BindFunc(apis.CORS(apis.CORSConfig{
-			AllowOrigins: cfg.CORSOrigins,
-			AllowHeaders: []string{"Content-Type", "Authorization"},
-		}).Func)
-
 		registerFeedRoutes(app, e, cfg)
 		registerSitemapRoute(app, e, cfg)
 		registerRobotsTxtRoute(e, cfg)
