@@ -1,295 +1,183 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useTheme } from 'next-themes'
 import Link from 'next/link'
 import Image from 'next/image'
 import ReactMarkdown from 'react-markdown'
 import rehypeHighlight from 'rehype-highlight'
+import rehypeSanitize from 'rehype-sanitize'
+import { ArrowLeft, Share2, Check, Clock } from 'lucide-react'
 import Dock from '../dock/Dock'
 import Footer from '../layout/Footer'
+import ErrorBoundary from '../ui/ErrorBoundary'
 import { BLOG_NAVIGATION_ITEMS } from '../../config/navigation'
 import { createScrollFunction } from '../../utils/navigation'
-import { useBlogPost } from '../../hooks/useBlog'
+import { useBlogPost } from '../../hooks/use-blog-post'
 import { LoadingSpinner } from '../ui/loading'
 import { useTranslation } from '../../hooks/useTranslation'
+import { formatPostDate, getPostImageUrl, normalizePostTags } from './blog-card-utils'
 import 'highlight.js/styles/github-dark.css'
 
 const BlogPost = ({ slug }) => {
     const { theme, setTheme } = useTheme()
     const { t, dateLocale } = useTranslation()
     const [mounted, setMounted] = useState(false)
+    const [readProgress, setReadProgress] = useState(0)
+    const [copied, setCopied] = useState(false)
+    const { post, isLoading, error } = useBlogPost(slug)
 
-    const { post, loading, error } = useBlogPost(slug)
+    useEffect(() => { setMounted(true) }, [])
 
-    useEffect(() => {
-        setMounted(true)
+    const handleScroll = useCallback(() => {
+        const el = document.documentElement
+        const scrolled = el.scrollTop
+        const total = el.scrollHeight - el.clientHeight
+        setReadProgress(total > 0 ? Math.min((scrolled / total) * 100, 100) : 0)
     }, [])
 
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll, { passive: true })
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [handleScroll])
+
+    const handleShare = async () => {
+        const url = window.location.href
+        if (navigator.share) {
+            await navigator.share({ title: post?.title, url })
+        } else {
+            await navigator.clipboard.writeText(url)
+            setCopied(true)
+            setTimeout(() => setCopied(false), 2000)
+        }
+    }
+
     const scrollToSection = createScrollFunction()
+    const dockProps = { theme, setTheme, activeSection: null, scrollToSection, navigationItems: BLOG_NAVIGATION_ITEMS }
 
     if (!mounted) return null
 
-    if (loading) {
-        return (
-            <>
-                <Dock
-                    theme={theme}
-                    setTheme={setTheme}
-                    activeSection={null}
-                    scrollToSection={scrollToSection}
-                    navigationItems={BLOG_NAVIGATION_ITEMS}
-                />
-                <div className="min-h-screen bg-white dark:bg-gray-950 overflow-x-hidden">
-                    <div className="py-16 bg-gray-200 dark:bg-gray-900/50 min-h-screen flex justify-center items-center">
-                        <div className="text-center relative z-10">
-                            <LoadingSpinner />
-                            <p className="text-gray-900 dark:text-white text-lg mt-4">{t('blog.loadingPosts')}</p>
-                        </div>
-                    </div>
-                </div>
-            </>
-        )
-    }
+    if (isLoading) return (
+        <>
+            <Dock {...dockProps} />
+            <div className="min-h-screen flex justify-center items-center bg-[var(--bg-page)]" role="status">
+                <div className="text-center"><LoadingSpinner /><p className="text-[var(--text-body)] text-lg mt-4">{t('blog.loadingPosts')}</p></div>
+            </div>
+        </>
+    )
 
-    if (error || !post) {
-        return (
-            <>
-                <Dock
-                    theme={theme}
-                    setTheme={setTheme}
-                    activeSection={null}
-                    scrollToSection={scrollToSection}
-                    navigationItems={BLOG_NAVIGATION_ITEMS}
-                />
-                <div className="min-h-screen bg-white dark:bg-gray-950 overflow-x-hidden">
-                    <div className="py-4 bg-gray-200 dark:bg-gray-900/50 min-h-screen flex justify-center items-center">
-                        <div className="text-center relative z-10">
-                            <div className="text-red-500 dark:text-red-400 text-6xl mb-4">📝</div>
-                            <h2 className="text-gray-900 dark:text-white text-2xl font-bold mb-2">{t('blog.postNotFound')}</h2>
-                            <p className="text-gray-600 dark:text-gray-300 mb-4">{error || t('blog.postNotFoundText')}</p>
-                            <Link
-                                href="/blog"
-                                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-                            >
-                                {t('blog.backToBlog')}
-                            </Link>
-                        </div>
-                    </div>
+    if (error || !post) return (
+        <>
+            <Dock {...dockProps} />
+            <div className="min-h-screen flex justify-center items-center bg-[var(--bg-page)]">
+                <div className="text-center px-4" role="alert">
+                    <h2 className="text-[var(--text-heading)] text-2xl font-bold mb-2">{t('blog.postNotFound')}</h2>
+                    <p className="text-[var(--text-body)] mb-8">{t('blog.postNotFoundText')}</p>
+                    <Link href="/blog" className="inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--btn-primary)] text-[var(--btn-primary-text)] rounded-lg hover:bg-[var(--btn-primary-hover)] transition-colors duration-200 font-medium text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
+                        <ArrowLeft className="w-4 h-4" />{t('blog.backToBlog')}
+                    </Link>
                 </div>
-            </>
-        )
-    }
+            </div>
+        </>
+    )
 
-    const formatDate = (dateString) => {
-        return new Date(dateString).toLocaleDateString(dateLocale, {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        })
-    }
+    const coverUrl = getPostImageUrl(post)
+    const tags = normalizePostTags(post)
 
     return (
-        <>
-            <Dock
-                theme={theme}
-                setTheme={setTheme}
-                activeSection={null}
-                scrollToSection={scrollToSection}
-                navigationItems={BLOG_NAVIGATION_ITEMS}
-            />
+        <ErrorBoundary>
+            {/* Reading progress bar */}
+            <div className="fixed top-0 left-0 right-0 z-50 h-0.5 bg-zinc-200 dark:bg-zinc-800" aria-hidden="true">
+                <div className="h-full bg-blue-600 transition-[width] duration-150 ease-out" style={{ width: `${readProgress}%` }} />
+            </div>
 
-            <div className="min-h-screen bg-white dark:bg-gray-950 overflow-x-hidden">
-                <div className="py-4 bg-gray-200 dark:bg-gray-900/50">
-                <div className="px-4 md:px-6 lg:px-8 max-w-5xl mx-auto relative z-10">
-                    {/* Back button */}
-                    <div className="pt-8 mb-8">
-                        <Link 
-                            href="/blog"
-                            className={`inline-flex items-center transition-colors px-4 py-2 rounded-lg ${
-                                theme === 'dark'
-                                    ? 'text-white hover:text-indigo-400 bg-gray-800 hover:bg-gray-700'
-                                    : 'text-gray-900 hover:text-indigo-600 bg-white hover:bg-gray-50'
-                            } shadow-md`}
-                        >
-                            <span className="mr-2">←</span>
-                            {t('blog.backToBlog')}
+            <Dock {...dockProps} />
+
+            <main id="main-content" className="min-h-screen bg-[var(--bg-page)] overflow-x-hidden">
+                {/* Top bar with back + share */}
+                <div className="bg-[var(--bg-section)] border-b border-[var(--border-default)] sticky top-0 z-40">
+                    <div className="px-4 md:px-6 max-w-4xl mx-auto flex items-center justify-between h-14">
+                        <Link href="/blog" className="inline-flex items-center gap-2 text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg px-3 py-1.5 -ml-3 text-[var(--text-body)] hover:text-[var(--text-heading)]">
+                            <ArrowLeft className="w-4 h-4" />{t('blog.backToBlog')}
                         </Link>
-                    </div>                    {/* Article */}
-                    <article
-                        className={`
-                            relative overflow-hidden rounded-2xl p-6 md:p-8 lg:p-12
-                            shadow-2xl
-                            ${theme === 'dark' 
-                                ? 'bg-gray-800' 
-                                : 'bg-white'
-                            }
-                        `}
-                    >
-                        {/* Featured badge */}
-                        {post.featured && (
-                            <div className="absolute top-8 right-8 bg-yellow-400 text-black text-sm font-bold px-3 py-1 rounded-full">
-                                {t('blog.featuredPost')}
+                        <button onClick={handleShare} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium cursor-pointer transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 text-[var(--text-body)] hover:text-[var(--text-heading)] hover:bg-[var(--bg-section-alt)]" aria-label="Share this post">
+                            {copied ? <><Check className="w-4 h-4 text-green-500" />Copied!</> : <><Share2 className="w-4 h-4" />Share</>}
+                        </button>
+                    </div>
+                </div>
+
+                {/* Article */}
+                <div className="px-4 md:px-6 max-w-4xl mx-auto py-12">
+                    <article className="motion-safe:animate-fade-in-up">
+                        {/* Meta */}
+                        <div className="flex flex-wrap items-center gap-3 text-sm text-[var(--text-body)] mb-6">
+                            <time dateTime={post.published_at}>{formatPostDate(post.published_at, dateLocale)}</time>
+                            {post.read_time && (
+                                <>
+                                    <span className="w-1 h-1 rounded-full bg-zinc-300 dark:bg-zinc-600" />
+                                    <span className="inline-flex items-center gap-1"><Clock className="w-3.5 h-3.5" />{post.read_time} min read</span>
+                                </>
+                            )}
+                            {post.category && (
+                                <>
+                                    <span className="w-1 h-1 rounded-full bg-zinc-300 dark:bg-zinc-600" />
+                                    <span className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-[var(--color-50)] text-[var(--color-600)] dark:bg-[var(--color-900)] dark:text-[var(--color-300)] border border-[var(--color-100)] dark:border-[var(--color-500)]/20">{post.category}</span>
+                                </>
+                            )}
+                            {post.featured && (
+                                <>
+                                    <span className="w-1 h-1 rounded-full bg-zinc-300 dark:bg-zinc-600" />
+                                    <span className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-500/10 text-amber-600 dark:text-amber-400 ring-1 ring-amber-500/20">{t('blog.featuredPost')}</span>
+                                </>
+                            )}
+                        </div>
+
+                        {/* Title */}
+                        <h1 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-[var(--text-heading)] leading-[1.15] tracking-tight mb-6">
+                            {post.title}
+                        </h1>
+
+                        {/* Excerpt */}
+                        {post.excerpt && (
+                            <p className="text-lg md:text-xl text-[var(--text-body)] leading-relaxed mb-8">
+                                {post.excerpt}
+                            </p>
+                        )}
+
+                        {/* Tags */}
+                        {tags.length > 0 && (
+                            <div className="flex flex-wrap gap-2 mb-10">
+                                {tags.map((tag, i) => (
+                                    <span key={i} className="text-xs px-2.5 py-1 rounded-full font-medium bg-[var(--bg-section-alt)] text-[var(--text-body)] border border-[var(--border-default)]">#{tag}</span>
+                                ))}
                             </div>
                         )}
 
-                        {/* Header */}
-                        <header className="mb-8">
-                            <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-gray-400 mb-4">
-                                <span>{formatDate(post.date)}</span>
-                                <span>•</span>
-                                <span>{post.readTime}</span>
-                                <span>•</span>
-                                <span className={`px-2 py-1 rounded ${
-                                    theme === 'dark'
-                                        ? 'bg-indigo-900 text-indigo-200'
-                                        : 'bg-indigo-100 text-indigo-700'
-                                }`}>
-                                    {post.category}
-                                </span>
-                            </div>
-
-                            <h1 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
-                                {post.title}
-                            </h1>
-
-                            <p className="text-xl text-gray-700 dark:text-gray-300 mb-6">
-                                {post.excerpt}
-                            </p>
-
-                            {/* Tags */}
-                            <div className="flex flex-wrap gap-2 mb-6">
-                                {post.tags.map(tag => (
-                                    <span
-                                        key={tag}
-                                        className={`text-sm px-3 py-1 rounded-full ${
-                                            theme === 'dark'
-                                                ? 'bg-indigo-900 text-indigo-200'
-                                                : 'bg-indigo-100 text-indigo-700'
-                                        }`}
-                                    >
-                                        #{tag}
-                                    </span>
-                                ))}
-                            </div>
-
-                            {/* Author */}
-                            <div className="flex items-center text-gray-600 dark:text-gray-400">
-                                <span>By {post.author}</span>
-                            </div>
-                        </header>
-
-                        {/* Featured Image */}
-                        {post.image && (
-                            <div className="relative w-full h-64 md:h-96 mb-8 rounded-lg overflow-hidden">
-                                <Image
-                                    src={post.image}
-                                    alt={post.title}
-                                    fill
-                                    style={{ objectFit: 'cover' }}
-                                    className="transition-transform duration-300"
-                                />
+                        {/* Cover image */}
+                        {coverUrl && (
+                            <div className="relative w-full aspect-[2/1] mb-12 rounded-2xl overflow-hidden border border-[var(--border-default)]">
+                                <Image src={coverUrl} alt={post.title} fill className="object-cover" sizes="(max-width: 896px) 100vw, 896px" priority />
                             </div>
                         )}
 
                         {/* Content */}
-                        <div
-                            className={`
-                                prose prose-lg max-w-none
-                                ${theme === 'dark'
-                                    ? 'prose-invert prose-headings:text-white prose-p:text-gray-300 prose-strong:text-white prose-code:text-indigo-300'
-                                    : 'prose-headings:text-gray-900 prose-p:text-gray-700 prose-strong:text-gray-900 prose-code:text-indigo-600'
-                                }
-                                prose-pre:bg-gray-900 prose-pre:text-gray-100
-                                prose-code:bg-gray-100 dark:prose-code:bg-gray-800 prose-code:px-1 prose-code:py-0.5 prose-code:rounded
-                                prose-blockquote:border-l-indigo-500 prose-blockquote:bg-indigo-50 dark:prose-blockquote:bg-indigo-500/10 prose-blockquote:pl-4
-                                prose-a:text-indigo-600 dark:prose-a:text-indigo-400 hover:prose-a:text-indigo-700 dark:hover:prose-a:text-indigo-300
-                                prose-headings:scroll-mt-20
-                            `}
-                        >
-                            <ReactMarkdown
-                                rehypePlugins={[rehypeHighlight]}
-                                components={{
-                                    // Custom components for better styling
-                                    h1: ({ children }) => (
-                                        <h1 className="text-4xl font-bold mb-6 mt-8 text-gray-900 dark:text-white border-b border-gray-300 dark:border-gray-600 pb-2">
-                                            {children}
-                                        </h1>
-                                    ),
-                                    h2: ({ children }) => (
-                                        <h2 className="text-3xl font-bold mb-4 mt-8 text-gray-900 dark:text-white">
-                                            {children}
-                                        </h2>
-                                    ),
-                                    h3: ({ children }) => (
-                                        <h3 className="text-2xl font-bold mb-3 mt-6 text-gray-900 dark:text-white">
-                                            {children}
-                                        </h3>
-                                    ),
-                                    p: ({ children }) => (
-                                        <p className="mb-4 text-gray-700 dark:text-gray-300 leading-relaxed">
-                                            {children}
-                                        </p>
-                                    ),
-                                    ul: ({ children }) => (
-                                        <ul className="mb-4 space-y-2 text-gray-700 dark:text-gray-300">
-                                            {children}
-                                        </ul>
-                                    ),
-                                    ol: ({ children }) => (
-                                        <ol className="mb-4 space-y-2 text-gray-700 dark:text-gray-300">
-                                            {children}
-                                        </ol>
-                                    ),
-                                    li: ({ children }) => (
-                                        <li className="text-gray-700 dark:text-gray-300">
-                                            {children}
-                                        </li>
-                                    ),
-                                    blockquote: ({ children }) => (
-                                        <blockquote className="border-l-4 border-indigo-500 bg-indigo-50 dark:bg-indigo-500/10 pl-4 py-2 my-4 italic text-gray-700 dark:text-gray-300">
-                                            {children}
-                                        </blockquote>
-                                    ),
-                                    code: ({ inline, children }) => {
-                                        return inline ? (
-                                            <code className="bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-300 px-1 py-0.5 rounded text-sm">
-                                                {children}
-                                            </code>
-                                        ) : (
-                                            <code className="block">{children}</code>
-                                        )
-                                    }
-                                }}
-                            >
-                                {post.content}
-                            </ReactMarkdown>
+                        <div className="prose prose-lg max-w-none prose-invert dark:prose-invert prose-headings:text-[var(--text-heading)] prose-p:text-[var(--text-body)] prose-strong:text-[var(--text-heading)] prose-code:text-[var(--color-500)] dark:prose-code:text-[var(--color-400)] prose-code:bg-[var(--bg-section-alt)] prose-a:text-[var(--color-500)] dark:prose-a:text-[var(--color-400)] hover:prose-a:text-[var(--color-600)] dark:hover:prose-a:text-[var(--color-300)] prose-pre:bg-zinc-900 prose-pre:rounded-xl prose-pre:ring-1 prose-pre:ring-zinc-800 prose-code:px-1.5 prose-code:rounded prose-blockquote:border-l-blue-500 prose-blockquote:text-[var(--text-body)] prose-img:rounded-xl prose-hr:border-[var(--border-default)] prose-headings:tracking-tight">
+                            <ReactMarkdown rehypePlugins={[rehypeSanitize, rehypeHighlight]}>{post.content}</ReactMarkdown>
                         </div>
 
                         {/* Footer */}
-                        <footer className={`mt-12 pt-8 border-t ${
-                            theme === 'dark' ? 'border-gray-700' : 'border-gray-200'
-                        }`}>
-                            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                                <div className="text-gray-600 dark:text-gray-400">
-                                    <p>Published on {formatDate(post.date)} by {post.author}</p>
-                                </div>
-
-                                <Link
-                                    href="/blog"
-                                    className="inline-flex items-center px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors shadow-md"
-                                >
-                                    <span className="mr-2">←</span>
-                                    {t('blog.morePosts')}
+                        <footer className="mt-16 pt-8 border-t border-[var(--border-default)]">
+                            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                                <p className="text-sm text-[var(--text-body)]">Published on <time dateTime={post.published_at}>{formatPostDate(post.published_at, dateLocale)}</time></p>
+                                <Link href="/blog" className="inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--btn-primary)] text-[var(--btn-primary-text)] rounded-lg hover:bg-[var(--btn-primary-hover)] transition-colors duration-200 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
+                                    <ArrowLeft className="w-4 h-4" />{t('blog.morePosts')}
                                 </Link>
                             </div>
                         </footer>
                     </article>
-
                 </div>
-            </div>
-            </div>
+            </main>
             <Footer theme={theme} />
-        </>
+        </ErrorBoundary>
     )
 }
 

@@ -10,6 +10,7 @@ import (
 	"github.com/pocketbase/pocketbase/apis"
 	"github.com/pocketbase/pocketbase/blog"
 	"github.com/pocketbase/pocketbase/core"
+	"github.com/pocketbase/pocketbase/portfolio"
 	"github.com/pocketbase/pocketbase/plugins/ghupdate"
 	"github.com/pocketbase/pocketbase/plugins/jsvm"
 	"github.com/pocketbase/pocketbase/plugins/migratecmd"
@@ -104,8 +105,26 @@ func main() {
 	// GitHub selfupdate
 	ghupdate.MustRegister(app, app.RootCmd, ghupdate.Config{})
 
+	// Global CORS (single registration for all packages)
+	corsOrigin := os.Getenv("CORS_ORIGIN")
+	if corsOrigin == "" {
+		corsOrigin = "http://localhost:5678"
+	}
+	app.OnServe().BindFunc(func(e *core.ServeEvent) error {
+		e.Router.BindFunc(apis.CORS(apis.CORSConfig{
+			AllowOrigins: []string{corsOrigin},
+			AllowHeaders: []string{"Content-Type", "Authorization"},
+		}).Func)
+		return e.Next()
+	})
+
 	// Blog engine
 	blog.Register(app, blog.DefaultConfig())
+
+	// Portfolio engine
+	pfCfg := portfolio.DefaultConfig()
+	pfCfg.RootCmd = app.RootCmd
+	portfolio.Register(app, pfCfg)
 
 	// static route to serves files from the provided public dir
 	// (if publicDir exists and the route path is not already defined)
