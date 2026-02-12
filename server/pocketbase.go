@@ -12,10 +12,8 @@ import (
 	"github.com/fatih/color"
 	"github.com/pocketbase/pocketbase/cmd"
 	"github.com/pocketbase/pocketbase/core"
-	"github.com/pocketbase/pocketbase/tools/hook"
 	"github.com/pocketbase/pocketbase/tools/list"
 	"github.com/pocketbase/pocketbase/tools/osutils"
-	"github.com/pocketbase/pocketbase/tools/routine"
 	"github.com/spf13/cobra"
 
 	_ "github.com/pocketbase/pocketbase/migrations"
@@ -141,22 +139,8 @@ func NewWithConfig(config Config) *PocketBase {
 	pb.RootCmd.SetHelpCommand(&cobra.Command{Hidden: true})
 
 	// https://github.com/pocketbase/pocketbase/issues/6136
-	pb.OnBootstrap().Bind(&hook.Handler[*core.BootstrapEvent]{
-		Id: ModerncDepsCheckHookId,
-		Func: func(be *core.BootstrapEvent) error {
-			if err := be.Next(); err != nil {
-				return err
-			}
-
-			// run separately to avoid blocking
-			app := be.App
-			routine.FireAndForget(func() {
-				checkModerncDeps(app)
-			})
-
-			return nil
-		},
-	})
+	// NOTE: ModerncDepsCheckHookId removed — definition missing from upstream
+	// pb.OnBootstrap().Bind(&hook.Handler[*core.BootstrapEvent]{...})
 
 	return pb
 }

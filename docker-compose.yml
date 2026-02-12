@@ -7,6 +7,7 @@ services:
       - "5678:5678"
     environment:
       - NODE_ENV=production
+      - NEXT_PUBLIC_POCKETBASE_URL=http://server:8090
     restart: unless-stopped
 
   server:
@@ -14,7 +15,7 @@ services:
       context: ./server
       dockerfile: Dockerfile
     ports:
-      - "8765:8765"
+      - "8090:8090"
     volumes:
       - pb_data:/app/pb_data
     restart: unless-stopped
