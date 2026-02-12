@@ -55,7 +55,7 @@ const ProjectPage = () => {
 
     if (!mounted) {
         return (
-            <div className="min-h-screen bg-white flex items-center justify-center">
+            <div className="min-h-screen bg-[var(--bg-page)] flex items-center justify-center">
                 <LoadingSpinner />
             </div>
         )
@@ -63,7 +63,7 @@ const ProjectPage = () => {
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-white dark:bg-gray-950 flex items-center justify-center">
+            <div className="min-h-screen bg-[var(--bg-page)] flex items-center justify-center">
                 <LoadingSpinner />
             </div>
         )
@@ -71,9 +71,9 @@ const ProjectPage = () => {
 
     if (error || !projectData) {
         return (
-            <div className="min-h-screen bg-white dark:bg-gray-950 flex items-center justify-center">
+            <div className="min-h-screen bg-[var(--bg-page)] flex items-center justify-center">
                 <div className="text-center">
-                    <h1 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+                    <h1 className="text-2xl font-bold mb-4 text-[var(--text-heading)]">
                         {t('common.projectNotFound')}
                     </h1>
                     <Button
@@ -89,7 +89,7 @@ const ProjectPage = () => {
     }
 
     return (
-        <div className="min-h-screen bg-white dark:bg-gray-950">
+        <div className="min-h-screen bg-[var(--bg-page)]">
             {/* Dock Navigation */}
             <Dock 
                 theme={theme}
