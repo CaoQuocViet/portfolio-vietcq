@@ -21,7 +21,7 @@ const NavigationItem = ({
         onClick={onLogoClick}
         onMouseEnter={onHover}
         onMouseLeave={onLeave}
-        className={`relative group flex items-center justify-center w-10 h-10 sm:w-auto sm:h-12 sm:px-4 rounded-xl sm:rounded-2xl transition-all duration-500 ease-out transform cursor-pointer bg-blue-600/20 hover:bg-blue-600/30 dark:bg-blue-600/20 dark:hover:bg-blue-600/30 ${
+        className={`relative group flex items-center justify-center w-10 h-10 sm:w-auto sm:h-12 sm:px-4 rounded-xl sm:rounded-2xl transition-all duration-500 ease-out transform cursor-pointer bg-blue-600/20 hover:bg-blue-600/30 ${
           isHovered ? "scale-125" : "hover:scale-110"
         } ${
           activeSection === "hero"
@@ -33,7 +33,6 @@ const NavigationItem = ({
         <span
           className="text-base sm:text-lg font-bold transition-all duration-500 bg-gradient-to-r 
                      from-blue-600 via-purple-600 to-blue-600 
-                     dark:from-blue-600 dark:via-purple-600 dark:to-blue-600 
                      bg-clip-text text-transparent"
           style={{ fontFamily: "Inter, -apple-system, BlinkMacSystemFont, sans-serif" }}
         >
@@ -42,7 +41,7 @@ const NavigationItem = ({
         {window.innerWidth >= 1024 && (
           <span
             className="inline-block ml-1 text-sm sm:text-base transition-all duration-500 
-                       text-purple-600 dark:text-purple-400"
+                       text-[var(--color-500)]"
             style={{ animation: "float 3s ease-in-out infinite" }}
           >
             .
@@ -75,14 +74,14 @@ const NavigationItem = ({
         }`} 
       />
       <div className={`absolute -bottom-1 w-1.5 h-1.5 rounded-full transition-all duration-500 ${isActive ? "bg-white scale-100" : "bg-transparent scale-0"}`} />
-      <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 
-                     bg-gray-900 dark:bg-gray-100 
-                     text-white dark:text-gray-900 
-                     text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 
+      <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1
+                     bg-[var(--bg-tooltip)]
+                     text-[var(--text-tooltip)]
+                     text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200
                      pointer-events-none whitespace-nowrap hidden md:block">
         {item.label}
-        <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-2 border-r-2 border-t-2 
-                       border-transparent border-t-gray-900 dark:border-t-gray-100" />
+        <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-2 border-r-2 border-t-2
+                       border-transparent border-t-[var(--bg-tooltip)]" />
       </div>
     </button>
   );
@@ -116,9 +115,9 @@ const ThemeToggle = ({ theme, setTheme, isHovered, onHover, onLeave, isMobile })
         <FaMoon size={isMobile ? 16 : 18} className="text-slate-600 transition-all duration-500 ease-out" />
       )
     )}
-    <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap hidden md:block">
+    <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-[var(--bg-tooltip)] text-[var(--text-tooltip)] text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap hidden md:block">
       {theme === "dark" ? "Light mode" : "Dark mode"}
-      <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-2 border-r-2 border-t-2 border-transparent border-t-gray-900 dark:border-t-gray-100" />
+      <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-2 border-r-2 border-t-2 border-transparent border-t-[var(--bg-tooltip)]" />
     </div>
   </button>
 );
@@ -241,19 +240,19 @@ const Dock = ({ theme, setTheme, activeSection, scrollToSection, navigationItems
                   hoveredItem === item.id || hoveredItem === navigationItems[index + 1]?.id
                     ? "sm:mx-5 my-3 sm:my-0" 
                     : "sm:mx-4 my-2 sm:my-0"
-                } bg-gray-300/50 dark:bg-gray-600/50
+                } bg-[var(--border-divider)]
                   w-6 h-0.5 sm:w-0.5 sm:h-6
                 `} />
               )}
             </div>
-          ))} 
-          
+          ))}
+
           {/* Separator before theme toggle */}
           <div className={`transition-all duration-300 ease-out ${
-            hoveredItem === navigationItems[navigationItems.length - 1]?.id || hoveredItem === "theme" 
-              ? "sm:mx-5 my-3 sm:my-0" 
+            hoveredItem === navigationItems[navigationItems.length - 1]?.id || hoveredItem === "theme"
+              ? "sm:mx-5 my-3 sm:my-0"
               : "sm:mx-4 my-2 sm:my-0"
-          } bg-gray-300/50 dark:bg-gray-600/50
+          } bg-[var(--border-divider)]
             w-6 h-0.5 sm:w-0.5 sm:h-6
           `} />
           
@@ -274,7 +273,7 @@ const Dock = ({ theme, setTheme, activeSection, scrollToSection, navigationItems
           {!isMobile && (
             <div className={`transition-all duration-300 ease-out ${
               hoveredItem ? "sm:mx-5 my-3 sm:my-0" : "sm:mx-4 my-2 sm:my-0"
-            } bg-gray-300/50 dark:bg-gray-600/50 w-6 h-0.5 sm:w-0.5 sm:h-6`} />
+            } bg-[var(--border-divider)] w-6 h-0.5 sm:w-0.5 sm:h-6`} />
           )}
           
           {/* System Icons - Only show on desktop */}

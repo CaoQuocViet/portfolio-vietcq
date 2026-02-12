@@ -67,9 +67,7 @@ const Modal = ({ isOpen, onClose, theme, dockRect, logoRect }) => {
   if (!isOpen) return null;
 
   // Background phù hợp cho modal - không quá trong suốt
-  const modalBgClass = theme === "dark" 
-    ? "bg-gray-900/95" 
-    : "bg-white/95";
+  const modalBgClass = "bg-[var(--bg-page)]/95";
 
   return (
     <>
@@ -110,25 +108,25 @@ const Modal = ({ isOpen, onClose, theme, dockRect, logoRect }) => {
         <div className="flex flex-col p-4 sm:p-6 h-full overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {/* Navigation Section */}
           <div className="mb-4 sm:mb-6">
-            <div className="mb-3 sm:mb-4 text-lg sm:text-2xl font-bold text-gray-900 dark:text-white">Navigation</div>
+            <div className="mb-3 sm:mb-4 text-lg sm:text-2xl font-bold text-[var(--text-heading)]">Navigation</div>
             <NavigationList theme={theme} />
           </div>
           
           {/* Connect Section */}
           <div className="mb-4 sm:mb-6">
-            <div className="mb-3 sm:mb-4 text-lg sm:text-2xl font-bold text-gray-900 dark:text-white">Connect</div>
+            <div className="mb-3 sm:mb-4 text-lg sm:text-2xl font-bold text-[var(--text-heading)]">Connect</div>
             <SocialList theme={theme} />
           </div>
           
           {/* Repositories Section */}
           <div className="mb-4 sm:mb-6">
-            <div className="mb-3 sm:mb-4 text-lg sm:text-2xl font-bold text-gray-900 dark:text-white">Repositories</div>
+            <div className="mb-3 sm:mb-4 text-lg sm:text-2xl font-bold text-[var(--text-heading)]">Repositories</div>
             <RepositoriesList theme={theme} />
           </div>
 
           {/* Projects Section */}
           <div className="mb-4 sm:mb-6 mt-2 sm:mt-4">
-            <div className="mb-3 sm:mb-4 text-lg sm:text-2xl font-bold text-gray-900 dark:text-white">Projects</div>
+            <div className="mb-3 sm:mb-4 text-lg sm:text-2xl font-bold text-[var(--text-heading)]">Projects</div>
             <ProjectsList theme={theme} />
           </div>
         </div>
