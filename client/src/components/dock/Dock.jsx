@@ -70,7 +70,7 @@ const NavigationItem = ({
         size={isHovered ? (isMobile ? 18 : 24) : (isMobile ? 16 : 20)} 
         className={`transition-all duration-500 ease-out ${
           isHovered 
-            ? "text-gray-800 dark:text-gray-200" 
+            ? "text-[var(--text-heading)]"
             : item.color
         }`} 
       />
@@ -125,6 +125,7 @@ const ThemeToggle = ({ theme, setTheme, isHovered, onHover, onLeave, isMobile })
 
 const Dock = ({ theme, setTheme, activeSection, scrollToSection, navigationItems = DEFAULT_NAVIGATION_ITEMS }) => {
   const [hoveredItem, setHoveredItem] = useState(null);
+  const [dockHovered, setDockHovered] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [dockRect, setDockRect] = useState(null);
   const [logoRect, setLogoRect] = useState(null);
@@ -132,9 +133,19 @@ const Dock = ({ theme, setTheme, activeSection, scrollToSection, navigationItems
 
   const logoBtnRef = useRef(null);
   const dockRef = useRef(null);
+  const leaveTimer = useRef(null);
 
   const handleItemHover = (id) => setHoveredItem(id);
   const handleItemLeave = () => setHoveredItem(null);
+
+  // Debounced dock hover - prevents jitter at edges
+  const handleDockEnter = () => {
+    if (leaveTimer.current) { clearTimeout(leaveTimer.current); leaveTimer.current = null; }
+    setDockHovered(true);
+  };
+  const handleDockLeave = () => {
+    leaveTimer.current = setTimeout(() => { setDockHovered(false); setHoveredItem(null); }, 200);
+  };
   const handleLogoClick = () => setIsModalOpen((prev) => !prev);
 
   // Hiệu ứng 3D và đảo ngược màu cho dark/light mode
@@ -193,7 +204,9 @@ const Dock = ({ theme, setTheme, activeSection, scrollToSection, navigationItems
     <>
       <nav
         ref={dockRef}
-        className={`fixed z-50 transition-all duration-300 shadow-2xl ${dockBgClass}
+        onMouseEnter={handleDockEnter}
+        onMouseLeave={handleDockLeave}
+        className={`fixed z-50 shadow-2xl ${dockBgClass}
           bottom-6 right-6 sm:bottom-6 sm:left-1/2 sm:-translate-x-1/2 sm:right-auto
           rounded-2xl sm:px-5 sm:py-3 px-3 py-5
           flex flex-col sm:flex-row items-center justify-center
