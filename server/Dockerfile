@@ -10,5 +10,5 @@ FROM alpine:3.20
 RUN apk add --no-cache ca-certificates
 WORKDIR /app
 COPY --from=builder /app/pb .
-EXPOSE 8765
-CMD ["./pb", "serve", "--http=0.0.0.0:8765"]
+EXPOSE 8090
+CMD ["./pb", "serve", "--http=0.0.0.0:8090"]
