@@ -20,8 +20,8 @@ func DefaultConfig() Config {
 	return Config{
 		Title:       envOr("BLOG_TITLE", "VietCQ Blog"),
 		Description: envOr("BLOG_DESCRIPTION", "Personal blog by VietCQ"),
-		BaseURL:     envOr("BLOG_BASE_URL", "http://localhost:3000"),
-		CORSOrigins: []string{envOr("CORS_ORIGIN", "http://localhost:3000")},
+		BaseURL:     envOr("BLOG_BASE_URL", "http://localhost:5678"),
+		CORSOrigins: []string{envOr("CORS_ORIGIN", "http://localhost:5678")},
 		BlockedBots: []string{"GPTBot", "CCBot", "Google-Extended", "anthropic-ai", "ClaudeBot"},
 	}
 }
