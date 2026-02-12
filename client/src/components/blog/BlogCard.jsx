@@ -27,7 +27,7 @@ const BlogCard = ({ post, theme, isLatest = false, t, dateLocale }) => {
                 <div className="p-5 flex-1 flex flex-col gap-3">
                     <div className="flex items-center gap-2 text-xs text-[var(--text-secondary)]">
                         <time dateTime={post.published_at}>{formatPostDate(post.published_at, dateLocale)}</time>
-                        <span className="w-1 h-1 rounded-full bg-zinc-300 dark:bg-zinc-600" />
+                        <span className="w-1 h-1 rounded-full bg-[var(--border-divider)]" />
                         <span className="inline-flex items-center gap-1"><Clock className="w-3 h-3" />{readTime}</span>
                     </div>
 
@@ -40,12 +40,12 @@ const BlogCard = ({ post, theme, isLatest = false, t, dateLocale }) => {
                     </p>
 
                     {post.category && (
-                        <span className="text-xs px-2.5 py-1 rounded-full self-start font-medium bg-[var(--color-50)] text-[var(--color-600)] dark:bg-[var(--color-900)] dark:text-[var(--color-300)] border border-[var(--color-100)] dark:border-[var(--color-500)]/20">
+                        <span className="text-xs px-2.5 py-1 rounded-full self-start font-medium bg-[var(--bg-badge)] text-[var(--text-badge)] border border-[var(--border-default)]">
                             {post.category}
                         </span>
                     )}
 
-                    <div className="pt-2 flex items-center gap-1 text-sm font-medium text-[var(--color-500)] dark:text-[var(--color-400)]">
+                    <div className="pt-2 flex items-center gap-1 text-sm font-medium text-[var(--text-link)]">
                         <span className="group-hover:underline underline-offset-4">{t('blog.readMore')}</span>
                         <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </div>

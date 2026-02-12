@@ -24,9 +24,9 @@ export function LanguageIcon({ language, onToggle }) {
 
 export function WiFiIcon() {
   return (
-    <div className="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors cursor-pointer flex items-center justify-center min-h-[32px]">
+    <div className="p-1 hover:bg-[var(--bg-hover)] rounded transition-colors cursor-pointer flex items-center justify-center min-h-[32px]">
       <div className="scale-130 flex items-center justify-center">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="text-gray-700 dark:text-gray-300">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="text-[var(--text-secondary)]">
           {/* Innermost circle (device) */}
           <circle cx="12" cy="18" r="1" fill="currentColor"/>
           
@@ -71,10 +71,10 @@ export function VolumeIcon() {
   return (
     <div
       onClick={toggleSound}
-      className="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors cursor-pointer flex items-center justify-center min-h-[32px]"
+      className="p-1 hover:bg-[var(--bg-hover)] rounded transition-colors cursor-pointer flex items-center justify-center min-h-[32px]"
       title={isEnabled ? t('dock.disableSound') : t('dock.enableSound')}
     >
-      <div className="text-gray-700 dark:text-gray-300 scale-130 flex items-center justify-center">
+      <div className="text-[var(--text-secondary)] scale-130 flex items-center justify-center">
         {getVolumeIcon()}
       </div>
     </div>
@@ -142,7 +142,7 @@ export function BatteryIcon() {
   return (
     <div
       onClick={cyclePalette}
-      className="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors cursor-pointer flex items-center justify-center min-h-[32px]"
+      className="p-1 hover:bg-[var(--bg-hover)] rounded transition-colors cursor-pointer flex items-center justify-center min-h-[32px]"
       title="Switch color palette"
     >
       <div className="relative scale-130 flex items-center justify-center text-green-400">
@@ -152,7 +152,7 @@ export function BatteryIcon() {
           <div className="absolute -right-0.5 top-1 w-0.5 h-1 bg-current rounded-r-sm"></div>
 
           {/* Battery Fill — uses palette color-300 */}
-          <div className="absolute inset-0.5 bg-gray-700 rounded-sm overflow-hidden">
+          <div className="absolute inset-0.5 bg-[var(--color-800)] rounded-sm overflow-hidden">
             <div
               className="h-full transition-all duration-1000"
               style={{ width: `${batteryLevel}%`, backgroundColor: batteryLevel < 20 ? '#f87171' : batteryLevel < 50 ? '#fb923c' : 'var(--color-300)' }}
@@ -183,8 +183,8 @@ export function CalendarIcon() {
   const date = now.toLocaleDateString('en-GB');
 
   return (
-    <div className="px-3 py-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors cursor-pointer flex items-center justify-center">
-      <div className="flex flex-col items-start justify-center text-xs text-gray-700 dark:text-gray-300 font-medium">
+    <div className="px-3 py-2 hover:bg-[var(--bg-hover)] rounded transition-colors cursor-pointer flex items-center justify-center">
+      <div className="flex flex-col items-start justify-center text-xs text-[var(--text-secondary)] font-medium">
         <div className="text-[14px] leading-none mb-1 whitespace-nowrap">{time}</div>
         <div className="text-[14px] leading-none whitespace-nowrap">{date}</div>
       </div>

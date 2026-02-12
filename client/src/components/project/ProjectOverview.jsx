@@ -17,7 +17,7 @@ export default function ProjectOverview({ theme, projectData, projectId }) {
             
             <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-20 pb-38 text-center relative z-10">
                 <div style={{ animation: 'fadeInUp 1s ease-out' }}>
-                    <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight text-gray-900 dark:text-white" style={{ 
+                    <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight text-[var(--text-heading)]" style={{ 
                         animation: 'fadeInUp 1s ease-out 0.4s both',
                         fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif'
                     }}>
@@ -29,11 +29,11 @@ export default function ProjectOverview({ theme, projectData, projectId }) {
                         </span>
                     </h1>
                     
-                    <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed text-gray-700 dark:text-gray-300" style={{ animation: 'fadeInUp 1s ease-out 0.6s both' }}>
+                    <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed text-[var(--text-secondary)]" style={{ animation: 'fadeInUp 1s ease-out 0.6s both' }}>
                         {projectData.tagline}
                     </p>
                     
-                    <p className="text-lg mb-8 max-w-4xl mx-auto leading-relaxed text-gray-600 dark:text-gray-400" style={{ animation: 'fadeInUp 1s ease-out 0.8s both' }}>
+                    <p className="text-lg mb-8 max-w-4xl mx-auto leading-relaxed text-[var(--text-muted)]" style={{ animation: 'fadeInUp 1s ease-out 0.8s both' }}>
                         {projectData.description}
                     </p>
 
@@ -67,43 +67,43 @@ export default function ProjectOverview({ theme, projectData, projectId }) {
                     </div>
 
                     {/* Project Stats */}
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto p-8 rounded-2xl backdrop-blur-lg border bg-white/50 border-white/20 dark:bg-white/5 dark:border-white/10" style={{ animation: 'fadeInUp 1s ease-out 1.2s both' }}>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto p-8 rounded-2xl backdrop-blur-lg border bg-[var(--bg-page)]/30 border-[var(--border-default)]/30 shadow-[var(--card-shadow)]" style={{ animation: 'fadeInUp 1s ease-out 1.2s both' }}>
                         {projectData.timeline?.status && (
                             <div className="text-center">
-                                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                                <div className="text-2xl font-bold text-[var(--text-link)]">
                                     {projectData.timeline.status}
                                 </div>
-                                <div className="text-sm text-gray-600 dark:text-gray-400">
+                                <div className="text-sm text-[var(--text-muted)]">
                                     Status
                                 </div>
                             </div>
                         )}
                         {projectData.timeline?.startDate && (
                             <div className="text-center">
-                                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                                <div className="text-2xl font-bold text-[var(--text-link)]">
                                     {projectData.timeline.startDate}
                                 </div>
-                                <div className="text-sm text-gray-600 dark:text-gray-400">
+                                <div className="text-sm text-[var(--text-muted)]">
                                     Started
                                 </div>
                             </div>
                         )}
                         {projectData.features?.length > 0 && (
                             <div className="text-center">
-                                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                                <div className="text-2xl font-bold text-[var(--text-link)]">
                                     {projectData.features.length}
                                 </div>
-                                <div className="text-sm text-gray-600 dark:text-gray-400">
+                                <div className="text-sm text-[var(--text-muted)]">
                                     Features
                                 </div>
                             </div>
                         )}
                         {projectData.technologies && (
                             <div className="text-center">
-                                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                                <div className="text-2xl font-bold text-[var(--text-link)]">
                                     {Object.values(projectData.technologies).flat().length}
                                 </div>
-                                <div className="text-sm text-gray-600 dark:text-gray-400">
+                                <div className="text-sm text-[var(--text-muted)]">
                                     Technologies
                                 </div>
                             </div>

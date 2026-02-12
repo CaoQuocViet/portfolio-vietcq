@@ -167,7 +167,7 @@ export default function HomePageClient() {
     if (!mounted) return null;
 
     return (
-        <div className="min-h-screen bg-white dark:bg-gray-950 overflow-x-hidden">
+        <div className="min-h-screen bg-[var(--bg-page)] overflow-x-hidden">
             <StableClock theme={theme} />
             
             <StableNavigation

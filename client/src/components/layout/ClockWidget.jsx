@@ -56,11 +56,7 @@ const ClockWidget = ({ theme }) => {
 
     return (
         <div className="fixed top-6 left-6 z-50">
-            <div className={`relative w-20 h-20 md:w-40 md:h-40 rounded-full border-2 ${
-                theme === 'dark' 
-                    ? 'border-gray-700/50 bg-gray-900/80' 
-                    : 'border-gray-300/50 bg-white/90'
-            } backdrop-blur-lg shadow-lg`}>
+            <div className="relative w-20 h-20 md:w-40 md:h-40 rounded-full border-2 border-[var(--border-default)] bg-[var(--bg-page)]/90 backdrop-blur-lg shadow-lg">
                 
                 {/* Original SVG Clock Face Background */}
                 <div 

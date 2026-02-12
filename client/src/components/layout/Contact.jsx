@@ -29,14 +29,14 @@ export default function Contact({ theme }) {
     const email = info.email;
 
     return (
-        <section id="contact" className="py-24 bg-gray-200 dark:bg-gray-900/50">
+        <section id="contact" className="py-24 bg-[var(--bg-section-alt)]">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 <div className="text-center mb-16">
-                    <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
+                    <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[var(--text-heading)]">
                         {t('contact.sectionTitle')}
                     </h2>
                     <p
-                        className="text-xl max-w-3xl mx-auto text-gray-600 dark:text-gray-300"
+                        className="text-xl max-w-3xl mx-auto text-[var(--text-secondary)]"
                     >
                         {t('contact.description')}
                     </p>
@@ -74,60 +74,51 @@ export default function Contact({ theme }) {
                             </div>
                         </div>
 
-                        <div className="p-6 md:p-8 rounded-2xl bg-white shadow-xl dark:bg-gray-800">
+                        <div className="p-6 md:p-8 rounded-2xl bg-[var(--bg-card)] shadow-xl">
                             <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
                                 <div>
-                                    <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+                                    <label className="block text-sm font-medium mb-2 text-[var(--text-secondary)]">
                                         {t('contact.nameLabel')}
                                     </label>
                                     <input
                                         type="text"
                                         value={formData.name}
                                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                        className={`w-full px-4 py-3 rounded-lg border transition-colors ${theme === 'dark'
-                                            ? 'bg-gray-700 border-gray-600 text-white focus:border-blue-400'
-                                            : 'bg-white border-gray-300 text-gray-900 focus:border-blue-500'
-                                            } focus:outline-none focus:ring-2 focus:ring-blue-500/20`}
+                                        className="w-full px-4 py-3 rounded-lg border transition-colors bg-[var(--bg-input)] border-[var(--border-input)] text-[var(--text-body)] focus:border-[var(--border-focus)] focus:outline-none focus:ring-2 focus:ring-[var(--ring-focus)]"
                                         placeholder={t('contact.namePlaceholder')}
                                     />
                                 </div>
 
                                 <div>
-                                    <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+                                    <label className="block text-sm font-medium mb-2 text-[var(--text-secondary)]">
                                         {t('contact.subjectLabel')}
                                     </label>
                                     <input
                                         type="text"
                                         value={formData.subject}
                                         onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                                        className={`w-full px-4 py-3 rounded-lg border transition-colors ${theme === 'dark'
-                                            ? 'bg-gray-700 border-gray-600 text-white focus:border-blue-400'
-                                            : 'bg-white border-gray-300 text-gray-900 focus:border-blue-500'
-                                            } focus:outline-none focus:ring-2 focus:ring-blue-500/20`}
+                                        className="w-full px-4 py-3 rounded-lg border transition-colors bg-[var(--bg-input)] border-[var(--border-input)] text-[var(--text-body)] focus:border-[var(--border-focus)] focus:outline-none focus:ring-2 focus:ring-[var(--ring-focus)]"
                                         placeholder={t('contact.subjectPlaceholder')}
                                     />
                                 </div>
 
                                 <div>
-                                    <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+                                    <label className="block text-sm font-medium mb-2 text-[var(--text-secondary)]">
                                         {t('contact.messageLabel')}
                                     </label>
                                     <textarea
                                         rows={4}
                                         value={formData.message}
                                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                                        className={`w-full px-4 py-3 rounded-lg border transition-colors ${theme === 'dark'
-                                            ? 'bg-gray-700 border-gray-600 text-white focus:border-blue-400'
-                                            : 'bg-white border-gray-300 text-gray-900 focus:border-blue-500'
-                                            } focus:outline-none focus:ring-2 focus:ring-blue-500/20`}
+                                        className="w-full px-4 py-3 rounded-lg border transition-colors bg-[var(--bg-input)] border-[var(--border-input)] text-[var(--text-body)] focus:border-[var(--border-focus)] focus:outline-none focus:ring-2 focus:ring-[var(--ring-focus)]"
                                         placeholder={t('contact.messagePlaceholder')}
                                     />
                                 </div>
                                 <button
                                     type="submit"
-                                    className={`w-full px-6 py-3 rounded-lg font-semibold text-white transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500/20 ${formData.name && formData.subject && formData.message && !isSubmitting
+                                    className={`w-full px-6 py-3 rounded-lg font-semibold text-white transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[var(--ring-focus)] ${formData.name && formData.subject && formData.message && !isSubmitting
                                         ? 'bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 shadow-lg'
-                                        : 'bg-gray-400 cursor-not-allowed'
+                                        : 'bg-[var(--btn-disabled)] text-[var(--btn-disabled-text)] cursor-not-allowed'
                                         }`}
                                     disabled={!formData.name || !formData.subject || !formData.message || isSubmitting}
                                     onClick={() => {
@@ -152,7 +143,7 @@ export default function Contact({ theme }) {
                                 </button>
 
                                 {submitMessage && (
-                                    <div className="text-center p-3 rounded-lg bg-green-100 text-green-700 dark:bg-green-900/20 dark:text-green-400">
+                                    <div className="text-center p-3 rounded-lg bg-[var(--color-success)]/10 text-[var(--color-success)]">
                                         {t('contact.emailOpened')}
                                     </div>
                                 )}

@@ -9,7 +9,7 @@ const BlogListErrorState = ({ theme, setTheme, scrollToSection, navigationItems,
         <div className="min-h-screen flex justify-center items-center p-5 bg-[var(--bg-page)] relative">
             <GridBackground theme={theme} />
             <div className="text-center relative z-10" role="alert">
-                <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-red-50 dark:bg-red-950/30 flex items-center justify-center">
+                <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-[var(--color-error)]/10 flex items-center justify-center">
                     <AlertTriangle className="w-8 h-8 text-red-500" />
                 </div>
                 <h2 className="text-[var(--text-heading)] text-2xl font-bold mb-2">{t('blog.errorTitle')}</h2>

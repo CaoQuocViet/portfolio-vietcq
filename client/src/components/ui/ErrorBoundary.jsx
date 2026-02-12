@@ -25,15 +25,15 @@ class ErrorBoundary extends Component {
             return (
                 <div className="flex flex-col items-center justify-center min-h-[300px] p-8 text-center" role="alert">
                     <AlertTriangle className="w-12 h-12 text-red-500 mb-4" />
-                    <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                    <h2 className="text-xl font-bold text-[var(--text-heading)] mb-2">
                         {this.props.fallbackTitle || 'Something went wrong'}
                     </h2>
-                    <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-md">
+                    <p className="text-[var(--text-secondary)] mb-6 max-w-md">
                         {this.props.fallbackMessage || 'An unexpected error occurred. Please try again.'}
                     </p>
                     <button
                         onClick={this.handleReset}
-                        className="inline-flex items-center gap-2 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors duration-150 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--btn-primary)] hover:bg-[var(--btn-primary-hover)] text-[var(--btn-primary-text)] rounded-lg transition-colors duration-150 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring-focus)] focus-visible:ring-offset-2"
                     >
                         <RefreshCw className="w-4 h-4" />
                         Try again

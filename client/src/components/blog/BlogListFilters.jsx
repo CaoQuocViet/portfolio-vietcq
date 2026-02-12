@@ -16,14 +16,14 @@ const BlogListFilters = ({
             {/* Search */}
             <div className="flex justify-center">
                 <div className="relative w-full max-w-lg">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400 pointer-events-none" aria-hidden="true" />
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--text-disabled)] pointer-events-none" aria-hidden="true" />
                     <input
                         type="text"
                         placeholder={t('blog.searchPlaceholder')}
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         aria-label={t('blog.searchPlaceholder')}
-                        className="w-full pl-11 pr-10 py-3 rounded-xl text-sm bg-[var(--bg-input)] text-[var(--text-heading)] placeholder-zinc-500 border border-[var(--border-default)] focus:border-[var(--border-focus)] focus:ring-2 focus:ring-[var(--border-focus)] focus:outline-none transition-[box-shadow] duration-200 shadow-sm"
+                        className="w-full pl-11 pr-10 py-3 rounded-xl text-sm bg-[var(--bg-input)] text-[var(--text-heading)] placeholder-[var(--text-muted)] border border-[var(--border-default)] focus:border-[var(--border-focus)] focus:ring-2 focus:ring-[var(--border-focus)] focus:outline-none transition-[box-shadow] duration-200 shadow-sm"
                     />
                     {searchTerm && (
                         <button

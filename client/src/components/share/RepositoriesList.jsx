@@ -17,7 +17,7 @@ const RepositoriesList = ({ theme = "dark" }) => {
 
   if (repos.length === 0) {
     return (
-      <div className="text-center py-4 text-gray-600 dark:text-gray-400">
+      <div className="text-center py-4 text-[var(--text-secondary)]">
         {t('common.noReposFound')}
       </div>
     );
@@ -36,31 +36,28 @@ const RepositoriesList = ({ theme = "dark" }) => {
           <div className={`group transition-all duration-300 
                          rounded-2xl p-6 
                          hover:scale-[1.02] hover:shadow-lg
-                         ${theme === 'dark' 
-                             ? 'bg-gray-800/30 hover:bg-gray-800/50' 
-                             : 'bg-white/50 hover:bg-white/80'
-                         }`}>
+                         bg-[var(--bg-card)] hover:bg-[var(--bg-card-hover)]`}>
             {/* Repository Header */}
             <div className="flex items-center justify-between mb-4">
-              <h4 className="font-bold text-lg text-gray-900 dark:text-white 
-                            group-hover:text-green-600 dark:group-hover:text-green-400 
+              <h4 className="font-bold text-lg text-[var(--text-heading)]
+                            group-hover:text-[var(--text-link-hover)]
                             transition-colors duration-300">
                 {repo.name.replace(/-/g, ' ').replace(/_/g, ' ')}
               </h4>
               <div className="flex items-center space-x-3">
                 {/* Stars */}
-                <div className="flex items-center space-x-1 bg-yellow-50 dark:bg-yellow-500/10 
+                <div className="flex items-center space-x-1 bg-[var(--color-warning)]/10
                                px-2 py-1 rounded-full">
                   <span className="text-yellow-500 text-xs">⭐</span>
-                  <span className="text-xs font-medium text-yellow-700 dark:text-yellow-400">
+                  <span className="text-xs font-medium text-[var(--color-warning)]">
                     {repo.stargazers_count || 0}
                   </span>
                 </div>
                 {/* Forks */}
-                <div className="flex items-center space-x-1 bg-green-50 dark:bg-green-500/10 
+                <div className="flex items-center space-x-1 bg-[var(--color-success)]/10
                                px-2 py-1 rounded-full">
                   <span className="text-green-500 text-xs">🍴</span>
-                  <span className="text-xs font-medium text-green-700 dark:text-green-400">
+                  <span className="text-xs font-medium text-[var(--color-success)]">
                     {repo.forks_count || 0}
                   </span>
                 </div>
@@ -69,7 +66,7 @@ const RepositoriesList = ({ theme = "dark" }) => {
             
                         {/* Description */}
             {repo.description && (
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 leading-relaxed
+              <p className="text-sm text-[var(--text-secondary)] mb-4 leading-relaxed
                             overflow-hidden"
                  style={{
                    display: '-webkit-box',
@@ -84,14 +81,14 @@ const RepositoriesList = ({ theme = "dark" }) => {
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
                 {repo.language && (
-                  <span className="text-xs bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 
+                  <span className="text-xs bg-[var(--bg-badge)] text-[var(--text-link)]
                                    px-2 py-1 rounded-full font-medium">
                     {repo.language}
                   </span>
                 )}
               </div>
-              <span className="text-xs text-green-600 dark:text-green-400 font-medium
-                             bg-green-50 dark:bg-green-500/10 px-3 py-1 rounded-full">
+              <span className="text-xs text-[var(--color-success)] font-medium
+                             bg-[var(--color-success)]/10 px-3 py-1 rounded-full">
                 {t('common.viewRepo')}
               </span>
             </div>
