@@ -2,6 +2,7 @@ import "../../global.css";
 import LocalFont from "next/font/local";
 import { ThemeProvider } from "next-themes";
 import { LanguageProvider } from "../contexts/LanguageContext";
+import QueryProvider from "../providers/query-provider";
 
 /** @type {import('next').Metadata} */
 export const metadata = {
@@ -20,11 +21,13 @@ export default function RootLayout({
 	return (
 		<html lang="en" className={calSans.variable} suppressHydrationWarning>
 			<body suppressHydrationWarning>
-				<LanguageProvider>
-					<ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
-						{children}
-					</ThemeProvider>
-				</LanguageProvider>
+				<QueryProvider>
+					<LanguageProvider>
+						<ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+							{children}
+						</ThemeProvider>
+					</LanguageProvider>
+				</QueryProvider>
 			</body>
 		</html>
 	);
