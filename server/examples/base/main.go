@@ -8,6 +8,7 @@ import (
 
 	"github.com/pocketbase/pocketbase"
 	"github.com/pocketbase/pocketbase/apis"
+	"github.com/pocketbase/pocketbase/blog"
 	"github.com/pocketbase/pocketbase/core"
 	"github.com/pocketbase/pocketbase/plugins/ghupdate"
 	"github.com/pocketbase/pocketbase/plugins/jsvm"
@@ -102,6 +103,9 @@ func main() {
 
 	// GitHub selfupdate
 	ghupdate.MustRegister(app, app.RootCmd, ghupdate.Config{})
+
+	// Blog engine
+	blog.Register(app, blog.DefaultConfig())
 
 	// static route to serves files from the provided public dir
 	// (if publicDir exists and the route path is not already defined)
