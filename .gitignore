@@ -3,3 +3,5 @@ plans/
 docs/00-runtime.md
 CLAUDE.md
 .claude
+backend/pb_data/
+backend/pb-blog
