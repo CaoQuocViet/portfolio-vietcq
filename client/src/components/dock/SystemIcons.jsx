@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react'
 import { useLanguage } from "../../contexts/LanguageContext";
 import { useWindowsSound } from "../../hooks/useWindowsSound";
+import { useTranslation } from '../../hooks/useTranslation';
 
 export function LanguageIcon({ language, onToggle }) {
   return (
@@ -48,6 +49,7 @@ export function WiFiIcon() {
 
 export function VolumeIcon() {
   const { isEnabled, toggleSound } = useWindowsSound();
+  const { t } = useTranslation();
 
   const getVolumeIcon = () => {
     if (!isEnabled) {
@@ -67,10 +69,10 @@ export function VolumeIcon() {
   }
 
   return (
-    <div 
+    <div
       onClick={toggleSound}
       className="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors cursor-pointer flex items-center justify-center min-h-[32px]"
-      title={isEnabled ? "Disable Windows Sound" : "Enable Windows Sound"}
+      title={isEnabled ? t('dock.disableSound') : t('dock.enableSound')}
     >
       <div className="text-gray-700 dark:text-gray-300 scale-130 flex items-center justify-center">
         {getVolumeIcon()}

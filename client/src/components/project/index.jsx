@@ -11,6 +11,7 @@ import ProjectFeatures from './ProjectFeatures'
 import ProjectGallery from './ProjectGallery'
 import { LoadingSpinner } from "../ui/loading";
 import { useLanguage } from "../../contexts/LanguageContext";
+import { useTranslation } from '../../hooks/useTranslation';
 import { PROJECT_NAVIGATION_ITEMS } from '../../config/navigation'
 import { createScrollFunction } from '../../utils/navigation'
 
@@ -18,6 +19,7 @@ const ProjectPage = () => {
     const params = useParams()
     const { theme, setTheme } = useTheme()
     const { language } = useLanguage()
+    const { t } = useTranslation()
     const [activeSection, setActiveSection] = useState("project-overview")
     const [mounted, setMounted] = useState(false)
     const [projectData, setProjectData] = useState(null)
@@ -72,14 +74,14 @@ const ProjectPage = () => {
             <div className="min-h-screen bg-white dark:bg-gray-950 flex items-center justify-center">
                 <div className="text-center">
                     <h1 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
-                        Project Not Found
+                        {t('common.projectNotFound')}
                     </h1>
-                    <Button 
+                    <Button
                         href="/gallery"
                         variant="primary"
                         size="md"
                     >
-                        Back to Gallery
+                        {t('common.backToGallery')}
                     </Button>
                 </div>
             </div>

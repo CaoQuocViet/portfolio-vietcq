@@ -2,8 +2,10 @@
 import { useState, useEffect } from 'react'
 import { FaCode, FaChartLine, FaNetworkWired, FaServer, FaFileAlt, FaTachometerAlt, FaCogs, FaReact, FaNodeJs, FaGitAlt, FaDocker, FaAws, FaPython, FaLinux, FaPalette, FaBug } from 'react-icons/fa'
 import { SiRedis, SiPostgresql, SiTailwindcss, SiNextdotjs, SiTypescript } from 'react-icons/si'
+import { useTranslation } from '../../hooks/useTranslation'
 
 const Services = ({ theme }) => {
+    const { t } = useTranslation()
     const [mounted, setMounted] = useState(false)
 
     useEffect(() => {
@@ -76,12 +78,12 @@ const Services = ({ theme }) => {
                     } bg-clip-text text-transparent drop-shadow-2xl ${
                         theme === 'dark' ? 'drop-shadow-blue-500/50' : 'drop-shadow-blue-900/30'
                     }`}>
-                        What I Do
+                        {t('services.sectionTitle')}
                     </h1>
                     <p className={`text-2xl md:text-3xl font-light text-center opacity-0 animate-[slideInLeft_1s_ease-out_0.3s_forwards] ${
                         theme === 'dark' ? 'text-blue-200' : 'text-blue-800'
                     }`}>
-                        Services & Expertise
+                        {t('services.subtitle')}
                     </p>
                     
                     {/* Services Grid */}
@@ -98,14 +100,14 @@ const Services = ({ theme }) => {
                                 <h3 className={`text-xl font-bold ${
                                     theme === 'dark' ? 'text-blue-100' : 'text-blue-800'
                                 }`}>
-                                    AI-powered web system
+                                    {t('services.items.aiWeb')}
                                 </h3>
                             </div>
                         </div>
 
                         <div className={`backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 hover:scale-105 ${
-                            theme === 'dark' 
-                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50' 
+                            theme === 'dark'
+                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50'
                                 : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70'
                         }`}>
                             <div className="flex items-center mb-4">
@@ -115,14 +117,14 @@ const Services = ({ theme }) => {
                                 <h3 className={`text-xl font-bold ${
                                     theme === 'dark' ? 'text-blue-100' : 'text-blue-800'
                                 }`}>
-                                    Business Analysis
+                                    {t('services.items.businessAnalysis')}
                                 </h3>
                             </div>
                         </div>
 
                         <div className={`backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 hover:scale-105 ${
-                            theme === 'dark' 
-                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50' 
+                            theme === 'dark'
+                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50'
                                 : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70'
                         }`}>
                             <div className="flex items-center mb-4">
@@ -132,14 +134,14 @@ const Services = ({ theme }) => {
                                 <h3 className={`text-xl font-bold ${
                                     theme === 'dark' ? 'text-blue-100' : 'text-blue-800'
                                 }`}>
-                                    System Design
+                                    {t('services.items.systemDesign')}
                                 </h3>
                             </div>
                         </div>
 
                         <div className={`backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 hover:scale-105 ${
-                            theme === 'dark' 
-                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50' 
+                            theme === 'dark'
+                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50'
                                 : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70'
                         }`}>
                             <div className="flex items-center mb-4">
@@ -149,14 +151,14 @@ const Services = ({ theme }) => {
                                 <h3 className={`text-xl font-bold ${
                                     theme === 'dark' ? 'text-blue-100' : 'text-blue-800'
                                 }`}>
-                                    API Design
+                                    {t('services.items.apiDesign')}
                                 </h3>
                             </div>
                         </div>
 
                         <div className={`backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 hover:scale-105 ${
-                            theme === 'dark' 
-                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50' 
+                            theme === 'dark'
+                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50'
                                 : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70'
                         }`}>
                             <div className="flex items-center mb-4">
@@ -166,14 +168,14 @@ const Services = ({ theme }) => {
                                 <h3 className={`text-xl font-bold ${
                                     theme === 'dark' ? 'text-blue-100' : 'text-blue-800'
                                 }`}>
-                                    Documentation
+                                    {t('services.items.documentation')}
                                 </h3>
                             </div>
                         </div>
 
                         <div className={`backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 hover:scale-105 ${
-                            theme === 'dark' 
-                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50' 
+                            theme === 'dark'
+                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50'
                                 : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70'
                         }`}>
                             <div className="flex items-center mb-4">
@@ -183,14 +185,14 @@ const Services = ({ theme }) => {
                                 <h3 className={`text-xl font-bold ${
                                     theme === 'dark' ? 'text-blue-100' : 'text-blue-800'
                                 }`}>
-                                    Performance & Caching
+                                    {t('services.items.performance')}
                                 </h3>
                             </div>
                         </div>
 
                         <div className={`backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 hover:scale-105 ${
-                            theme === 'dark' 
-                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50' 
+                            theme === 'dark'
+                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50'
                                 : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70'
                         }`}>
                             <div className="flex items-center mb-4">
@@ -200,14 +202,14 @@ const Services = ({ theme }) => {
                                 <h3 className={`text-xl font-bold ${
                                     theme === 'dark' ? 'text-blue-100' : 'text-blue-800'
                                 }`}>
-                                    DevOps
+                                    {t('services.items.devops')}
                                 </h3>
                             </div>
                         </div>
 
                         <div className={`backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 hover:scale-105 ${
-                            theme === 'dark' 
-                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50' 
+                            theme === 'dark'
+                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50'
                                 : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70'
                         }`}>
                             <div className="flex items-center mb-4">
@@ -217,14 +219,14 @@ const Services = ({ theme }) => {
                                 <h3 className={`text-xl font-bold ${
                                     theme === 'dark' ? 'text-blue-100' : 'text-blue-800'
                                 }`}>
-                                    UI/UX Design
+                                    {t('services.items.uiux')}
                                 </h3>
                             </div>
                         </div>
 
                         <div className={`backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 hover:scale-105 ${
-                            theme === 'dark' 
-                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50' 
+                            theme === 'dark'
+                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50'
                                 : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70'
                         }`}>
                             <div className="flex items-center mb-4">
@@ -234,7 +236,7 @@ const Services = ({ theme }) => {
                                 <h3 className={`text-xl font-bold ${
                                     theme === 'dark' ? 'text-blue-100' : 'text-blue-800'
                                 }`}>
-                                    Testing & QA
+                                    {t('services.items.testing')}
                                 </h3>
                             </div>
                         </div>
@@ -245,18 +247,18 @@ const Services = ({ theme }) => {
                 <div className="mt-24 opacity-0 animate-[fadeInUp_1s_ease-out_0.6s_forwards]">
                     <h2 className={`text-4xl md:text-5xl font-bold text-center mb-16 ${
                         theme === 'dark' ? 'text-white' : 'text-gray-900'
-                    }`}>Tech Stack</h2>
-                    
+                    }`}>{t('services.techStack')}</h2>
+
                     <div className="grid md:grid-cols-3 gap-8">
                         {/* Frontend */}
                         <div className={`backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 hover:scale-105 ${
-                            theme === 'dark' 
-                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50' 
+                            theme === 'dark'
+                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50'
                                 : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70'
                         }`}>
                             <h4 className={`text-lg font-semibold mb-4 ${
                                 theme === 'dark' ? 'text-blue-300' : 'text-blue-700'
-                            }`}>Frontend</h4>
+                            }`}>{t('services.frontend')}</h4>
                             <div className="space-y-3">
                                 <div className="flex items-center">
                                     <FaReact className={`text-2xl mr-3 ${
@@ -287,13 +289,13 @@ const Services = ({ theme }) => {
 
                         {/* Backend */}
                         <div className={`backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 hover:scale-105 ${
-                            theme === 'dark' 
-                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50' 
+                            theme === 'dark'
+                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50'
                                 : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70'
                         }`}>
                             <h4 className={`text-lg font-semibold mb-4 ${
                                 theme === 'dark' ? 'text-blue-300' : 'text-blue-700'
-                            }`}>Backend & Database</h4>
+                            }`}>{t('services.backend')}</h4>
                             <div className="space-y-3">
                                 <div className="flex items-center">
                                     <FaNodeJs className={`text-2xl mr-3 ${
@@ -324,13 +326,13 @@ const Services = ({ theme }) => {
 
                         {/* Tools */}
                         <div className={`backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 hover:scale-105 ${
-                            theme === 'dark' 
-                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50' 
+                            theme === 'dark'
+                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50'
                                 : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70'
                         }`}>
                             <h4 className={`text-lg font-semibold mb-4 ${
                                 theme === 'dark' ? 'text-blue-300' : 'text-blue-700'
-                            }`}>Tools & DevOps</h4>
+                            }`}>{t('services.tools')}</h4>
                             <div className="space-y-3">
                                 <div className="flex items-center">
                                     <FaGitAlt className={`text-2xl mr-3 ${

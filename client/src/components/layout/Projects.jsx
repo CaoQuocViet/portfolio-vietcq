@@ -4,9 +4,11 @@ import { useTheme } from 'next-themes'
 import { Github, ExternalLink, Star, GitFork } from 'lucide-react'
 import { useGitHubRepos } from '../../hooks/useGitHubRepos'
 import { LoadingSpinner } from "../ui/loading";
+import { useTranslation } from '../../hooks/useTranslation'
 
 const Projects = () => {
     const { theme } = useTheme()
+    const { t } = useTranslation()
     const { repos, loading } = useGitHubRepos(12) // Projects page lấy 12 repos
 
     // Split repos into two rows
@@ -64,7 +66,7 @@ const Projects = () => {
                                  WebkitLineClamp: 3,
                                  WebkitBoxOrient: 'vertical'
                                }}>
-                                {repo.description || 'A modern web project'}
+                                {repo.description || t('projects.fallbackDescription')}
                             </p>
 
                             {/* Language/Tech & Stats in same row */}
@@ -108,7 +110,7 @@ const Projects = () => {
                                         : 'text-slate-600 group-hover:text-blue-700 group-hover:scale-105'
                                     }`}>
                                     <Github className="w-3 h-3 group-hover:text-blue-400 transition-colors duration-500" />
-                                    <span>View</span>
+                                    <span>{t('projects.viewButton')}</span>
                                 </span>
 
                                 <ExternalLink className={`w-3 h-3 transition-all duration-500 group-hover:scale-125 group-hover:rotate-12 ${theme === 'dark'
@@ -142,11 +144,11 @@ const Projects = () => {
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 <div className="text-center mb-16">
                     <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-                        Github Repositories
+                        {t('projects.sectionTitle')}
                     </h2>
                     <div className="w-24 h-1 mx-auto rounded-full bg-blue-600 dark:bg-blue-400" />
                     <p className="text-lg mt-6 max-w-2xl mx-auto text-gray-600 dark:text-gray-300">
-                        Explore my latest projects showcasing modern web technologies and innovative solutions.
+                        {t('projects.description')}
                     </p>
                 </div>
 

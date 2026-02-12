@@ -1,6 +1,7 @@
 import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 import Link from "next/link";
 import { info } from "../../utils/info";
+import { useTranslation } from '../../hooks/useTranslation';
 
 // Social links loaded from info.js
 
@@ -28,11 +29,14 @@ const FooterSocialLinks = ({ theme, socialLinks }) => (
     </div>
 );
 
-const FooterCopyright = ({ theme }) => (
-    <div className="text-center text-lg mb-8 text-gray-600 dark:text-gray-400">
-        © 2025 Vietcq. All rights reserved.
-    </div>
-);
+const FooterCopyright = ({ theme }) => {
+    const { t } = useTranslation();
+    return (
+        <div className="text-center text-lg mb-8 text-gray-600 dark:text-gray-400">
+            {t('footer.copyright')}
+        </div>
+    );
+};
 
 export default function Footer({ theme }) {
     const socialLinks = [

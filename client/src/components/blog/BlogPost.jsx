@@ -11,10 +11,12 @@ import { BLOG_NAVIGATION_ITEMS } from '../../config/navigation'
 import { createScrollFunction } from '../../utils/navigation'
 import { useBlogPost } from '../../hooks/useBlog'
 import { LoadingSpinner } from '../ui/loading'
+import { useTranslation } from '../../hooks/useTranslation'
 import 'highlight.js/styles/github-dark.css'
 
 const BlogPost = ({ slug }) => {
     const { theme, setTheme } = useTheme()
+    const { t, dateLocale } = useTranslation()
     const [mounted, setMounted] = useState(false)
 
     const { post, loading, error } = useBlogPost(slug)
@@ -41,7 +43,7 @@ const BlogPost = ({ slug }) => {
                     <div className="py-16 bg-gray-200 dark:bg-gray-900/50 min-h-screen flex justify-center items-center">
                         <div className="text-center relative z-10">
                             <LoadingSpinner />
-                            <p className="text-gray-900 dark:text-white text-lg mt-4">Loading Blog Post...</p>
+                            <p className="text-gray-900 dark:text-white text-lg mt-4">{t('blog.loadingPosts')}</p>
                         </div>
                     </div>
                 </div>
@@ -63,13 +65,13 @@ const BlogPost = ({ slug }) => {
                     <div className="py-4 bg-gray-200 dark:bg-gray-900/50 min-h-screen flex justify-center items-center">
                         <div className="text-center relative z-10">
                             <div className="text-red-500 dark:text-red-400 text-6xl mb-4">📝</div>
-                            <h2 className="text-gray-900 dark:text-white text-2xl font-bold mb-2">Post Not Found</h2>
-                            <p className="text-gray-600 dark:text-gray-300 mb-4">{error || 'The blog post you\'re looking for doesn\'t exist.'}</p>
+                            <h2 className="text-gray-900 dark:text-white text-2xl font-bold mb-2">{t('blog.postNotFound')}</h2>
+                            <p className="text-gray-600 dark:text-gray-300 mb-4">{error || t('blog.postNotFoundText')}</p>
                             <Link
                                 href="/blog"
                                 className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                             >
-                                Back to Blog
+                                {t('blog.backToBlog')}
                             </Link>
                         </div>
                     </div>
@@ -79,7 +81,7 @@ const BlogPost = ({ slug }) => {
     }
 
     const formatDate = (dateString) => {
-        return new Date(dateString).toLocaleDateString('en-US', {
+        return new Date(dateString).toLocaleDateString(dateLocale, {
             year: 'numeric',
             month: 'long',
             day: 'numeric'
@@ -110,7 +112,7 @@ const BlogPost = ({ slug }) => {
                             } shadow-md`}
                         >
                             <span className="mr-2">←</span>
-                            Back to Blog
+                            {t('blog.backToBlog')}
                         </Link>
                     </div>                    {/* Article */}
                     <article
@@ -126,7 +128,7 @@ const BlogPost = ({ slug }) => {
                         {/* Featured badge */}
                         {post.featured && (
                             <div className="absolute top-8 right-8 bg-yellow-400 text-black text-sm font-bold px-3 py-1 rounded-full">
-                                Featured Post
+                                {t('blog.featuredPost')}
                             </div>
                         )}
 
@@ -277,7 +279,7 @@ const BlogPost = ({ slug }) => {
                                     className="inline-flex items-center px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors shadow-md"
                                 >
                                     <span className="mr-2">←</span>
-                                    More Posts
+                                    {t('blog.morePosts')}
                                 </Link>
                             </div>
                         </footer>

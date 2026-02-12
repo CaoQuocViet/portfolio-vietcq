@@ -9,6 +9,7 @@ import GridBackground from '../../ui/GridBackground';
 import Button from "../../ui/Button";
 import { info } from "../../../utils/info";
 import { Highlighter } from "@/components/magicui/highlighter";
+import { useTranslation } from '../../../hooks/useTranslation';
 
 const handleGetMyCV = () => {
     const link = document.createElement("a");
@@ -20,10 +21,11 @@ const handleGetMyCV = () => {
   };
 
 export default function Hero({ theme, scrollToSection }) {
+    const { t } = useTranslation();
     const [displayText, setDisplayText] = useState("");
     const [showCursor, setShowCursor] = useState(true);
-    const fullText = `Hello, I'm ${info.displayName}`;
-    
+    const fullText = t('hero.greeting', { name: info.displayName });
+
     useEffect(() => {
         let i = 0;
         let isDeleting = false;
@@ -98,29 +100,28 @@ export default function Hero({ theme, scrollToSection }) {
                         )}
                     </p>
                     
-                    <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight text-gray-900 dark:text-white" style={{ 
+                    <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight text-gray-900 dark:text-white" style={{
                         animation: 'fadeInUp 1s ease-out 0.4s both',
                         fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif'
                     }}>
                             <Highlighter action="underline" color="#FF9800">
-                        Full Stack
+                        {t('hero.title')}
                         </Highlighter>
                         <br />
                         <span className={`bg-gradient-to-r ${
-                            theme === 'dark' 
-                                ? 'from-blue-400 via-purple-400 to-blue-400' 
+                            theme === 'dark'
+                                ? 'from-blue-400 via-purple-400 to-blue-400'
                                 : 'from-blue-600 via-purple-600 to-blue-600'
                         } bg-clip-text text-transparent`} style={{
                             backgroundSize: '200% 200%',
                             animation: 'gradientMove 3s ease-in-out infinite'
                         }}>
-                            Web Developer
+                            {t('hero.subtitle')}
                         </span>
                     </h1>
-                    
+
                     <p className="text-xl md:text-2xl mb-12 max-w-3xl mx-auto leading-relaxed text-gray-600 dark:text-gray-300" style={{ animation: 'fadeInUp 1s ease-out 0.6s both' }}>
-                        I create exceptional digital experiences through clean code, 
-                        modern design, and innovative solutions.
+                        {t('hero.tagline')}
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16" 
@@ -131,15 +132,15 @@ export default function Hero({ theme, scrollToSection }) {
                             variant="primary"
                             size="lg"
                         >
-                            Get In Touch
+                            {t('hero.buttons.getInTouch')}
                         </Button>
-                        
+
                         <Button
                             onClick={handleGetMyCV}
                             variant="outline"
                             size="lg"
                         >
-                            Download my CV
+                            {t('hero.buttons.downloadCV')}
                         </Button>
                     </div>
 

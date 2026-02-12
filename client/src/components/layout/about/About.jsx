@@ -1,7 +1,9 @@
 import PCModel from "./PCModel";
 import { info } from "../../../utils/info";
+import { useTranslation } from "../../../hooks/useTranslation";
 
 const About = ({ theme }) => {
+  const { t } = useTranslation();
   return (
     <>
       <style jsx>{`
@@ -73,7 +75,7 @@ const About = ({ theme }) => {
                   : "text-gray-900 drop-shadow-lg"
               }`}
             >
-              About Me
+              {t('about.sectionTitle')}
             </h2>
             <div
               className={`w-24 h-1 mx-auto rounded-full ${
@@ -125,9 +127,9 @@ const About = ({ theme }) => {
               <div className="relative pt-8 pb-8 overflow-hidden lined-background">
                                  <div className="scrolling-text">
                    {/* Nội dung nhân đôi để scroll vô tận */}
-                   <ContentBlock theme={theme} />
+                   <ContentBlock theme={theme} t={t} />
                    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-                   <ContentBlock theme={theme} />
+                   <ContentBlock theme={theme} t={t} />
                  </div>
               </div>
             </div>
@@ -144,19 +146,19 @@ const About = ({ theme }) => {
 }
 
 /* Tách phần nội dung ra để reuse */
-function ContentBlock({ theme }) {
+function ContentBlock({ theme, t }) {
   return (
     <>
       <div className="px-8 py-4 text-left relative z-10">
         <h1 className={`text-2xl font-bold mb-4 text-center ${
           theme === 'dark' ? 'text-white' : 'text-gray-900'
         }`}>
-          Hi 👋, I'm <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Cao Quốc Việt</span>
+          {t('about.greeting')} <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">{t('about.name')}</span>
         </h1>
         <h3 className={`text-lg font-semibold mb-6 text-center ${
           theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
         }`}>
-          Fullstack Developer from Ho Chi Minh City, Vietnam 🇻🇳
+          {t('about.role')}
         </h3>
         
         <div className={`space-y-4 text-sm mb-6 ${
@@ -165,43 +167,43 @@ function ContentBlock({ theme }) {
           {/* Location & Work */}
           <div className="bg-gradient-to-r from-blue-50/10 to-cyan-50/10 rounded-lg p-3 border border-blue-200/20">
             <p className="mb-2">
-              📍 <strong className="text-blue-500">Location:</strong> Ho Chi Minh City, Vietnam
+              📍 <strong className="text-blue-500">{t('about.location')}</strong> {t('about.locationValue')}
             </p>
             <p>
-              💼 <strong className="text-blue-500">Work Style:</strong> Online with English-speaking teams & offline with local Vietnamese companies
+              💼 <strong className="text-blue-500">{t('about.workStyle')}</strong> {t('about.workStyleValue')}
             </p>
           </div>
 
           {/* Education */}
           <div className="bg-gradient-to-r from-purple-50/10 to-blue-50/10 rounded-lg p-3 border border-purple-200/20">
             <p className="mb-2">
-              🎓 <strong className="text-purple-500">Current Study:</strong> University of Science, Vietnam National University HCMC (HCMUS) - Since 2022
+              🎓 <strong className="text-purple-500">{t('about.currentStudy')}</strong> {t('about.currentStudyValue')}
             </p>
             <p>
-              🚀 <strong className="text-purple-500">Coding Journey:</strong> Started coding in 2021 after studying at HCMUT (Bach Khoa University)
+              🚀 <strong className="text-purple-500">{t('about.codingJourney')}</strong> {t('about.codingJourneyValue')}
             </p>
           </div>
 
           {/* Passion & Skills */}
           <div className="bg-gradient-to-r from-green-50/10 to-blue-50/10 rounded-lg p-3 border border-green-200/20">
             <p className="mb-2">
-              💻 <strong className="text-green-500">Tech Passion:</strong> Love all kinds of technology - both hardware & software
+              💻 <strong className="text-green-500">{t('about.techPassion')}</strong> {t('about.techPassionValue')}
             </p>
             <p>
-              🔧 <strong className="text-green-500">Main Focus:</strong> Web development with full-stack capabilities from freelance & indie development experience
+              🔧 <strong className="text-green-500">{t('about.mainFocus')}</strong> {t('about.mainFocusValue')}
             </p>
           </div>
 
           {/* Personality & Goals */}
           <div className="bg-gradient-to-r from-orange-50/10 to-red-50/10 rounded-lg p-3 border border-orange-200/20">
             <p className="mb-2">
-              🚀 <strong className="text-orange-500">Serious about:</strong> Building startups & working in professional environments
+              🚀 <strong className="text-orange-500">{t('about.seriousAbout')}</strong> {t('about.seriousAboutValue')}
             </p>
             <p className="mb-2">
-              ✨ <strong className="text-orange-500">Personality:</strong> Creative, friendly, challenge-oriented & always eager to learn
+              ✨ <strong className="text-orange-500">{t('about.personality')}</strong> {t('about.personalityValue')}
             </p>
             <p>
-              💡 <strong className="text-orange-500">Always seeking:</strong> New ideas in business & technology
+              💡 <strong className="text-orange-500">{t('about.alwaysSeeking')}</strong> {t('about.alwaysSeekingValue')}
             </p>
           </div>
         </div>
@@ -212,21 +214,21 @@ function ContentBlock({ theme }) {
         <h3 className={`text-lg font-semibold mb-4 ${
           theme === 'dark' ? 'text-white' : 'text-gray-900'
         }`}>
-          📞 Contact Information:
+          📞 {t('about.contactInfo')}
         </h3>
         <div className={`space-y-3 text-sm mb-6 ${
           theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
         }`}>
           <div className="flex items-center gap-2">
             <span>📱</span>
-            <strong className="text-blue-500">Phone:</strong>
+            <strong className="text-blue-500">{t('about.phone')}</strong>
             <a href="tel:+84367252854" className="text-blue-500 hover:text-blue-400 transition-colors">
               +84 367 252 854
             </a>
           </div>
           <div className="flex items-center gap-2">
             <span>✉️</span>
-            <strong className="text-blue-500">Email:</strong>
+            <strong className="text-blue-500">{t('about.email')}</strong>
             <a href="mailto:vietcao10@gmail.com" className="text-blue-500 hover:text-blue-400 transition-colors">
               vietcao10@gmail.com
             </a>
@@ -236,13 +238,13 @@ function ContentBlock({ theme }) {
         <h3 className={`text-lg font-semibold mb-3 ${
           theme === 'dark' ? 'text-white' : 'text-gray-900'
         }`}>
-          🌐 Connect with me:
+          🌐 {t('about.connectWithMe')}
         </h3>
         {/* Social Links sẽ được render từ SocialList component */}
         <div className="text-sm">
           <p className="text-gray-500 dark:text-gray-400">
-            Check out all my social platforms and links in the dock! 
-            <span className="text-blue-500"> → Click the dock icon at the bottom</span>
+            {t('about.socialLinks')}
+            <span className="text-blue-500"> {t('about.socialLinksAction')}</span>
           </p>
         </div>
       </div>
@@ -252,7 +254,7 @@ function ContentBlock({ theme }) {
         <h3 className={`text-lg font-semibold mb-3 ${
           theme === 'dark' ? 'text-white' : 'text-gray-900'
         }`}>
-          🔭 Current Projects:
+          🔭 {t('about.currentProjects')}
         </h3>
         <div className={`text-sm space-y-2 ${
           theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
@@ -269,16 +271,16 @@ function ContentBlock({ theme }) {
         <h3 className={`text-lg font-semibold mb-3 ${
           theme === 'dark' ? 'text-white' : 'text-gray-900'
         }`}>
-          🛠️ Languages and Tools:
+          🛠️ {t('about.languagesTools')}
         </h3>
         <div className={`text-sm space-y-2 ${
           theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
         }`}>
-          <p><strong className="text-blue-500">Programming:</strong> C++, Python, JavaScript, ABAP</p>
-          <p><strong className="text-cyan-500">Web Development:</strong> React, Node.js, HTML/CSS, Next.js</p>
-          <p><strong className="text-green-500">Database:</strong> PostgreSQL, MongoDB</p>
-          <p><strong className="text-purple-500">DevOps:</strong> Docker, Git, Linux, Nginx</p>
-          <p><strong className="text-orange-500">Game Development:</strong> Unity</p>
+          <p><strong className="text-blue-500">{t('about.programming')}</strong> {t('about.programmingValue')}</p>
+          <p><strong className="text-cyan-500">{t('about.webDevelopment')}</strong> {t('about.webDevelopmentValue')}</p>
+          <p><strong className="text-green-500">{t('about.database')}</strong> {t('about.databaseValue')}</p>
+          <p><strong className="text-purple-500">{t('about.devops')}</strong> {t('about.devopsValue')}</p>
+          <p><strong className="text-orange-500">{t('about.gameDevelopment')}</strong> {t('about.gameDevelopmentValue')}</p>
         </div>
       </div>
 
@@ -287,12 +289,12 @@ function ContentBlock({ theme }) {
         <h3 className={`text-lg font-semibold mb-3 ${
           theme === 'dark' ? 'text-white' : 'text-gray-900'
         }`}>
-          📊 GitHub Activity
+          📊 {t('about.githubActivity')}
         </h3>
         <div className={`text-sm ${
           theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
         }`}>
-          <p>Check out my GitHub profile for detailed stats and activity graphs!</p>
+          <p>{t('about.githubActivityText')}</p>
           <p className="mt-2">
             <a href={info.social.github} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-400 transition-colors font-semibold">
               🔗 @{info.githubUsername}
@@ -307,12 +309,12 @@ function ContentBlock({ theme }) {
           <h3 className={`text-lg font-semibold mb-2 ${
             theme === 'dark' ? 'text-yellow-400' : 'text-yellow-600'
           }`}>
-            ⚡ Fun Fact:
+            ⚡ {t('about.funFact')}
           </h3>
           <p className={`text-sm ${
             theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
           }`}>
-            <strong className="text-yellow-500">I think I am funny!</strong> I'm the kind of person who embraces learning and tackling anything new with passion and determination. As long as it sparks my interest, I am fearless and unstoppable. 🚀
+            {t('about.funFactText')}
           </p>
         </div>
       </div>
