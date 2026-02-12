@@ -1,4 +1,4 @@
-![Home](./public/data/project-demo/portfolio/home.png)
+![Home](./client/public/data/project-demo/portfolio/home.png)
 
 # Portfolio Vietcq
 
@@ -9,37 +9,37 @@ A modern, responsive portfolio website built with Next.js 15 and React 19, featu
 <div align="center">
 
 ### Hero
-![Hero](./public/data/project-demo/portfolio/portfolio%20(1).png)
+![Hero](./client/public/data/project-demo/portfolio/portfolio%20(1).png)
 
 ### About me
-![About me](./public/data/project-demo/portfolio/portfolio%20(2).png)
+![About me](./client/public/data/project-demo/portfolio/portfolio%20(2).png)
 
 ### Services Overview
-![Services Overview](./public/data/project-demo/portfolio/portfolio%20(3).png)
+![Services Overview](./client/public/data/project-demo/portfolio/portfolio%20(3).png)
 
 ### Repositories
-![Repositories](./public/data/project-demo/portfolio/portfolio%20(4).png)
+![Repositories](./client/public/data/project-demo/portfolio/portfolio%20(4).png)
 
 ### Project showcase
-![Project showcase](./public/data/project-demo/portfolio/portfolio%20(5).png)
+![Project showcase](./client/public/data/project-demo/portfolio/portfolio%20(5).png)
 
 ### Contact Form
-![Contact Form](./public/data/project-demo/portfolio/portfolio%20(6).png)
+![Contact Form](./client/public/data/project-demo/portfolio/portfolio%20(6).png)
 
 ### Windows start
-![Windows start](./public/data/project-demo/portfolio/portfolio%20(7).png)
+![Windows start](./client/public/data/project-demo/portfolio/portfolio%20(7).png)
 
 ### Project Details
-![Project Details](./public/data/project-demo/portfolio/portfolio%20(8).png)
+![Project Details](./client/public/data/project-demo/portfolio/portfolio%20(8).png)
 
 ### Gallery System
-![Gallery System](./public/data/project-demo/portfolio/portfolio%20(9).png)
+![Gallery System](./client/public/data/project-demo/portfolio/portfolio%20(9).png)
 
 ### Ideas Section
-![Ideas Section](./public/data/project-demo/portfolio/portfolio%20(10).png)
+![Ideas Section](./client/public/data/project-demo/portfolio/portfolio%20(10).png)
 
 ### Blog System
-![Blog System](./public/data/project-demo/portfolio/portfolio%20(11).png)
+![Blog System](./client/public/data/project-demo/portfolio/portfolio%20(11).png)
 
 </div>
 
