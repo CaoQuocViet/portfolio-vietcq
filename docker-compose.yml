@@ -1,0 +1,23 @@
+services:
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "5678:5678"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "8765:8765"
+    volumes:
+      - pb_data:/app/pb_data
+    restart: unless-stopped
+
+volumes:
+  pb_data:
