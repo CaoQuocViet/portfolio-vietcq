@@ -81,6 +81,18 @@ export function VolumeIcon() {
   )
 }
 
+const PALETTES = [
+  { id: '', label: 'Ocean' },
+  { id: 'coffee', label: 'Coffee' },
+  { id: 'forest', label: 'Forest' },
+  { id: 'slate', label: 'Slate' },
+  { id: 'imperial-violet', label: 'Purple' },
+  { id: 'peach-glow', label: 'Peach' },
+  { id: 'azure-mist', label: 'Azure' },
+  { id: 'graphite', label: 'Graphite' },
+]
+const PALETTE_KEY = 'portfolio-palette'
+
 export function BatteryIcon() {
   const [batteryLevel, setBatteryLevel] = useState(82)
   const [isCharging, setIsCharging] = useState(false)
@@ -90,11 +102,11 @@ export function BatteryIcon() {
       navigator.getBattery().then(battery => {
         setBatteryLevel(Math.round(battery.level * 100))
         setIsCharging(battery.charging)
-        
+
         battery.addEventListener('levelchange', () => {
           setBatteryLevel(Math.round(battery.level * 100))
         })
-        
+
         battery.addEventListener('chargingchange', () => {
           setIsCharging(battery.charging)
         })
@@ -105,7 +117,7 @@ export function BatteryIcon() {
           const change = isCharging ? 1 : -0.5
           return Math.max(15, Math.min(100, prev + change))
         })
-        
+
         if (Math.random() < 0.05) {
           setIsCharging(prev => !prev)
         }
@@ -114,33 +126,39 @@ export function BatteryIcon() {
     }
   }, [isCharging])
 
-  const getBatteryColor = () => {
-    if (isCharging) return 'text-green-400'
-    if (batteryLevel < 20) return 'text-red-400'
-    if (batteryLevel < 50) return 'text-orange-400'
-    return 'text-green-400'
+  const cyclePalette = () => {
+    const current = localStorage.getItem(PALETTE_KEY) || ''
+    const idx = PALETTES.findIndex(p => p.id === current)
+    const next = PALETTES[(idx + 1) % PALETTES.length]
+    if (next.id) {
+      localStorage.setItem(PALETTE_KEY, next.id)
+      document.documentElement.setAttribute('data-palette', next.id)
+    } else {
+      localStorage.removeItem(PALETTE_KEY)
+      document.documentElement.removeAttribute('data-palette')
+    }
   }
 
   return (
-    <div className="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors cursor-pointer flex items-center justify-center min-h-[32px]">
-      <div className={`relative scale-130 flex items-center justify-center ${getBatteryColor()}`}>
-        {/* Battery Body */}
+    <div
+      onClick={cyclePalette}
+      className="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors cursor-pointer flex items-center justify-center min-h-[32px]"
+      title="Switch color palette"
+    >
+      <div className="relative scale-130 flex items-center justify-center text-green-400">
+        {/* Battery Body — border stays green */}
         <div className="relative w-5 h-3 border border-current rounded-sm">
           {/* Battery Tip */}
           <div className="absolute -right-0.5 top-1 w-0.5 h-1 bg-current rounded-r-sm"></div>
-          
-          {/* Battery Fill */}
+
+          {/* Battery Fill — uses palette color-300 */}
           <div className="absolute inset-0.5 bg-gray-700 rounded-sm overflow-hidden">
-            <div 
-              className={`h-full transition-all duration-1000 ${
-                isCharging ? 'bg-green-400' : 
-                batteryLevel < 20 ? 'bg-red-400' : 
-                batteryLevel < 50 ? 'bg-orange-400' : 'bg-green-400'
-              }`}
-              style={{ width: `${batteryLevel}%` }}
+            <div
+              className="h-full transition-all duration-1000"
+              style={{ width: `${batteryLevel}%`, backgroundColor: batteryLevel < 20 ? '#f87171' : batteryLevel < 50 ? '#fb923c' : 'var(--color-300)' }}
             />
           </div>
-          
+
           {/* Charging Icon */}
           {isCharging && (
             <div className="absolute inset-0 flex items-center justify-center">
