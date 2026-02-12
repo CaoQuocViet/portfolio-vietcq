@@ -139,10 +139,10 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
                     <div className="text-center">
                         <div className="text-red-400 text-6xl mb-4">⚠️</div>
                         <h2 className="text-white text-2xl font-bold mb-2">Error Loading Gallery</h2>
-                        <p className="text-gray-300 mb-4">{error}</p>
+                        <p className="text-[var(--text-muted)] mb-4">{error}</p>
                         <button
                             onClick={() => window.location.reload()}
-                            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                            className="px-6 py-2 bg-[var(--btn-primary)] text-[var(--btn-primary-text)] rounded-lg hover:bg-[var(--btn-primary-hover)] transition-colors"
                         >
                             Retry
                         </button>
@@ -175,9 +175,9 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
                     }}
                 >
                     <div className="text-center">
-                        <div className="text-gray-400 text-6xl mb-4">📷</div>
+                        <div className="text-[var(--text-disabled)] text-6xl mb-4">📷</div>
                         <h2 className="text-white text-2xl font-bold mb-2">No Images Found</h2>
-                        <p className="text-gray-300">
+                        <p className="text-[var(--text-muted)]">
                             {projectFilter ? `No images found for project "${projectFilter}"` : 'No project images available'}
                         </p>
                     </div>
@@ -466,8 +466,8 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
                                                     className="transition-all duration-300"
                                                 />
                                             ) : (
-                                                <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                                                    <span className="text-gray-500">Loading...</span>
+                                                <div className="w-full h-full bg-[var(--bg-skeleton)] flex items-center justify-center">
+                                                    <span className="text-[var(--text-muted)]">Loading...</span>
                                                 </div>
                                             )}
                                         </div>

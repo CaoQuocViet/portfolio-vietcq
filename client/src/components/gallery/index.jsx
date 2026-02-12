@@ -26,7 +26,7 @@ export default function GalleryPageClient() {
     }, [])
 
     if (!mounted) {
-        return <div className="min-h-screen bg-gray-950" />
+        return <div className="min-h-screen bg-[var(--bg-page)]" />
     }
 
     return (

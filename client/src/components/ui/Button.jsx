@@ -38,36 +38,36 @@ const Button = forwardRef(({
                  before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/0 before:via-white/20 before:to-white/0
                  before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-1000`,
         
-        secondary: `bg-white dark:bg-gray-800 
-                   text-gray-900 dark:text-white 
-                   border-2 border-gray-300 dark:border-gray-700
-                   hover:bg-gray-50 dark:hover:bg-gray-700 
-                   hover:border-blue-500 dark:hover:border-blue-500 
+        secondary: `bg-[var(--btn-secondary)]
+                   text-[var(--btn-secondary-text)]
+                   border-2 border-[var(--border-default)]
+                   hover:bg-[var(--btn-secondary-hover)]
+                   hover:border-[var(--border-focus)]
                    hover:scale-105 hover:shadow-lg
-                   focus:ring-blue-500 dark:focus:ring-gray-500
-                   before:absolute before:inset-0 before:bg-gradient-to-r 
+                   focus:ring-[var(--ring-focus)]
+                   before:absolute before:inset-0 before:bg-gradient-to-r
                    before:from-gray-200/0 before:via-gray-200/30 before:to-gray-200/0
                    dark:before:from-white/0 dark:before:via-white/10 dark:before:to-white/0
                    before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-1000`,
         
-        outline: `bg-transparent 
-                 text-blue-600 dark:text-blue-400 
-                 border-2 border-blue-600 dark:border-blue-400
-                 hover:bg-blue-600 dark:hover:bg-blue-400 
-                 hover:text-white dark:hover:text-gray-900 
+        outline: `bg-transparent
+                 text-[var(--text-link)]
+                 border-2 border-[var(--btn-primary)]
+                 hover:bg-[var(--btn-primary)]
+                 hover:text-[var(--text-on-primary)]
                  hover:scale-105 hover:shadow-lg
-                 focus:ring-blue-600 dark:focus:ring-blue-400
-                 before:absolute before:inset-0 before:bg-gradient-to-r 
+                 focus:ring-[var(--ring-focus)]
+                 before:absolute before:inset-0 before:bg-gradient-to-r
                  before:from-white/0 before:via-white/30 before:to-white/0
                  dark:before:from-white/0 dark:before:via-white/20 dark:before:to-white/0
                  before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-1000`,
         
-        ghost: `bg-transparent 
-               text-gray-700 dark:text-gray-300 
-               hover:bg-gray-100 dark:hover:bg-gray-800 
-               hover:text-gray-900 dark:hover:text-white
-               hover:scale-105 focus:ring-gray-500
-               before:absolute before:inset-0 before:bg-gradient-to-r 
+        ghost: `bg-transparent
+               text-[var(--text-secondary)]
+               hover:bg-[var(--btn-ghost-hover)]
+               hover:text-[var(--text-heading)]
+               hover:scale-105 focus:ring-[var(--ring-focus)]
+               before:absolute before:inset-0 before:bg-gradient-to-r
                before:from-gray-200/0 before:via-gray-200/20 before:to-gray-200/0
                dark:before:from-white/0 dark:before:via-white/10 dark:before:to-white/0
                before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-1000`,
