@@ -14,7 +14,7 @@ function GridBackground({ theme = 'dark', colorScheme = 'blue' }) {
                 light: 'rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.06), transparent 70%',
                 dark: 'rgba(59, 130, 246, 0.15), rgba(139, 92, 246, 0.08), transparent 70%'
             },
-            dots: 'bg-blue-600/50 dark:bg-blue-400/40'
+            dots: 'bg-[var(--color-500)]/50'
         },
         pink: {
             main: { light: 'rgba(236, 72, 153, 0.25)', dark: 'rgba(239, 68, 68, 0.25)' },
@@ -23,7 +23,7 @@ function GridBackground({ theme = 'dark', colorScheme = 'blue' }) {
                 light: 'rgba(236, 72, 153, 0.1), rgba(219, 39, 119, 0.06), transparent 70%',
                 dark: 'rgba(239, 68, 68, 0.15), rgba(220, 38, 38, 0.08), transparent 70%'
             },
-            dots: 'bg-pink-600/50 dark:bg-red-600/50'
+            dots: 'bg-[var(--color-error)]/50'
         }
     };
 
