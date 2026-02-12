@@ -11,18 +11,18 @@ const Showcase = () => {
     const { t } = useTranslation()
 
     return (
-        <section id="project-showcase" className="py-24 bg-white dark:bg-gray-950 overflow-hidden">
+        <section id="project-showcase" className="py-24 bg-[var(--bg-section)] overflow-hidden">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 <div className="text-center mb-16">
-                    <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
+                    <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[var(--text-heading)]">
                         {t('showcase.sectionTitle')}
                     </h2>
-                    <div className="w-24 h-1 mx-auto rounded-full bg-blue-600 dark:bg-blue-400" />
+                    <div className="w-24 h-1 mx-auto rounded-full bg-[var(--btn-primary)]" />
                 </div>
 
                 {/* Main Showcase Container */}
                 <div className="relative overflow-hidden rounded-3xl shadow-2xl backdrop-blur-lg border transition-all duration-300 
-                               bg-white/30 dark:bg-black/20 border-white/20 dark:border-white/10 
+                               bg-[var(--bg-page)]/20 border-[var(--border-default)]/20 
                                shadow-gray-500/20 dark:shadow-black/30">
                     <div className="flex items-center gap-4 md:gap-8 p-6 md:p-12">
                         {/* Left: Octocat - Hidden on mobile, smaller on tablet */}
@@ -80,7 +80,7 @@ const Showcase = () => {
                             <ExternalLink className="w-5 h-5 relative z-10 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
                         </Link>
 
-                        <p className="text-sm mt-4 text-gray-600 dark:text-gray-400">
+                        <p className="text-sm mt-4 text-[var(--text-secondary)]">
                             {t('showcase.subtitle')}
                         </p>
                     </div>

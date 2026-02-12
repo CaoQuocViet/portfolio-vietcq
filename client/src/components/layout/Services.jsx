@@ -15,9 +15,7 @@ const Services = ({ theme }) => {
     if (!mounted) return null
 
     return (
-        <section id="services" className={`py-24 relative overflow-hidden ${
-            theme === 'dark' ? 'bg-gray-950' : 'bg-white'
-        }`}>
+        <section id="services" className="py-24 relative overflow-hidden bg-[var(--bg-section)]">
             {/* Multiple Ripple Effect Layers */}
             <div className="absolute inset-0 flex items-center justify-center">
                 {/* Large outer ripples */}
@@ -80,26 +78,22 @@ const Services = ({ theme }) => {
                     }`}>
                         {t('services.sectionTitle')}
                     </h1>
-                    <p className={`text-2xl md:text-3xl font-light text-center opacity-0 animate-[slideInLeft_1s_ease-out_0.3s_forwards] ${
-                        theme === 'dark' ? 'text-blue-200' : 'text-blue-800'
-                    }`}>
+                    <p className="text-2xl md:text-3xl font-light text-center opacity-0 animate-[slideInLeft_1s_ease-out_0.3s_forwards] text-[var(--text-secondary)]">
                         {t('services.subtitle')}
                     </p>
                     
                     {/* Services Grid */}
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
                         <div className={`backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 hover:scale-105 ${
-                            theme === 'dark' 
-                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50' 
-                                : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70'
+                            theme === 'dark'
+                                ? 'bg-[var(--bg-card)]/60 border-blue-500/30 hover:border-blue-400/50'
+                                : 'bg-[var(--bg-card)]/80 border-blue-300/50 hover:border-blue-500/70'
                         }`}>
                             <div className="flex items-center mb-4">
                                 <FaCode className={`text-3xl mr-4 ${
                                     theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
                                 }`} />
-                                <h3 className={`text-xl font-bold ${
-                                    theme === 'dark' ? 'text-blue-100' : 'text-blue-800'
-                                }`}>
+                                <h3 className="text-xl font-bold text-[var(--text-heading)]">
                                     {t('services.items.aiWeb')}
                                 </h3>
                             </div>
@@ -107,16 +101,14 @@ const Services = ({ theme }) => {
 
                         <div className={`backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 hover:scale-105 ${
                             theme === 'dark'
-                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50'
-                                : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70'
+                                ? 'bg-[var(--bg-card)]/60 border-blue-500/30 hover:border-blue-400/50'
+                                : 'bg-[var(--bg-card)]/80 border-blue-300/50 hover:border-blue-500/70'
                         }`}>
                             <div className="flex items-center mb-4">
                                 <FaChartLine className={`text-3xl mr-4 ${
                                     theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
                                 }`} />
-                                <h3 className={`text-xl font-bold ${
-                                    theme === 'dark' ? 'text-blue-100' : 'text-blue-800'
-                                }`}>
+                                <h3 className="text-xl font-bold text-[var(--text-heading)]">
                                     {t('services.items.businessAnalysis')}
                                 </h3>
                             </div>
@@ -124,16 +116,14 @@ const Services = ({ theme }) => {
 
                         <div className={`backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 hover:scale-105 ${
                             theme === 'dark'
-                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50'
-                                : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70'
+                                ? 'bg-[var(--bg-card)]/60 border-blue-500/30 hover:border-blue-400/50'
+                                : 'bg-[var(--bg-card)]/80 border-blue-300/50 hover:border-blue-500/70'
                         }`}>
                             <div className="flex items-center mb-4">
                                 <FaNetworkWired className={`text-3xl mr-4 ${
                                     theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
                                 }`} />
-                                <h3 className={`text-xl font-bold ${
-                                    theme === 'dark' ? 'text-blue-100' : 'text-blue-800'
-                                }`}>
+                                <h3 className="text-xl font-bold text-[var(--text-heading)]">
                                     {t('services.items.systemDesign')}
                                 </h3>
                             </div>
@@ -141,16 +131,14 @@ const Services = ({ theme }) => {
 
                         <div className={`backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 hover:scale-105 ${
                             theme === 'dark'
-                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50'
-                                : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70'
+                                ? 'bg-[var(--bg-card)]/60 border-blue-500/30 hover:border-blue-400/50'
+                                : 'bg-[var(--bg-card)]/80 border-blue-300/50 hover:border-blue-500/70'
                         }`}>
                             <div className="flex items-center mb-4">
                                 <FaServer className={`text-3xl mr-4 ${
                                     theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
                                 }`} />
-                                <h3 className={`text-xl font-bold ${
-                                    theme === 'dark' ? 'text-blue-100' : 'text-blue-800'
-                                }`}>
+                                <h3 className="text-xl font-bold text-[var(--text-heading)]">
                                     {t('services.items.apiDesign')}
                                 </h3>
                             </div>
@@ -158,16 +146,14 @@ const Services = ({ theme }) => {
 
                         <div className={`backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 hover:scale-105 ${
                             theme === 'dark'
-                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50'
-                                : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70'
+                                ? 'bg-[var(--bg-card)]/60 border-blue-500/30 hover:border-blue-400/50'
+                                : 'bg-[var(--bg-card)]/80 border-blue-300/50 hover:border-blue-500/70'
                         }`}>
                             <div className="flex items-center mb-4">
                                 <FaFileAlt className={`text-3xl mr-4 ${
                                     theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
                                 }`} />
-                                <h3 className={`text-xl font-bold ${
-                                    theme === 'dark' ? 'text-blue-100' : 'text-blue-800'
-                                }`}>
+                                <h3 className="text-xl font-bold text-[var(--text-heading)]">
                                     {t('services.items.documentation')}
                                 </h3>
                             </div>
@@ -175,16 +161,14 @@ const Services = ({ theme }) => {
 
                         <div className={`backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 hover:scale-105 ${
                             theme === 'dark'
-                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50'
-                                : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70'
+                                ? 'bg-[var(--bg-card)]/60 border-blue-500/30 hover:border-blue-400/50'
+                                : 'bg-[var(--bg-card)]/80 border-blue-300/50 hover:border-blue-500/70'
                         }`}>
                             <div className="flex items-center mb-4">
                                 <FaTachometerAlt className={`text-3xl mr-4 ${
                                     theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
                                 }`} />
-                                <h3 className={`text-xl font-bold ${
-                                    theme === 'dark' ? 'text-blue-100' : 'text-blue-800'
-                                }`}>
+                                <h3 className="text-xl font-bold text-[var(--text-heading)]">
                                     {t('services.items.performance')}
                                 </h3>
                             </div>
@@ -192,16 +176,14 @@ const Services = ({ theme }) => {
 
                         <div className={`backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 hover:scale-105 ${
                             theme === 'dark'
-                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50'
-                                : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70'
+                                ? 'bg-[var(--bg-card)]/60 border-blue-500/30 hover:border-blue-400/50'
+                                : 'bg-[var(--bg-card)]/80 border-blue-300/50 hover:border-blue-500/70'
                         }`}>
                             <div className="flex items-center mb-4">
                                 <FaCogs className={`text-3xl mr-4 ${
                                     theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
                                 }`} />
-                                <h3 className={`text-xl font-bold ${
-                                    theme === 'dark' ? 'text-blue-100' : 'text-blue-800'
-                                }`}>
+                                <h3 className="text-xl font-bold text-[var(--text-heading)]">
                                     {t('services.items.devops')}
                                 </h3>
                             </div>
@@ -209,16 +191,14 @@ const Services = ({ theme }) => {
 
                         <div className={`backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 hover:scale-105 ${
                             theme === 'dark'
-                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50'
-                                : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70'
+                                ? 'bg-[var(--bg-card)]/60 border-blue-500/30 hover:border-blue-400/50'
+                                : 'bg-[var(--bg-card)]/80 border-blue-300/50 hover:border-blue-500/70'
                         }`}>
                             <div className="flex items-center mb-4">
                                 <FaPalette className={`text-3xl mr-4 ${
                                     theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
                                 }`} />
-                                <h3 className={`text-xl font-bold ${
-                                    theme === 'dark' ? 'text-blue-100' : 'text-blue-800'
-                                }`}>
+                                <h3 className="text-xl font-bold text-[var(--text-heading)]">
                                     {t('services.items.uiux')}
                                 </h3>
                             </div>
@@ -226,16 +206,14 @@ const Services = ({ theme }) => {
 
                         <div className={`backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 hover:scale-105 ${
                             theme === 'dark'
-                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50'
-                                : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70'
+                                ? 'bg-[var(--bg-card)]/60 border-blue-500/30 hover:border-blue-400/50'
+                                : 'bg-[var(--bg-card)]/80 border-blue-300/50 hover:border-blue-500/70'
                         }`}>
                             <div className="flex items-center mb-4">
                                 <FaBug className={`text-3xl mr-4 ${
                                     theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
                                 }`} />
-                                <h3 className={`text-xl font-bold ${
-                                    theme === 'dark' ? 'text-blue-100' : 'text-blue-800'
-                                }`}>
+                                <h3 className="text-xl font-bold text-[var(--text-heading)]">
                                     {t('services.items.testing')}
                                 </h3>
                             </div>
@@ -245,44 +223,40 @@ const Services = ({ theme }) => {
 
                 {/* Tech Stack Section */}
                 <div className="mt-24 opacity-0 animate-[fadeInUp_1s_ease-out_0.6s_forwards]">
-                    <h2 className={`text-4xl md:text-5xl font-bold text-center mb-16 ${
-                        theme === 'dark' ? 'text-white' : 'text-gray-900'
-                    }`}>{t('services.techStack')}</h2>
+                    <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-[var(--text-heading)]">{t('services.techStack')}</h2>
 
                     <div className="grid md:grid-cols-3 gap-8">
                         {/* Frontend */}
                         <div className={`backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 hover:scale-105 ${
                             theme === 'dark'
-                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50'
-                                : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70'
+                                ? 'bg-[var(--bg-card)]/60 border-blue-500/30 hover:border-blue-400/50'
+                                : 'bg-[var(--bg-card)]/80 border-blue-300/50 hover:border-blue-500/70'
                         }`}>
-                            <h4 className={`text-lg font-semibold mb-4 ${
-                                theme === 'dark' ? 'text-blue-300' : 'text-blue-700'
-                            }`}>{t('services.frontend')}</h4>
+                            <h4 className="text-lg font-semibold mb-4 text-[var(--text-secondary)]">{t('services.frontend')}</h4>
                             <div className="space-y-3">
                                 <div className="flex items-center">
                                     <FaReact className={`text-2xl mr-3 ${
                                         theme === 'dark' ? 'text-cyan-400' : 'text-cyan-600'
                                     }`} />
-                                    <span className="text-blue-800 dark:text-blue-100">React.js</span>
+                                    <span className="text-[var(--text-body)]">React.js</span>
                                 </div>
                                 <div className="flex items-center">
                                     <SiNextdotjs className={`text-2xl mr-3 ${
                                         theme === 'dark' ? 'text-white' : 'text-black'
                                     }`} />
-                                    <span className="text-blue-800 dark:text-blue-100">Next.js</span>
+                                    <span className="text-[var(--text-body)]">Next.js</span>
                                 </div>
                                 <div className="flex items-center">
                                     <SiTailwindcss className={`text-2xl mr-3 ${
                                         theme === 'dark' ? 'text-cyan-400' : 'text-cyan-600'
                                     }`} />
-                                    <span className="text-blue-800 dark:text-blue-100">Tailwind CSS</span>
+                                    <span className="text-[var(--text-body)]">Tailwind CSS</span>
                                 </div>
                                 <div className="flex items-center">
                                     <SiTypescript className={`text-2xl mr-3 ${
                                         theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
                                     }`} />
-                                    <span className="text-blue-800 dark:text-blue-100">TypeScript</span>
+                                    <span className="text-[var(--text-body)]">TypeScript</span>
                                 </div>
                             </div>
                         </div>
@@ -290,36 +264,34 @@ const Services = ({ theme }) => {
                         {/* Backend */}
                         <div className={`backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 hover:scale-105 ${
                             theme === 'dark'
-                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50'
-                                : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70'
+                                ? 'bg-[var(--bg-card)]/60 border-blue-500/30 hover:border-blue-400/50'
+                                : 'bg-[var(--bg-card)]/80 border-blue-300/50 hover:border-blue-500/70'
                         }`}>
-                            <h4 className={`text-lg font-semibold mb-4 ${
-                                theme === 'dark' ? 'text-blue-300' : 'text-blue-700'
-                            }`}>{t('services.backend')}</h4>
+                            <h4 className="text-lg font-semibold mb-4 text-[var(--text-secondary)]">{t('services.backend')}</h4>
                             <div className="space-y-3">
                                 <div className="flex items-center">
                                     <FaNodeJs className={`text-2xl mr-3 ${
                                         theme === 'dark' ? 'text-green-400' : 'text-green-600'
                                     }`} />
-                                    <span className="text-blue-800 dark:text-blue-100">Node.js</span>
+                                    <span className="text-[var(--text-body)]">Node.js</span>
                                 </div>
                                 <div className="flex items-center">
                                     <FaPython className={`text-2xl mr-3 ${
                                         theme === 'dark' ? 'text-yellow-400' : 'text-yellow-600'
                                     }`} />
-                                    <span className="text-blue-800 dark:text-blue-100">Python</span>
+                                    <span className="text-[var(--text-body)]">Python</span>
                                 </div>
                                 <div className="flex items-center">
                                     <SiPostgresql className={`text-2xl mr-3 ${
                                         theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
                                     }`} />
-                                    <span className="text-blue-800 dark:text-blue-100">PostgreSQL</span>
+                                    <span className="text-[var(--text-body)]">PostgreSQL</span>
                                 </div>
                                 <div className="flex items-center">
                                     <SiRedis className={`text-2xl mr-3 ${
                                         theme === 'dark' ? 'text-red-400' : 'text-red-600'
                                     }`} />
-                                    <span className="text-blue-800 dark:text-blue-100">Redis</span>
+                                    <span className="text-[var(--text-body)]">Redis</span>
                                 </div>
                             </div>
                         </div>
@@ -327,36 +299,34 @@ const Services = ({ theme }) => {
                         {/* Tools */}
                         <div className={`backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 hover:scale-105 ${
                             theme === 'dark'
-                                ? 'bg-gray-900/60 border-blue-500/30 hover:border-blue-400/50'
-                                : 'bg-white/80 border-blue-300/50 hover:border-blue-500/70'
+                                ? 'bg-[var(--bg-card)]/60 border-blue-500/30 hover:border-blue-400/50'
+                                : 'bg-[var(--bg-card)]/80 border-blue-300/50 hover:border-blue-500/70'
                         }`}>
-                            <h4 className={`text-lg font-semibold mb-4 ${
-                                theme === 'dark' ? 'text-blue-300' : 'text-blue-700'
-                            }`}>{t('services.tools')}</h4>
+                            <h4 className="text-lg font-semibold mb-4 text-[var(--text-secondary)]">{t('services.tools')}</h4>
                             <div className="space-y-3">
                                 <div className="flex items-center">
                                     <FaGitAlt className={`text-2xl mr-3 ${
                                         theme === 'dark' ? 'text-orange-400' : 'text-orange-600'
                                     }`} />
-                                    <span className="text-blue-800 dark:text-blue-100">Git & GitHub</span>
+                                    <span className="text-[var(--text-body)]">Git & GitHub</span>
                                 </div>
                                 <div className="flex items-center">
                                     <FaDocker className={`text-2xl mr-3 ${
                                         theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
                                     }`} />
-                                    <span className="text-blue-800 dark:text-blue-100">Docker</span>
+                                    <span className="text-[var(--text-body)]">Docker</span>
                                 </div>
                                 <div className="flex items-center">
                                     <FaAws className={`text-2xl mr-3 ${
                                         theme === 'dark' ? 'text-orange-400' : 'text-orange-600'
                                     }`} />
-                                    <span className="text-blue-800 dark:text-blue-100">AWS</span>
+                                    <span className="text-[var(--text-body)]">AWS</span>
                                 </div>
                                 <div className="flex items-center">
                                     <FaLinux className={`text-2xl mr-3 ${
                                         theme === 'dark' ? 'text-white' : 'text-black'
                                     }`} />
-                                    <span className="text-blue-800 dark:text-blue-100">Linux</span>
+                                    <span className="text-[var(--text-body)]">Linux</span>
                                 </div>
                             </div>
                         </div>
