@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { useGitHubRepos } from "../../hooks/useGitHubRepos";
 import { LoadingSpinner } from "../ui/loading";
+import { useTranslation } from '../../hooks/useTranslation';
 
 const RepositoriesList = ({ theme = "dark" }) => {
   const { repos, loading } = useGitHubRepos(8); // Chỉ lấy 8 repos cho modal
+  const { t } = useTranslation();
 
   if (loading) {
     return (
@@ -16,7 +18,7 @@ const RepositoriesList = ({ theme = "dark" }) => {
   if (repos.length === 0) {
     return (
       <div className="text-center py-4 text-gray-600 dark:text-gray-400">
-        No repositories found
+        {t('common.noReposFound')}
       </div>
     );
   }
@@ -88,9 +90,9 @@ const RepositoriesList = ({ theme = "dark" }) => {
                   </span>
                 )}
               </div>
-              <span className="text-xs text-green-600 dark:text-green-400 font-medium 
+              <span className="text-xs text-green-600 dark:text-green-400 font-medium
                              bg-green-50 dark:bg-green-500/10 px-3 py-1 rounded-full">
-                View Repo
+                {t('common.viewRepo')}
               </span>
             </div>
           </div>

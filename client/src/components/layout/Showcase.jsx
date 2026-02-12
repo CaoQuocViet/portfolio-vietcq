@@ -4,16 +4,18 @@ import Link from 'next/link'
 import { useTheme } from 'next-themes'
 import { ExternalLink } from 'lucide-react'
 import Image from 'next/image'
+import { useTranslation } from '../../hooks/useTranslation'
 
 const Showcase = () => {
     const { theme } = useTheme()
+    const { t } = useTranslation()
 
     return (
         <section id="project-showcase" className="py-24 bg-white dark:bg-gray-950 overflow-hidden">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 <div className="text-center mb-16">
                     <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-                        Show Cases
+                        {t('showcase.sectionTitle')}
                     </h2>
                     <div className="w-24 h-1 mx-auto rounded-full bg-blue-600 dark:bg-blue-400" />
                 </div>
@@ -64,22 +66,22 @@ const Showcase = () => {
 
                     {/* Call to Action */}
                     <div className="text-center pb-12">
-                        <Link 
+                        <Link
                             href="/gallery"
-                            className="inline-flex items-center gap-3 px-10 py-5 rounded-2xl font-bold text-lg transition-all duration-500 group relative overflow-hidden 
-                                     bg-gradient-to-r from-blue-600 to-cyan-600 dark:from-cyan-600 dark:to-blue-600 
-                                     text-white hover:from-blue-500 hover:to-cyan-500 dark:hover:from-cyan-500 dark:hover:to-blue-500 
+                            className="inline-flex items-center gap-3 px-10 py-5 rounded-2xl font-bold text-lg transition-all duration-500 group relative overflow-hidden
+                                     bg-gradient-to-r from-blue-600 to-cyan-600 dark:from-cyan-600 dark:to-blue-600
+                                     text-white hover:from-blue-500 hover:to-cyan-500 dark:hover:from-cyan-500 dark:hover:to-blue-500
                                      shadow-lg shadow-blue-500/25 dark:shadow-cyan-500/25"
                         >
                             {/* Button background animation */}
                             <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
-                            
-                            <span className="relative z-10">Explore All Projects</span>
+
+                            <span className="relative z-10">{t('showcase.exploreAll')}</span>
                             <ExternalLink className="w-5 h-5 relative z-10 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
                         </Link>
-                        
+
                         <p className="text-sm mt-4 text-gray-600 dark:text-gray-400">
-                            Discover interactive project galleries and detailed case studies
+                            {t('showcase.subtitle')}
                         </p>
                     </div>
                 </div>

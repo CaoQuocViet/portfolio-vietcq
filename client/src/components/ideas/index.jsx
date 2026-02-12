@@ -7,10 +7,12 @@ import Dock from '../dock/Dock'
 import Footer from '../layout/Footer'
 import WaveBackground from '../ui/WaveBackground'
 import { IDEAS_NAVIGATION_ITEMS } from '../../config/navigation'
-import { LoadingSpinner } from "../ui/loading";
+import { LoadingSpinner } from "../ui/loading"
+import { useTranslation } from '../../hooks/useTranslation'
 
 export default function IdeasPageClient() {
     const { theme, setTheme } = useTheme()
+    const { t } = useTranslation()
     const [mounted, setMounted] = useState(false)
 
     useEffect(() => {
@@ -49,11 +51,11 @@ export default function IdeasPageClient() {
                             <div className="flex items-center justify-center gap-3 mb-6">
                                 <FaLightbulb className="text-4xl text-amber-500 dark:text-amber-400" />
                                 <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white">
-                                    Future Ideas
+                                    {t('ideas.title')}
                                 </h1>
                             </div>
                             <p className="text-xl max-w-3xl mx-auto text-gray-600 dark:text-gray-400">
-                                ✨ Exploring innovative concepts and upcoming project possibilities
+                                {t('ideas.subtitle')}
                             </p>
                         </div>
 
@@ -71,32 +73,32 @@ export default function IdeasPageClient() {
                                         </div>
                                         <div>
                                             <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-                                                Artermis Digital Store
+                                                {t('ideas.artemisTitle')}
                                             </h3>
                                             <p className="text-sm text-purple-600 dark:text-purple-400">
-                                                Print on Demand • Digital Downloads • E-commerce
+                                                {t('ideas.artemisSubtitle')}
                                             </p>
                                         </div>
                                     </div>
                                     <span className="px-3 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-700 dark:bg-purple-900/50 dark:text-purple-300">
-                                        Concept
+                                        {t('ideas.concept')}
                                     </span>
                                 </div>
 
                                 <div className="flex-1 mb-4 md:mb-6">
                                     <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                                        <strong>Digital art marketplace platform</strong> with integrated print-on-demand and instant digital downloads. Optimized SEO system, modern UI/UX design.
+                                        {t('ideas.artemisDescription')}
                                     </p>
 
                                     <div className="grid grid-cols-1 gap-3">
                                         <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800/50">
-                                            <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-1">Core Features</h4>
-                                            <p className="text-sm text-gray-600 dark:text-gray-400">Artist portfolio management, watermark protection, payment integration, automated delivery</p>
+                                            <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-1">{t('ideas.coreFeatures')}</h4>
+                                            <p className="text-sm text-gray-600 dark:text-gray-400">{t('ideas.artemisCoreFeatures')}</p>
                                         </div>
 
                                         <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800/50">
-                                            <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-1">Print Services</h4>
-                                            <p className="text-sm text-gray-600 dark:text-gray-400">Canvas, poster, sticker printing, size customization, shipping integration</p>
+                                            <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-1">{t('ideas.printServices')}</h4>
+                                            <p className="text-sm text-gray-600 dark:text-gray-400">{t('ideas.artemisPrintServices')}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -121,32 +123,32 @@ export default function IdeasPageClient() {
                                         </div>
                                         <div>
                                             <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-                                                ThithoTesting Hub
+                                                {t('ideas.thithoTitle')}
                                             </h3>
                                             <p className="text-sm text-blue-600 dark:text-blue-400">
-                                                Multi-Language Certification • Enterprise Scale • Global Standards
+                                                {t('ideas.thithoSubtitle')}
                                             </p>
                                         </div>
                                     </div>
                                     <span className="px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300">
-                                        Enterprise
+                                        {t('ideas.enterprise')}
                                     </span>
                                 </div>
 
                                 <div className="flex-1 mb-4 md:mb-6">
                                     <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                                        <strong>Testing hub system</strong> for 50+ international language certifications. Complex microservices architecture, high performance, scalable infrastructure.
+                                        {t('ideas.thithoDescription')}
                                     </p>
 
                                     <div className="grid grid-cols-1 gap-3">
                                         <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800/50">
-                                            <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-1">Testing Engine</h4>
-                                            <p className="text-sm text-gray-600 dark:text-gray-400">AI-powered question generation, adaptive testing, real-time scoring, proctoring system</p>
+                                            <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-1">{t('ideas.testingEngine')}</h4>
+                                            <p className="text-sm text-gray-600 dark:text-gray-400">{t('ideas.thithoTestingEngine')}</p>
                                         </div>
 
                                         <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800/50">
-                                            <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-1">Architecture</h4>
-                                            <p className="text-sm text-gray-600 dark:text-gray-400">Microservices, micro frontends, event-driven design, CQRS pattern, containerized deployment</p>
+                                            <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-1">{t('ideas.architecture')}</h4>
+                                            <p className="text-sm text-gray-600 dark:text-gray-400">{t('ideas.thithoArchitecture')}</p>
                                         </div>
                                     </div>
                                 </div>

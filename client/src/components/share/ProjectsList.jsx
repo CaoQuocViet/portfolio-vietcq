@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { LoadingSpinner } from "../ui/loading";
 import { useLanguage } from "../../contexts/LanguageContext";
+import { useTranslation } from '../../hooks/useTranslation';
 
 const ProjectsList = ({ theme }) => {
     const [projects, setProjects] = useState([]);
@@ -11,6 +12,7 @@ const ProjectsList = ({ theme }) => {
     const [error, setError] = useState(null);
     const router = useRouter();
     const { language } = useLanguage();
+    const { t } = useTranslation();
 
     useEffect(() => {
         const fetchProjects = async () => {
@@ -50,7 +52,7 @@ const ProjectsList = ({ theme }) => {
     if (error) {
         return (
             <div className="text-center py-4 text-gray-600 dark:text-gray-400">
-                No projects found
+                {t('common.noProjectsFound')}
             </div>
         );
     }
@@ -58,7 +60,7 @@ const ProjectsList = ({ theme }) => {
     if (projects.length === 0) {
         return (
             <div className="text-center py-4 text-gray-600 dark:text-gray-400">
-                No projects found
+                {t('common.noProjectsFound')}
             </div>
         );
     }

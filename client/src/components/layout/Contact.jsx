@@ -3,8 +3,10 @@
 import React, { useState } from "react";
 import { info } from "../../utils/info";
 import { SOCIAL_PLATFORMS } from "../../data/socialPlatforms";
+import { useTranslation } from "../../hooks/useTranslation";
 
 export default function Contact({ theme }) {
+    const { t } = useTranslation();
     const [formData, setFormData] = useState({
         name: '',
         subject: '',
@@ -31,13 +33,12 @@ export default function Contact({ theme }) {
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 <div className="text-center mb-16">
                     <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-                        Connect with me
+                        {t('contact.sectionTitle')}
                     </h2>
                     <p
                         className="text-xl max-w-3xl mx-auto text-gray-600 dark:text-gray-300"
                     >
-                        Have a question about Tech, need technical advice, or want to discuss opportunities?
-                        I'm here to help with any technology-related topics.
+                        {t('contact.description')}
                     </p>
                 </div>
 
@@ -49,7 +50,7 @@ export default function Contact({ theme }) {
                                 {/* Center Button */}
                                 <div className="absolute inset-0 flex items-center justify-center">
                                     <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center text-white font-bold text-sm sm:text-lg md:text-xl shadow-xl">
-                                        <span className="text-center leading-tight">Contact<br className="sm:hidden" /><span className="hidden sm:inline"> </span>Me</span>
+                                        <span className="text-center leading-tight">{t('contact.contactMe')}</span>
                                     </div>
                                 </div>
 
@@ -77,7 +78,7 @@ export default function Contact({ theme }) {
                             <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
                                 <div>
                                     <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
-                                        Name
+                                        {t('contact.nameLabel')}
                                     </label>
                                     <input
                                         type="text"
@@ -87,13 +88,13 @@ export default function Contact({ theme }) {
                                             ? 'bg-gray-700 border-gray-600 text-white focus:border-blue-400'
                                             : 'bg-white border-gray-300 text-gray-900 focus:border-blue-500'
                                             } focus:outline-none focus:ring-2 focus:ring-blue-500/20`}
-                                        placeholder="Your name"
+                                        placeholder={t('contact.namePlaceholder')}
                                     />
                                 </div>
 
                                 <div>
                                     <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
-                                        Subject
+                                        {t('contact.subjectLabel')}
                                     </label>
                                     <input
                                         type="text"
@@ -103,13 +104,13 @@ export default function Contact({ theme }) {
                                             ? 'bg-gray-700 border-gray-600 text-white focus:border-blue-400'
                                             : 'bg-white border-gray-300 text-gray-900 focus:border-blue-500'
                                             } focus:outline-none focus:ring-2 focus:ring-blue-500/20`}
-                                        placeholder="Email subject"
+                                        placeholder={t('contact.subjectPlaceholder')}
                                     />
                                 </div>
 
                                 <div>
                                     <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
-                                        Message
+                                        {t('contact.messageLabel')}
                                     </label>
                                     <textarea
                                         rows={4}
@@ -119,7 +120,7 @@ export default function Contact({ theme }) {
                                             ? 'bg-gray-700 border-gray-600 text-white focus:border-blue-400'
                                             : 'bg-white border-gray-300 text-gray-900 focus:border-blue-500'
                                             } focus:outline-none focus:ring-2 focus:ring-blue-500/20`}
-                                        placeholder="Write your message here..."
+                                        placeholder={t('contact.messagePlaceholder')}
                                     />
                                 </div>
                                 <button
@@ -147,12 +148,12 @@ export default function Contact({ theme }) {
                                         }
                                     }}
                                 >
-                                    {isSubmitting ? 'Opening Email...' : 'Send Message'}
+                                    {isSubmitting ? t('contact.openingEmail') : t('contact.sendButton')}
                                 </button>
 
                                 {submitMessage && (
                                     <div className="text-center p-3 rounded-lg bg-green-100 text-green-700 dark:bg-green-900/20 dark:text-green-400">
-                                        {submitMessage}
+                                        {t('contact.emailOpened')}
                                     </div>
                                 )}
                             </form>

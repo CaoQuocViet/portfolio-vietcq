@@ -11,9 +11,11 @@ import { BLOG_NAVIGATION_ITEMS } from '../../config/navigation'
 import { createScrollFunction } from '../../utils/navigation'
 import { useBlog } from '../../hooks/useBlog'
 import { LoadingSpinner } from '../ui/loading'
+import { useTranslation } from '../../hooks/useTranslation'
 
 const BlogList = () => {
     const { theme, setTheme } = useTheme()
+    const { t, dateLocale } = useTranslation()
     const [mounted, setMounted] = useState(false)
     const [searchTerm, setSearchTerm] = useState('')
     const [selectedCategory, setSelectedCategory] = useState('All')
@@ -70,7 +72,7 @@ const BlogList = () => {
                     <GridBackground theme={theme} />
                     <div className="text-center relative z-10">
                         <LoadingSpinner />
-                        <p className="text-gray-900 dark:text-white text-lg mt-4">Loading Blog Posts...</p>
+                        <p className="text-gray-900 dark:text-white text-lg mt-4">{t('blog.loadingPosts')}</p>
                     </div>
                 </div>
             </>
@@ -93,13 +95,13 @@ const BlogList = () => {
                     <GridBackground theme={theme} />
                     <div className="text-center relative z-10">
                         <div className="text-red-500 dark:text-red-400 text-6xl mb-4">⚠️</div>
-                        <h2 className="text-gray-900 dark:text-white text-2xl font-bold mb-2">Error Loading Blog</h2>
+                        <h2 className="text-gray-900 dark:text-white text-2xl font-bold mb-2">{t('blog.errorTitle')}</h2>
                         <p className="text-gray-600 dark:text-gray-300 mb-4">{error}</p>
                         <button
                             onClick={() => window.location.reload()}
                             className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                         >
-                            Retry
+                            {t('blog.retry')}
                         </button>
                     </div>
                 </div>
@@ -134,10 +136,10 @@ const BlogList = () => {
                     {/* Header */}
                     <div className="text-center pt-24 pb-12">
                         <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4">
-                            My Blog
+                            {t('blog.title')}
                         </h1>
                         <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                            Sharing insights, tutorials, and thoughts about software development
+                            {t('blog.subtitle')}
                         </p>
                     </div>
 
@@ -147,7 +149,7 @@ const BlogList = () => {
                         <div className="flex justify-center">
                             <input
                                 type="text"
-                                placeholder="Search posts..."
+                                placeholder={t('blog.searchPlaceholder')}
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                                 className={`w-full max-w-md px-4 py-3 rounded-xl ${
@@ -171,7 +173,7 @@ const BlogList = () => {
                             >
                                 {categories.map(category => (
                                     <option key={category} value={category}>
-                                        {category === 'All' ? 'All Categories' : category}
+                                        {category === 'All' ? t('blog.allCategories') : category}
                                     </option>
                                 ))}
                             </select>
@@ -187,7 +189,7 @@ const BlogList = () => {
                             >
                                 {tags.map(tag => (
                                     <option key={tag} value={tag}>
-                                        {tag === 'All' ? 'All Tags' : tag}
+                                        {tag === 'All' ? t('blog.allTags') : tag}
                                     </option>
                                 ))}
                             </select>
@@ -198,9 +200,9 @@ const BlogList = () => {
                     {sortedPosts.length === 0 && (
                         <div className="text-center py-12">
                             <div className="text-gray-400 dark:text-gray-500 text-6xl mb-4">📝</div>
-                            <h2 className="text-gray-900 dark:text-white text-xl md:text-2xl font-bold mb-2">No Posts Found</h2>
+                            <h2 className="text-gray-900 dark:text-white text-xl md:text-2xl font-bold mb-2">{t('blog.noPostsTitle')}</h2>
                             <p className="text-gray-600 dark:text-gray-400 text-sm md:text-base">
-                                Try adjusting your search or filter criteria
+                                {t('blog.noPostsText')}
                             </p>
                         </div>
                     )}
@@ -208,10 +210,10 @@ const BlogList = () => {
                     {/* Latest Posts - Top 3 in Grid */}
                     {sortedPosts.slice(0, 3).length > 0 && (
                         <div className="pb-12">
-                            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">Latest Posts</h2>
+                            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">{t('blog.latestPosts')}</h2>
                             <div className="grid gap-6 md:gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                                 {sortedPosts.slice(0, 3).map(post => (
-                                    <BlogCard key={post.id} post={post} theme={theme} isLatest={post.date === mostRecentDate} />
+                                    <BlogCard key={post.id} post={post} theme={theme} isLatest={post.date === mostRecentDate} t={t} dateLocale={dateLocale} />
                                 ))}
                             </div>
                         </div>
@@ -223,15 +225,15 @@ const BlogList = () => {
             {sortedPosts.slice(3).length > 0 && (
                 <div className="bg-gray-200 dark:bg-gray-900/50 py-16">
                     <div className="px-4 md:px-6 lg:px-8 max-w-7xl mx-auto">
-                        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">Older Posts</h2>
+                        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">{t('blog.olderPosts')}</h2>
                         <div>
                             {sortedPosts.slice(3, 3 + olderPostsLimit).map(post => (
                                 <div key={post.id} className="mb-8">
-                                    <BlogCardHorizontal post={post} theme={theme} isLatest={post.date === mostRecentDate} />
+                                    <BlogCardHorizontal post={post} theme={theme} isLatest={post.date === mostRecentDate} t={t} dateLocale={dateLocale} />
                                 </div>
                             ))}
                         </div>
-                        
+
                         {/* Load More Button */}
                         {sortedPosts.slice(3).length > olderPostsLimit && (
                             <div className="text-center mt-12">
@@ -243,7 +245,7 @@ const BlogList = () => {
                                             : 'bg-indigo-600 hover:bg-indigo-700 text-white'
                                     } shadow-lg hover:shadow-xl`}
                                 >
-                                    Load More Posts
+                                    {t('blog.loadMore')}
                                 </button>
                             </div>
                         )}
@@ -257,9 +259,9 @@ const BlogList = () => {
     )
 }
 
-const BlogCard = ({ post, theme, isLatest = false }) => {
+const BlogCard = ({ post, theme, isLatest = false, t, dateLocale }) => {
     const formatDate = (dateString) => {
-        return new Date(dateString).toLocaleDateString('en-US', {
+        return new Date(dateString).toLocaleDateString(dateLocale, {
             year: 'numeric',
             month: 'long',
             day: 'numeric'
@@ -282,7 +284,7 @@ const BlogCard = ({ post, theme, isLatest = false }) => {
             >
                 {isLatest && (
                     <div className="absolute top-4 right-4 bg-yellow-400 text-black text-xs font-bold px-2 py-1 rounded-full z-10">
-                        Latest
+                        {t('blog.latestBadge')}
                     </div>
                 )}
 
@@ -352,7 +354,7 @@ const BlogCard = ({ post, theme, isLatest = false }) => {
                     <div className="flex items-center justify-between pt-2 text-sm text-gray-600 dark:text-gray-400 flex-shrink-0">
                         <span>By {post.author}</span>
                         <span className="text-indigo-600 dark:text-indigo-400 font-medium">
-                            Read more →
+                            {t('blog.readMore')}
                         </span>
                     </div>
                 </div>
@@ -362,9 +364,9 @@ const BlogCard = ({ post, theme, isLatest = false }) => {
 }
 
 // Horizontal Blog Card Component for regular posts
-const BlogCardHorizontal = ({ post, theme, isLatest = false }) => {
+const BlogCardHorizontal = ({ post, theme, isLatest = false, t, dateLocale }) => {
     const formatDate = (dateString) => {
-        return new Date(dateString).toLocaleDateString('en-US', {
+        return new Date(dateString).toLocaleDateString(dateLocale, {
             year: 'numeric',
             month: 'short',
             day: 'numeric'
@@ -388,7 +390,7 @@ const BlogCardHorizontal = ({ post, theme, isLatest = false }) => {
             >
                 {isLatest && (
                     <div className="absolute top-4 right-4 bg-yellow-400 text-black text-xs font-bold px-2 py-1 rounded-full z-10">
-                        Latest
+                        {t('blog.latestBadge')}
                     </div>
                 )}
 
@@ -467,7 +469,7 @@ const BlogCardHorizontal = ({ post, theme, isLatest = false }) => {
                     <div className="flex items-center justify-between pt-2">
                         <span className="text-sm text-gray-600 dark:text-gray-400">By {post.author}</span>
                         <span className="text-sm text-indigo-600 dark:text-indigo-400 font-medium">
-                            Read more →
+                            {t('blog.readMore')}
                         </span>
                     </div>
                 </div>
