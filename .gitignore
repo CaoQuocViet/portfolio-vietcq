@@ -3,5 +3,6 @@ plans/
 docs/00-runtime.md
 CLAUDE.md
 .claude
+docs/functions_vi/
 server/pb_data/
 server/pb
