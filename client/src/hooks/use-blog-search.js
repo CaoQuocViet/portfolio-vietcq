@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { useState, useEffect } from 'react'
-import { searchPosts } from '../lib/pocketbase'
+import { searchPosts } from '../lib/api'
 
 function useDebounce(value, delay = 300) {
   const [debounced, setDebounced] = useState(value)

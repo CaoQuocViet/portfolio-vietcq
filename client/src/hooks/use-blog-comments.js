@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { listComments, createComment } from '../lib/pocketbase'
+import { listComments, createComment } from '../lib/api'
 
 export function useBlogComments(postId) {
   const query = useQuery({

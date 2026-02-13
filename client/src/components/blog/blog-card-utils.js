@@ -1,4 +1,4 @@
-import { getFileUrl } from '../../lib/pocketbase'
+import { getFileUrl } from '../../lib/api'
 
 export function formatPostDate(dateString, dateLocale, monthFormat = 'long') {
   return new Date(dateString).toLocaleDateString(dateLocale, {
