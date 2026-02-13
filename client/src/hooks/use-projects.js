@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { listProjects, getProject } from '../lib/pocketbase'
+import { listProjects, getProject } from '../lib/api'
 
 export function useProjects(lang = 'en') {
   const query = useQuery({

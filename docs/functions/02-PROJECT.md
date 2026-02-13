@@ -39,30 +39,36 @@ server/portfolio/
 └── migrate.go        # CLI migration tool
 ```
 
-### Frontend (Client) — Not Started
+### Frontend (Client) — Complete
 
-The client still reads project data from static JSON files in `public/data/project-detail/`. It needs to be refactored to consume the PocketBase API.
+- [x] `lib/pocketbase.js` — `listProjects(lang)`, `getProject(slug, lang)` functions
+- [x] `hooks/use-projects.js` — TanStack Query hooks: `useProjects(lang)`, `useProject(slug, lang)`
+- [x] `components/share/ProjectsList.jsx` — uses `useProjects` hook instead of static JSON
+- [x] `components/project/index.jsx` — uses `useProject` hook for detail page
+- [x] Bilingual support via `lang` param (tied to i18n context)
+- [x] Static JSON files kept in `public/data/project-detail/` as reference
 
-#### What needs to happen:
-- [ ] Create `client/src/lib/portfolio.js` — API client for portfolio endpoints
-- [ ] Create TanStack Query hooks: `use-projects.js`, `use-project.js`
-- [ ] Refactor `client/src/app/api/projects/route.js` — proxy or remove in favor of direct PocketBase calls
-- [ ] Update gallery components to fetch from API instead of static JSON
-- [ ] Update project detail page to use API data
-- [ ] Handle bilingual content switching (lang param tied to i18n context)
-- [ ] Image URLs: use `getFileUrl()` from PocketBase client
+#### Client Files
+```
+client/src/
+├── lib/pocketbase.js          # listProjects, getProject
+├── hooks/use-projects.js      # useProjects, useProject
+├── components/share/ProjectsList.jsx
+└── components/project/index.jsx
+```
+
+#### Gallery (unchanged)
+Gallery images remain file-based (`/data/project-demo/`). `useGallery` hook and `/api/gallery` route unchanged.
 
 ## Known Issues
 
 - `slugify()` duplicated with blog engine — should extract to shared package
 - Image URLs use collection ID (`pbc_xxx`) — correct but not human-readable
 - No Go unit tests for portfolio hooks/routes
+- Legacy `/api/projects` route still exists (unused, can be removed)
 
 ## Next Steps
 
-1. Create PocketBase API client for portfolio endpoints
-2. Create TanStack Query hooks for projects
-3. Refactor gallery/project pages to consume API
-4. Wire bilingual switching to i18n context
-5. Remove static JSON dependency
-6. Add Go unit tests
+1. Remove legacy `/api/projects` API route
+2. Add Go unit tests for portfolio hooks/routes
+3. Extract `slugify()` to shared package

@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { listTags } from '../lib/pocketbase'
+import { listTags } from '../lib/api'
 
 export function useBlogTags() {
   const query = useQuery({

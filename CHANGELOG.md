@@ -1,3 +1,11 @@
+## v0.2.5
+
+- Migrated project client from static JSON to PocketBase API — `listProjects`, `getProject` functions with TanStack Query hooks (`useProjects`, `useProject`).
+
+- Updated `ProjectsList` and project detail page to fetch from PocketBase instead of static JSON files. Bilingual support via `lang` parameter.
+
+- Static JSON files kept in `public/data/project-detail/` as reference.
+
 ## v0.2.4
 
 - Added blog comment system — guest commenting with threaded replies, gravatar avatars, relative time display, and i18n (EN/VI).

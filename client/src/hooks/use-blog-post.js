@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { getPost } from '../lib/pocketbase'
+import { getPost } from '../lib/api'
 
 export function useBlogPost(slug) {
   const query = useQuery({
