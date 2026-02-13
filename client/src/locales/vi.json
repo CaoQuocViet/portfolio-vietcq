@@ -116,7 +116,16 @@
     "backToBlog": "Quay Lại Blog",
     "featuredPost": "Bài Viết Nổi Bật",
     "publishedBy": "Xuất bản ngày {{date}} bởi {{author}}",
-    "morePosts": "Bài Viết Khác"
+    "morePosts": "Bài Viết Khác",
+    "comments": "Bình luận",
+    "noComments": "Chưa có bình luận nào. Hãy là người đầu tiên chia sẻ suy nghĩ.",
+    "writeComment": "Để lại bình luận",
+    "reply": "Trả lời",
+    "namePlaceholder": "Tên của bạn",
+    "emailPlaceholder": "Email (tùy chọn, cho avatar)",
+    "commentPlaceholder": "Viết bình luận của bạn...",
+    "submit": "Gửi",
+    "submitting": "Đang gửi..."
   },
   "showcase": {
     "sectionTitle": "Trưng Bày",

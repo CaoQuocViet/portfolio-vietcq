@@ -120,8 +120,22 @@ func ensurePostsCollection(app core.App) error {
 }
 
 func ensureCommentsCollection(app core.App) error {
-	if _, err := app.FindCollectionByNameOrId("comments"); err == nil {
-		return nil
+	if c, err := app.FindCollectionByNameOrId("comments"); err == nil {
+		// migrate: if old schema (has "name" field but no "author_name"), drop and recreate
+		if c.Fields.GetByName("author_name") == nil && c.Fields.GetByName("name") != nil {
+			if err := app.Delete(c); err != nil {
+				return err
+			}
+		} else {
+			// migrate: add created_at if missing
+			if c.Fields.GetByName("created_at") == nil {
+				c.Fields.Add(&core.AutodateField{Name: "created_at", OnCreate: true})
+				if err := app.Save(c); err != nil {
+					return err
+				}
+			}
+			return nil
+		}
 	}
 
 	postsCol, err := app.FindCollectionByNameOrId("posts")
@@ -134,14 +148,19 @@ func ensureCommentsCollection(app core.App) error {
 		Name: "post", CollectionId: postsCol.Id, Required: true,
 		CascadeDelete: true, MaxSelect: 1,
 	})
-	c.Fields.Add(&core.TextField{Name: "name", Required: true, Max: 200})
-	c.Fields.Add(&core.TextField{Name: "website", Max: 500})
-	c.Fields.Add(&core.TextField{Name: "comment", Required: true, Max: 5000})
-	c.Fields.Add(&core.TextField{Name: "original", Max: 500}) // webmention dedup
-	c.Fields.Add(&core.BoolField{Name: "approved"})
+	// parent_id is a self-relation; set after initial save
+	c.Fields.Add(&core.TextField{Name: "author_name", Required: true, Max: 100})
+	c.Fields.Add(&core.EmailField{Name: "author_email"})
+	c.Fields.Add(&core.TextField{Name: "content", Required: true, Max: 2000})
+	c.Fields.Add(&core.SelectField{
+		Name: "status", Required: true,
+		Values: []string{"approved", "pending", "spam"}, MaxSelect: 1,
+	})
+	c.Fields.Add(&core.NumberField{Name: "likes", OnlyInt: true})
+	c.Fields.Add(&core.AutodateField{Name: "created_at", OnCreate: true})
 
-	listRule := "approved = true && post.status = 'published'"
-	viewRule := "approved = true"
+	listRule := "status = 'approved' && post.status = 'published'"
+	viewRule := "status = 'approved'"
 	pub := ""
 	auth := "@request.auth.id != ''"
 	c.ListRule = &listRule
@@ -151,7 +170,17 @@ func ensureCommentsCollection(app core.App) error {
 	c.DeleteRule = &auth
 
 	c.AddIndex("idx_comments_post", false, "post", "")
-	c.AddIndex("idx_comments_approved_post", false, "approved, post", "")
+	c.AddIndex("idx_comments_status_post", false, "status, post", "")
+
+	if err := app.Save(c); err != nil {
+		return err
+	}
+
+	// add self-relation for replies (needs collection ID)
+	c.Fields.Add(&core.RelationField{
+		Name: "parent_id", CollectionId: c.Id,
+		MaxSelect: 1, CascadeDelete: true,
+	})
 	return app.Save(c)
 }
 

@@ -1,4 +1,4 @@
-const BASE_URL = process.env.NEXT_PUBLIC_POCKETBASE_URL || 'http://localhost:8090'
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8090'
 
 function esc(val) {
   return String(val).replace(/'/g, "\\'")
@@ -54,6 +54,60 @@ export function getStats() {
 export function listTags({ sort = '-post_count' } = {}) {
   return fetchApi('/api/collections/tags/records', { params: { sort, perPage: 100 } })
     .then(res => res?.items || [])
+}
+
+// --- Comments ---
+
+export function listComments(postId, { sort = 'created_at' } = {}) {
+  const filter = `post='${esc(postId)}' && status='approved'`
+  return fetchApi('/api/collections/comments/records', { params: { filter, sort, perPage: 200 } })
+    .then(res => res?.items || [])
+}
+
+export function createComment(data) {
+  return fetchApi('/api/collections/comments/records', {
+    method: 'POST',
+    body: JSON.stringify({ ...data, status: 'approved' }),
+  })
+}
+
+// --- Projects (portfolio) ---
+
+export function listProjects({ lang = 'en' } = {}) {
+  return fetchApi('/api/portfolio/projects', { params: { lang } })
+}
+
+export function getProject(slug, { lang = 'en' } = {}) {
+  return fetchApi(`/api/portfolio/projects/${encodeURIComponent(slug)}`, { params: { lang } })
+}
+
+// --- Gallery ---
+
+export async function listGalleryImages() {
+  const data = await listProjects()
+  const projects = data?.projects || []
+
+  const results = await Promise.all(
+    projects.map(async (p) => {
+      try {
+        const detail = await getProject(p.slug)
+        const images = detail?.images || []
+        return images.map((img, i) => ({
+          src: `${BASE_URL}${img.url}`,
+          title: img.alt || `${p.slug}-${img.order || i + 1}`,
+          alt: img.alt || `${p.name} - Image ${img.order || i + 1}`,
+          project: p.slug,
+          projectName: p.name,
+          number: img.order || i + 1,
+          filename: img.url.split('/').pop() || '',
+        }))
+      } catch {
+        return []
+      }
+    })
+  )
+
+  return results.flat()
 }
 
 // --- Files ---

@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { listPosts } from '../lib/pocketbase'
+import { listPosts } from '../lib/api'
 
 const esc = (v) => String(v).replace(/'/g, "\\'")
 
