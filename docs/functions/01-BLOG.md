@@ -66,13 +66,15 @@ Build a complete blog system with PocketBase backend (collections, hooks, feeds,
 - [x] Direct PocketBase auth (removed legacy proxy routes)
 - [x] `BlogEditor.jsx` with sonner toast notifications
 
-### Client: Comment System — In Progress
+### Client: Comment System — Complete
 - [x] Guest commenting with threaded replies
 - [x] Gravatar avatars, relative time display
 - [x] i18n support (EN/VI)
-- [ ] Admin moderation UI (approve/spam toggle)
-- [ ] Email notifications on replies
-- [ ] Like functionality
+- [x] `approved` status field in schema (moderation ready)
+- [x] Comment access rules (only approved comments visible)
+- [ ] Admin moderation UI (approve/spam toggle) — *Planned for Next Steps*
+- [ ] Email notifications on replies — *Planned for Next Steps*
+- [ ] Webmention support via `original` URL field — *Deferred*
 
 ### Client: UI/UX — Complete
 - [x] ErrorBoundary with retry
@@ -118,15 +120,46 @@ client/src/
 - [ ] Add Go unit tests for hooks and routes
 - [ ] Remove unused `CORSOrigins` from blog config
 
-### Future Enhancements (Deferred)
-- [ ] `reactions` collection — emoji reactions with atomic increment via custom route, rate-limited per IP
-- [ ] `blog_settings` collection — runtime-editable config (currently hardcoded in env vars)
-- [ ] `/feed.json` — JSON Feed 1.1 format
-- [ ] `/s/{shortId}` — Short URL redirect to `/blog/{slug}`
-- [ ] FTS5 full-text search — replace current `LIKE` search with SQLite FTS5 virtual table for relevance ranking, stemming, phrase matching
+### Future Enhancements (Phase 3, Deferred)
+
+#### Engagement & Reactions
+- [ ] `reactions` collection — emoji reactions with atomic increment via custom route, rate-limited per IP/post/minute
+  - Fields: `post` (relation), `reaction` (text, max 10), `count` (number, default 0)
+  - Custom route: `POST /api/blog/reactions` validates and increments atomically
+  - Access rules: public can POST, but not UPDATE (prevents arbitrary count manipulation)
+
+#### Blog Configuration
+- [ ] `blog_settings` collection — runtime-editable config (singleton pattern)
+  - Currently hardcoded in env vars; add when settings need UI control
+  - Key settings: blog_title, blog_description, blog_lang, pagination size, comments_enabled, reactions_enabled, search_enabled, robots_blocked_bots
+
+#### Additional Feed Formats
+- [ ] `/feed.json` — JSON Feed 1.1 format (maps to `/feed.xml` RSS 2.0)
+- [ ] Feed HTML rendering — render markdown to HTML in feed content (currently serves raw markdown) instead of raw markdown in feeds
+
+#### Short URLs & Analytics
+- [ ] `/s/{shortId}` — Short URL redirect to `/blog/{slug}` (maps to `short_id` field in posts)
+  - Enables shareable short links (e.g., vietcq.dev/s/abc123)
+  - Field already in schema but marked DEFERRED (premature for <100 posts)
+
+#### Full-Text Search
+- [ ] FTS5 full-text search — replace current `LIKE` search with SQLite FTS5 virtual table
+  - Benefits: relevance ranking, stemming ("running" matches "run"), phrase matching ("hello world")
+  - Implementation: create virtual table via migration, sync via OnRecordAfterCreateSuccess/Update/Delete hooks
+  - Phase 1 uses PocketBase `~` operator (sufficient for <1000 posts); Phase 3 adds FTS5 for advanced ranking
+
+#### Media Management
+- [ ] `media` collection — separate media library (currently premature for <100 posts)
+  - Fields: `file` (max 50MB), `name`, `alt_text`, `type` (image/video/document/other), `size` (auto-populated)
+  - Defer until media management becomes pain point
 - [ ] Image compression hook — resize uploaded images via Go `imaging` library on `OnRecordCreate("media")`
-- [ ] Feed HTML rendering — render markdown to HTML in feed content (currently serves raw markdown)
-- [ ] Markdown editor split preview — live preview pane in BlogEditor
-- [ ] Media browser — drag-drop inline image upload, select from existing media library
-- [ ] Stale draft cleanup cron — weekly delete drafts older than 90 days
-- [ ] PocketBase realtime subscriptions — live post updates via WebSocket
+  - Resize to 2000x3000 max, JPEG 75% quality (matches GoBlog behavior)
+  - Applies to both `media` collection and post `cover_image`/`images` files
+
+#### Advanced Editor Features
+- [ ] Markdown editor split preview — live preview pane in BlogEditor (currently basic editor only)
+- [ ] Media browser — drag-drop inline image upload, select from existing media library during post composition
+
+#### Maintenance & Performance
+- [ ] Stale draft cleanup cron — weekly delete drafts older than 90 days (optional housekeeping)
+- [ ] PocketBase realtime subscriptions — live post updates via WebSocket (e.g., new comments appear live)
