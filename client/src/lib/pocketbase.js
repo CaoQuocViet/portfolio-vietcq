@@ -71,6 +71,16 @@ export function createComment(data) {
   })
 }
 
+// --- Projects (portfolio) ---
+
+export function listProjects({ lang = 'en' } = {}) {
+  return fetchApi('/api/portfolio/projects', { params: { lang } })
+}
+
+export function getProject(slug, { lang = 'en' } = {}) {
+  return fetchApi(`/api/portfolio/projects/${encodeURIComponent(slug)}`, { params: { lang } })
+}
+
 // --- Files ---
 
 export function getFileUrl(collectionId, recordId, filename) {

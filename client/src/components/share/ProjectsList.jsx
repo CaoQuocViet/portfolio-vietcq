@@ -1,47 +1,22 @@
 "use client";
 
-import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { LoadingSpinner } from "../ui/loading";
 import { useLanguage } from "../../contexts/LanguageContext";
 import { useTranslation } from '../../hooks/useTranslation';
+import { useProjects } from '../../hooks/use-projects';
 
 const ProjectsList = ({ theme }) => {
-    const [projects, setProjects] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
     const router = useRouter();
     const { language } = useLanguage();
     const { t } = useTranslation();
+    const { projects, isLoading, error } = useProjects(language);
 
-    useEffect(() => {
-        const fetchProjects = async () => {
-            try {
-                setLoading(true);
-                
-                // Use API route to get project list dynamically with language
-                const response = await fetch(`/api/projects?lang=${language}`);
-                if (response.ok) {
-                    const data = await response.json();
-                    setProjects(data.projects || []);
-                } else {
-                    throw new Error('Failed to fetch projects');
-                }
-            } catch (err) {
-                setError(err.message);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchProjects();
-    }, [language]);
-
-    const handleProjectClick = (projectId) => {
-        router.push(`/project/${projectId}`);
+    const handleProjectClick = (slug) => {
+        router.push(`/project/${slug}`);
     };
 
-    if (loading) {
+    if (isLoading) {
         return (
             <div className="flex justify-center py-4">
                 <LoadingSpinner />
@@ -49,15 +24,7 @@ const ProjectsList = ({ theme }) => {
         );
     }
 
-    if (error) {
-        return (
-            <div className="text-center py-4 text-[var(--text-secondary)]">
-                {t('common.noProjectsFound')}
-            </div>
-        );
-    }
-
-    if (projects.length === 0) {
+    if (error || projects.length === 0) {
         return (
             <div className="text-center py-4 text-[var(--text-secondary)]">
                 {t('common.noProjectsFound')}
@@ -70,14 +37,14 @@ const ProjectsList = ({ theme }) => {
             {projects.map((project) => (
                 <div
                     key={project.id}
-                    onClick={() => handleProjectClick(project.id)}
-                    className="group relative bg-gradient-to-br from-[var(--bg-page)] to-[var(--bg-section-alt)] 
-                              rounded-2xl p-6 
-                              transition-all duration-500 shadow-lg hover:shadow-2xl 
+                    onClick={() => handleProjectClick(project.slug)}
+                    className="group relative bg-gradient-to-br from-[var(--bg-page)] to-[var(--bg-section-alt)]
+                              rounded-2xl p-6
+                              transition-all duration-500 shadow-lg hover:shadow-2xl
                               hover:-translate-y-2 hover:scale-[1.02] cursor-pointer
                               hover:shadow-blue-500/10 dark:hover:shadow-blue-400/20
-                              before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-br 
-                              before:from-blue-500/5 before:to-purple-500/5 before:opacity-0 
+                              before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-br
+                              before:from-blue-500/5 before:to-purple-500/5 before:opacity-0
                               hover:before:opacity-100 before:transition-opacity before:duration-500"
                 >
                     {/* Project Name */}
@@ -86,7 +53,7 @@ const ProjectsList = ({ theme }) => {
                                   transition-colors duration-300">
                         {project.name}
                     </h4>
-                    
+
                     {/* Project Tagline */}
                     {project.tagline && (
                         <p className="text-sm text-[var(--text-secondary)] mb-4 leading-relaxed

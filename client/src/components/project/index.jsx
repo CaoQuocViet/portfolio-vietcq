@@ -12,6 +12,7 @@ import ProjectGallery from './ProjectGallery'
 import { LoadingSpinner } from "../ui/loading";
 import { useLanguage } from "../../contexts/LanguageContext";
 import { useTranslation } from '../../hooks/useTranslation';
+import { useProject } from '../../hooks/use-projects';
 import { PROJECT_NAVIGATION_ITEMS } from '../../config/navigation'
 import { createScrollFunction } from '../../utils/navigation'
 
@@ -22,9 +23,8 @@ const ProjectPage = () => {
     const { t } = useTranslation()
     const [activeSection, setActiveSection] = useState("project-overview")
     const [mounted, setMounted] = useState(false)
-    const [projectData, setProjectData] = useState(null)
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState('')
+
+    const { project: projectData, isLoading: loading, error } = useProject(params.id, language)
 
     useEffect(() => {
         setMounted(true)
@@ -32,36 +32,7 @@ const ProjectPage = () => {
 
     const scrollToSection = createScrollFunction();
 
-    useEffect(() => {
-        const loadProjectData = async () => {
-            try {
-                const response = await fetch(`/data/project-detail/${language}/${params.id}.json`)
-                if (!response.ok) throw new Error('Project not found')
-                
-                const data = await response.json()
-                setProjectData(data)
-            } catch (err) {
-                setError(err.message)
-            } finally {
-                setLoading(false)
-            }
-        }
-
-        if (params.id) {
-            setLoading(true)
-            loadProjectData()
-        }
-    }, [params.id, language])
-
-    if (!mounted) {
-        return (
-            <div className="min-h-screen bg-[var(--bg-page)] flex items-center justify-center">
-                <LoadingSpinner />
-            </div>
-        )
-    }
-
-    if (loading) {
+    if (!mounted || loading) {
         return (
             <div className="min-h-screen bg-[var(--bg-page)] flex items-center justify-center">
                 <LoadingSpinner />
@@ -91,7 +62,7 @@ const ProjectPage = () => {
     return (
         <div className="min-h-screen bg-[var(--bg-page)]">
             {/* Dock Navigation */}
-            <Dock 
+            <Dock
                 theme={theme}
                 setTheme={setTheme}
                 activeSection={null}
