@@ -56,6 +56,21 @@ export function listTags({ sort = '-post_count' } = {}) {
     .then(res => res?.items || [])
 }
 
+// --- Comments ---
+
+export function listComments(postId, { sort = 'created' } = {}) {
+  const filter = `post='${esc(postId)}' && status='approved'`
+  return fetchApi('/api/collections/comments/records', { params: { filter, sort, perPage: 200 } })
+    .then(res => res?.items || [])
+}
+
+export function createComment(data) {
+  return fetchApi('/api/collections/comments/records', {
+    method: 'POST',
+    body: JSON.stringify({ ...data, status: 'approved' }),
+  })
+}
+
 // --- Files ---
 
 export function getFileUrl(collectionId, recordId, filename) {
