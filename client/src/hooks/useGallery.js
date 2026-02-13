@@ -1,21 +1,11 @@
 import { useQuery } from '@tanstack/react-query'
+import { listGalleryImages } from '../lib/api'
 
-export function useGallery(projectId = null) {
+export function useGallery() {
     const { data: images = [], isLoading: loading, error } = useQuery({
-        queryKey: ['gallery', projectId],
-        queryFn: async () => {
-            const url = projectId
-                ? `/api/gallery?projectId=${projectId}`
-                : '/api/gallery'
-            const res = await fetch(url)
-            if (!res.ok) throw new Error('Failed to fetch images')
-            const data = await res.json()
-
-            if (projectId) return data.images || []
-            const all = []
-            data.projects?.forEach(p => all.push(...p.images))
-            return all
-        },
+        queryKey: ['gallery'],
+        queryFn: listGalleryImages,
+        staleTime: 5 * 60 * 1000,
     })
 
     return { images, loading, error: error?.message ?? null }
