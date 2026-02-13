@@ -6,7 +6,7 @@
 |---------|-----|---------|
 | PocketBase Dashboard | http://localhost:8090/_/ | Admin CRUD for all collections |
 | PocketBase API | http://localhost:8090/api/ | REST API |
-| Next.js Client | http://localhost:3000 | Portfolio frontend |
+| Next.js Client | http://localhost:5678 | Portfolio frontend |
 | RSS Feed | http://localhost:8090/feed.xml | RSS 2.0 |
 | Sitemap | http://localhost:8090/sitemap.xml | XML sitemap |
 | robots.txt | http://localhost:8090/robots.txt | Bot rules |

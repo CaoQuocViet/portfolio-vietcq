@@ -218,7 +218,7 @@ yarn dev
 npm run dev-turbo
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
+Open [http://localhost:5678](http://localhost:5678) in your browser to see the result.
 
 ### Build for Production
 
@@ -258,7 +258,7 @@ Create a `.env.local` file in the root directory for local development:
 
 ```env
 # Optional: Configure any environment variables here
-NEXT_PUBLIC_SITE_URL=http://localhost:3000
+NEXT_PUBLIC_SITE_URL=http://localhost:5678
 ```
 
 
