@@ -48,17 +48,24 @@ server/portfolio/
 - [x] Bilingual support via `lang` param (tied to i18n context)
 - [x] Static JSON files kept in `public/data/project-detail/` as reference
 
+#### Gallery Migration — Complete
+- [x] Migrated 107 project gallery images from filesystem (`client/public/data/project-demo/`) to PocketBase `project_images` collection
+- [x] Gallery component updated to use PocketBase image URLs with thumbnail parameters
+- [x] Image URLs now served via `/api/files/project_images/{recordId}/{filename}?thumb=400x300` (cached)
+- [x] Display order preserved via `display_order` field in project_images schema
+- [x] Alt text and captions stored in collection (previously missing from filesystem)
+
 #### Client Files
 ```
 client/src/
-├── lib/pocketbase.js          # listProjects, getProject
-├── hooks/use-projects.js      # useProjects, useProject
+├── lib/pocketbase.js                     # listProjects, getProject, getProjectImages
+├── hooks/use-projects.js                 # useProjects, useProject
+├── hooks/use-gallery.js                  # useGallery (migrated to PocketBase)
 ├── components/share/ProjectsList.jsx
-└── components/project/index.jsx
+├── components/project/index.jsx
+├── components/gallery/GalleryGrid.jsx
+└── components/gallery/GalleryImageCard.jsx
 ```
-
-#### Gallery (unchanged)
-Gallery images remain file-based (`/data/project-demo/`). `useGallery` hook and `/api/gallery` route unchanged.
 
 ## Known Issues
 
@@ -69,6 +76,38 @@ Gallery images remain file-based (`/data/project-demo/`). `useGallery` hook and 
 
 ## Next Steps
 
+### Short-term
 1. Remove legacy `/api/projects` API route
 2. Add Go unit tests for portfolio hooks/routes
 3. Extract `slugify()` to shared package
+4. Optimize image loading (lazy loading, responsive sizes)
+
+### Future Enhancements
+
+#### User Engagement
+- [ ] Project comments/feedback — use existing `comments` collection or create project-specific comments
+  - Allow users to leave feedback, questions on projects
+  - Threaded replies with gravatar avatars
+  - Admin moderation panel
+
+#### Analytics & Insights
+- [ ] Project view counts — add `view_count` (number) field, increment on `/api/portfolio/projects/{slug}` GET
+- [ ] Project download counts — track project demo/code downloads (if applicable)
+- [ ] Analytics dashboard — charts showing most-viewed projects, trending technologies
+
+#### Content Organization
+- [ ] Project search/filter on gallery page — full-text search by name, description, technologies
+  - Add `/api/portfolio/projects/search?q=` custom route
+  - Filter pills for technology stack (React, Go, TypeScript, etc.)
+- [ ] Technology browser — dedicated page showing all projects by tech stack with counts
+- [ ] Project timeline visualization — chronological view of projects by start_date/end_date
+
+#### Related Content
+- [ ] Related projects suggestions — algorithm to suggest similar projects based on technologies/category
+  - Show "You might also like" cards at bottom of project detail
+  - Improve user discovery across portfolio
+
+#### Media Enhancements
+- [ ] Responsive image optimization — serve different sizes based on viewport (currently uses fixed thumbs)
+- [ ] Video support — embed project demo videos (YouTube, Vimeo, or self-hosted MP4)
+- [ ] 3D project showcases — integrate with Three.js for interactive project visualization
