@@ -23,7 +23,10 @@ const Gallery = ({ projectFilter = null, showDock = true }) => {
     const intervalRef = useRef(null)
 
     // Use hook to fetch project images
-    const { images: galleryItems, loading, error } = useGallery(projectFilter)
+    const { images: allImages, loading, error } = useGallery()
+    const galleryItems = projectFilter
+        ? allImages.filter(img => img.project === projectFilter)
+        : allImages
 
     // Calculate dynamic width based on number of images - always fill 100% container
     const calculateItemWidth = (totalImages) => {
