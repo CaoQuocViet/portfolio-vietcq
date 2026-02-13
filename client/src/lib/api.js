@@ -81,6 +81,35 @@ export function getProject(slug, { lang = 'en' } = {}) {
   return fetchApi(`/api/portfolio/projects/${encodeURIComponent(slug)}`, { params: { lang } })
 }
 
+// --- Gallery ---
+
+export async function listGalleryImages() {
+  const data = await listProjects()
+  const projects = data?.projects || []
+
+  const results = await Promise.all(
+    projects.map(async (p) => {
+      try {
+        const detail = await getProject(p.slug)
+        const images = detail?.images || []
+        return images.map((img, i) => ({
+          src: `${BASE_URL}${img.url}`,
+          title: img.alt || `${p.slug}-${img.order || i + 1}`,
+          alt: img.alt || `${p.name} - Image ${img.order || i + 1}`,
+          project: p.slug,
+          projectName: p.name,
+          number: img.order || i + 1,
+          filename: img.url.split('/').pop() || '',
+        }))
+      } catch {
+        return []
+      }
+    })
+  )
+
+  return results.flat()
+}
+
 // --- Files ---
 
 export function getFileUrl(collectionId, recordId, filename) {

@@ -12,12 +12,14 @@ export default function GalleryPageClient() {
     // Fetch all gallery items to extract unique projects
     const { images: galleryItems, loading } = useGallery(null)
     
-    // Extract unique projects for cards
-    const uniqueProjects = galleryItems ? 
-        [...new Set(galleryItems.map(item => item.project))].map(projectName => {
+    // Extract unique projects for cards (item.project = slug, item.projectName = display name)
+    const uniqueProjects = galleryItems ?
+        [...new Set(galleryItems.map(item => item.project))].map(slug => {
+            const first = galleryItems.find(item => item.project === slug)
             return {
-                name: projectName,
-                count: galleryItems.filter(item => item.project === projectName).length
+                name: slug,
+                displayName: first?.projectName || slug.replace(/-/g, ' '),
+                count: galleryItems.filter(item => item.project === slug).length
             }
         }) : []
 

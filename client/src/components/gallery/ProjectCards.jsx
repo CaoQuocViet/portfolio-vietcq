@@ -129,7 +129,7 @@ export default function ProjectCards({ projects }) {
                             }}
                         >
                             <div className="project-card-content">
-                                <span>{project.name.replace(/-/g, ' ')}</span>
+                                <span>{project.displayName || project.name.replace(/-/g, ' ')}</span>
                                 <div className="project-card-count">
                                     {project.count}
                                 </div>
