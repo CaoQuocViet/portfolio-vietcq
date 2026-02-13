@@ -58,7 +58,7 @@ export function listTags({ sort = '-post_count' } = {}) {
 
 // --- Comments ---
 
-export function listComments(postId, { sort = 'created' } = {}) {
+export function listComments(postId, { sort = 'created_at' } = {}) {
   const filter = `post='${esc(postId)}' && status='approved'`
   return fetchApi('/api/collections/comments/records', { params: { filter, sort, perPage: 200 } })
     .then(res => res?.items || [])

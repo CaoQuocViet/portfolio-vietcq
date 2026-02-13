@@ -127,6 +127,13 @@ func ensureCommentsCollection(app core.App) error {
 				return err
 			}
 		} else {
+			// migrate: add created_at if missing
+			if c.Fields.GetByName("created_at") == nil {
+				c.Fields.Add(&core.AutodateField{Name: "created_at", OnCreate: true})
+				if err := app.Save(c); err != nil {
+					return err
+				}
+			}
 			return nil
 		}
 	}
@@ -150,6 +157,7 @@ func ensureCommentsCollection(app core.App) error {
 		Values: []string{"approved", "pending", "spam"}, MaxSelect: 1,
 	})
 	c.Fields.Add(&core.NumberField{Name: "likes", OnlyInt: true})
+	c.Fields.Add(&core.AutodateField{Name: "created_at", OnCreate: true})
 
 	listRule := "status = 'approved' && post.status = 'published'"
 	viewRule := "status = 'approved'"

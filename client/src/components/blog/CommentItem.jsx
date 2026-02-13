@@ -53,7 +53,7 @@ const CommentItem = ({ comment, replies = [], postId, depth = 0 }) => {
               {comment.author_name}
             </span>
             <span className="text-xs text-[var(--text-muted)]">
-              {timeAgo(comment.created, locale)}
+              {timeAgo(comment.created_at, locale)}
             </span>
           </div>
 
