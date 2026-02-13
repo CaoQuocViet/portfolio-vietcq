@@ -16,6 +16,7 @@ import { useBlogPost } from '../../hooks/use-blog-post'
 import { LoadingSpinner } from '../ui/loading'
 import { useTranslation } from '../../hooks/useTranslation'
 import { formatPostDate, getPostImageUrl, normalizePostTags } from './blog-card-utils'
+import BlogComments from './BlogComments'
 import 'highlight.js/styles/github-dark.css'
 
 const BlogPost = ({ slug }) => {
@@ -173,6 +174,9 @@ const BlogPost = ({ slug }) => {
                                 </Link>
                             </div>
                         </footer>
+
+                        {/* Comments */}
+                        <BlogComments postId={post.id} />
                     </article>
                 </div>
             </main>
