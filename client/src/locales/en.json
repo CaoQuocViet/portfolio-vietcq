@@ -116,7 +116,16 @@
     "backToBlog": "Back to Blog",
     "featuredPost": "Featured Post",
     "publishedBy": "Published on {{date}} by {{author}}",
-    "morePosts": "More Posts"
+    "morePosts": "More Posts",
+    "comments": "Comments",
+    "noComments": "No comments yet. Be the first to share your thoughts.",
+    "writeComment": "Leave a comment",
+    "reply": "Reply",
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "Email (optional, for avatar)",
+    "commentPlaceholder": "Write your comment...",
+    "submit": "Submit",
+    "submitting": "Submitting..."
   },
   "showcase": {
     "sectionTitle": "Show Cases",

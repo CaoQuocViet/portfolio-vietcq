@@ -107,11 +107,14 @@ func registerTagHooks(app core.App) {
 }
 
 func registerCommentHooks(app core.App) {
-	// Default name to "Anonymous" if empty
+	// Default author_name to "Anonymous" and status to "approved"
 	app.OnRecordCreate("comments").Bind(&hook.Handler[*core.RecordEvent]{
 		Func: func(e *core.RecordEvent) error {
-			if strings.TrimSpace(e.Record.GetString("name")) == "" {
-				e.Record.Set("name", "Anonymous")
+			if strings.TrimSpace(e.Record.GetString("author_name")) == "" {
+				e.Record.Set("author_name", "Anonymous")
+			}
+			if e.Record.GetString("status") == "" {
+				e.Record.Set("status", "approved")
 			}
 			return e.Next()
 		},
