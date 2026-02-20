@@ -1,0 +1,7 @@
+.git
+*.md
+.vscode
+.idea
+.DS_Store
+Thumbs.db
+pb_data

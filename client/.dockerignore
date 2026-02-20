@@ -1,0 +1,12 @@
+.git
+node_modules
+.next
+.env
+.env.*
+*.md
+coverage
+.vscode
+.idea
+.DS_Store
+Thumbs.db
+.turbo
