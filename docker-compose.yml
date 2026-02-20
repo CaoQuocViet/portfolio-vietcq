@@ -1,5 +1,7 @@
 services:
   client:
+    image: portfolio-client:latest
+    container_name: portfolio-client
     build:
       context: ./client
       dockerfile: Dockerfile
@@ -9,8 +11,13 @@ services:
       - NODE_ENV=production
       - NEXT_PUBLIC_POCKETBASE_URL=http://server:8090
     restart: unless-stopped
+    depends_on:
+      server:
+        condition: service_healthy
 
   server:
+    image: portfolio-server:latest
+    container_name: portfolio-server
     build:
       context: ./server
       dockerfile: Dockerfile
@@ -19,6 +26,12 @@ services:
     volumes:
       - pb_data:/app/pb_data
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8090/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
 
 volumes:
   pb_data:

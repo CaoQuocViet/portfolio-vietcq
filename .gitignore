@@ -7,3 +7,5 @@ docs/functions_vi/
 server/pb_data/
 server/pb
 progress.md
+docs/docker-optimization-synthesis.md
+docs/infrastructure.md
