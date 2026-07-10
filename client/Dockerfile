@@ -12,6 +12,10 @@ FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+# NEXT_PUBLIC_* được nhúng thẳng vào bundle lúc build, KHÔNG đọc lúc chạy — đặt ở
+# runtime là vô nghĩa. Không truyền arg thì rơi về mặc định localhost:8090 (dev).
+ARG NEXT_PUBLIC_API_URL
+ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
 RUN pnpm build
 
 FROM node:22-alpine AS runner

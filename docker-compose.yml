@@ -1,3 +1,7 @@
+# CHỈ DÙNG Ở MÁY DEV. Deploy lên box đi bằng ./deploy.sh (build ở đây → ship image →
+# docker run trên box): box không giữ source và không bao giờ build. File này có `build:`
+# nên nếu bê lên box mà chạy, nó sẽ âm thầm dựng lại đúng cái code cũ đang nằm ở đó —
+# chính là cách bản Next 15.5.0 dính RCE sống sót tới lúc bị đào tiền ảo.
 services:
   client:
     image: portfolio-client:latest
@@ -5,11 +9,15 @@ services:
     build:
       context: ./client
       dockerfile: Dockerfile
+      args:
+        # Trình duyệt của khách gọi API này, nên phải là địa chỉ khách với tới được
+        # (prod: https://api.vietcq.com). NEXT_PUBLIC_* nhúng lúc BUILD chứ không đọc
+        # lúc chạy — đặt ở `environment` là vô nghĩa, bundle sẽ rơi về mặc định dưới.
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8090}
     ports:
       - "5678:5678"
     environment:
       - NODE_ENV=production
-      - NEXT_PUBLIC_POCKETBASE_URL=http://server:8090
     restart: unless-stopped
     depends_on:
       server:
